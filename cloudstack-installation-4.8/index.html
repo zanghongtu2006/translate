@@ -610,8 +610,8 @@ VM instances you can permit in the cluster is at most (N-1) *
 CloudStack UI to disable allocation to the cluster.</li>
 </ul>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">The lack of up-do-date hotfixes can lead to data corruption and lost VMs.</p>
+<p class="first admonition-title">警告</p>
+<p class="last">没有升级至最新补丁包可能导致数据损坏或丢失虚拟机。</p>
 </div>
 <p>Be sure all the hotfixes provided by the hypervisor vendor are applied. Track
 the release of hypervisor patches through your hypervisor vendor’s support
@@ -626,14 +626,14 @@ system that is not up to date with patches.</p>
 </div>
 </div>
 <div class="section" id="quick-installation-guide">
-<span id="guide"></span><h2>Quick Installation Guide<a class="headerlink" href="#quick-installation-guide" title="Permalink to this headline">¶</a></h2>
+<span id="guide"></span><h2>快速安装指南<a class="headerlink" href="#quick-installation-guide" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <span id="document-qig"></span><div class="section" id="quick-installation-guide-for-centos-6">
-<h3>Quick Installation Guide for CentOS 6<a class="headerlink" href="#quick-installation-guide-for-centos-6" title="Permalink to this headline">¶</a></h3>
+<h3>基于CentOS 6的快速安装指南<a class="headerlink" href="#quick-installation-guide-for-centos-6" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="overview">
-<h4>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h4>
+<h4>概述<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h4>
 <div class="section" id="what-exactly-are-we-building">
-<h5>What exactly are we building?<a class="headerlink" href="#what-exactly-are-we-building" title="Permalink to this headline">¶</a></h5>
+<h5>我们在部署什么？<a class="headerlink" href="#what-exactly-are-we-building" title="Permalink to this headline">¶</a></h5>
 <p>Infrastructure-as-a-Service (IaaS) clouds can be a complex thing to build, and
 by definition they have a plethora of options, which often lead to confusion
 for even experienced admins who are newcomers to building cloud platforms. The
@@ -641,66 +641,49 @@ goal for this runbook is to provide a straightforward set of instructions to
 get you up and running with CloudStack with a minimum amount of trouble.</p>
 </div>
 <div class="section" id="high-level-overview-of-the-process">
-<h5>High level overview of the process<a class="headerlink" href="#high-level-overview-of-the-process" title="Permalink to this headline">¶</a></h5>
-<p>This runbook will focus on building a CloudStack cloud using KVM on CentOS
-6.5 with NFS storage on a flat layer-2 network utilizing layer-3 network
-isolation (aka Security Groups), and doing it all on a single piece of
-hardware.</p>
-<p>KVM, or Kernel-based Virtual Machine is a virtualization technology for the
-Linux kernel. KVM supports native virtualization atop processors with hardware
-virtualization extensions.</p>
-<p>Security Groups act as distributed firewalls that control access to a group of
-virtual machines.</p>
+<h5>安装过程高级概述<a class="headerlink" href="#high-level-overview-of-the-process" title="Permalink to this headline">¶</a></h5>
+<p>该手册主题为创建一个CloudStack云，该云使用CentOS 6.5上部署的KVM 和三层网络隔离出来的NFS 存储(又名安全组), 并且将其都部署在统一台服务器上。</p>
+<p>KVM（Kernel-based Virtual Machine）是一个基于Linux Kernel的虚拟化技术。
+ KVM 在硬件虚拟化扩展的基础上支持本地虚拟化。</p>
+<p>安全组作为分布式防火墙来控制一组虚拟机的访问。</p>
 </div>
 <div class="section" id="prerequisites">
-<h5>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h5>
-<p>To complete this runbook you&#8217;ll need the following items:</p>
+<h5>先决条件<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h5>
+<p>完成该手册内容你需要准备以下几项：</p>
 <ol class="arabic simple">
-<li>At least one computer which supports and has enabled hardware virtualization.</li>
-<li>The <a class="reference external" href="http://mirrors.kernel.org/centos/6/isos/x86_64/">CentOS 6.5 x86_64 minimal install CD</a></li>
-<li>A /24 network with the gateway being at xxx.xxx.xxx.1, no DHCP should be on
-this network and none of the computers running CloudStack will have a
-dynamic address. Again this is done for the sake of simplicity.</li>
+<li>至少一台电脑支持并开启硬件虚拟化。</li>
+<li><a class="reference external" href="http://mirrors.kernel.org/centos/6/isos/x86_64/">CentOS 6.5 x86_64 minimal install CD</a></li>
+<li>24位掩码的网络，网关为xxx.xxx.xxx.1, 不需要DHCP并且CloudStack没有任何节点需要动态IP地址。
+这是为了简单起见。</li>
 </ol>
 </div>
 </div>
 <div class="section" id="environment">
-<h4>Environment<a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h4>
-<p>Before you begin , you need to prepare the environment before you install
-CloudStack. We will go over the steps to prepare now.</p>
+<h4>环境<a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h4>
+<p>在Cloudtack安装开始之前，需要先准备安装好部署环境。接下来我们逐步进行准备。</p>
 <div class="section" id="operating-system">
-<h5>Operating System<a class="headerlink" href="#operating-system" title="Permalink to this headline">¶</a></h5>
-<p>Using the CentOS 6.5 x86_64 minimal install ISO, you&#8217;ll need to install CentOS 6
-on your hardware. The defaults will generally be acceptable for this
-installation.</p>
-<p>Once this installation is complete, you&#8217;ll want to connect to your freshly
-installed machine via SSH as the root user. Note that you should not allow
-root logins in a production environment, so be sure to turn off remote logins
-once you have finished the installation and configuration.</p>
+<h5>操作系统<a class="headerlink" href="#operating-system" title="Permalink to this headline">¶</a></h5>
+<p>使用CentOS 6.5 x86_64 minimal install ISO安装操作系统。默认安装即可。</p>
+<p>安装完成后，使用root账户通过SSH 连接到新的系统。注意不能在生产环境中允许root登陆，在安装配置完成后需要关闭root的远程登陆。</p>
 <div class="section" id="configuring-the-network">
-<span id="conf-network"></span><h6>Configuring the network<a class="headerlink" href="#configuring-the-network" title="Permalink to this headline">¶</a></h6>
+<span id="conf-network"></span><h6>配置网络<a class="headerlink" href="#configuring-the-network" title="Permalink to this headline">¶</a></h6>
 <p>By default the network will not come up on your hardware and you will need to
 configure it to work in your environment. Since we specified that there will
 be no DHCP server in this environment we will be manually configuring your
 network interface. We will assume, for the purposes of this exercise, that
 eth0 is the only network interface that will be connected and used.</p>
 <p>Connecting via the console you should login as root. Check the file
-/etc/sysconfig/network-scripts/ifcfg-eth0, it will look like this by default:</p>
+/etc/sysconfig/network-scripts/ifcfg-eth0, 如下所示，默认为:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">DEVICE</span><span class="o">=</span><span class="s2">&quot;eth0&quot;</span>
 <span class="n">HWADDR</span><span class="o">=</span><span class="s2">&quot;52:54:00:B9:A6:C0&quot;</span>
 <span class="n">NM_CONTROLLED</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span>
 <span class="n">ONBOOT</span><span class="o">=</span><span class="s2">&quot;no&quot;</span>
 </pre></div>
 </div>
-<p>Unfortunately, this configuration will not permit you to connect to the
-network, and is also unsuitable for our purposes with CloudStack. We want to
-configure that file so that it specifies the IP address, netmask, etc., as
-shown in the following example:</p>
+<p>该配置无法连接网络，也不适合CloudStack。我们来配置此文件来指定IP 地址，掩码等，如下所示：</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">You should not use the Hardware Address (aka the MAC address) from our
-example for your configuration. It is network interface specific, so you
-should keep the address already provided in the HWADDR directive.</p>
+<p class="first admonition-title">提示</p>
+<p class="last">在配置中不要使用示例中的Hardware Address (也称为MAC address)。这所网卡特定属性，应该保持和物理网卡信息一致。</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span></span>DEVICE=eth0
 HWADDR=52:54:00:B9:A6:C0
@@ -715,15 +698,14 @@ DNS2=8.8.4.4
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">提示</p>
 <p class="last">IP Addressing - Throughout this document we are assuming that you will have
 a /24 network for your CloudStack implementation. This can be any RFC 1918
 network. However, we are assuming that you will match the machine address
 that we are using. Thus we may use 172.16.10.2 and because you might be
 using the 192.168.55.0/24 network you would use 192.168.55.2</p>
 </div>
-<p>Now that we have the configuration files properly set up, we need to run a few
-commands to start up the network:</p>
+<p>现在配置文件已经完成，接下来运行以下命令启动网络：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># chkconfig network on</span>
 
 <span class="c1"># service network start</span>
