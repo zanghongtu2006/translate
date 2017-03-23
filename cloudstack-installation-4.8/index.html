@@ -310,17 +310,13 @@ Management Server。</p>
 网卡bonding 配置只涉及到一个网络。MPIO涉及到两个独立的网络。</p>
 </div>
 <div class="section" id="choosing-a-hypervisor">
-<h4>Choosing a Hypervisor<a class="headerlink" href="#choosing-a-hypervisor" title="Permalink to this headline">¶</a></h4>
-<p>CloudStack supports many popular hypervisors. Your cloud can consist
-entirely of hosts running a single hypervisor, or you can use multiple
-hypervisors. Each cluster of hosts must run the same hypervisor.</p>
-<p>You might already have an installed base of nodes running a particular
-hypervisor, in which case, your choice of hypervisor has already been
-made. If you are starting from scratch, you need to decide what
-hypervisor software best suits your needs. A discussion of the relative
-advantages of each hypervisor is outside the scope of our documentation.
-However, it will help you to know which features of each hypervisor are
-supported by CloudStack. The following table provides this information.</p>
+<h4>选择 Hypervisor<a class="headerlink" href="#choosing-a-hypervisor" title="Permalink to this headline">¶</a></h4>
+<p>CloudStack 支持多种主流的hypervisor. 您的云环境可以考虑单一hypervisor或者多种hypervisor。
+每个cluster中的主机必须运行相同的hypervisor.</p>
+<p>您可能以及有了一个安装好正在运行的hypervisor，在这种情况下，您的选择以及确定了。
+如果您正在开始选型，您需要决定哪种hypervisor最适合您的需要。
+本文档不对hypervisor进行详细比较。但是，了解Cloudstack对于每种hypervisor的支持会更有利于您的选型。
+下表提供此类信息。</p>
 <table border="1" class="table-striped table-bordered table-hover docutils">
 <colgroup>
 <col width="35%" />
@@ -350,8 +346,7 @@ supported by CloudStack. The following table provides this information.</p>
 <td>?</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>Security groups in zones that use
-basic networking</td>
+<tr class="row-odd"><td>基本网络模式的安全组</td>
 <td>Yes</td>
 <td>No</td>
 <td>Yes</td>
@@ -415,8 +410,7 @@ basic networking</td>
 <td>?</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>Manual live migration of VMs from
-host to host</td>
+<tr class="row-odd"><td>手动触发 live migration</td>
 <td>Yes</td>
 <td>Yes</td>
 <td>Yes</td>
@@ -424,10 +418,7 @@ host to host</td>
 <td>Yes</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>Conserve management traffic IP
-address by using link local
-network to communicate with
-virtual router</td>
+<tr class="row-even"><td>通过link local网络和v-Router通信来节约管理网络IP</td>
 <td>Yes</td>
 <td>No</td>
 <td>Yes</td>
@@ -438,9 +429,8 @@ virtual router</td>
 </tbody>
 </table>
 <div class="section" id="hypervisor-support-for-primary-storage">
-<h5>Hypervisor Support for Primary Storage<a class="headerlink" href="#hypervisor-support-for-primary-storage" title="Permalink to this headline">¶</a></h5>
-<p>The following table shows storage options and parameters for different
-hypervisors.</p>
+<h5>Hypervisor 支持的Primary Storage<a class="headerlink" href="#hypervisor-support-for-primary-storage" title="Permalink to this headline">¶</a></h5>
+<p>下表展示了不同hypervisor的存储选项和属性。</p>
 <table border="1" class="table-striped table-bordered table-hover docutils">
 <colgroup>
 <col width="33%" />
@@ -460,8 +450,7 @@ hypervisors.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>Format for Disks, Templates,
-and Snapshots</td>
+<tr class="row-even"><td>磁盘，模板和快照的格式</td>
 <td>VHD</td>
 <td>VMDK</td>
 <td>QCOW2</td>
