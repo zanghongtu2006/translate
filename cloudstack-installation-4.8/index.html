@@ -115,7 +115,7 @@ READTHEDOCS_DATA['page'] = 'index'
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-storage_setup">存储配置</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#document-storage_setup#small-scale-s安装etup">小规模集群配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-storage_setup#small-scale-setup">小规模集群配置</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-storage_setup#large-scale-setup">大规模集群配置p</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-storage_setup#storage-architecture">存储架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-storage_setup#network-configuration-for-storage">存储网络配置</a></li>
@@ -189,7 +189,7 @@ READTHEDOCS_DATA['page'] = 'index'
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-storage_setup">存储配置</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#document-storage_setup#small-scale-setup">小规模集群配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="./index.html#document-storage_setup#small-scale-setup">小规模集群配置</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-storage_setup#large-scale-setup">大规模集群配置</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-storage_setup#storage-architecture">存储架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-storage_setup#network-configuration-for-storage">存储网络配置</a></li>
@@ -506,70 +506,47 @@ Mountpoint</td>
 </tr>
 </tbody>
 </table>
-<p>XenServer uses a clustered LVM system to store VM images on iSCSI and
-Fiber Channel volumes and does not support over-provisioning in the
-hypervisor. The storage server itself, however, can support
-thin-provisioning. As a result the CloudStack can still support storage
-over-provisioning by running on thin-provisioned storage volumes.</p>
-<p>KVM supports &#8220;Shared Mountpoint&#8221; storage. A shared mountpoint is a file
-system path local to each server in a given cluster. The path must be
-the same across all Hosts in the cluster, for example /mnt/primary1.
-This shared mountpoint is assumed to be a clustered filesystem such as
-OCFS2. In this case the CloudStack does not attempt to mount or unmount
-the storage as is done with NFS. The CloudStack requires that the
-administrator insure that the storage is available</p>
-<p>With NFS storage, CloudStack manages the overprovisioning. In this case
-the global configuration parameter storage.overprovisioning.factor
-controls the degree of overprovisioning. This is independent of
-hypervisor type.</p>
-<p>Local storage is an option for primary storage for vSphere, XenServer,
-and KVM. When the local disk option is enabled, a local disk storage
-pool is automatically created on each host. To use local storage for the
-System Virtual Machines (such as the Virtual Router), set
-system.vm.use.local.storage to true in global configuration.</p>
-<p>CloudStack supports multiple primary storage pools in a Cluster. For
-example, you could provision 2 NFS servers in primary storage. Or you
-could provision 1 iSCSI LUN initially and then add a second iSCSI LUN
-when the first approaches capacity.</p>
+<p>XenServer 在iSCSI和Fiber Channel卷上使用一种集群存储LVM 来存储VM 镜像并且不支持over-provision。
+但是这个存储本身可以支持thin-provisioning。因此CloudStack可以通过使用thin-provisioned 存储卷来支持over-provision。</p>
+<p>KVM 支持&#8220;Shared Mountpoint（共享挂载点）&#8221; 存储. 一个shared mountpoint是一个挂载到集群所有server上的文件存储路径。
+这个路径在集群所有机器上必须是完全相同的，例如 /mnt/primary1.
+该shared mountpoint是一个集群存储文集系统，例如OCFS2。
+这种情况下，CloudStack不再像操作NFS 一样去挂载或者卸载存储。
+CloudStack 需要管理员来保证存储可用。</p>
+<p>使用NFS 存储, CloudStack 可以实现overprovisioning. 在这种情况下全局配置的属性storage.overprovisioning.factor
+是用来控制超分配的倍数。这个和hypervisor的类型无关。</p>
+<p>Local storage（本地存储）是主存储的一种，用于vSphere, XenServer,
+和KVM。当启用本地存储的时候，会在所有主机上自动创建一个本地存储池。
+如果要使用本地存储来存放系统虚拟机（例如Virtual Router）需要再全局设置里面设置system.vm.use.local.storage为true。</p>
+<p>CloudStack支持一个集群中有多个主存储。例如，可以部署2个NFS 作为主存储。或者先部署一个iSCSI LUN，成功后在添加第二个。</p>
 </div>
 </div>
 <div class="section" id="best-practices">
-<h4>Best Practices<a class="headerlink" href="#best-practices" title="Permalink to this headline">¶</a></h4>
-<p>Deploying a cloud is challenging. There are many different technology
-choices to make, and CloudStack is flexible enough in its configuration
-that there are many possible ways to combine and configure the chosen
-technology. This section contains suggestions and requirements about
-cloud deployments.</p>
-<p>These should be treated as suggestions and not absolutes. However, we do
-encourage anyone planning to build a cloud outside of these guidelines
-to seek guidance and advice on the project mailing lists.</p>
+<h4>最佳实践<a class="headerlink" href="#best-practices" title="Permalink to this headline">¶</a></h4>
+<p>部署一个云平台是一件很有挑战性的事情。需要做很多不同的技术选型，CloudStack可以灵活配置来适应不同的技术选型组合。
+本章节内容包含云平台实施的一些建议和需求。</p>
+<p>这些内容仅作为建议而非特定方案。
+如果指南中没有合适的方案，我们建议您通过mailing list来寻求指导或者建议。</p>
 <div class="section" id="process-best-practices">
-<h5>Process Best Practices<a class="headerlink" href="#process-best-practices" title="Permalink to this headline">¶</a></h5>
+<h5>最佳实践<a class="headerlink" href="#process-best-practices" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
-<li>A staging system that models the production environment is strongly
-advised. It is critical if customizations have been applied to
-CloudStack.</li>
-<li>Allow adequate time for installation, a beta, and learning the
-system. Installs with basic networking can be done in hours. Installs
-with advanced networking usually take several days for the first
-attempt, with complicated installations taking longer. For a full
-production system, allow at least 4-8 weeks for a beta to work
-through all of the integration issues. You can get help from fellow
-users on the cloudstack-users mailing list.</li>
+<li>强烈建议使用对生产环境进行建模的分期系统。在定制化的系统上安装部署CloudStack是有很大风险的。</li>
+<li>要有充足的时间来进行安装，测试和学习该系统。
+安装基本网络环境需要大约一小时。
+安装高级网络环境一开始可能需要数天时间，复杂安装可能持续更久。
+安装一个完整的生产环境，需要大约4-8周来对所有功能进行集成测试。
+您可以在通过cloudstack-users mailing list向社区研究人员求助。</li>
 </ul>
 </div>
 <div class="section" id="setup-best-practices">
-<h5>Setup Best Practices<a class="headerlink" href="#setup-best-practices" title="Permalink to this headline">¶</a></h5>
+<h5>配置最佳实践<a class="headerlink" href="#setup-best-practices" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
-<li>Each host should be configured to accept connections only from
-well-known entities such as the CloudStack Management Server or your
-network monitoring software.</li>
+<li>每台主机都应该配置一个连接用来访问CloudStack Management Server 或者您的网络监控软件。</li>
 <li>Use multiple clusters per pod if you need to achieve a certain switch
 density.</li>
-<li>Primary storage mountpoints or LUNs should not exceed 6 TB in size.
-It is better to have multiple smaller primary storage elements per
-cluster than one large one.</li>
-<li>When exporting shares on primary storage, avoid data loss by
+<li>Primary storage mountpoints 或LUNs 应该保持在 6 TB 以内。
+更好的方案是在一个集群中使用多个小的主存储而不是一个大的主存储。</li>
+<li>当When exporting shares on primary storage, avoid data loss by
 restricting the range of IP addresses that can access the storage.
 See &#8220;Linux NFS on Local Disks and DAS&#8221; or &#8220;Linux NFS on iSCSI&#8221;.</li>
 <li>NIC bonding is straightforward to implement and provides increased
@@ -589,7 +566,7 @@ to XenServer 6.0.</li>
 </ul>
 </div>
 <div class="section" id="maintenance-best-practices">
-<h5>Maintenance Best Practices<a class="headerlink" href="#maintenance-best-practices" title="Permalink to this headline">¶</a></h5>
+<h5>维护最佳实践<a class="headerlink" href="#maintenance-best-practices" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li>Monitor host disk space. Many host failures occur because the host&#8217;s
 root disk fills up from logs that were not rotated adequately.</li>
