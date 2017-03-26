@@ -1021,53 +1021,38 @@ installer.</p>
 </div>
 </div>
 <div class="section" id="source-installation">
-<span id="steps"></span><h2>Source Installation<a class="headerlink" href="#source-installation" title="Permalink to this headline">¶</a></h2>
+<span id="steps"></span><h2>源码安装<a class="headerlink" href="#source-installation" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <span id="document-building_from_source"></span><div class="section" id="building-from-source">
-<h3>Building from Source<a class="headerlink" href="#building-from-source" title="Permalink to this headline">¶</a></h3>
-<p>The official CloudStack release is always in source code form. You will
-likely be able to find &#8220;convenience binaries,&#8221; the source is the
-canonical release. In this section, we&#8217;ll cover acquiring the source
-release and building that so that you can deploy it using Maven or
-create Debian packages or RPMs.</p>
-<p>Note that building and deploying directly from source is typically not
-the most efficient way to deploy an IaaS. However, we will cover that
-method as well as building RPMs or Debian packages for deploying
-CloudStack.</p>
-<p>The instructions here are likely version-specific. That is, the method
-for building from source for the 4.7.x series is different from the
-4.2.x series.</p>
-<p>If you are working with a unreleased version of CloudStack, see the
-INSTALL.md file in the top-level directory of the release.</p>
+<h3>从源码打包<a class="headerlink" href="#building-from-source" title="Permalink to this headline">¶</a></h3>
+<p>官方的CloudStack release通常是以源码的形式进行发布。
+您可能更期望能获得更加方便的&#8220;二进制安装包&#8221; 但社区以源码包作为发布的规范。
+本章中，我们将会介绍如何获取源码并且编译打包，以便于您可以使用maven或者创建Debian或者RPM包。</p>
+<p>注意：从源码编译安装一个IaaS云平台并非最有效率的方式。但是，我们还是会介绍从源码编译打包RPM或Debian包的方法。</p>
+<p>该指南是针对特定版本的。从源码编译4.7.x系列的方法和编译4.2.x系列并不相同。</p>
+<p>如果您在使用一个没有公开发布的CloudStack版本，参见根目录下的INSTALL.md。</p>
 <div class="section" id="getting-the-release">
-<h4>Getting the release<a class="headerlink" href="#getting-the-release" title="Permalink to this headline">¶</a></h4>
-<p>You can download the latest CloudStack release from the <a class="reference external" href="http://cloudstack.apache.org/downloads.html">Apache
-CloudStack project download page</a>.</p>
-<p>Prior releases are available via archive.apache.org as well. See the
-downloads page for more information on archived releases.</p>
-<p>You&#8217;ll notice several links under the &#8216;Latest release&#8217; section. A link
-to a file ending in <code class="docutils literal"><span class="pre">tar.bz2</span></code>, as well as a PGP/GPG signature, MD5,
-and SHA512 file.</p>
+<h4>获取发布版本<a class="headerlink" href="#getting-the-release" title="Permalink to this headline">¶</a></h4>
+<p>可以在<a class="reference external" href="http://cloudstack.apache.org/downloads.html">Apache
+CloudStack 下载页</a>获取最新发布版本。</p>
+<p>历史发布可以在archive.apache.org找到。可以在下载页面找到更多信息。</p>
+<p>在&#8216;Latest release&#8217; 部分可以找到以下几个链接. 一个以<code class="docutils literal"><span class="pre">tar.bz2</span></code>结尾，
+和一个PGP/GPG 签名, MD5,以及 SHA512 file.</p>
 <ul class="simple">
-<li>The <code class="docutils literal"><span class="pre">tar.bz2</span></code> file contains the Bzip2-compressed tarball with the
-source code.</li>
-<li>The <code class="docutils literal"><span class="pre">.asc</span></code> file is a detached cryptographic signature that can be
-used to help verify the authenticity of the release.</li>
-<li>The <code class="docutils literal"><span class="pre">.md5</span></code> file is an MD5 hash of the release to aid in verify the
-validity of the release download.</li>
-<li>The <code class="docutils literal"><span class="pre">.sha</span></code> file is a SHA512 hash of the release to aid in verify
-the validity of the release download.</li>
+<li><code class="docutils literal"><span class="pre">tar.bz2</span></code> 文件是Bzip2打包的源码。</li>
+<li><code class="docutils literal"><span class="pre">.asc</span></code> 文件是一个加密的签名文件，用来确认该发布版本的真实性。</li>
+<li><code class="docutils literal"><span class="pre">.md5</span></code> 文件是一个MD5的哈希值，用来确认是否下载完成。</li>
+<li><code class="docutils literal"><span class="pre">.sha</span></code> 文件是一个SHA512的哈希值，用来确认是否下载完成。</li>
 </ul>
 </div>
 <div class="section" id="verifying-the-downloaded-release">
-<h4>Verifying the downloaded release<a class="headerlink" href="#verifying-the-downloaded-release" title="Permalink to this headline">¶</a></h4>
-<p>There are a number of mechanisms to check the authenticity and validity
-of a downloaded release.</p>
+<h4>校验下载的版本<a class="headerlink" href="#verifying-the-downloaded-release" title="Permalink to this headline">¶</a></h4>
+<p>有很多种机制用来校验下载的版本是否真实有效。</p>
 <div class="section" id="getting-the-keys">
-<h5>Getting the KEYS<a class="headerlink" href="#getting-the-keys" title="Permalink to this headline">¶</a></h5>
-<p>To enable you to verify the GPG signature, you will need to download the
-<a class="reference external" href="http://www.apache.org/dist/cloudstack/KEYS">KEYS</a> file.</p>
-<p>You next need to import those keys, which you can do by running:</p>
+<h5>获取 KEYS<a class="headerlink" href="#getting-the-keys" title="Permalink to this headline">¶</a></h5>
+<p>要使用GPG签名进行校验，需要下载
+<a class="reference external" href="http://www.apache.org/dist/cloudstack/KEYS">KEYS</a> 文件。</p>
+<p>接下来，执行以下命令导入这些key：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ wget http://www.apache.org/dist/cloudstack/KEYS
 $ gpg --import KEYS
 </pre></div>
@@ -1075,46 +1060,37 @@ $ gpg --import KEYS
 </div>
 <div class="section" id="gpg">
 <h5>GPG<a class="headerlink" href="#gpg" title="Permalink to this headline">¶</a></h5>
-<p>The CloudStack project provides a detached GPG signature of the release.
-To check the signature, run the following command:</p>
+<p>CloudStack提供了一个独立的GPG签名，可执行以下命令校验这个签名：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ gpg --verify apache-cloudstack-4.8.0-src.tar.bz2.asc
 </pre></div>
 </div>
-<p>If the signature is valid you will see a line of output that contains
+<p>如果签名有效，您会看到如下输出：
 &#8216;Good signature&#8217;.</p>
 </div>
 <div class="section" id="md5">
 <h5>MD5<a class="headerlink" href="#md5" title="Permalink to this headline">¶</a></h5>
-<p>In addition to the cryptographic signature, CloudStack has an MD5
-checksum that you can use to verify the download matches the release.
-You can verify this hash by executing the following command:</p>
+<p>在加密的签名之外CloudStack还提供了一个MD5校验值，您可以通过此校验值校验下载是否正确。
+命令如下：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ gpg --print-md MD5 apache-cloudstack-4.8.0-src.tar.bz2 <span class="p">|</span> diff - apache-cloudstack-4.8.0-src.tar.bz2.md5
 </pre></div>
 </div>
-<p>If this successfully completes you should see no output. If there is any
-output from them, then there is a difference between the hash you
-generated locally and the hash that has been pulled from the server.</p>
+<p>如果成功则不会有返回值。
+如果有任何输出，则说明本地生成的哈希值和社区发布不一致。</p>
 </div>
 <div class="section" id="sha512">
 <h5>SHA512<a class="headerlink" href="#sha512" title="Permalink to this headline">¶</a></h5>
-<p>In addition to the MD5 hash, the CloudStack project provides a SHA512
-cryptographic hash to aid in assurance of the validity of the downloaded
-release. You can verify this hash by executing the following command:</p>
+<p>MD5之外，CloudStack还提供了一个SHA512加密的哈希值，用来确保下载有效。可以使用如下命令进行判断：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ gpg --print-md SHA512 apache-cloudstack-4.8.0-src.tar.bz2 <span class="p">|</span> diff - apache-cloudstack-4.8.0-src.tar.bz2.sha
 </pre></div>
 </div>
-<p>If this command successfully completes you should see no output. If
-there is any output from them, then there is a difference between the
-hash you generated locally and the hash that has been pulled from the
-server.</p>
+<p>如果成功则不会有返回值。
+如果有任何输出，则说明本地生成的哈希值和社区发布不一致。</p>
 </div>
 </div>
 <div class="section" id="prerequisites-for-building-apache-cloudstack">
-<h4>Prerequisites for building Apache CloudStack<a class="headerlink" href="#prerequisites-for-building-apache-cloudstack" title="Permalink to this headline">¶</a></h4>
-<p>There are a number of prerequisites needed to build CloudStack. This
-document assumes compilation on a Linux system that uses RPMs or DEBs
-for package management.</p>
-<p>You will need, at a minimum, the following to compile CloudStack:</p>
+<h4>编译Apache CloudStack的先决条件<a class="headerlink" href="#prerequisites-for-building-apache-cloudstack" title="Permalink to this headline">¶</a></h4>
+<p>编译CloudStack需要很多的预设值。本文档假定编译是在使用RPM或DEB安装包的Linux系统上进行的，并且打包为RPM或在DEB。</p>
+<p>你需要以下组件来进行编译：</p>
 <ol class="arabic simple">
 <li>Maven (version 3)</li>
 <li>Java (Java 7/OpenJDK 1.7)</li>
@@ -1127,43 +1103,36 @@ for package management.</p>
 </ol>
 </div>
 <div class="section" id="extracting-source">
-<h4>Extracting source<a class="headerlink" href="#extracting-source" title="Permalink to this headline">¶</a></h4>
-<p>Extracting the CloudStack release is relatively simple and can be done
-with a single command as follows:</p>
+<h4>解压源码<a class="headerlink" href="#extracting-source" title="Permalink to this headline">¶</a></h4>
+<p>执行以下命令解压源码：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ tar -jxvf apache-cloudstack-4.8.0-src.tar.bz2
 </pre></div>
 </div>
-<p>You can now move into the directory:</p>
+<p>切换到源码目录中：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ./apache-cloudstack-4.8.0-src
 </pre></div>
 </div>
 </div>
 <div class="section" id="building-deb-packages">
-<h4>Building DEB packages<a class="headerlink" href="#building-deb-packages" title="Permalink to this headline">¶</a></h4>
-<p>In addition to the bootstrap dependencies, you&#8217;ll also need to install
-several other dependencies. Note that we recommend using Maven 3.</p>
+<h4>打包为 DEB<a class="headerlink" href="#building-deb-packages" title="Permalink to this headline">¶</a></h4>
+<p>在上文的依赖之外，还需要安装其它的依赖。我们推荐使用Maven 3。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get update
 $ sudo apt-get install python-software-properties
 $ sudo apt-get update
 $ sudo apt-get install ant debhelper openjdk-7-jdk tomcat6 libws-commons-util-java genisoimage python-mysqldb libcommons-codec-java libcommons-httpclient-java liblog4j1.2-java maven
 </pre></div>
 </div>
-<p>While we have defined, and you have presumably already installed the
-bootstrap prerequisites, there are a number of build time prerequisites
-that need to be resolved. CloudStack uses maven for dependency
-resolution. You can resolve the buildtime depdencies for CloudStack by
-running:</p>
+<p>按照前文预设，我们已经安装好了基本的编译环境，接下来我们编译过程中会有很多依赖jar。
+ CloudStack用maven作为依赖管理。
+ 可以执行以下命令来处理编译期依赖：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ mvn -P deps
 </pre></div>
 </div>
-<p>Now that we have resolved the dependencies we can move on to building
-CloudStack and packaging them into DEBs by issuing the following
-command.</p>
+<p>解决完编译依赖之后，我们可以开始执行命令编译CloudStack并打包成DEB，命令如下：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ dpkg-buildpackage -uc -us
 </pre></div>
 </div>
-<p>This command will build the following debian packages. You should have
-all of the following:</p>
+<p>该命令会打包成如下DEB安装包：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>cloudstack-common-4.8.0.amd64.deb
 cloudstack-management-4.8.0.amd64.deb
 cloudstack-agent-4.8.0.amd64.deb
@@ -1174,24 +1143,21 @@ cloudstack-docs-4.8.0.amd64.deb
 </pre></div>
 </div>
 <div class="section" id="setting-up-an-apt-repo">
-<h5>Setting up an APT repo<a class="headerlink" href="#setting-up-an-apt-repo" title="Permalink to this headline">¶</a></h5>
-<p>After you&#8217;ve created the packages, you&#8217;ll want to copy them to a system
-where you can serve the packages over HTTP. You&#8217;ll create a directory
-for the packages and then use <code class="docutils literal"><span class="pre">dpkg-scanpackages</span></code> to create
-<code class="docutils literal"><span class="pre">Packages.gz</span></code>, which holds information about the archive structure.
-Finally, you&#8217;ll add the repository to your system(s) so you can install
-the packages using APT.</p>
-<p>The first step is to make sure that you have the <strong>dpkg-dev</strong> package
-installed. This should have been installed when you pulled in the
+<h5>配置APT 源<a class="headerlink" href="#setting-up-an-apt-repo" title="Permalink to this headline">¶</a></h5>
+<p>创建安装包完成后，您可能想要把这些包复制到一个能提供HTTP服务的系统中。
+首先您需要创建一个目录，然后执行<code class="docutils literal"><span class="pre">dpkg-scanpackages</span></code>命令来创建
+<code class="docutils literal"><span class="pre">Packages.gz</span></code>, 该包中包含所有包的结构。
+最后，您可以将这个源添加到您的系统中，以便使用APT方式来安装这些包。</p>
+<p>首先确认您已经安装了<strong>dpkg-dev</strong>。
+ This should have been installed when you pulled in the
 <strong>debhelper</strong> application previously, but if you&#8217;re generating
 <code class="docutils literal"><span class="pre">Packages.gz</span></code> on a different system, be sure that it&#8217;s installed there
 as well.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get install dpkg-dev
 </pre></div>
 </div>
-<p>The next step is to copy the DEBs to the directory where they can be
-served over HTTP. We&#8217;ll use <code class="docutils literal"><span class="pre">/var/www/cloudstack/repo</span></code> in the
-examples, but change the directory to whatever works for you.</p>
+<p>接下来，将DEB复制到能提供HTTP的目录中。本例中，我们使用<code class="docutils literal"><span class="pre">/var/www/cloudstack/repo</span></code>
+，您可以按需修改。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo mkdir -p /var/www/cloudstack/repo/binary
 $ sudo cp *.deb /var/www/cloudstack/repo/binary
 $ <span class="nb">cd</span> /var/www/cloudstack/repo/binary
