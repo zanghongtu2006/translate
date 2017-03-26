@@ -860,17 +860,12 @@ Management server及其脚本会操作这些系统虚拟机模板。</p>
 </div>
 </div>
 <div class="section" id="kvm-setup-and-installation">
-<h4>KVM Setup and Installation<a class="headerlink" href="#kvm-setup-and-installation" title="Permalink to this headline">¶</a></h4>
-<p>KVM is the hypervisor we&#8217;ll be using - we will recover the initial setup which
-has already been done on the hypervisor host and cover installation of the
-agent software, you can use the same steps to add additional KVM nodes to your
-CloudStack environment.</p>
+<h4>KVM安装及配置<a class="headerlink" href="#kvm-setup-and-installation" title="Permalink to this headline">¶</a></h4>
+<p>我们选择KVM作为hypervisor - 我们会讲解如何初始化KVM 及如何初始化安装agent，您可以根据此步骤安装其它KVM节点。</p>
 <div class="section" id="id1">
-<h5>Prerequisites<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h5>
-<p>We explicitly are using the management server as a compute node as well, which
-means that we have already performed many of the prerequisite steps when
-setting up the management server, but we will list them here for clarity.
-Those steps are:</p>
+<h5>先决条件<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h5>
+<p>我们用management server同时作为计算节点，这样，我们已经完成了一部分先决条件的设置，但是为了清晰，我们依然再次列出来。
+步骤如下：</p>
 <ol class="arabic simple">
 <li><a class="reference internal" href="#conf-network"><span>Configuring the network</span></a></li>
 <li><a class="reference internal" href="#conf-hostname"><span>Hostname</span></a></li>
@@ -878,11 +873,10 @@ Those steps are:</p>
 <li><a class="reference internal" href="#conf-ntp"><span>NTP</span></a></li>
 <li><a class="reference internal" href="#qigconf-pkg-repo"><span>Configuring the CloudStack Package Repository</span></a></li>
 </ol>
-<p>You shouldn&#8217;t need to do that for the management server, of course, but any
-additional hosts will need for you to complete the above steps.</p>
+<p>当然，您已经不需要再次执行在management server安装过程中已经完成的步骤，但是添加其它节点的时候，还是需要完成以上步骤。</p>
 </div>
 <div class="section" id="id2">
-<h5>Installation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
+<h5>安装<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
 <p>Installation of the KVM agent is trivial with just a single command, but
 afterwards we&#8217;ll need to configure a few things.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># yum -y install cloudstack-agent</span>
@@ -890,26 +884,23 @@ afterwards we&#8217;ll need to configure a few things.</p>
 </div>
 </div>
 <div class="section" id="kvm-configuration">
-<h5>KVM Configuration<a class="headerlink" href="#kvm-configuration" title="Permalink to this headline">¶</a></h5>
-<p>We have two different parts of KVM to configure, libvirt, and QEMU.</p>
+<h5>KVM 配置<a class="headerlink" href="#kvm-configuration" title="Permalink to this headline">¶</a></h5>
+<p>我们需要对KVM进行两方面的配置，libvirt, 和QEMU.</p>
 <div class="section" id="qemu-configuration">
-<h6>QEMU Configuration<a class="headerlink" href="#qemu-configuration" title="Permalink to this headline">¶</a></h6>
-<p>KVM configuration is relatively simple at only a single item. We need to edit
-the QEMU VNC configuration. This is done by editing /etc/libvirt/qemu.conf and
-ensuring the following line is present and uncommented.</p>
+<h6>QEMU 配置<a class="headerlink" href="#qemu-configuration" title="Permalink to this headline">¶</a></h6>
+<p>KVM单节点配置是相对比较简单的。我们需要修改QEMU VNC配置。
+修改/etc/libvirt/qemu.conf文件，删掉下列行的注释并修改为以下内容。</p>
 <blockquote>
 <div>vnc_listen=0.0.0.0</div></blockquote>
 </div>
 <div class="section" id="libvirt-configuration">
-<h6>Libvirt Configuration<a class="headerlink" href="#libvirt-configuration" title="Permalink to this headline">¶</a></h6>
-<p>CloudStack uses libvirt for managing virtual machines. Therefore it is vital
-that libvirt is configured correctly. Libvirt is a dependency of cloud-agent
-and should already be installed.</p>
+<h6>Libvirt 配置<a class="headerlink" href="#libvirt-configuration" title="Permalink to this headline">¶</a></h6>
+<p>CloudStack通过libvirt来管理虚拟机。正确配置libvirt是很重要的。
+Libvirt是cloud-agent的一个依赖，需要提前安装。</p>
 <ol class="arabic">
-<li><p class="first">In order to have live migration working libvirt has to listen for unsecured
-TCP connections. We also need to turn off libvirts attempt to use Multicast
-DNS advertising. Both of these settings are in /etc/libvirt/libvirtd.conf</p>
-<p>Set the following paramaters:</p>
+<li><p class="first">为了支持live migration，libvirt需要监听非安全的TCP连接。
+我们需要禁止libvirt使用Multicast DNS 广播。这些配置选项都在/etc/libvirt/libvirtd.conf文件中。</p>
+<p>设置以下选项：</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">listen_tls</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">listen_tcp</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">tcp_port</span> <span class="o">=</span> <span class="s2">&quot;16059&quot;</span>
@@ -918,14 +909,13 @@ DNS advertising. Both of these settings are in /etc/libvirt/libvirtd.conf</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Turning on &#8220;listen_tcp&#8221; in libvirtd.conf is not enough, we have to change
-the parameters as well we also need to modify /etc/sysconfig/libvirtd:</p>
-<p>Uncomment the following line:</p>
+<li><p class="first">仅仅在libvirtd.conf中打开 &#8220;listen_tcp&#8221; 是不够的, 我们还需要修改/etc/sysconfig/libvirtd文件中的选项：</p>
+<p>打开下列行的注释：</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#LIBVIRTD_ARGS=&quot;--listen&quot;</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Restart libvirt</p>
+<li><p class="first">重启libvirt</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># service libvirtd restart</span>
 </pre></div>
 </div>
@@ -933,9 +923,9 @@ the parameters as well we also need to modify /etc/sysconfig/libvirtd:</p>
 </ol>
 </div>
 <div class="section" id="kvm-configuration-complete">
-<h6>KVM configuration complete<a class="headerlink" href="#kvm-configuration-complete" title="Permalink to this headline">¶</a></h6>
+<h6>KVM配置完成<a class="headerlink" href="#kvm-configuration-complete" title="Permalink to this headline">¶</a></h6>
 <dl class="docutils">
-<dt>For the sake of completeness you should check if KVM is running OK on your machine:</dt>
+<dt>执行以下命令检查KVM是否完成配置并正确运行：</dt>
 <dd><div class="first last highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># lsmod | grep kvm</span>
 kvm_intel              <span class="m">55496</span>  0
 kvm                   <span class="m">337772</span>  <span class="m">1</span> kvm_intel
@@ -943,104 +933,87 @@ kvm                   <span class="m">337772</span>  <span class="m">1</span> kv
 </div>
 </dd>
 </dl>
-<p>That concludes our installation and configuration of KVM, and we&#8217;ll now move
-to using the CloudStack UI for the actual configuration of our cloud.</p>
+<p>现在KVM安装和配置已经完成，我们接下来开始使用CloudStack UI来部署我们的云平台。</p>
 </div>
 </div>
 </div>
 <div class="section" id="configuration">
-<h4>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h4>
+<h4>配置<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h4>
 <p>As we noted before we will be using security groups to provide isolation and
 by default that implies that we&#8217;ll be using a flat layer-2 network. It also
 means that the simplicity of our setup means that we can use the quick
 installer.</p>
 <div class="section" id="ui-access">
-<h5>UI Access<a class="headerlink" href="#ui-access" title="Permalink to this headline">¶</a></h5>
-<p>To get access to CloudStack&#8217;s web interface, merely point your browser to
-<a class="reference external" href="http://172.16.10.2:8080/client">http://172.16.10.2:8080/client</a> The default username is &#8216;admin&#8217;, and the
-default password is &#8216;password&#8217;. You should see a splash screen that allows you
-to choose several options for setting up CloudStack. You should choose the
-Continue with Basic Setup option.</p>
-<p>You should now see a prompt requiring you to change the password for the admin
-user. Please do so.</p>
+<h5>UI 访问<a class="headerlink" href="#ui-access" title="Permalink to this headline">¶</a></h5>
+<p>登陆CloudStack的web管理界面，打开浏览器，登陆网址：
+<a class="reference external" href="http://172.16.10.2:8080/client">http://172.16.10.2:8080/client</a>默认用户名为&#8216;admin&#8217;
+默认密码为：&#8216;password&#8217;。您可以看到一个页面让您选择几种选项来设置您的CloudStack。
+选择Continue with Basic Setup option.</p>
+<p>您可以看到一个提示，要求您修改admin密码。可以按需执行。</p>
 </div>
 <div class="section" id="setting-up-a-zone">
-<h5>Setting up a Zone<a class="headerlink" href="#setting-up-a-zone" title="Permalink to this headline">¶</a></h5>
-<p>A zone is the largest organization entity in CloudStack - and we&#8217;ll be
-creating one, this should be the screen that you see in front of you now. And
-for us there are 5 pieces of information that we need.</p>
+<h5>配置 Zone<a class="headerlink" href="#setting-up-a-zone" title="Permalink to this headline">¶</a></h5>
+<p>Zone是CloudStack中最大的管理单元 - 我们通过当前页面来创建一个Zone。接下来，我们需要5个部分的信息。</p>
 <ol class="arabic simple">
-<li>Name - we will set this to the ever-descriptive &#8216;Zone1&#8217; for our cloud.</li>
-<li>Public DNS 1 - we will set this to &#8216;8.8.8.8&#8217; for our cloud.</li>
-<li>Public DNS 2 - we will set this to &#8216;8.8.4.4&#8217; for our cloud.</li>
-<li>Internal DNS1 - we will also set this to &#8216;8.8.8.8&#8217; for our cloud.</li>
-<li>Internal DNS2 - we will also set this to &#8216;8.8.4.4&#8217; for our cloud.</li>
+<li>Name - 设置一个有描述性的名字&#8216;Zone1&#8217; </li>
+<li>Public DNS 1 - 设置为 &#8216;8.8.8.8&#8217; </li>
+<li>Public DNS 2 - 设置为 &#8216;8.8.4.4&#8217; </li>
+<li>Internal DNS1 - 同样设置为 &#8216;8.8.8.8&#8217; </li>
+<li>Internal DNS2 - 同样设置为 &#8216;8.8.4.4&#8217; </li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">CloudStack distinguishes between internal and public DNS. Internal DNS is
-assumed to be capable of resolving internal-only hostnames, such as your
-NFS server’s DNS name. Public DNS is provided to the guest VMs to resolve
-public IP addresses. You can enter the same DNS server for both types, but
-if you do so, you must make sure that both internal and public IP addresses
-can route to the DNS server. In our specific case we will not use any names
-for resources internally, and we have indeed them set to look to the same
-external resource so as to not add a namerserver setup to our list of
-requirements.</p>
+<p class="last">CloudStack 区分内部和外部DNS。内部DNS只用来解析内网主机名，例如NFS server的DNS名。
+外部DNS用于给客户虚拟机提供对公网域名的解析。
+您可以使用相同类型的DNS server，但是如果这样配置，则必须要保证内网和外网IP都可以路由到这个DNS server。
+在我们当前配置中，并没有用到内网域名，为了不再设置一个内网DNA server，我们把内外网设为同一个。</p>
 </div>
 </div>
 <div class="section" id="pod-configuration">
-<h5>Pod Configuration<a class="headerlink" href="#pod-configuration" title="Permalink to this headline">¶</a></h5>
-<p>Now that we&#8217;ve added a Zone, the next step that comes up is a prompt for
-information regading a pod. Which is looking for several items.</p>
+<h5>Pod 配置<a class="headerlink" href="#pod-configuration" title="Permalink to this headline">¶</a></h5>
+<p>Zone已经创建完成了，接下来我们注册一个pod，输入以下信息：</p>
 <ol class="arabic simple">
-<li>Name - We&#8217;ll use Pod1 for our cloud.</li>
-<li>Gateway - We&#8217;ll use 172.16.10.1 as our gateway</li>
-<li>Netmask - We&#8217;ll use 255.255.255.0</li>
-<li>Start/end reserved system IPs - we will use 172.16.10.10-172.16.10.20</li>
-<li>Guest gateway - We&#8217;ll use 172.16.10.1</li>
-<li>Guest netmask - We&#8217;ll use 255.255.255.0</li>
-<li>Guest start/end IP - We&#8217;ll use 172.16.10.30-172.16.10.200</li>
+<li>Name - 设置为Pod1</li>
+<li>Gateway - 设置为 172.16.10.1 </li>
+<li>Netmask - 设置为 255.255.255.0</li>
+<li>Start/end 系统内部使用 IP段 - 设置为 172.16.10.10-172.16.10.20</li>
+<li>Guest gateway - 设置为 172.16.10.1</li>
+<li>Guest netmask - 设置为 255.255.255.0</li>
+<li>Guest start/end IP - 设置为 172.16.10.30-172.16.10.200</li>
 </ol>
 </div>
 <div class="section" id="cluster">
 <h5>Cluster<a class="headerlink" href="#cluster" title="Permalink to this headline">¶</a></h5>
-<p>Now that we&#8217;ve added a Zone, we need only add a few more items for configuring
-the cluster.</p>
+<p>Zone已经创建完成，我们接下来只需要添加几个配置来创建cluster。</p>
 <ol class="arabic simple">
-<li>Name - We&#8217;ll use Cluster1</li>
-<li>Hypervisor - Choose KVM</li>
+<li>Name - 设置为 Cluster1</li>
+<li>Hypervisor - 选择KVM</li>
 </ol>
-<p>You should be prompted to add the first host to your cluster at this point.
-Only a few bits of information are needed.</p>
+<p>输入以下信息来添加cluster的第一台主机。</p>
 <ol class="arabic simple">
-<li>Hostname - we&#8217;ll use the IP address 172.16.10.2 since we didn&#8217;t set up a
-DNS server.</li>
-<li>Username - we&#8217;ll use &#8216;root&#8217;</li>
-<li>Password - enter the operating system password for the root user</li>
+<li>Hostname - 填入IP地址 172.16.10.2，因为我们没有设置内网的DNS server.</li>
+<li>Username - &#8216;root&#8217;</li>
+<li>Password - 系统的root密码</li>
 </ol>
 <div class="section" id="primary-storage">
 <h6>Primary Storage<a class="headerlink" href="#primary-storage" title="Permalink to this headline">¶</a></h6>
-<p>With your cluster now setup - you should be prompted for primary storage
-information. Choose NFS as the storage type and then enter the following
-values in the fields:</p>
+<p>Cluster设置完成 - 会有一个提示，提示添加primary storage。
+选择NFS作为存储类型并且输入以下信息：</p>
 <ol class="arabic simple">
-<li>Name - We&#8217;ll use &#8216;Primary1&#8217;</li>
-<li>Server - We&#8217;ll be using the IP address 172.16.10.2</li>
-<li>Path - Well define /primary as the path we are using</li>
+<li>Name - 设置为&#8216;Primary1&#8217;</li>
+<li>Server - 设置为IP 172.16.10.2</li>
+<li>Path - 设置为/primary</li>
 </ol>
 </div>
 <div class="section" id="secondary-storage">
 <h6>Secondary Storage<a class="headerlink" href="#secondary-storage" title="Permalink to this headline">¶</a></h6>
-<p>If this is a new zone, you&#8217;ll be prompted for secondary storage information -
-populate it as follows:</p>
+<p>在一个新的zone，需要指定二级存储信息 - 一般如下所示：</p>
 <ol class="arabic simple">
-<li>NFS server - We&#8217;ll use the IP address 172.16.10.2</li>
-<li>Path - We&#8217;ll use /secondary</li>
+<li>NFS server - 设置为 IP 172.16.10.2</li>
+<li>Path - 设置为 /secondary</li>
 </ol>
-<p>Now, click Launch and your cloud should begin setup - it may take several
-minutes depending on your internet connection speed for setup to finalize.</p>
-<p>That&#8217;s it, you are done with installation of your Apache CloudStack cloud.</p>
+<p>现在，点击Launch，云开始进行设置 - 这会持续几分钟时间，具体取决于您的网络速度。</p>
+<p>您已经完成了Apache CloudStack 云平台的安装。</p>
 </div>
 </div>
 </div>
