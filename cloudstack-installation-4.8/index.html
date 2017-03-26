@@ -546,57 +546,38 @@ CloudStack 需要管理员来保证存储可用。</p>
 density.</li>
 <li>Primary storage mountpoints 或LUNs 应该保持在 6 TB 以内。
 更好的方案是在一个集群中使用多个小的主存储而不是一个大的主存储。</li>
-<li>当When exporting shares on primary storage, avoid data loss by
+<li>When exporting shares on primary storage, avoid data loss by
 restricting the range of IP addresses that can access the storage.
-See &#8220;Linux NFS on Local Disks and DAS&#8221; or &#8220;Linux NFS on iSCSI&#8221;.</li>
-<li>NIC bonding is straightforward to implement and provides increased
-reliability.</li>
-<li>10G networks are generally recommended for storage access when larger
-servers that can support relatively more VMs are used.</li>
-<li>Host capacity should generally be modeled in terms of RAM for the
-guests. Storage and CPU may be overprovisioned. RAM may not. RAM is
-usually the limiting factor in capacity designs.</li>
-<li>(XenServer) Configure the XenServer dom0 settings to allocate more
-memory to dom0. This can enable XenServer to handle larger numbers of
-virtual machines. We recommend 2940 MB of RAM for XenServer dom0. For
-instructions on how to do this, see
+参见&#8220;Linux NFS on Local Disks and DAS&#8221; 或者&#8220;Linux NFS on iSCSI&#8221;.</li>
+<li>可以设置NIC bonding来提升效率和增强容灾能力。</li>
+<li>在一个高配服务器需要支持较多VM 的环境中，推荐使用万兆交换机来配置存储网络。</li>
+<li>服务器容量一般只通过虚拟机的内存来进行计算。
+存储和CPU 是可以超分配的。内存不可以。
+所以一般会用内存来作为服务器容量的计算因素。</li>
+<li>(XenServer)可以通过修改XenServer dom0配置来为dom0分配更多内存，以便XenServer可以管理大规模虚拟机。
+我们为dom0分配2940 MB内存。操作步骤参见
 <a class="reference external" href="http://support.citrix.com/article/CTX126531">http://support.citrix.com/article/CTX126531</a>.
-The article refers to XenServer 5.6, but the same information applies
-to XenServer 6.0.</li>
+本文针对XenServer 5.6版本，同样适用于XenServer 6.0.</li>
 </ul>
 </div>
 <div class="section" id="maintenance-best-practices">
 <h5>维护最佳实践<a class="headerlink" href="#maintenance-best-practices" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
-<li>Monitor host disk space. Many host failures occur because the host&#8217;s
-root disk fills up from logs that were not rotated adequately.</li>
-<li>Monitor the total number of VM instances in each cluster, and disable
-allocation to the cluster if the total is approaching the maximum
-that the hypervisor can handle. Be sure to leave a safety margin to
-allow for the possibility of one or more hosts failing, which would
-increase the VM load on the other hosts as the VMs are redeployed.
-Consult the documentation for your chosen hypervisor to find the
-maximum permitted number of VMs per host, then use CloudStack global
-configuration settings to set this as the default limit. Monitor the
-VM activity in each cluster and keep the total number of VMs below a
-safe level that allows for the occasional host failure. For example,
-if there are N hosts in the cluster, and you want to allow for one
-host in the cluster to be down at any given time, the total number of
-VM instances you can permit in the cluster is at most (N-1) *
-(per-host-limit). Once a cluster reaches this number of VMs, use the
-CloudStack UI to disable allocation to the cluster.</li>
+<li>监控主机磁盘空间。很多主机因log占满根目录导致系统无法运转而宕机。</li>
+<li>监控每个集群的虚拟机总数，禁止向达到hypervisor可管理虚拟机上限的集群分配新的虚拟机。
+确保预留充足的资源在一台或多台主机宕机的情况下做容灾，以便VM可以在其它机器上重启。
+可以查看hypervisor的相关文档来确定没台主机能支持的最大VM数量，然后在CloudStack的全局配置中进行设置，作为默认限制。
+监控每个集群的活跃的VM，保证最大VM数低于安全值，避免偶尔发生的主机宕机。
+例如：一个集群中有N 台服务器，您关闭一台之后，整个集群能提供的VM 容量为(N-1) *
+(per-host-limit)。一旦集群容量达到这个数值，则需要通过CloudStack UI 来禁止继续在此集群分配VM。</li>
 </ul>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
 <p class="last">没有升级至最新补丁包可能导致数据损坏或丢失虚拟机。</p>
 </div>
-<p>Be sure all the hotfixes provided by the hypervisor vendor are applied. Track
-the release of hypervisor patches through your hypervisor vendor’s support
-channel, and apply patches as soon as possible after they are released.
-CloudStack will not track or notify you of required hypervisor patches. It is
-essential that your hosts are completely up to date with the provided
-hypervisor patches. The hypervisor vendor is likely to refuse to support any
-system that is not up to date with patches.</p>
+<p>安装所有hypervisor官方提供的补丁包。订阅hypervisor提供商的支持页面来跟踪所发布的补丁，在发布之后尽快更新。
+CloudStack本身不会订阅或管理hypervisor的补丁。
+主机更新到最新补丁是很有必要的。Hypervisor的提供商一般不提供旧版本的支持。</p>
 </div>
 </div>
 </div>
@@ -611,11 +592,9 @@ system that is not up to date with patches.</p>
 <h4>概述<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h4>
 <div class="section" id="what-exactly-are-we-building">
 <h5>我们在部署什么？<a class="headerlink" href="#what-exactly-are-we-building" title="Permalink to this headline">¶</a></h5>
-<p>Infrastructure-as-a-Service (IaaS) clouds can be a complex thing to build, and
-by definition they have a plethora of options, which often lead to confusion
-for even experienced admins who are newcomers to building cloud platforms. The
-goal for this runbook is to provide a straightforward set of instructions to
-get you up and running with CloudStack with a minimum amount of trouble.</p>
+<p>Infrastructure-as-a-Service (IaaS：基础设施即服务) 云是一个很复杂工程，
+因为设计上有特别多的选项，即便是有经验的系统管理员在刚接触云平台的时候，也可能会导致迷惑。
+本手册的目标是提供一组指导，帮助您尽快上手CloudStack并绕过一些可能的问题。</p>
 </div>
 <div class="section" id="high-level-overview-of-the-process">
 <h5>安装过程高级概述<a class="headerlink" href="#high-level-overview-of-the-process" title="Permalink to this headline">¶</a></h5>
@@ -644,12 +623,10 @@ get you up and running with CloudStack with a minimum amount of trouble.</p>
 <p>安装完成后，使用root账户通过SSH 连接到新的系统。注意不能在生产环境中允许root登陆，在安装配置完成后需要关闭root的远程登陆。</p>
 <div class="section" id="configuring-the-network">
 <span id="conf-network"></span><h6>配置网络<a class="headerlink" href="#configuring-the-network" title="Permalink to this headline">¶</a></h6>
-<p>By default the network will not come up on your hardware and you will need to
-configure it to work in your environment. Since we specified that there will
-be no DHCP server in this environment we will be manually configuring your
-network interface. We will assume, for the purposes of this exercise, that
-eth0 is the only network interface that will be connected and used.</p>
-<p>Connecting via the console you should login as root. Check the file
+<p>默认网卡不会启动，您需要配置你的网络环境来启动网卡。
+我们设计为本环境中没有DHCP服务器，所以我们要手动配置网络设置。
+在此次配置中，eth0是唯一的可用的网卡。</p>
+<p>使用root账户登陆Console. 查看文件
 /etc/sysconfig/network-scripts/ifcfg-eth0, 如下所示，默认为:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">DEVICE</span><span class="o">=</span><span class="s2">&quot;eth0&quot;</span>
 <span class="n">HWADDR</span><span class="o">=</span><span class="s2">&quot;52:54:00:B9:A6:C0&quot;</span>
@@ -660,7 +637,7 @@ eth0 is the only network interface that will be connected and used.</p>
 <p>该配置无法连接网络，也不适合CloudStack。我们来配置此文件来指定IP 地址，掩码等，如下所示：</p>
 <div class="admonition note">
 <p class="first admonition-title">提示</p>
-<p class="last">在配置中不要使用示例中的Hardware Address (也称为MAC address)。这所网卡特定属性，应该保持和物理网卡信息一致。</p>
+<p class="last">在配置中不要使用示例中的Hardware Address (也称为MAC address)。这是网卡特定属性，应该保持和物理网卡信息一致。</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span></span>DEVICE=eth0
 HWADDR=52:54:00:B9:A6:C0
@@ -676,11 +653,9 @@ DNS2=8.8.4.4
 </div>
 <div class="admonition note">
 <p class="first admonition-title">提示</p>
-<p class="last">IP Addressing - Throughout this document we are assuming that you will have
-a /24 network for your CloudStack implementation. This can be any RFC 1918
-network. However, we are assuming that you will match the machine address
-that we are using. Thus we may use 172.16.10.2 and because you might be
-using the 192.168.55.0/24 network you would use 192.168.55.2</p>
+<p class="last">IP Addressing - 本文档中，我们假设您只有一个24位掩码的网络。
+可以是任何符合RFC 1918标准的网络。
+但是我们假设您使用和我们一样的地址，从而我们使用172.16.10.2 但是您可能使用192.168.55.0/24网络并且IP 为192.168.55.2</p>
 </div>
 <p>现在配置文件已经完成，接下来运行以下命令启动网络：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># chkconfig network on</span>
@@ -691,42 +666,37 @@ using the 192.168.55.0/24 network you would use 192.168.55.2</p>
 </div>
 <div class="section" id="hostname">
 <span id="conf-hostname"></span><h6>Hostname<a class="headerlink" href="#hostname" title="Permalink to this headline">¶</a></h6>
-<p>CloudStack requires that the hostname be properly set. If you used the default
-options in the installation, then your hostname is currently set to
-localhost.localdomain. To test this we will run:</p>
+<p>CloudStack需要已经正确设置过的hostname。默认安装的系统中，hostname默认为
+localhost.localdomain. 可以通过运行以下命令来查看：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># hostname --fqdn</span>
 </pre></div>
 </div>
-<p>At this point it will likely return:</p>
+<p>返回值为：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>localhost
 </pre></div>
 </div>
-<p>To rectify this situation - we&#8217;ll set the hostname by editing the /etc/hosts
-file so that it follows a similar format to this example:</p>
+<p>修改hostname，可以按和文件中相同的格式来修改/etc/hosts文件，例如：
+</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1 localhost localhost.localdomain localhost6 localhost6.localdomain6
 172.16.10.2 srvr1.cloud.priv
 </pre></div>
 </div>
-<p>After you&#8217;ve modified that file, go ahead and restart the network using:</p>
+<p>修改好配置之后，重启网络：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># service network restart</span>
 </pre></div>
 </div>
-<p>Now recheck with the hostname &#8211;fqdn command and ensure that it returns a FQDN
-response</p>
+<p>再次执行 hostname &#8211;fqdn 来查看hostname，确认返回了一个FQDN结果。</p>
 </div>
 <div class="section" id="selinux">
 <span id="conf-selinux"></span><h6>SELinux<a class="headerlink" href="#selinux" title="Permalink to this headline">¶</a></h6>
-<p>At the moment, for CloudStack to work properly SELinux must be set to
-permissive. We want to both configure this for future boots and modify it in
-the current running system.</p>
-<p>To configure SELinux to be permissive in the running system we need to run the
-following command:</p>
+<p>安装部署CloudStack，需要设置SELinux为permissive模式。
+我们需要设置修改当前环境和修改配置以便重启后依然生效。</p>
+<p>当前环境中配置SELinux命令为：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># setenforce 0</span>
 </pre></div>
 </div>
-<p>To ensure that it remains in that state we need to configure the file
-/etc/selinux/config to reflect the permissive state, as shown in this example:</p>
+<p>修改永久生效的SElinux配置需要修改配置文件/etc/selinux/config，如下：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># This file controls the state of SELinux on the system.</span>
 <span class="c1"># SELINUX= can take one of these three values:</span>
 <span class="c1"># enforcing - SELinux security policy is enforced.</span>
@@ -742,32 +712,27 @@ following command:</p>
 </div>
 <div class="section" id="ntp">
 <span id="conf-ntp"></span><h6>NTP<a class="headerlink" href="#ntp" title="Permalink to this headline">¶</a></h6>
-<p>NTP configuration is a necessity for keeping all of the clocks in your cloud
-servers in sync. However, NTP is not installed by default. So we&#8217;ll install
-and and configure NTP at this stage. Installation is accomplished as follows:</p>
+<p>NTP 是为了保证环境中所有的server在时间上一致。但是，NTP默认没有安装。
+所以我们需要手动安装并配置NTP服务。步骤如下：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># yum -y install ntp</span>
 </pre></div>
 </div>
-<p>The actual default configuration is fine for our purposes, so we merely need
-to enable it and set it to start on boot as follows:</p>
+<p>默认配置已经可以满足我们的目标了，我们只需要启动并设置为自动启动即可，步骤如下：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># chkconfig ntpd on</span>
 <span class="c1"># service ntpd start</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="configuring-the-cloudstack-package-repository">
-<span id="qigconf-pkg-repo"></span><h6>Configuring the CloudStack Package Repository<a class="headerlink" href="#configuring-the-cloudstack-package-repository" title="Permalink to this headline">¶</a></h6>
-<p>We need to configure the machine to use a CloudStack package repository.</p>
+<span id="qigconf-pkg-repo"></span><h6>配置CloudStack 安装源<a class="headerlink" href="#configuring-the-cloudstack-package-repository" title="Permalink to this headline">¶</a></h6>
+<p>我们需要配置机器使用一个CloudStack 安装源。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The Apache CloudStack official releases are source code. As such there are
-no &#8216;official&#8217; binaries available. The full installation guide describes how
-to take the source release and generate RPMs and and yum repository. This
-guide attempts to keep things as simple as possible, and thus we are using
-one of the community-provided yum repositories.</p>
+<p class="last">Apache CloudStack官方发布的release是一个源码包，并没有官方的二进制包。
+完整的安装指南包含如何获取源码并且打包生成RPM包，创建yum源。
+本指南尽量保持简单，所以我们使用一个社区提供的yum源。</p>
 </div>
-<p>To add the CloudStack repository, create /etc/yum.repos.d/cloudstack.repo and
-insert the following information.</p>
+<p>想要创建一个CloudStack yum源, 需要创建/etc/yum.repos.d/cloudstack.repo 输入以下内容：</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span>[cloudstack]
 name=cloudstack
 baseurl=http://cloudstack.apt-get.eu/centos/6/4.8/
