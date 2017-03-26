@@ -744,32 +744,28 @@ gpgcheck=0
 </div>
 <div class="section" id="nfs">
 <h5>NFS<a class="headerlink" href="#nfs" title="Permalink to this headline">¶</a></h5>
-<p>Our configuration is going to use NFS for both primary and secondary storage.
-We are going to go ahead and setup two NFS shares for those purposes. We&#8217;ll
-start out by installing nfs-utils.</p>
+<p>本指南配置使用一个NFS同时作为主存储和二级存储。
+我们先来设置两个NFS共享目录。
+首先安装nfs-utils.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># yum -y install nfs-utils</span>
 </pre></div>
 </div>
-<p>We now need to configure NFS to serve up two different shares. This is handled
-comparatively easily in the /etc/exports file. You should ensure that it has
-the following content:</p>
+<p>接下来配置NFS来支持两个共享目录。
+简单的配置/etc/exports 即可，输入以下内容：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>/secondary *<span class="o">(</span>rw,async,no_root_squash,no_subtree_check<span class="o">)</span>
 /primary *<span class="o">(</span>rw,async,no_root_squash,no_subtree_check<span class="o">)</span>
 </pre></div>
 </div>
-<p>You will note that we specified two directories that don&#8217;t exist (yet) on the
-system. We&#8217;ll go ahead and create those directories and set permissions
-appropriately on them with the following commands:</p>
+<p>您可能注意到了，我们使用了两个并不存在的目录。现在我们通过以下命令创建这两个目录：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># mkdir /primary</span>
 <span class="c1"># mkdir /secondary</span>
 </pre></div>
 </div>
-<p>CentOS 6.x releases use NFSv4 by default. NFSv4 requires that domain setting
-matches on all clients. In our case, the domain is cloud.priv, so ensure that
-the domain setting in /etc/idmapd.conf is uncommented and set as follows:
+<p>CentOS 6.x 默认使用NFSv4。NFSv4需要在所有client端设置域名。本例中，域名为cloud.priv,
+所以，请修改域名设置文件/etc/idmapd.conf，取消注释并如下设置：
 Domain = cloud.priv</p>
-<p>Now you&#8217;ll need uncomment the configuration values in the file
-/etc/sysconfig/nfs</p>
+<p>取消
+/etc/sysconfig/nfs以下行的注释</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">LOCKD_TCPPORT</span><span class="o">=</span>32803
 <span class="nv">LOCKD_UDPPORT</span><span class="o">=</span>32769
 <span class="nv">MOUNTD_PORT</span><span class="o">=</span>892
@@ -778,8 +774,8 @@ Domain = cloud.priv</p>
 <span class="nv">STATD_OUTGOING_PORT</span><span class="o">=</span>2020
 </pre></div>
 </div>
-<p>Now we need to configure the firewall to permit incoming NFS connections.
-Edit the file /etc/sysconfig/iptables</p>
+<p>配置防火墙来允许NFS连接。
+编辑文件/etc/sysconfig/iptables</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>-A INPUT -s 172.16.10.0/24 -m state --state NEW -p udp --dport <span class="m">111</span> -j ACCEPT
 -A INPUT -s 172.16.10.0/24 -m state --state NEW -p tcp --dport <span class="m">111</span> -j ACCEPT
 -A INPUT -s 172.16.10.0/24 -m state --state NEW -p tcp --dport <span class="m">2049</span> -j ACCEPT
@@ -793,12 +789,11 @@ Edit the file /etc/sysconfig/iptables</p>
 -A INPUT -s 172.16.10.0/24 -m state --state NEW -p udp --dport <span class="m">662</span> -j ACCEPT
 </pre></div>
 </div>
-<p>Now you can restart the iptables service with the following command:</p>
+<p>重启防火墙：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># service iptables restart</span>
 </pre></div>
 </div>
-<p>We now need to configure the nfs service to start on boot and actually start
-it on the host by executing the following commands:</p>
+<p>设置NFS开机自启动：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># service rpcbind start</span>
 <span class="c1"># service nfs start</span>
 <span class="c1"># chkconfig rpcbind on</span>
@@ -808,19 +803,16 @@ it on the host by executing the following commands:</p>
 </div>
 </div>
 <div class="section" id="management-server-installation">
-<h4>Management Server Installation<a class="headerlink" href="#management-server-installation" title="Permalink to this headline">¶</a></h4>
-<p>We&#8217;re going to install the CloudStack management server and surrounding tools.</p>
+<h4>安装Management Server<a class="headerlink" href="#management-server-installation" title="Permalink to this headline">¶</a></h4>
+<p>下面我们开始安装CloudStack 管理服务和周边工具。</p>
 <div class="section" id="database-installation-and-configuration">
-<h5>Database Installation and Configuration<a class="headerlink" href="#database-installation-and-configuration" title="Permalink to this headline">¶</a></h5>
-<p>We&#8217;ll start with installing MySQL and configuring some options to ensure it
-runs well with CloudStack.</p>
-<p>Install by running the following command:</p>
+<h5>数据库安装及配置<a class="headerlink" href="#database-installation-and-configuration" title="Permalink to this headline">¶</a></h5>
+<p>安装MySQL并修改部分配置以运行CloudStack。</p>
+<p>安装命令：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># yum -y install mysql-server</span>
 </pre></div>
 </div>
-<p>With MySQL now installed we need to make a few configuration changes to
-/etc/my.cnf. Specifically we need to add the following options to the [mysqld]
-section:</p>
+<p>安装完成后，我们需要修改/etc/my.cnf几项配置。我们需要在[mysqld]标签下插入以下几项：</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">innodb_rollback_on_timeout</span><span class="o">=</span><span class="mi">1</span>
 <span class="n">innodb_lock_wait_timeout</span><span class="o">=</span><span class="mi">600</span>
 <span class="n">max_connections</span><span class="o">=</span><span class="mi">350</span>
@@ -828,51 +820,43 @@ section:</p>
 <span class="n">binlog</span><span class="o">-</span><span class="n">format</span> <span class="o">=</span> <span class="s1">&#39;ROW&#39;</span>
 </pre></div>
 </div>
-<p>Now that MySQL is properly configured we can start it and configure it to
-start on boot as follows:</p>
+<p>MySQL配置完成，接下来执行以下命令启动MySQL并设置为开机自启动：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># service mysqld start</span>
 <span class="c1"># chkconfig mysqld on</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="installation">
-<h5>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h5>
-<p>We are now going to install the management server. We do that by executing the
-following command:</p>
+<h5>安装<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h5>
+<p>现在开始安装management server. 步骤如下：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># yum -y install cloudstack-management</span>
 </pre></div>
 </div>
-<p>With the application itself installed we can now setup the database, we&#8217;ll do
-that with the following command and options:</p>
+<p>安装完成后，执行以下命令配置数据库：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># cloudstack-setup-databases cloud:password@localhost --deploy-as=root</span>
 </pre></div>
 </div>
-<p>When this process is finished, you should see a message like &#8220;CloudStack has
+<p>执行完成后，可以看到类似信息&#8220;CloudStack has
 successfully initialized the database.&#8221;</p>
-<p>Now that the database has been created, we can take the final step in setting
-up the management server by issuing the following command:</p>
+<p>数据库创建完成后，执行最后一步来设置management server：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># cloudstack-setup-management</span>
 </pre></div>
 </div>
-<p>If the servlet container is Tomcat7 the argument &#8211;tomcat7 must be used.</p>
+<p>如果使用Tomcat7 需要增加 &#8211;tomcat7 参数。</p>
 </div>
 <div class="section" id="system-template-setup">
-<h5>System Template Setup<a class="headerlink" href="#system-template-setup" title="Permalink to this headline">¶</a></h5>
-<p>CloudStack uses a number of system VMs to provide functionality for accessing
-the console of virtual machines, providing various networking services, and
-managing various aspects of storage. This step will acquire those system
-images ready for deployment when we bootstrap your cloud.</p>
-<p>Now we need to download the system VM template and deploy that to the share we
-just mounted. The management server includes a script to properly manipulate
-the system VMs images.</p>
+<h5>系统虚拟机模板设置<a class="headerlink" href="#system-template-setup" title="Permalink to this headline">¶</a></h5>
+<p>CloudStack使用系统虚拟机来提供虚拟机console的访问，提供多种网络服务，管理多种存储。
+启动CloudStack的时候，这一步骤将会获取虚拟机镜像。</p>
+<p>现在我们需要将系统虚拟机模板下载下来并部署到刚刚挂载的共享目录中。
+Management server及其脚本会操作这些系统虚拟机模板。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>/usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt <span class="se">\</span>
 -m /secondary <span class="se">\</span>
 -u http://cloudstack.apt-get.eu/systemvm/4.6/systemvm64template-4.6.0-kvm.qcow2.bz2 <span class="se">\</span>
 -h kvm -F
 </pre></div>
 </div>
-<p>That concludes our setup of the management server. We still need to configure
-CloudStack, but we will do that after we get our hypervisor set up.</p>
+<p>至此，management server安装基本结束。CloudStack还需要其它配置，我们会在设置完hypervisor之后继续配置CloudStack。</p>
 </div>
 </div>
 <div class="section" id="kvm-setup-and-installation">
