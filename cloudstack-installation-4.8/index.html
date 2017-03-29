@@ -1165,36 +1165,34 @@ $ sudo sh -c <span class="s1">&#39;dpkg-scanpackages . /dev/null | tee Packages 
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">You can safely ignore the warning about a missing override file.</p>
+<p class="first admonition-title">注意</p>
+<p class="last">如果提示缺失文件，可忽略。</p>
 </div>
-<p>Now you should have all of the DEB packages and <code class="docutils literal"><span class="pre">Packages.gz</span></code> in the
-<code class="docutils literal"><span class="pre">binary</span></code> directory and available over HTTP. (You may want to use
-<code class="docutils literal"><span class="pre">wget</span></code> or <code class="docutils literal"><span class="pre">curl</span></code> to test this before moving on to the next step.)</p>
+<p>现在所有的DEB包已经编译完成并且<code class="docutils literal"><span class="pre">Packages.gz</span></code>已经生成至
+<code class="docutils literal"><span class="pre">binary</span></code> 目录，可以使用HTTP访问。（进行下一步之前，您可以使用
+<code class="docutils literal"><span class="pre">wget</span></code> 或 <code class="docutils literal"><span class="pre">curl</span></code> 来测试。）</p>
 </div>
 <div class="section" id="configuring-your-machines-to-use-the-apt-repository">
-<h5>Configuring your machines to use the APT repository<a class="headerlink" href="#configuring-your-machines-to-use-the-apt-repository" title="Permalink to this headline">¶</a></h5>
-<p>Now that we have created the repository, you need to configure your
-machine to make use of the APT repository. You can do this by adding a
-repository file under <code class="docutils literal"><span class="pre">/etc/apt/sources.list.d</span></code>. Use your preferred
-editor to create <code class="docutils literal"><span class="pre">/etc/apt/sources.list.d/cloudstack.list</span></code> with this
-line:</p>
+<h5>配置服务器来使用该APT源<a class="headerlink" href="#configuring-your-machines-to-use-the-apt-repository" title="Permalink to this headline">¶</a></h5>
+<p>
+现在我们已经有了一个APT源，您需要进行相应配置来启用这个源。您可以在 <code class="docutils literal"><span class="pre">/etc/apt/sources.list.d</span></code>
+文件中加入相关内容。也可以创建一个新的文件<code class="docutils literal"><span class="pre">/etc/apt/sources.list.d/cloudstack.list</span></code> 
+写入该内容：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>deb http://server.url/cloudstack/repo/binary ./
 </pre></div>
 </div>
-<p>Now that you have the repository info in place, you&#8217;ll want to run
-another update so that APT knows where to find the CloudStack packages.</p>
+<p>现在APT源已经配置完成，运行update命令使APT获得CloudStack安装包的路径。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get update
 </pre></div>
 </div>
-<p>You can now move on to the instructions under Install on Ubuntu.</p>
+<p>现在可以跳转至Install on Ubuntu.</p>
 </div>
 </div>
 <div class="section" id="building-rpms-from-source">
-<h4>Building RPMs from Source<a class="headerlink" href="#building-rpms-from-source" title="Permalink to this headline">¶</a></h4>
-<p>As mentioned previously in <a class="reference external" href="#prerequisites-for-building-apache-cloudstack">“Prerequisites for building Apache CloudStack”</a>, you will need to install
-several prerequisites before you can build packages for CloudStack. Here we&#8217;ll
-assume you&#8217;re working with a 64-bit build of CentOS or Red Hat Enterprise
+<h4>从源码编译RPM<a class="headerlink" href="#building-rpms-from-source" title="Permalink to this headline">¶</a></h4>
+<p>如前文<a class="reference external" href="#prerequisites-for-building-apache-cloudstack">“Prerequisites for building Apache CloudStack”</a>所示，
+在编译之前，需要先做一些环境预设。
+我们假定您的编译环境是64位CentOS 或者Red Hat Enterprise
 Linux.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># yum groupinstall &quot;Development Tools&quot;</span>
 </pre></div>
@@ -1202,9 +1200,7 @@ Linux.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># yum install java-1.7.0-openjdk-devel.x86_64 genisoimage mysql mysql-server ws-commons-util MySQL-python tomcat6 createrepo</span>
 </pre></div>
 </div>
-<p>Next, you&#8217;ll need to install build-time dependencies for CloudStack with
-Maven. We&#8217;re using Maven 3, so you&#8217;ll want to grab <a class="reference external" href="http://maven.apache.org/download.cgi">Maven 3.0.5 (Binary tar.gz)</a> and uncompress it in
-your home directory (or whatever location you prefer):</p>
+<p>接下来，需要安装运行时的maven依赖。我们使用的是maven3来管理依赖，所以您需要下载<a class="reference external" href="http://maven.apache.org/download.cgi">Maven 3.0.5 (Binary tar.gz)</a> 并解压到您的根目录（或其它您习惯的目录）：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
 $ tar zxvf apache-maven-3.0.5-bin.tar.gz
 </pre></div>
@@ -1212,43 +1208,36 @@ $ tar zxvf apache-maven-3.0.5-bin.tar.gz
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>~/apache-maven-3.0.5/bin:<span class="nv">$PATH</span>
 </pre></div>
 </div>
-<p>Maven also needs to know where Java is, and expects the JAVA_HOME
-environment variable to be set:</p>
+<p>Maven也需要配置Java环境变量（JAVA_HOME）</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/java-1.7.0-openjdk.x86_64
 </pre></div>
 </div>
-<p>Verify that Maven is installed correctly:</p>
+<p>验证Maven是否安装成功：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ mvn --version
 </pre></div>
 </div>
-<p>You probably want to ensure that your environment variables will survive
-a logout/reboot. Be sure to update <code class="docutils literal"><span class="pre">~/.bashrc</span></code> with the PATH and
-JAVA_HOME variables.</p>
-<p>Building RPMs for CloudStack is fairly simple. Assuming you already have
-the source downloaded and have uncompressed the tarball into a local
-directory, you&#8217;re going to be able to generate packages in just a few
-minutes.</p>
+<p>如果您需要保证环境变量重启后依然有效，需要更新<code class="docutils literal"><span class="pre">~/.bashrc</span></code> 写入PATH 和
+JAVA_HOME。</p>
+<p>编译RPB很简单。源码已经下载完成并解压到本地目录后，您只需要几分钟即可编译完成。</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Packaging has Changed. If you&#8217;ve created packages for CloudStack
-previously, you should be aware that the process has changed considerably
-since the project has moved to using Apache Maven. Please be sure to follow
-the steps in this section closely.</p>
+<p class="first admonition-title">注意</p>
+<p class="last">打包方式和之前有变化。如果您曾编译过其它的CloudStack版本，您需要知道
+在使用Apache Maven之后，打包方式有了很大变化。请务必跟随本章节步骤进行打包。</p>
 </div>
 <div class="section" id="generating-rpms">
-<h5>Generating RPMS<a class="headerlink" href="#generating-rpms" title="Permalink to this headline">¶</a></h5>
-<p>Now that we have the prerequisites and source, you will cd to the
-<cite>packaging/</cite> directory.</p>
+<h5>生成RPM<a class="headerlink" href="#generating-rpms" title="Permalink to this headline">¶</a></h5>
+<p>环境预设和源码下载已经完成，切换到
+<cite>packaging/</cite> 目录。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> packaging/
 </pre></div>
 </div>
-<p>Generating RPMs is done using the <code class="docutils literal"><span class="pre">package.sh</span></code> script:</p>
+<p>通过<code class="docutils literal"><span class="pre">package.sh</span></code> 脚本来创建CloudStack包：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./package.sh -d centos6
 </pre></div>
 </div>
-<p>That will run for a bit and then place the finished packages in
-<code class="docutils literal"><span class="pre">dist/rpmbuild/RPMS/x86_64/</span></code>.</p>
-<p>You should see the following RPMs in that directory:</p>
+<p>该脚本会运行一段时间，然后将打包完成的安装包放到
+<code class="docutils literal"><span class="pre">dist/rpmbuild/RPMS/x86_64/</span></code>。</p>
+<p>您可以在该目录中看到以下RPM：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>cloudstack-agent-4.8.0.el6.x86_64.rpm
 cloudstack-awsapi-4.8.0.el6.x86_64.rpm
 cloudstack-cli-4.8.0.el6.x86_64.rpm
@@ -1259,10 +1248,8 @@ cloudstack-usage-4.8.0.el6.x86_64.rpm
 </pre></div>
 </div>
 <div class="section" id="creating-a-yum-repo">
-<h6>Creating a yum repo<a class="headerlink" href="#creating-a-yum-repo" title="Permalink to this headline">¶</a></h6>
-<p>While RPMs is a useful packaging format - it&#8217;s most easily consumed from
-Yum repositories over a network. The next step is to create a Yum Repo
-with the finished packages:</p>
+<h6>创建yum源<a class="headerlink" href="#creating-a-yum-repo" title="Permalink to this headline">¶</a></h6>
+<p>RPM打包完成后 - 创建Yum网络源就很简单了。按以下步骤创建一个Yum 源：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir -p ~/tmp/repo
 </pre></div>
 </div>
@@ -1273,14 +1260,14 @@ $ cp dist/rpmbuild/RPMS/x86_64/*rpm ~/tmp/repo/
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ createrepo ~/tmp/repo
 </pre></div>
 </div>
-<p>The files and directories within <code class="docutils literal"><span class="pre">~/tmp/repo</span></code> can now be uploaded to a
-web server and serve as a yum repository.</p>
+<p>在 <code class="docutils literal"><span class="pre">~/tmp/repo</span></code>中的目录和文件
+现在可以上传到一个web server或在yum 源server。</p>
 </div>
 <div class="section" id="configuring-your-systems-to-use-your-new-yum-repository">
-<h6>Configuring your systems to use your new yum repository<a class="headerlink" href="#configuring-your-systems-to-use-your-new-yum-repository" title="Permalink to this headline">¶</a></h6>
-<p>Now that your yum repository is populated with RPMs and metadata we need
-to configure the machines that need to install CloudStack. Create a file
-named <code class="docutils literal"><span class="pre">/etc/yum.repos.d/cloudstack.repo</span></code> with this information:</p>
+<h6>配置系统使用yum 源<a class="headerlink" href="#configuring-your-systems-to-use-your-new-yum-repository" title="Permalink to this headline">¶</a></h6>
+<p>现在yum源已经有了RPM和元数据信息，我们需要配置机器使用此yum源来安装CloudStack。
+添加文件<code class="docutils literal"><span class="pre">/etc/yum.repos.d/cloudstack.repo</span></code> 
+写入以下信息：</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>apache-cloudstack<span class="o">]</span>
 <span class="nv">name</span><span class="o">=</span>Apache CloudStack
 <span class="nv">baseurl</span><span class="o">=</span>http://webserver.tld/path/to/repo
@@ -1288,24 +1275,19 @@ named <code class="docutils literal"><span class="pre">/etc/yum.repos.d/cloudsta
 <span class="nv">gpgcheck</span><span class="o">=</span>0
 </pre></div>
 </div>
-<p>Completing this step will allow you to easily install CloudStack on a
-number of machines across the network.</p>
+<p>完成之后，您可以通过yum来网络安装CloudStack了。</p>
 </div>
 </div>
 </div>
 <div class="section" id="building-non-oss">
-<h4>Building Non-OSS<a class="headerlink" href="#building-non-oss" title="Permalink to this headline">¶</a></h4>
-<p>If you need support for the VMware, NetApp, F5, NetScaler, SRX, or any
-other non-Open Source Software (nonoss) plugins, you&#8217;ll need to download
-a few components on your own and follow a slightly different procedure
-to build from source.</p>
+<h4>编译Non-OSS模式<a class="headerlink" href="#building-non-oss" title="Permalink to this headline">¶</a></h4>
+<p>如果您的系统需要支持VMware, NetApp, F5, NetScaler, SRX, 或者其它非开源组件（non-Open Source Software【nonoss】），
+您需要下载一些其它组件，执行以下步骤（与之前略有不同）。</p>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Some of the plugins supported by CloudStack cannot be distributed with
-CloudStack for licensing reasons. In some cases, some of the required
-libraries/JARs are under a proprietary license. In other cases, the
-required libraries may be under a license that&#8217;s not compatible with
-<a class="reference external" href="http://www.apache.org/legal/resolved.html#category-x">Apache&#8217;s licensing guidelines for third-party products</a>.</p>
+<p class="first admonition-title">警告</p>
+<p class="last">CloudStack因License限制，有些可支持的插件不能作为开源产品发布。
+其中，一些依赖包需要单独的所有权，另一些可能需要不符合
+<a class="reference external" href="http://www.apache.org/legal/resolved.html#category-x">Apache license标准的第三方包</a>。</p>
 </div>
 <ol class="arabic">
 <li><p class="first">To build the Non-OSS plugins, you&#8217;ll need to have the requisite JARs
