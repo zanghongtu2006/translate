@@ -1286,24 +1286,22 @@ $ cp dist/rpmbuild/RPMS/x86_64/*rpm ~/tmp/repo/
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
 <p class="last">CloudStack因License限制，有些可支持的插件不能作为开源产品发布。
-其中，一些依赖包需要单独的所有权，另一些可能需要不符合
+其中，一些依赖包需要单独的所有权，两位一些可能需要不符合
 <a class="reference external" href="http://www.apache.org/legal/resolved.html#category-x">Apache license标准的第三方包</a>。</p>
 </div>
 <ol class="arabic">
-<li><p class="first">To build the Non-OSS plugins, you&#8217;ll need to have the requisite JARs
-installed under the <code class="docutils literal"><span class="pre">deps</span></code> directory.</p>
-<p>Because these modules require dependencies that can&#8217;t be distributed
-with CloudStack you&#8217;ll need to download them yourself. Links to the
-most recent dependencies are listed on the <a class="reference external" href="https://cwiki.apache.org/confluence/display/CLOUDSTACK/How+to+build+CloudStack">*How to build CloudStack*</a>
-page on the wiki.</p>
+<li><p class="first">编译Non-OSS插件，需要先将依赖的JAR包放到<code class="docutils literal"><span class="pre">deps</span></code> 目录下。</p>
+<p>因为这些模块不能随着CloudStack一起发布，所以需要单独下载。链接参见WIKI页面
+ <a class="reference external" href="https://cwiki.apache.org/confluence/display/CLOUDSTACK/How+to+build+CloudStack">*How to build CloudStack*</a>
+</p>
 </li>
-<li><p class="first">You may also need to download
+<li><p class="first">同样，您需要下载
 <a class="reference external" href="http://download.cloud.com.s3.amazonaws.com/tools/vhd-util">vhd-util</a>,
-which was removed due to licensing issues. You&#8217;ll copy vhd-util to
-the <code class="docutils literal"><span class="pre">scripts/vm/hypervisor/xenserver/</span></code> directory.</p>
+该文件因license问题，已经从代码结构中移除。您需要手动将vhd-util移动到
+<code class="docutils literal"><span class="pre">scripts/vm/hypervisor/xenserver/</span></code> 目录下。</p>
 </li>
-<li><p class="first">Once you have all the dependencies copied over, you&#8217;ll be able to
-build CloudStack with the <code class="docutils literal"><span class="pre">noredist</span></code> option:</p>
+<li><p class="first">完成以上步骤后，您可以执行以下命令打包CloudStack的
+<code class="docutils literal"><span class="pre">noredist</span></code>版本：</p>
 </li>
 </ol>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ mvn clean
@@ -1320,48 +1318,45 @@ or <a class="reference external" href="#building-deb-packages">“Building DEB p
 </div>
 </div>
 <div class="section" id="general-installation">
-<span id="installation"></span><h2>General Installation<a class="headerlink" href="#general-installation" title="Permalink to this headline">¶</a></h2>
+<span id="installation"></span><h2>一般安装<a class="headerlink" href="#general-installation" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <span id="document-overview/index"></span><div class="section" id="installation-overview">
-<h3>Installation overview<a class="headerlink" href="#installation-overview" title="Permalink to this headline">¶</a></h3>
+<h3>安装概述<a class="headerlink" href="#installation-overview" title="Permalink to this headline">¶</a></h3>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#introduction" id="id2">Introduction</a><ul>
-<li><a class="reference internal" href="#who-should-read-this" id="id3">Who Should Read This</a></li>
-<li><a class="reference internal" href="#installation-steps" id="id4">Installation Steps</a></li>
+<li><a class="reference internal" href="#introduction" id="id2">简介</a><ul>
+<li><a class="reference internal" href="#who-should-read-this" id="id3">面向用户</a></li>
+<li><a class="reference internal" href="#installation-steps" id="id4">安装步骤</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#minimum-system-requirements" id="id5">Minimum System Requirements</a><ul>
-<li><a class="reference internal" href="#management-server-database-and-storage-system-requirements" id="id6">Management Server, Database, and Storage System Requirements</a></li>
-<li><a class="reference internal" href="#host-hypervisor-system-requirements" id="id7">Host/Hypervisor System Requirements</a></li>
+<li><a class="reference internal" href="#minimum-system-requirements" id="id5">最低系统需求</a><ul>
+<li><a class="reference internal" href="#management-server-database-and-storage-system-requirements" id="id6">Management Server, 数据库, 存储系统需求</a></li>
+<li><a class="reference internal" href="#host-hypervisor-system-requirements" id="id7">Host/Hypervisor 系统需求</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#package-repository" id="id8">package repository</a></li>
 </ul>
 </div>
 <div class="section" id="introduction">
-<h4><a class="toc-backref" href="#contents">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#contents">简介</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h4>
 <div class="section" id="who-should-read-this">
-<h5><a class="toc-backref" href="#contents">Who Should Read This</a><a class="headerlink" href="#who-should-read-this" title="Permalink to this headline">¶</a></h5>
-<p>For those who have already gone through a design phase and planned a
-more sophisticated deployment, or those who are ready to start scaling
-up a trial installation. With the following procedures, you can start
-using the more powerful features of CloudStack, such as advanced VLAN
-networking, high availability, additional network elements such as load
-balancers and firewalls, and support for multiple hypervisors including
-Citrix XenServer, KVM, and VMware vSphere.</p>
+<h5><a class="toc-backref" href="#contents">面向用户</a><a class="headerlink" href="#who-should-read-this" title="Permalink to this headline">¶</a></h5>
+<p>已经完成设计阶段并且规划了一个比较复杂的实施环境，或者准备好要升级一个落后版本的人。
+按照以下步骤，您可以使用CloudStack更为强大的功能，例如高级VLAN网络，HA，附加网络组件例如负载均衡和防火墙，
+以及支持多种hypervisor，包括
+Citrix XenServer, KVM, and VMware vSphere。</p>
 </div>
 <div class="section" id="installation-steps">
-<h5><a class="toc-backref" href="#contents">Installation Steps</a><a class="headerlink" href="#installation-steps" title="Permalink to this headline">¶</a></h5>
+<h5><a class="toc-backref" href="#contents">安装步骤</a><a class="headerlink" href="#installation-steps" title="Permalink to this headline">¶</a></h5>
 <p>For anything more than a simple trial installation, you will need
 guidance for a variety of configuration choices. It is strongly
 recommended that you read the following:</p>
 <ul class="simple">
-<li>Choosing a Deployment Architecture</li>
-<li>Choosing a Hypervisor: Supported Features</li>
-<li>Network Setup</li>
-<li>Storage Setup</li>
-<li>Best Practices</li>
+<li>选择部署架构</li>
+<li>选择Hypervisor: 支持的功能</li>
+<li>网络设置</li>
+<li>存储设置</li>
+<li>最佳实践</li>
 </ul>
 <ol class="arabic simple">
 <li>Make sure you have the required hardware ready.
