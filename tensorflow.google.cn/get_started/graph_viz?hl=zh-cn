@@ -1,0 +1,946 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="qNEBLVwx1U-9OR0sB_wnPte8mGfCkfGkMFa3beRKRwY6MTUxNzg2MDM0NTY3NjY5MA" /><link rel="canonical" href="https://www.tensorflow.org/programmers_guide/graph_viz"><link rel="alternate" href="https://www.tensorflow.org/programmers_guide/graph_viz" hreflang="en"><link rel="alternate" href="graph_viz" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/programmers_guide/graph_viz" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png?hl=zh-cn"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png?hl=zh-cn"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css?hl=zh-cn"><script src="../_static/18908e5f48/js/jquery-bundle.js?hl=zh-cn"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/programmers_guide/graph_viz"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>TensorBoard: Graph Visualization &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="TensorBoard: Graph Visualization &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               "
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html?hl=zh-cn" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png?hl=zh-cn"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/?hl=zh-cn"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Develop
+    
+    
+  </li></ul></div></div><div class="devsite-doc-set-nav-row devsite-full-site-width"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Get Started"
+       >
+        Get Started
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../programmers_guide/index.html?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Programmer&#39;s Guide"
+       >
+        Programmer&#39;s Guide
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tutorials/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Tutorials"
+       >
+        Tutorials
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../performance/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Performance"
+       >
+        Performance
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../mobile/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Mobile"
+       >
+        Mobile
+      </a></li></ul></nav></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Get Started">
+        Get Started
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Programmer&#39;s Guide"
+            tabindex="0">
+        Programmer&#39;s Guide
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tutorials/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Tutorials">
+        Tutorials
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../performance/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Performance">
+        Performance
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../mobile/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Mobile">
+        Mobile
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html?hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="../programmers_guide/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Programmer's Guide</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">High Level APIs</span></li><li class="devsite-nav-item"><a href="../programmers_guide/estimators?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Estimators</a></li><li class="devsite-nav-item"><a href="../programmers_guide/datasets?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Importing Data</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Low Level APIs</span></li><li class="devsite-nav-item"><a href="../programmers_guide/low_level_intro?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction</a></li><li class="devsite-nav-item"><a href="../resources/dims_types.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Tensors</a></li><li class="devsite-nav-item"><a href="../programmers_guide/variables?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Variables</a></li><li class="devsite-nav-item"><a href="../programmers_guide/graphs?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Graphs and Sessions</a></li><li class="devsite-nav-item"><a href="../programmers_guide/saved_model?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Saving and Restoring</a></li><li class="devsite-nav-item"><a href="../programmers_guide/using_gpu?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using GPUs</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">ML Concepts</span></li><li class="devsite-nav-item"><a href="../how_tos/embedding_viz/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Embeddings</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Debugging</span></li><li class="devsite-nav-item"><a href="../programmers_guide/debugger?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Debugging TensorFlow Programs</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorBoard</span></li><li class="devsite-nav-item"><a href="summaries_and_tensorboard?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard: Visualizing Learning</a></li><li class="devsite-nav-item devsite-nav-active"><a href="graph_viz?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard: Graph Visualization</a></li><li class="devsite-nav-item"><a href="tensorboard_histograms?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard Histogram Dashboard</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Misc</span></li><li class="devsite-nav-item"><a href="../programmers_guide/version_semantics?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Version Compatibility</a></li><li class="devsite-nav-item"><a href="../programmers_guide/faq?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Frequently Asked Questions</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="../programmers_guide/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Programmer's Guide</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">High Level APIs</span></li><li class="devsite-nav-item"><a href="../programmers_guide/estimators?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Estimators</a></li><li class="devsite-nav-item"><a href="../programmers_guide/datasets?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Importing Data</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Low Level APIs</span></li><li class="devsite-nav-item"><a href="../programmers_guide/low_level_intro?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction</a></li><li class="devsite-nav-item"><a href="../resources/dims_types.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Tensors</a></li><li class="devsite-nav-item"><a href="../programmers_guide/variables?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Variables</a></li><li class="devsite-nav-item"><a href="../programmers_guide/graphs?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Graphs and Sessions</a></li><li class="devsite-nav-item"><a href="../programmers_guide/saved_model?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Saving and Restoring</a></li><li class="devsite-nav-item"><a href="../programmers_guide/using_gpu?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using GPUs</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">ML Concepts</span></li><li class="devsite-nav-item"><a href="../how_tos/embedding_viz/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Embeddings</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Debugging</span></li><li class="devsite-nav-item"><a href="../programmers_guide/debugger?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Debugging TensorFlow Programs</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorBoard</span></li><li class="devsite-nav-item"><a href="summaries_and_tensorboard?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard: Visualizing Learning</a></li><li class="devsite-nav-item devsite-nav-active"><a href="graph_viz?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard: Graph Visualization</a></li><li class="devsite-nav-item"><a href="tensorboard_histograms?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard Histogram Dashboard</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Misc</span></li><li class="devsite-nav-item"><a href="../programmers_guide/version_semantics?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Version Compatibility</a></li><li class="devsite-nav-item"><a href="../programmers_guide/faq?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Frequently Asked Questions</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Develop
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="../programmers_guide/index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="3">
+    
+    
+      Programmer&#39;s Guide
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    TensorBoard: Graph Visualization
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG&amp;hl=zh-cn"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>TensorFlow computation graphs are powerful but complicated. The graph visualization can help you understand and debug them. Here's an example of the visualization at work.</p>
+<p><img alt="Visualization of a TensorFlow graph" src="../images/graph_vis_animation.gif?hl=zh-cn" title="Visualization of a TensorFlow graph" />
+<em>Visualization of a TensorFlow graph.</em></p>
+<p>To see your own graph, run TensorBoard pointing it to the log directory of the job, click on the graph tab on the top pane and select the appropriate run using the menu at the upper left corner. For in depth information on how to run TensorBoard and make sure you are logging all the necessary information, see <a href="summaries_and_tensorboard?hl=zh-cn">TensorBoard: Visualizing Learning</a>.</p>
+<h2 id="name_scoping_and_nodes">Name scoping and nodes</h2>
+<p>Typical TensorFlow graphs can have many thousands of nodes--far too many to see
+easily all at once, or even to lay out using standard graph tools. To simplify,
+variable names can be scoped and the visualization uses this information to
+define a hierarchy on the nodes in the graph.  By default, only the top of this
+hierarchy is shown. Here is an example that defines three operations under the
+<code>hidden</code> name scope using
+<a href="../api_docs/python/tf/name_scope?hl=zh-cn"><code>tf.name_scope</code></a>:</p>
+<pre class="prettyprint lang-python"><code>import tensorflow as tf
+
+with tf.name_scope('hidden') as scope:
+  a = tf.constant(5, name='alpha')
+  W = tf.Variable(tf.random_uniform([1, 2], -1.0, 1.0), name='weights')
+  b = tf.Variable(tf.zeros([1]), name='biases')
+</code></pre>
+
+<p>This results in the following three op names:</p>
+<ul>
+<li><code>hidden/alpha</code></li>
+<li><code>hidden/weights</code></li>
+<li><code>hidden/biases</code></li>
+</ul>
+<p>By default, the visualization will collapse all three into a node labeled <code>hidden</code>.
+The extra detail isn't lost. You can double-click, or click
+on the orange <code>+</code> sign in the top right to expand the node, and then you'll see
+three subnodes for <code>alpha</code>, <code>weights</code> and <code>biases</code>.</p>
+<p>Here's a real-life example of a more complicated node in its initial and
+expanded states.</p>
+<table width="100%;">
+  <tr>
+    <td style="width: 50%;">
+      <img src="../images/pool1_collapsed.png?hl=zh-cn" alt="Unexpanded name scope" title="Unexpanded name scope" />
+    </td>
+    <td style="width: 50%;">
+      <img src="../images/pool1_expanded.png?hl=zh-cn" alt="Expanded name scope" title="Expanded name scope" />
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 50%;">
+      Initial view of top-level name scope <code>pool_1</code>. Clicking on the orange <code>+</code> button on the top right or double-clicking on the node itself will expand it.
+    </td>
+    <td style="width: 50%;">
+      Expanded view of <code>pool_1</code> name scope. Clicking on the orange <code>-</code> button on the top right or double-clicking on the node itself will collapse the name scope.
+    </td>
+  </tr>
+</table>
+
+<p>Grouping nodes by name scopes is critical to making a legible graph. If you're
+building a model, name scopes give you control over the resulting visualization.
+<strong>The better your name scopes, the better your visualization.</strong></p>
+<p>The figure above illustrates a second aspect of the visualization. TensorFlow
+graphs have two kinds of connections: data dependencies and control
+dependencies. Data dependencies show the flow of tensors between two ops and
+are shown as solid arrows, while control dependencies use dotted lines. In the
+expanded view (right side of the figure above) all the connections are data
+dependencies with the exception of the dotted line connecting <code>CheckNumerics</code>
+and <code>control_dependency</code>.</p>
+<p>There's a second trick to simplifying the layout. Most TensorFlow graphs have a
+few nodes with many connections to other nodes. For example, many nodes might
+have a control dependency on an initialization step. Drawing all edges between
+the <code>init</code> node and its dependencies would create a very cluttered view.</p>
+<p>To reduce clutter, the visualization separates out all high-degree nodes to an
+<em>auxiliary</em> area on the right and doesn't draw lines to represent their edges.
+Instead of lines, we draw small <em>node icons</em> to indicate the connections.
+Separating out the auxiliary nodes typically doesn't remove critical
+information since these nodes are usually related to bookkeeping functions.
+See <a href="graph_viz?hl=zh-cn#interaction">Interaction</a> for how to move nodes between the main graph
+and the auxiliary area.</p>
+<table width="100%;">
+  <tr>
+    <td style="width: 50%;">
+      <img src="../images/conv_1.png?hl=zh-cn" alt="conv_1 is part of the main graph" title="conv_1 is part of the main graph" />
+    </td>
+    <td style="width: 50%;">
+      <img src="../images/save.png?hl=zh-cn" alt="save is extracted as auxiliary node" title="save is extracted as auxiliary node" />
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 50%;">
+      Node <code>conv_1</code> is connected to <code>save</code>. Note the little <code>save</code> node icon on its right.
+    </td>
+    <td style="width: 50%;">
+      <code>save</code> has a high degree, and will appear as an auxiliary node. The connection with <code>conv_1</code> is shown as a node icon on its left. To further reduce clutter, since <code>save</code> has a lot of connections, we show the first 5 and abbreviate the others as <code>... 12 more</code>.
+    </td>
+  </tr>
+</table>
+
+<p>One last structural simplification is <em>series collapsing</em>. Sequential
+motifs--that is, nodes whose names differ by a number at the end and have
+isomorphic structures--are collapsed into a single <em>stack</em> of nodes, as shown
+below. For networks with long sequences, this greatly simplifies the view. As
+with hierarchical nodes, double-clicking expands the series. See
+<a href="graph_viz?hl=zh-cn#interaction">Interaction</a> for how to disable/enable series collapsing for a
+specific set of nodes.</p>
+<table width="100%;">
+  <tr>
+    <td style="width: 50%;">
+      <img src="../images/series.png?hl=zh-cn" alt="Sequence of nodes" title="Sequence of nodes" />
+    </td>
+    <td style="width: 50%;">
+      <img src="../images/series_expanded.png?hl=zh-cn" alt="Expanded sequence of nodes" title="Expanded sequence of nodes" />
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 50%;">
+      A collapsed view of a node sequence.
+    </td>
+    <td style="width: 50%;">
+      A small piece of the expanded view, after double-click.
+    </td>
+  </tr>
+</table>
+
+<p>Finally, as one last aid to legibility, the visualization uses special icons
+for constants and summary nodes. To summarize, here's a table of node symbols:</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="Name scope" src="../images/namespace_node.png?hl=zh-cn" title="Name scope" /></td>
+<td><em>High-level</em> node representing a name scope. Double-click to expand a high-level node.</td>
+</tr>
+<tr>
+<td><img alt="Sequence of unconnected nodes" src="../images/horizontal_stack.png?hl=zh-cn" title="Sequence of unconnected nodes" /></td>
+<td>Sequence of numbered nodes that are not connected to each other.</td>
+</tr>
+<tr>
+<td><img alt="Sequence of connected nodes" src="../images/vertical_stack.png?hl=zh-cn" title="Sequence of connected nodes" /></td>
+<td>Sequence of numbered nodes that are connected to each other.</td>
+</tr>
+<tr>
+<td><img alt="Operation node" src="../images/op_node.png?hl=zh-cn" title="Operation node" /></td>
+<td>An individual operation node.</td>
+</tr>
+<tr>
+<td><img alt="Constant node" src="../images/constant.png?hl=zh-cn" title="Constant node" /></td>
+<td>A constant.</td>
+</tr>
+<tr>
+<td><img alt="Summary node" src="../images/summary.png?hl=zh-cn" title="Summary node" /></td>
+<td>A summary node.</td>
+</tr>
+<tr>
+<td><img alt="Data flow edge" src="../images/dataflow_edge.png?hl=zh-cn" title="Data flow edge" /></td>
+<td>Edge showing the data flow between operations.</td>
+</tr>
+<tr>
+<td><img alt="Control dependency edge" src="../images/control_edge.png?hl=zh-cn" title="Control dependency edge" /></td>
+<td>Edge showing the control dependency between operations.</td>
+</tr>
+<tr>
+<td><img alt="Reference edge" src="../images/reference_edge.png?hl=zh-cn" title="Reference edge" /></td>
+<td>A reference edge showing that the outgoing operation node can mutate the incoming tensor.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="interaction">Interaction</h2>
+<p>Navigate the graph by panning and zooming. Click and drag to pan, and use a
+scroll gesture to zoom. Double-click on a node, or click on its <code>+</code> button, to
+expand a name scope that represents a group of operations. To easily keep
+track of the current viewpoint when zooming and panning, there is a minimap in
+the bottom right corner.</p>
+<p>To close an open node, double-click it again or click its <code>-</code> button. You can
+also click once to select a node. It will turn a darker color, and details
+about it and the nodes it connects to will appear in the info card at upper
+right corner of the visualization.</p>
+<table width="100%;">
+  <tr>
+    <td style="width: 50%;">
+      <img src="../images/infocard.png?hl=zh-cn" alt="Info card of a name scope" title="Info card of a name scope" />
+    </td>
+    <td style="width: 50%;">
+      <img src="../images/infocard_op.png?hl=zh-cn" alt="Info card of operation node" title="Info card of operation node" />
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 50%;">
+      Info card showing detailed information for the <code>conv2</code> name scope. The inputs and outputs are combined from the inputs and outputs of the operation nodes inside the name scope. For name scopes no attributes are shown.
+    </td>
+    <td style="width: 50%;">
+      Info card showing detailed information for the <code>DecodeRaw</code> operation node. In addition to inputs and outputs, the card shows the device and the attributes associated with the current operation.
+    </td>
+  </tr>
+</table>
+
+<p>TensorBoard provides several ways to change the visual layout of the graph. This
+doesn't change the graph's computational semantics, but it can bring some
+clarity to the network's structure. By right clicking on a node or pressing
+buttons on the bottom of that node's info card, you can make the following
+changes to its layout:</p>
+<ul>
+<li>Nodes can be moved between the main graph and the auxiliary area.</li>
+<li>A series of nodes can be ungrouped so that the nodes in the series do not
+appear grouped together. Ungrouped series can likewise be regrouped.</li>
+</ul>
+<p>Selection can also be helpful in understanding high-degree nodes. Select any
+high-degree node, and the corresponding node icons for its other connections
+will be selected as well. This makes it easy, for example, to see which nodes
+are being saved--and which aren't.</p>
+<p>Clicking on a node name in the info card will select it. If necessary, the
+viewpoint will automatically pan so that the node is visible.</p>
+<p>Finally, you can choose two color schemes for your graph, using the color menu
+above the legend. The default <em>Structure View</em> shows structure: when two
+high-level nodes have the same structure, they appear in the same color of the
+rainbow. Uniquely structured nodes are gray. There's a second view, which shows
+what device the different operations run on. Name scopes are colored
+proportionally to the fraction of devices for the operations inside them.</p>
+<p>The images below give an illustration for a piece of a real-life graph.</p>
+<table width="100%;">
+  <tr>
+    <td style="width: 50%;">
+      <img src="../images/colorby_structure.png?hl=zh-cn" alt="Color by structure" title="Color by structure" />
+    </td>
+    <td style="width: 50%;">
+      <img src="../images/colorby_device.png?hl=zh-cn" alt="Color by device" title="Color by device" />
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 50%;">
+      Structure view: The gray nodes have unique structure. The orange <code>conv1</code> and <code>conv2</code> nodes have the same structure, and analogously for nodes with other colors.
+    </td>
+    <td style="width: 50%;">
+      Device view: Name scopes are colored proportionally to the fraction of devices of the operation nodes inside them. Here, purple means GPU and the green is CPU.
+    </td>
+  </tr>
+</table>
+
+<h2 id="tensor_shape_information">Tensor shape information</h2>
+<p>When the serialized <code>GraphDef</code> includes tensor shapes, the graph visualizer
+labels edges with tensor dimensions, and edge thickness reflects total tensor
+size. To include tensor shapes in the <code>GraphDef</code> pass the actual graph object
+(as in <code>sess.graph</code>) to the <code>FileWriter</code> when serializing the graph.
+The images below show the CIFAR-10 model with tensor shape information:
+<table width="100%;">
+  <tr>
+    <td style="width: 100%;">
+      <img src="../images/tensor_shapes.png?hl=zh-cn" alt="CIFAR-10 model with tensor shape information" title="CIFAR-10 model with tensor shape information" />
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 100%;">
+      CIFAR-10 model with tensor shape information.
+    </td>
+  </tr>
+</table></p>
+<h2 id="runtime_statistics">Runtime statistics</h2>
+<p>Often it is useful to collect runtime metadata for a run, such as total memory
+usage, total compute time, and tensor shapes for nodes. The code example below
+is a snippet from the train and test section of a modification of the
+<a href="../tutorials/mnist/beginners/index.html?hl=zh-cn">simple MNIST tutorial</a>, in which we have recorded summaries and
+runtime statistics. See the
+<a href="summaries_and_tensorboard?hl=zh-cn#serializing-the-data">Summaries Tutorial</a>
+for details on how to record summaries.
+Full source is <a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/examples/tutorials/mnist/mnist_with_summaries.py">here</a>.</p>
+<pre class="prettyprint lang-python"><code>  # Train the model, and also write summaries.
+  # Every 10th step, measure test-set accuracy, and write test summaries
+  # All other steps, run train_step on training data, &amp; add training summaries
+
+  def feed_dict(train):
+    &quot;&quot;&quot;Make a TensorFlow feed_dict: maps data onto Tensor placeholders.&quot;&quot;&quot;
+    if train or FLAGS.fake_data:
+      xs, ys = mnist.train.next_batch(100, fake_data=FLAGS.fake_data)
+      k = FLAGS.dropout
+    else:
+      xs, ys = mnist.test.images, mnist.test.labels
+      k = 1.0
+    return {x: xs, y_: ys, keep_prob: k}
+
+  for i in range(FLAGS.max_steps):
+    if i % 10 == 0:  # Record summaries and test-set accuracy
+      summary, acc = sess.run([merged, accuracy], feed_dict=feed_dict(False))
+      test_writer.add_summary(summary, i)
+      print('Accuracy at step %s: %s' % (i, acc))
+    else:  # Record train set summaries, and train
+      if i % 100 == 99:  # Record execution stats
+        run_options = tf.RunOptions(trace_level=tf.RunOptions.FULL_TRACE)
+        run_metadata = tf.RunMetadata()
+        summary, _ = sess.run([merged, train_step],
+                              feed_dict=feed_dict(True),
+                              options=run_options,
+                              run_metadata=run_metadata)
+        train_writer.add_run_metadata(run_metadata, 'step%d' % i)
+        train_writer.add_summary(summary, i)
+        print('Adding run metadata for', i)
+      else:  # Record a summary
+        summary, _ = sess.run([merged, train_step], feed_dict=feed_dict(True))
+        train_writer.add_summary(summary, i)
+</code></pre>
+
+<p>This code will emit runtime statistics for every 100th step starting at step99.</p>
+<p>When you launch tensorboard and go to the Graph tab, you will now see options
+under "Session runs" which correspond to the steps where run metadata was added.
+Selecting one of these runs will show you the snapshot of the network at that
+step, fading out unused nodes. In the controls on the left hand side, you will
+be able to color the nodes by total memory or total compute time. Additionally,
+clicking on a node will display the exact total memory, compute time, and
+tensor output sizes.</p>
+<table width="100%;">
+  <tr style="height: 380px">
+    <td>
+      <img src="../images/colorby_compute_time.png?hl=zh-cn" alt="Color by compute time" title="Color by compute time"/>
+    </td>
+    <td>
+      <img src="../images/run_metadata_graph.png?hl=zh-cn" alt="Run metadata graph" title="Run metadata graph" />
+    </td>
+    <td>
+      <img src="../images/run_metadata_infocard.png?hl=zh-cn" alt="Run metadata info card" title="Run metadata info card" />
+    </td>
+  </tr>
+</table>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies?hl=zh-cn">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:30:43.162480">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="qNEBLVwx1U-9OR0sB_wnPte8mGfCkfGkMFa3beRKRwY6MTUxNzg2MDM0NTY3NjY5MA" /><input type="hidden" name="next" value="/programmers_guide/graph_viz"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot.js?hl=zh-cn"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/?hl=zh-cn');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="376.749992371"></span></body></html>

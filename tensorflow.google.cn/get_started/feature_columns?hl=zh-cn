@@ -1,0 +1,1165 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="K6czBQiK8c08FeF-lrMj5JA90nSJH0XjijBkoa2Wl1M6MTUxNzg2MDMzMjM0NjYwMA" /><link rel="canonical" href="https://www.tensorflow.org/get_started/feature_columns"><link rel="alternate" href="https://www.tensorflow.org/get_started/feature_columns" hreflang="en"><link rel="alternate" href="feature_columns" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/get_started/feature_columns" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png?hl=zh-cn"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png?hl=zh-cn"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css?hl=zh-cn"><script src="../_static/18908e5f48/js/jquery-bundle.js?hl=zh-cn"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/get_started/feature_columns"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Feature Columns &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Feature Columns &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               "
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html?hl=zh-cn" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png?hl=zh-cn"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/?hl=zh-cn"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Develop
+    
+    
+  </li></ul></div></div><div class="devsite-doc-set-nav-row devsite-full-site-width"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="index?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Get Started"
+       >
+        Get Started
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../programmers_guide/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Programmer&#39;s Guide"
+       >
+        Programmer&#39;s Guide
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tutorials/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Tutorials"
+       >
+        Tutorials
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../performance/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Performance"
+       >
+        Performance
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../mobile/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Mobile"
+       >
+        Mobile
+      </a></li></ul></nav></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Get Started"
+            tabindex="0">
+        Get Started
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../programmers_guide/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Programmer&#39;s Guide">
+        Programmer&#39;s Guide
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tutorials/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Tutorials">
+        Tutorials
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../performance/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Performance">
+        Performance
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../mobile/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Mobile">
+        Mobile
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html?hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Getting Started</span></li><li class="devsite-nav-item"><a href="get_started_for_beginners?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started for ML Beginners</a></li><li class="devsite-nav-item"><a href="estimator?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started with TensorFlow</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Details</span></li><li class="devsite-nav-item"><a href="checkpoints?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Checkpoints</a></li><li class="devsite-nav-item devsite-nav-active"><a href="feature_columns?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Feature Columns</a></li><li class="devsite-nav-item"><a href="input_fn?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Datasets Quick Start</a></li><li class="devsite-nav-item"><a href="custom_estimators?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Custom Estimators</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Getting Started</span></li><li class="devsite-nav-item"><a href="get_started_for_beginners?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started for ML Beginners</a></li><li class="devsite-nav-item"><a href="estimator?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started with TensorFlow</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Details</span></li><li class="devsite-nav-item"><a href="checkpoints?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Checkpoints</a></li><li class="devsite-nav-item devsite-nav-active"><a href="feature_columns?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Feature Columns</a></li><li class="devsite-nav-item"><a href="input_fn?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Datasets Quick Start</a></li><li class="devsite-nav-item"><a href="custom_estimators?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Custom Estimators</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Develop
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="3">
+    
+    
+      Get Started
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Feature Columns
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG&amp;hl=zh-cn"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>This document details feature columns. Think of <strong>feature columns</strong> as the
+intermediaries between raw data and Estimators. Feature columns are very rich,
+enabling you to transform a diverse range of raw data into formats that
+Estimators can use, allowing easy experimentation.</p>
+<p>In <a href="estimator?hl=zh-cn">Premade Estimators</a>, we used the premade
+Estimator, <a href="../api_docs/python/tf/estimator/DNNClassifier?hl=zh-cn"><code>DNNClassifier</code></a> to train a model to
+predict different types of Iris flowers from four input features. That example
+created only numerical feature columns (of type
+<a href="../api_docs/python/tf/feature_column/numeric_column?hl=zh-cn"><code>tf.feature_column.numeric_column</code></a>). Although numerical feature columns model
+the lengths of petals and sepals effectively, real world data sets contain all
+kinds of features, many of which are non-numerical.</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="https://tensorflow.google.cn/images/feature_columns/feature_cloud.jpg?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+Some real-world features (such as, longitude) are numerical, but many are not.
+</div>
+
+<h2 id="input_to_a_deep_neural_network">Input to a Deep Neural Network</h2>
+<p>What kind of data can a deep neural network operate on? The answer
+is, of course, numbers (for example, <code>tf.float32</code>). After all, every neuron in
+a neural network performs multiplication and addition operations on weights and
+input data. Real-life input data, however, often contains non-numerical
+(categorical) data. For example, consider a <code>product_class</code> feature that can
+contain the following three non-numerical values:</p>
+<ul>
+<li><code>kitchenware</code></li>
+<li><code>electronics</code></li>
+<li><code>sports</code></li>
+</ul>
+<p>ML models generally represent categorical values as simple vectors in which a
+1 represents the presence of a value and a 0 represents the absence of a value.
+For example, when <code>product_class</code> is set to <code>sports</code>, an ML model would usually
+represent <code>product_class</code> as  <code>[0, 0, 1]</code>, meaning:</p>
+<ul>
+<li><code>0</code>: <code>kitchenware</code> is absent</li>
+<li><code>0</code>: <code>electronics</code> is absent</li>
+<li><code>1</code>: <code>sports</code> is present</li>
+</ul>
+<p>So, although raw data can be numerical or categorical, an ML model represents
+all features as numbers.</p>
+<h2 id="feature_columns_1">Feature Columns</h2>
+<p>As the following figure suggests, you specify the input to a model through the
+<code>feature_columns</code> argument of an Estimator (<code>DNNClassifier</code> for Iris).
+Feature Columns bridge input data (as returned by <code>input_fn</code>) with your model.</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="https://tensorflow.google.cn/images/feature_columns/inputs_to_model_bridge.jpg?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+Feature columns bridge raw data with the data your model needs.
+</div>
+
+<p>To create feature columns, call functions from the
+<a href="../api_docs/python/tf/feature_column?hl=zh-cn"><code>tf.feature_column</code></a> module. This document explains nine of the functions in
+that module. As the following figure shows, all nine functions return either a
+Categorical-Column or a Dense-Column object, except <code>bucketized_column</code>, which
+inherits from both classes:</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/feature_columns/some_constructors.jpg?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+Feature column methods fall into two main categories and one hybrid category.
+</div>
+
+<p>Let's look at these functions in more detail.</p>
+<h3 id="numeric_column">Numeric column</h3>
+<p>The Iris classifier calls the <a href="../api_docs/python/tf/feature_column/numeric_column?hl=zh-cn"><code>tf.feature_column.numeric_column</code></a> function for
+all input features:</p>
+<ul>
+<li><code>SepalLength</code></li>
+<li><code>SepalWidth</code></li>
+<li><code>PetalLength</code></li>
+<li><code>PetalWidth</code></li>
+</ul>
+<p>Although <code>tf.numeric_column</code> provides optional arguments, calling
+<code>tf.numeric_column</code> without any arguments, as follows, is a fine way to specify
+a numerical value with the default data type (<code>tf.float32</code>) as input to your
+model:</p>
+<pre class="prettyprint lang-python"><code># Defaults to a tf.float32 scalar.
+numeric_feature_column = tf.feature_column.numeric_column(key=&quot;SepalLength&quot;)
+</code></pre>
+
+<p>To specify a non-default numerical data type, use the <code>dtype</code> argument. For
+example:</p>
+<pre class="prettyprint lang-python"><code># Represent a tf.float64 scalar.
+numeric_feature_column = tf.feature_column.numeric_column(key=&quot;SepalLength&quot;,
+                                                          dtype=tf.float64)
+</code></pre>
+
+<p>By default, a numeric column creates a single value (scalar). Use the shape
+argument to specify another shape. For example:</p>
+<!--TODO(markdaoust) link to full example-->
+
+<pre class="prettyprint lang-python"><code># Represent a 10-element vector in which each cell contains a tf.float32.
+vector_feature_column = tf.feature_column.numeric_column(key=&quot;Bowling&quot;,
+                                                         shape=10)
+
+# Represent a 10x5 matrix in which each cell contains a tf.float32.
+matrix_feature_column = tf.feature_column.numeric_column(key=&quot;MyMatrix&quot;,
+                                                         shape=[10,5])
+</code></pre>
+
+<h3 id="bucketized_column">Bucketized column</h3>
+<p>Often, you don't want to feed a number directly into the model, but instead
+split its value into different categories based on numerical ranges.  To do so,
+create a <a href="../api_docs/python/tf/feature_column/bucketized_column?hl=zh-cn">bucketized column</a>. For
+example, consider raw data that represents the year a house was built. Instead
+of representing that year as a scalar numeric column, we could split the year
+into the following four buckets:</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/feature_columns/bucketized_column.jpg?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+Dividing year data into four buckets.
+</div>
+
+<p>The model will represent the buckets as follows:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Date Range</th>
+<th align="left">Represented as...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">&lt; 1960</td>
+<td align="left">[1, 0, 0, 0]</td>
+</tr>
+<tr>
+<td align="left">&gt;= 1960 but &lt; 1980</td>
+<td align="left">[0, 1, 0, 0]</td>
+</tr>
+<tr>
+<td align="left">&gt;= 1980 but &lt; 2000</td>
+<td align="left">[0, 0, 1, 0]</td>
+</tr>
+<tr>
+<td align="left">&gt; 2000</td>
+<td align="left">[0, 0, 0, 1]</td>
+</tr>
+</tbody>
+</table>
+<p>Why would you want to split a number—a perfectly valid input to your
+model—into a categorical value? Well, notice that the categorization splits a
+single input number into a four-element vector. Therefore, the model now can
+learn <em>four individual weights</em> rather than just one; four weights creates a
+richer model than one weight. More importantly, bucketizing enables the model
+to clearly distinguish between different year categories since only one of the
+elements is set (1) and the other three elements are cleared (0). When we just
+use a single number (a year) as input, the model can only learn a linear
+relationship. So, bucketing provides the model with additional flexibility that
+the model can use to learn.</p>
+<p>The following code demonstrates how to create a bucketized feature:</p>
+<!--TODO(markdaoust) link to full example - housing price grid?-->
+
+<pre class="prettyprint lang-python"><code># First, convert the raw input to a numeric column.
+numeric_feature_column = tf.feature_column.numeric_column(&quot;Year&quot;)
+
+# Then, bucketize the numeric column on the years 1960, 1980, and 2000.
+bucketized_feature_column = tf.feature_column.bucketized_column(
+    source_column = numeric_feature_column,
+    boundaries = [1960, 1980, 2000])
+</code></pre>
+
+<p>Note that specifying a <em>three</em>-element boundaries vector creates a
+<em>four</em>-element bucketized vector.</p>
+<h3 id="categorical_identity_column">Categorical identity column</h3>
+<p><strong>Categorical identity columns</strong> can be seen as a special case of bucketized
+columns. In traditional bucketized columns, each bucket represents a range of
+values (for example, from 1960 to 1979). In a categorical identity column, each
+bucket represents a single, unique integer. For example, let's say you want to
+represent the integer range <code>[0, 4)</code>.  That is, you want to represent the
+integers 0, 1, 2, or 3. In this case, the categorical identity mapping looks
+like this:</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/feature_columns/categorical_column_with_identity.jpg?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+A categorical identity column mapping. Note that this is a one-hot
+encoding, not a binary numerical encoding.
+</div>
+
+<p>As with bucketized columns, a model can learn a separate weight for each class
+in a categorical identity column. For example, instead of using a string to
+represent the <code>product_class</code>, let's represent each class with a unique integer
+value. That is:</p>
+<ul>
+<li><code>0="kitchenware"</code></li>
+<li><code>1="electronics"</code></li>
+<li><code>2="sport"</code></li>
+</ul>
+<p>Call <a href="../api_docs/python/tf/feature_column/categorical_column_with_identity?hl=zh-cn"><code>tf.feature_column.categorical_column_with_identity</code></a> to implement a
+categorical identity column. For example:</p>
+<pre class="prettyprint lang-python"><code># Create categorical output for an integer feature named &quot;my_feature_b&quot;,
+# The values of my_feature_b must be &gt;= 0 and &lt; num_buckets
+identity_feature_column = tf.feature_column.categorical_column_with_identity(
+    key='my_feature_b',
+    num_buckets=4) # Values [0, 4)
+
+# In order for the preceding call to work, the input_fn() must return
+# a dictionary containing 'my_feature_b' as a key. Furthermore, the values
+# assigned to 'my_feature_b' must belong to the set [0, 4).
+def input_fn():
+    ...
+    return ({ 'my_feature_a':[7, 9, 5, 2], 'my_feature_b':[3, 1, 2, 2] },
+            [Label_values])
+</code></pre>
+
+<h3 id="categorical_vocabulary_column">Categorical vocabulary column</h3>
+<p>We cannot input strings directly to a model. Instead, we must first map strings
+to numeric or categorical values. Categorical vocabulary columns provide a good
+way to represent strings as a one-hot vector. For example:</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/feature_columns/categorical_column_with_vocabulary.jpg?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+Mapping string values to vocabulary columns.
+</div>
+
+<p>As you can see, categorical vocabulary columns are kind of an enum version of
+categorical identity columns. TensorFlow provides two different functions to
+create categorical vocabulary columns:</p>
+<ul>
+<li><a href="../api_docs/python/tf/feature_column/categorical_column_with_vocabulary_list?hl=zh-cn"><code>tf.feature_column.categorical_column_with_vocabulary_list</code></a></li>
+<li><a href="../api_docs/python/tf/feature_column/categorical_column_with_vocabulary_file?hl=zh-cn"><code>tf.feature_column.categorical_column_with_vocabulary_file</code></a></li>
+</ul>
+<p><code>categorical_column_with_vocabulary_list</code> maps each string to an integer based
+on an explicit vocabulary list. For example:</p>
+<pre class="prettyprint lang-python"><code># Given input &quot;feature_name_from_input_fn&quot; which is a string,
+# create a categorical feature by mapping the input to one of
+# the elements in the vocabulary list.
+vocabulary_feature_column =
+    tf.feature_column.categorical_column_with_vocabulary_list(
+        key=&quot;a feature returned by input_fn()&quot;,
+        vocabulary_list=[&quot;kitchenware&quot;, &quot;electronics&quot;, &quot;sports&quot;])
+</code></pre>
+
+<p>The preceding function is pretty straightforward, but it has a significant
+drawback. Namely, there's way too much typing when the vocabulary list is long.
+For these cases, call
+<code>tf.feature_column.categorical_column_with_vocabulary_file</code> instead, which lets
+you place the vocabulary words in a separate file. For example:</p>
+<pre class="prettyprint lang-python"><code>
+# Given input &quot;feature_name_from_input_fn&quot; which is a string,
+# create a categorical feature to our model by mapping the input to one of
+# the elements in the vocabulary file
+vocabulary_feature_column =
+    tf.feature_column.categorical_column_with_vocabulary_file(
+        key=&quot;a feature returned by input_fn()&quot;,
+        vocabulary_file=&quot;product_class.txt&quot;,
+        vocabulary_size=3)
+</code></pre>
+
+<p><code>product_class.txt</code> should contain one line for each vocabulary element. In our
+case:</p>
+<pre class="prettyprint lang-None"><code>kitchenware
+electronics
+sports
+</code></pre>
+
+<h3 id="hashed_column">Hashed Column</h3>
+<p>So far, we've worked with a naively small number of categories. For example,
+our product_class example has only 3 categories. Often though, the number of
+categories can be so big that it's not possible to have individual categories
+for each vocabulary word or integer because that would consume too much memory.
+For these cases, we can instead turn the question around and ask, "How many
+categories am I willing to have for my input?"  In fact, the
+<a href="../api_docs/python/tf/feature_column/categorical_column_with_hash_bucket?hl=zh-cn"><code>tf.feature_column.categorical_column_with_hash_bucket</code></a> function enables you
+to specify the number of categories. For this type of feature column the model
+calculates a hash value of the input, then puts it into one of
+the <code>hash_bucket_size</code> categories using the modulo operator, as in the following
+pseudocode:</p>
+<pre class="prettyprint lang-python"><code># pseudocode
+feature_id = hash(raw_feature) % hash_buckets_size
+</code></pre>
+
+<p>The code to create the <code>feature_column</code> might look something like this:</p>
+<pre class="prettyprint lang-python"><code>hashed_feature_column =
+    tf.feature_column.categorical_column_with_hash_bucket(
+        key = &quot;some_feature&quot;,
+        hash_buckets_size = 100) # The number of categories
+</code></pre>
+
+<p>At this point, you might rightfully think: "This is crazy!" After all, we are
+forcing the different input values to a smaller set of categories. This means
+that two probably unrelated inputs will be mapped to the same
+category, and consequently mean the same thing to the neural network. The
+following figure illustrates this dilemma, showing that kitchenware and sports
+both get assigned to category (hash bucket) 12:</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/feature_columns/hashed_column.jpg?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+Representing data with hash buckets.
+</div>
+
+<p>As with many counterintuitive phenomena in machine learning, it turns out that
+hashing often works well in practice. That's because hash categories provide
+the model with some separation. The model can use additional features to further
+separate kitchenware from sports.</p>
+<h3 id="crossed_column">Crossed column</h3>
+<p>Combining features into a single feature, better known as
+<a href="https://developers.google.cn/machine-learning/glossary/?hl=zh-cn#feature_cross">feature crosses</a>,
+enables the model to learn separate weights for each combination of
+features.</p>
+<p>More concretely, suppose we want our model to calculate real estate prices in
+Atlanta, GA. Real-estate prices within this city vary greatly depending on
+location. Representing latitude and longitude as separate features isn't very
+useful in identifying real-estate location dependencies; however, crossing
+latitude and longitude into a single feature can pinpoint locations. Suppose we
+represent Atlanta as a grid of 100x100 rectangular sections, identifying each
+of the 10,000 sections by a feature cross of latitude and longitude. This
+feature cross enables the model to train on pricing conditions related to each
+individual section, which is a much stronger signal than latitude and longitude
+alone.</p>
+<p>The following figure shows our plan, with the latitude &amp; longitude values for
+the corners of the city in red text:</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/feature_columns/Atlanta.jpg?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+Map of Atlanta. Imagine this map divided into 10,000 sections of
+equal size.
+</div>
+
+<p>For the solution, we used a combination of the <code>bucketized_column</code> we looked at
+earlier, with the <a href="../api_docs/python/tf/feature_column/crossed_column?hl=zh-cn"><code>tf.feature_column.crossed_column</code></a> function.</p>
+<!--TODO(markdaoust) link to full example-->
+
+<pre class="prettyprint lang-python"><code>def make_dataset(latitude, longitude, labels):
+    assert latitude.shape == longitude.shape == labels.shape
+
+    features = {'latitude': latitude.flatten(),
+                'longitude': longitude.flatten()}
+    labels=labels.flatten()
+
+    return tf.data.Dataset.from_tensor_slices((features, labels))
+
+# Bucketize the latitude and longitude usig the `edges`
+latitude_bucket_fc = tf.feature_column.bucketized_column(
+    tf.feature_column.numeric_column('latitude'),
+    list(atlanta.latitude.edges))
+
+longitude_bucket_fc = tf.feature_column.bucketized_column(
+    tf.feature_column.numeric_column('longitude'),
+    list(atlanta.longitude.edges))
+
+# Cross the bucketized columns, using 5000 hash bins.
+crossed_lat_lon_fc = tf.feature_column.crossed_column(
+    [latitude_bucket_fc, longitude_bucket_fc], 5000)
+
+fc = [
+    latitude_bucket_fc,
+    longitude_bucket_fc,
+    crossed_lat_lon_fc]
+
+# Build and train the Estimator.
+est = tf.estimator.LinearRegressor(fc, ...)
+</code></pre>
+
+<p>You may create a feature cross from either of the following:</p>
+<ul>
+<li>Feature names; that is, names from the <code>dict</code> returned from <code>input_fn</code>.</li>
+<li>Any categorical column, except <code>categorical_column_with_hash_bucket</code>
+  (since <code>crossed_column</code> hashes the input).</li>
+</ul>
+<p>When the feature columns <code>latitude_bucket_fc</code> and <code>longitude_bucket_fc</code> are
+crossed, TensorFlow will create <code>(latitude_fc, longitude_fc)</code> pairs for each
+example. This would produce a full grid of possibilities as follows:</p>
+<pre class="prettyprint lang-None"><code> (0,0),  (0,1)...  (0,99)
+ (1,0),  (1,1)...  (1,99)
+   ...     ...       ...
+(99,0), (99,1)...(99, 99)
+</code></pre>
+
+<p>Except that a full grid would only be tractable for inputs with limited
+vocabularies. Instead of building this, potentially huge, table of inputs,
+the <code>crossed_column</code> only builds the number requested by the <code>hash_bucket_size</code>
+argument. The feature column assigns an example to a index by running a hash
+function on the tuple of inputs, followed by a modulo operation with
+<code>hash_bucket_size</code>.</p>
+<p>As discussed earlier, performing the
+hash and modulo function limits the number of categories, but can cause category
+collisions; that is, multiple (latitude, longitude) feature crosses will end
+up in the same hash bucket. In practice though, performing feature crosses
+still adds significant value to the learning capability of your models.</p>
+<p>Somewhat counterintuitively, when creating feature crosses, you typically still
+should include the original (uncrossed) features in your model (as in the
+preceding code snippet). The independent latitude and longitude features help the
+model distinguish between examples where a hash collision has occurred in the
+crossed feature.</p>
+<h2 id="indicator_and_embedding_columns">Indicator and embedding columns</h2>
+<p>Indicator columns and embedding columns never work on features directly, but
+instead take categorical columns as input.</p>
+<p>When using an indicator column, we're telling TensorFlow to do exactly what
+we've seen in our categorical product_class example. That is, an
+<strong>indicator column</strong> treats each category as an element in a one-hot vector,
+where the matching category has value 1 and the rest have 0s:</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/feature_columns/categorical_column_with_identity.jpg?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+Representing data in indicator columns.
+</div>
+
+<p>Here's how you create an indicator column by calling
+<a href="../api_docs/python/tf/feature_column/indicator_column?hl=zh-cn"><code>tf.feature_column.indicator_column</code></a>:</p>
+<pre class="prettyprint lang-python"><code>categorical_column = ... # Create any type of categorical column.
+
+# Represent the categorical column as an indicator column.
+indicator_column = tf.feature_column.indicator_column(categorical_column)
+</code></pre>
+
+<p>Now, suppose instead of having just three possible classes, we have a million.
+Or maybe a billion. For a number of reasons, as the number of categories grow
+large, it becomes infeasible to train a neural network using indicator columns.</p>
+<p>We can use an embedding column to overcome this limitation. Instead of
+representing the data as a one-hot vector of many dimensions, an
+<strong>embedding column</strong> represents that data as a lower-dimensional, ordinary
+vector in which each cell can contain any number, not just 0 or 1. By
+permitting a richer palette of numbers for every cell, an embedding column
+contains far fewer cells than an indicator column.</p>
+<p>Let's look at an example comparing indicator and embedding columns. Suppose our
+input examples consists of different words from a limited palette of only 81
+words. Further suppose that the data set provides provides the following input
+words in 4 separate examples:</p>
+<ul>
+<li><code>"dog"</code></li>
+<li><code>"spoon"</code></li>
+<li><code>"scissors"</code></li>
+<li><code>"guitar"</code></li>
+</ul>
+<p>In that case, the following figure illustrates the processing path for
+embedding columns or indicator columns.</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/feature_columns/embedding_vs_indicator.jpg?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+An embedding column stores categorical data in a lower-dimensional
+vector than an indicator column. (We just placed random numbers into the
+embedding vectors; training determines the actual numbers.)
+</div>
+
+<p>When an example is processed, one of the <code>categorical_column_with...</code> functions
+maps the example string to a numerical categorical value. For example, a
+function maps "spoon" to <code>[32]</code>. (The 32 comes from our imagination—the actual
+values depend on the mapping function.) You may then represent these numerical
+categorical values in either of the following two ways:</p>
+<ul>
+<li>
+<p>As an indicator column. A function converts each numeric categorical value
+  into an 81-element vector (because our palette consists of 81 words), placing
+  a 1 in the index of the categorical value (0, 32, 79, 80) and a 0 in all the
+  other positions.</p>
+</li>
+<li>
+<p>As an embedding column. A function uses the numerical categorical values
+  <code>(0, 32, 79, 80)</code> as indices to a lookup table. Each slot in that lookup table
+  contains a 3-element vector.</p>
+</li>
+</ul>
+<p>How do the values in the embeddings vectors magically get assigned? Actually,
+the assignments happen during training. That is, the model learns the best way
+to map your input numeric categorical values to the embeddings vector value in
+order to solve your problem. Embedding columns increase your model's
+capabilities, since an embeddings vector learns new relationships between
+categories from the training data.</p>
+<p>Why is the embedding vector size 3 in our example? Well, the following "formula"
+provides a general rule of thumb about the number of embedding dimensions:</p>
+<pre class="prettyprint lang-python"><code>embedding_dimensions =  number_of_categories**0.25
+</code></pre>
+
+<p>That is, the embedding vector dimension should be the 4th root of the number of
+categories. Since our vocabulary size in this example is 81, the recommended
+number of dimensions is 3:</p>
+<pre class="prettyprint lang-python"><code>3 =  81**0.25
+</code></pre>
+
+<p>Note that this is just a general guideline; you can set the number of embedding
+dimensions as you please.</p>
+<p>Call <a href="../api_docs/python/tf/feature_column/embedding_column?hl=zh-cn"><code>tf.feature_column.embedding_column</code></a> to create an <code>embedding_column</code> as
+suggested by the following snippet:</p>
+<pre class="prettyprint lang-python"><code>categorical_column = ... # Create any categorical column
+
+# Represent the categorical column as an embedding column.
+# This means creating a one-hot vector with one element for each category.
+embedding_column = tf.feature_column.embedding_column(
+    categorical_column=categorical_column,
+    dimension=dimension_of_embedding_vector)
+</code></pre>
+
+<p><a href="../how_tos/embedding_viz/index.html?hl=zh-cn">Embeddings</a> is a significant topic within machine
+learning. This information was just to get you started using them as feature
+columns.</p>
+<h2 id="passing_feature_columns_to_estimators">Passing feature columns to Estimators</h2>
+<p>As the following list indicates, not all Estimators permit all types of
+<code>feature_columns</code> argument(s):</p>
+<ul>
+<li><a href="../api_docs/python/tf/estimator/LinearClassifier?hl=zh-cn"><code>LinearClassifier</code></a> and
+  <a href="../api_docs/python/tf/estimator/LinearRegressor?hl=zh-cn"><code>LinearRegressor</code></a>: Accept all types of
+  feature column.</li>
+<li><a href="../api_docs/python/tf/estimator/DNNClassifier?hl=zh-cn"><code>DNNClassifier</code></a> and
+  <a href="../api_docs/python/tf/estimator/DNNRegressor?hl=zh-cn"><code>DNNRegressor</code></a>: Only accept dense columns. Other
+  column types must be wrapped in either an <code>indicator_column</code> or
+  <code>embedding_column</code>.</li>
+<li><a href="../api_docs/python/tf/estimator/DNNLinearCombinedClassifier?hl=zh-cn"><code>DNNLinearCombinedClassifier</code></a> and
+  <a href="../api_docs/python/tf/estimator/DNNLinearCombinedRegressor?hl=zh-cn"><code>DNNLinearCombinedRegressor</code></a>:<ul>
+<li>The <code>linear_feature_columns</code> argument accepts any feature column type.</li>
+<li>The <code>dnn_feature_columns</code> argument only accepts dense columns.</li>
+</ul>
+</li>
+</ul>
+<h2 id="other_sources">Other Sources</h2>
+<p>For more examples on feature columns, view the following:</p>
+<ul>
+<li>The <a href="../programmers_guide/low_level_intro?hl=zh-cn#feature_columns">Low Level Introduction</a> demonstrates how
+  experiment directly with <code>feature_columns</code> using TensorFlow's low level APIs.</li>
+<li>The <a href="../tutorials/wide?hl=zh-cn">wide</a> and <a href="../tutorials/wide_and_deep?hl=zh-cn">Wide &amp; Deep</a> Tutorials solve a
+  binary classification problem using <code>feature_columns</code> on a variety of input
+  data types.</li>
+</ul>
+<p>To learn more about embeddings, see the following:</p>
+<ul>
+<li><a href="http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/">Deep Learning, NLP, and representations</a>
+  (Chris Olah's blog)</li>
+<li>The TensorFlow <a href="http://projector.tensorflow.org?hl=zh-cn">Embedding Projector</a></li>
+</ul>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies?hl=zh-cn">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:31:35.695880">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="K6czBQiK8c08FeF-lrMj5JA90nSJH0XjijBkoa2Wl1M6MTUxNzg2MDMzMjM0NjYwMA" /><input type="hidden" name="next" value="/get_started/feature_columns"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot.js?hl=zh-cn"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/?hl=zh-cn');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="337.81003952"></span></body></html>

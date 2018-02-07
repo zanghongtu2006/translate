@@ -1,0 +1,1155 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="ofATonkVsnKYt_qJH2oDD7xP8bV9r3cLlKPjPAIWDg46MTUxNzg3MjYzODEzODY4MA" /><link rel="canonical" href="https://www.tensorflow.org/tutorials/audio_recognition"><link rel="alternate" href="https://www.tensorflow.org/tutorials/audio_recognition" hreflang="en"><link rel="alternate" href="audio_recognition" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/tutorials/audio_recognition" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css"><script src="../_static/18908e5f48/js/jquery-bundle.js"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/tutorials/audio_recognition"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Simple Audio Recognition &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Simple Audio Recognition &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               "
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs.1"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Develop
+    
+    
+  </li></ul></div></div><div class="devsite-doc-set-nav-row devsite-full-site-width"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Get Started"
+       >
+        Get Started
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../programmers_guide/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Programmer&#39;s Guide"
+       >
+        Programmer&#39;s Guide
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index.html"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Tutorials"
+       >
+        Tutorials
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../performance/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Performance"
+       >
+        Performance
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../mobile/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Mobile"
+       >
+        Mobile
+      </a></li></ul></nav></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Get Started">
+        Get Started
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../programmers_guide/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Programmer&#39;s Guide">
+        Programmer&#39;s Guide
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Tutorials"
+            tabindex="0">
+        Tutorials
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../performance/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Performance">
+        Performance
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../mobile/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Mobile">
+        Mobile
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Tutorials</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Images</span></li><li class="devsite-nav-item"><a href="mnist/beginners/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">A Guide to TF Layers: Building a Convolutional Neural Network</a></li><li class="devsite-nav-item"><a href="image_recognition" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Image Recognition</a></li><li class="devsite-nav-item"><a href="image_retraining" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">How to Retrain Inception's Final Layer for New Categories</a></li><li class="devsite-nav-item"><a href="deep_cnn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Convolutional Neural Networks</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Sequences</span></li><li class="devsite-nav-item"><a href="recurrent" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Recurrent Neural Networks</a></li><li class="devsite-nav-item"><a href="seq2seq" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Neural Machine Translation (seq2seq) Tutorial</a></li><li class="devsite-nav-item"><a href="recurrent_quickdraw" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Recurrent Neural Networks for Drawing Classification</a></li><li class="devsite-nav-item devsite-nav-active"><a href="audio_recognition" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Simple Audio Recognition</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Data Representation</span></li><li class="devsite-nav-item"><a href="wide" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Linear Model Tutorial</a></li><li class="devsite-nav-item"><a href="wide_and_deep" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Wide &amp; Deep Learning Tutorial</a></li><li class="devsite-nav-item"><a href="word2vec" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Vector Representations of Words</a></li><li class="devsite-nav-item"><a href="kernel_methods" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Improving Linear Models Using Explicit Kernel Methods</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Non-ML</span></li><li class="devsite-nav-item"><a href="mandelbrot" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Mandelbrot Set</a></li><li class="devsite-nav-item"><a href="pdes" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Partial Differential Equations</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Tutorials</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Images</span></li><li class="devsite-nav-item"><a href="mnist/beginners/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">A Guide to TF Layers: Building a Convolutional Neural Network</a></li><li class="devsite-nav-item"><a href="image_recognition" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Image Recognition</a></li><li class="devsite-nav-item"><a href="image_retraining" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">How to Retrain Inception's Final Layer for New Categories</a></li><li class="devsite-nav-item"><a href="deep_cnn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Convolutional Neural Networks</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Sequences</span></li><li class="devsite-nav-item"><a href="recurrent" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Recurrent Neural Networks</a></li><li class="devsite-nav-item"><a href="seq2seq" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Neural Machine Translation (seq2seq) Tutorial</a></li><li class="devsite-nav-item"><a href="recurrent_quickdraw" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Recurrent Neural Networks for Drawing Classification</a></li><li class="devsite-nav-item devsite-nav-active"><a href="audio_recognition" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Simple Audio Recognition</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Data Representation</span></li><li class="devsite-nav-item"><a href="wide" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Linear Model Tutorial</a></li><li class="devsite-nav-item"><a href="wide_and_deep" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Wide &amp; Deep Learning Tutorial</a></li><li class="devsite-nav-item"><a href="word2vec" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Vector Representations of Words</a></li><li class="devsite-nav-item"><a href="kernel_methods" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Improving Linear Models Using Explicit Kernel Methods</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Non-ML</span></li><li class="devsite-nav-item"><a href="mandelbrot" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Mandelbrot Set</a></li><li class="devsite-nav-item"><a href="pdes" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Partial Differential Equations</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="../get_started/index" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Develop
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index.html" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="3">
+    
+    
+      Tutorials
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Simple Audio Recognition
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>This tutorial will show you how to build a basic speech recognition network that
+recognizes ten different words. It's important to know that real speech and
+audio recognition systems are much more complex, but like MNIST for images, it
+should give you a basic understanding of the techniques involved. Once you've
+completed this tutorial, you'll have a model that tries to classify a one second
+audio clip as either silence, an unknown word, "yes", "no", "up", "down",
+"left", "right", "on", "off", "stop", or "go". You'll also be able to take this
+model and run it in an Android application.</p>
+<h2 id="preparation">Preparation</h2>
+<p>You should make sure you have TensorFlow installed, and since the script
+downloads over 1GB of training data, you'll need a good internet connection and
+enough free space on your machine. The training process itself can take several
+hours, so make sure you have a machine available for that long.</p>
+<h2 id="training">Training</h2>
+<p>To begin the training process, go to the TensorFlow source tree and run:</p>
+<pre class="prettyprint lang-bash"><code>python tensorflow/examples/speech_commands/train.py
+</code></pre>
+
+<p>The script will start off by downloading the <a href="https://storage.cloud.google.com/download.tensorflow.org/data/speech_commands_v0.01.tar.gz">Speech Commands
+dataset</a>,
+which consists of 65,000 WAVE audio files of people saying thirty different
+words. This data was collected by Google and released under a CC BY license, and
+you can help improve it by <a href="https://aiyprojects.withgoogle.com/open_speech_recording">contributing five minutes of your own
+voice</a>. The archive is
+over 1GB, so this part may take a while, but you should see progress logs, and
+once it's been downloaded once you won't need to do this step again.</p>
+<p>Once the downloading has completed, you'll see logging information that looks
+like this:</p>
+<pre class="prettyprint"><code>I0730 16:53:44.766740   55030 train.py:176] Training from step: 1
+I0730 16:53:47.289078   55030 train.py:217] Step #1: rate 0.001000, accuracy 7.0%, cross entropy 2.611571
+</code></pre>
+
+<p>This shows that the initialization process is done and the training loop has
+begun. You'll see that it outputs information for every training step. Here's a
+break down of what it means:</p>
+<p><code>Step #1</code> shows that we're on the first step of the training loop. In this case
+there are going to be 18,000 steps in total, so you can look at the step number
+to get an idea of how close it is to finishing.</p>
+<p><code>rate 0.001000</code> is the learning rate that's controlling the speed of the
+network's weight updates. Early on this is a comparatively high number (0.001),
+but for later training cycles it will be reduced 10x, to 0.0001.</p>
+<p><code>accuracy 7.0%</code> is the how many classes were correctly predicted on this
+training step. This value will often fluctuate a lot, but should increase on
+average as training progresses. The model outputs an array of numbers, one for
+each label, and each number is the predicted likelihood of the input being that
+class. The predicted label is picked by choosing the entry with the highest
+score. The scores are always between zero and one, with higher values
+representing more confidence in the result.</p>
+<p><code>cross entropy 2.611571</code> is the result of the loss function that we're using to
+guide the training process. This is a score that's obtained by comparing the
+vector of scores from the current training run to the correct labels, and this
+should trend downwards during training.</p>
+<p>After a hundred steps, you should see a line like this:</p>
+<p><code>I0730 16:54:41.813438 55030 train.py:252] Saving to
+"/tmp/speech_commands_train/conv.ckpt-100"</code></p>
+<p>This is saving out the current trained weights to a checkpoint file. If your
+training script gets interrupted, you can look for the last saved checkpoint and
+then restart the script with
+<code>--start_checkpoint=/tmp/speech_commands_train/conv.ckpt-100</code> as a command line
+argument to start from that point.</p>
+<h2 id="confusion_matrix">Confusion Matrix</h2>
+<p>After four hundred steps, this information will be logged:</p>
+<pre class="prettyprint"><code>I0730 16:57:38.073667   55030 train.py:243] Confusion Matrix:
+ [[258   0   0   0   0   0   0   0   0   0   0   0]
+ [  7   6  26  94   7  49   1  15  40   2   0  11]
+ [ 10   1 107  80  13  22   0  13  10   1   0   4]
+ [  1   3  16 163   6  48   0   5  10   1   0  17]
+ [ 15   1  17 114  55  13   0   9  22   5   0   9]
+ [  1   1   6  97   3  87   1  12  46   0   0  10]
+ [  8   6  86  84  13  24   1   9   9   1   0   6]
+ [  9   3  32 112   9  26   1  36  19   0   0   9]
+ [  8   2  12  94   9  52   0   6  72   0   0   2]
+ [ 16   1  39  74  29  42   0   6  37   9   0   3]
+ [ 15   6  17  71  50  37   0   6  32   2   1   9]
+ [ 11   1   6 151   5  42   0   8  16   0   0  20]]
+</code></pre>
+
+<p>The first section is a <a href="../api_docs/python/tf/confusion_matrix">confusion
+matrix</a>. To
+understand what it means, you first need to know the labels being used, which in
+this case are "<em>silence</em>", "<em>unknown</em>", "yes", "no", "up", "down", "left",
+"right", "on", "off", "stop", and "go". Each column represents a set of samples
+that were predicted to be each label, so the first column represents all the
+clips that were predicted to be silence, the second all those that were
+predicted to be unknown words, the third "yes", and so on.</p>
+<p>Each row represents clips by their correct, ground truth labels. The first row
+is all the clips that were silence, the second clips that were unknown words,
+the third "yes", etc.</p>
+<p>This matrix can be more useful than just a single accuracy score because it
+gives a good summary of what mistakes the network is making. In this example you
+can see that all of the entries in the first row are zero, apart from the
+initial one. Because the first row is all the clips that are actually silence,
+this means that none of them were mistakenly labeled as words, so we have no
+false negatives for silence. This shows the network is already getting pretty
+good at distinguishing silence from words.</p>
+<p>If we look down the first column though, we see a lot of non-zero values. The
+column represents all the clips that were predicted to be silence, so positive
+numbers outside of the first cell are errors. This means that some clips of real
+spoken words are actually being predicted to be silence, so we do have quite a
+few false positives.</p>
+<p>A perfect model would produce a confusion matrix where all of the entries were
+zero apart from a diagonal line through the center. Spotting deviations from
+that pattern can help you figure out how the model is most easily confused, and
+once you've identified the problems you can address them by adding more data or
+cleaning up categories.</p>
+<h2 id="validation">Validation</h2>
+<p>After the confusion matrix, you should see a line like this:</p>
+<p><code>I0730 16:57:38.073777 55030 train.py:245] Step 400: Validation accuracy = 26.3%
+(N=3093)</code></p>
+<p>It's good practice to separate your data set into three categories. The largest
+(in this case roughly 80% of the data) is used for training the network, a
+smaller set (10% here, known as "validation") is reserved for evaluation of the
+accuracy during training, and another set (the last 10%, "testing") is used to
+evaluate the accuracy once after the training is complete.</p>
+<p>The reason for this split is that there's always a danger that networks will
+start memorizing their inputs during training. By keeping the validation set
+separate, you can ensure that the model works with data it's never seen before.
+The testing set is an additional safeguard to make sure that you haven't just
+been tweaking your model in a way that happens to work for both the training and
+validation sets, but not a broader range of inputs.</p>
+<p>The training script automatically separates the data set into these three
+categories, and the logging line above shows the accuracy of model when run on
+the validation set. Ideally, this should stick fairly close to the training
+accuracy. If the training accuracy increases but the validation doesn't, that's
+a sign that overfitting is occurring, and your model is only learning things
+about the training clips, not broader patterns that generalize.</p>
+<h2 id="tensorboard">Tensorboard</h2>
+<p>A good way to visualize how the training is progressing is using Tensorboard. By
+default, the script saves out events to /tmp/retrain_logs, and you can load
+these by running:</p>
+<p><code>tensorboard --logdir /tmp/retrain_logs</code></p>
+<p>Then navigate to <a href="http://localhost:6006">http://localhost:6006</a> in your browser,
+and you'll see charts and graphs showing your models progress.</p>
+<div style="width:50%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="https://storage.googleapis.com/download.tensorflow.org/example_images/speech_commands_tensorflow.png"/>
+</div>
+
+<h2 id="training_finished">Training Finished</h2>
+<p>After a few hours of training (depending on your machine's speed), the script
+should have completed all 18,000 steps. It will print out a final confusion
+matrix, along with an accuracy score, all run on the testing set. With the
+default settings, you should see an accuracy of between 85% and 90%.</p>
+<p>Because audio recognition is particularly useful on mobile devices, next we'll
+export it to a compact format that's easy to work with on those platforms. To do
+that, run this command line:</p>
+<pre class="prettyprint"><code>python tensorflow/examples/speech_commands/freeze.py \
+--start_checkpoint=/tmp/speech_commands_train/conv.ckpt-18000 \
+--output_file=/tmp/my_frozen_graph.pb
+</code></pre>
+
+<p>Once the frozen model has been created, you can test it with the <code>label_wav.py</code>
+script, like this:</p>
+<pre class="prettyprint"><code>python tensorflow/examples/speech_commands/label_wav.py \
+--graph=/tmp/my_frozen_graph.pb \
+--labels=/tmp/speech_commands_train/conv_labels.txt \
+--wav=/tmp/speech_dataset/left/a5d485dc_nohash_0.wav
+</code></pre>
+
+<p>This should print out three labels:</p>
+<pre class="prettyprint"><code>left (score = 0.81477)
+right (score = 0.14139)
+_unknown_ (score = 0.03808)
+</code></pre>
+
+<p>Hopefully "left" is the top score since that's the correct label, but since the
+training is random it may not for the first file you try. Experiment with some
+of the other .wav files in that same folder to see how well it does.</p>
+<p>The scores are between zero and one, and higher values mean the model is more
+confident in its prediction.</p>
+<h2 id="running_the_model_in_an_android_app">Running the Model in an Android App</h2>
+<p>The easiest way to see how this model works in a real application is to download
+<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android#prebuilt-components">the prebuilt Android demo
+applications</a>
+and install them on your phone. You'll see 'TF Speech' appear in your app list,
+and opening it will show you the same list of action words we've just trained
+our model on, starting with "Yes" and "No". Once you've given the app permission
+to use the microphone, you should be able to try saying those words and see them
+highlighted in the UI when the model recognizes one of them.</p>
+<p>You can also build this application yourself, since it's open source and
+<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android#building-in-android-studio-using-the-tensorflow-aar-from-jcenter">available as part of the TensorFlow repository on
+github</a>.
+By default it downloads <a href="http://download.tensorflow.org/models/speech_commands_v0.01.zip">a pretrained model from
+tensorflow.org</a>,
+but you can easily <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android#install-model-files-optional">replace it with a model you've trained
+yourself</a>.
+If you do this, you'll need to make sure that the constants in <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android/src/org/tensorflow/demo/SpeechActivity.java">the main
+SpeechActivity Java source
+file</a>
+like <code>SAMPLE_RATE</code> and <code>SAMPLE_DURATION</code> match any changes you've made to the
+defaults while training. You'll also see that there's a <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android/src/org/tensorflow/demo/RecognizeCommands.java">Java version of the
+RecognizeCommands
+module</a>
+that's very similar to the C++ version in this tutorial. If you've tweaked
+parameters for that, you can also update them in SpeechActivity to get the same
+results as in your server testing.</p>
+<p>The demo app updates its UI list of results automatically based on the labels
+text file you copy into assets alongside your frozen graph, which means you can
+easily try out different models without needing to make any code changes. You
+will need to updaye <code>LABEL_FILENAME</code> and <code>MODEL_FILENAME</code> to point to the files
+you've added if you change the paths though.</p>
+<h2 id="how_does_this_model_work">How does this Model Work?</h2>
+<p>The architecture used in this tutorial is based on some described in the paper
+<a href="http://www.isca-speech.org/archive/interspeech_2015/papers/i15_1478.pdf">Convolutional Neural Networks for Small-footprint Keyword
+Spotting</a>.
+It was chosen because it's comparatively simple, quick to train, and easy to
+understand, rather than being state of the art. There are lots of different
+approaches to building neural network models to work with audio, including
+<a href="https://svds.com/tensorflow-rnn-tutorial/">recurrent networks</a> or <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">dilated
+(atrous)
+convolutions</a>.
+This tutorial is based on the kind of convolutional network that will feel very
+familiar to anyone who's worked with image recognition. That may seem surprising
+at first though, since audio is inherently a one-dimensional continuous signal
+across time, not a 2D spatial problem.</p>
+<p>We solve that issue by defining a window of time we believe our spoken words
+should fit into, and converting the audio signal in that window into an image.
+This is done by grouping the incoming audio samples into short segments, just a
+few milliseconds long, and calculating the strength of the frequencies across a
+set of bands. Each set of frequency strengths from a segment is treated as a
+vector of numbers, and those vectors are arranged in time order to form a
+two-dimensional array. This array of values can then be treated like a
+single-channel image, and is known as a
+<a href="https://en.wikipedia.org/wiki/Spectrogram">spectrogram</a>. If you want to view
+what kind of image an audio sample produces, you can run the `wav_to_spectrogram
+tool:</p>
+<pre class="prettyprint"><code>bazel run tensorflow/examples/wav_to_spectrogram:wav_to_spectrogram -- \
+--input_wav=/tmp/speech_dataset/happy/ab00c4b2_nohash_0.wav \
+--output_png=/tmp/spectrogram.png
+</code></pre>
+
+<p>If you open up <code>/tmp/spectrogram.png</code> you should see something like this:</p>
+<div style="width:50%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="https://storage.googleapis.com/download.tensorflow.org/example_images/spectrogram.png"/>
+</div>
+
+<p>Because of TensorFlow's memory order, time in this image is increasing from top
+to bottom, with frequencies going from left to right, unlike the usual
+convention for spectrograms where time is left to right. You should be able to
+see a couple of distinct parts, with the first syllable "Ha" distinct from
+"ppy".</p>
+<p>Because the human ear is more sensitive to some frequencies than others, it's
+been traditional in speech recognition to do further processing to this
+representation to turn it into a set of <a href="https://en.wikipedia.org/wiki/Mel-frequency_cepstrum">Mel-Frequency Cepstral
+Coefficients</a>, or MFCCs
+for short. This is also a two-dimensional, one-channel representation so it can
+be treated like an image too. If you're targeting general sounds rather than
+speech you may find you can skip this step and operate directly on the
+spectrograms.</p>
+<p>The image that's produced by these processing steps is then fed into a
+multi-layer convolutional neural network, with a fully-connected layer followed
+by a softmax at the end. You can see the definition of this portion in
+<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/speech_commands/models.py">tensorflow/examples/speech_commands/models.py</a>.</p>
+<h2 id="streaming_accuracy">Streaming Accuracy</h2>
+<p>Most audio recognition applications need to run on a continuous stream of audio,
+rather than on individual clips. A typical way to use a model in this
+environment is to apply it repeatedly at different offsets in time and average
+the results over a short window to produce a smoothed prediction. If you think
+of the input as an image, it's continuously scrolling along the time axis. The
+words we want to recognize can start at any time, so we need to take a series of
+snapshots to have a chance of having an alignment that captures most of the
+utterance in the time window we feed into the model. If we sample at a high
+enough rate, then we have a good chance of capturing the word in multiple
+windows, so averaging the results improves the overall confidence of the
+prediction.</p>
+<p>For an example of how you can use your model on streaming data, you can look at
+<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/speech_commands/">test_streaming_accuracy.cc</a>.
+This uses the
+<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/speech_commands/recognize_commands.h">RecognizeCommands</a>
+class to run through a long-form input audio, try to spot words, and compare
+those predictions against a ground truth list of labels and times. This makes it
+a good example of applying a model to a stream of audio signals over time.</p>
+<p>You'll need a long audio file to test it against, along with labels showing
+where each word was spoken. If you don't want to record one yourself, you can
+generate some synthetic test data using the <code>generate_streaming_test_wav</code>
+utility. By default this will create a ten minute .wav file with words roughly
+every three seconds, and a text file containing the ground truth of when each
+word was spoken. These words are pulled from the test portion of your current
+dataset, mixed in with background noise. To run it, use:</p>
+<pre class="prettyprint"><code>bazel run tensorflow/examples/speech_commands:generate_streaming_test_wav
+</code></pre>
+
+<p>This will save a .wav file to <code>/tmp/speech_commands_train/streaming_test.wav</code>,
+and a text file listing the labels to
+<code>/tmp/speech_commands_train/streaming_test_labels.txt</code>. You can then run
+accuracy testing with:</p>
+<pre class="prettyprint"><code>bazel run tensorflow/examples/speech_commands:test_streaming_accuracy -- \
+--graph=/tmp/my_frozen_graph.pb \
+--labels=/tmp/speech_commands_train/conv_labels.txt \
+--wav=/tmp/speech_commands_train/streaming_test.wav \
+--ground_truth=/tmp/speech_commands_train/streaming_test_labels.txt \
+--verbose
+</code></pre>
+
+<p>This will output information about the number of words correctly matched, how
+many were given the wrong labels, and how many times the model triggered when
+there was no real word spoken. There are various parameters that control how the
+signal averaging works, including <code>--average_window_ms</code> which sets the length of
+time to average results over, <code>--clip_stride_ms</code> which is the time between
+applications of the model, <code>--suppression_ms</code> which stops subsequent word
+detections from triggering for a certain time after an initial one is found, and
+<code>--detection_threshold</code>, which controls how high the average score must be
+before it's considered a solid result.</p>
+<p>You'll see that the streaming accuracy outputs three numbers, rather than just
+the one metric used in training. This is because different applications have
+varying requirements, with some being able to tolerate frequent incorrect
+results as long as real words are found (high recall), while others very focused
+on ensuring the predicted labels are highly likely to be correct even if some
+aren't detected (high precision). The numbers from the tool give you an idea of
+how your model will perform in an application, and you can try tweaking the
+signal averaging parameters to tune it to give the kind of performance you want.
+To understand what the right parameters are for your application, you can look
+at generating an <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic">ROC
+curve</a> to help
+you understand the tradeoffs.</p>
+<h2 id="recognizecommands">RecognizeCommands</h2>
+<p>The streaming accuracy tool uses a simple decoder contained in a small C++ class
+called
+<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/speech_commands/recognize_commands.h">RecognizeCommands</a>.
+This class is fed the output of running the TensorFlow model over time, it
+averages the signals, and returns information about a label when it has enough
+evidence to think that a recognized word has been found. The implementation is
+fairly small, just keeping track of the last few predictions and averaging them,
+so it's easy to port to other platforms and languages as needed. For example,
+it's convenient to do something similar at the Java level on Android, or Python
+on the Raspberry Pi. As long as these implementations share the same logic, you
+can tune the parameters that control the averaging using the streaming test
+tool, and then transfer them over to your application to get similar results.</p>
+<h2 id="advanced_training">Advanced Training</h2>
+<p>The defaults for the training script are designed to produce good end to end
+results in a comparatively small file, but there are a lot of options you can
+change to customize the results for your own requirements.</p>
+<h3 id="custom_training_data">Custom Training Data</h3>
+<p>By default the script will download the <a href="https://download.tensorflow.org/data/speech_commands_v0.01.tgz">Speech Commands
+dataset</a>, but
+you can also supply your own training data. To train on your own data, you
+should make sure that you have at least several hundred recordings of each sound
+you would like to recognize, and arrange them into folders by class. For
+example, if you were trying to recognize dog barks from cat miaows, you would
+create a root folder called <code>animal_sounds</code>, and then within that two
+sub-folders called <code>bark</code> and <code>miaow</code>. You would then organize your audio files
+into the appropriate folders.</p>
+<p>To point the script to your new audio files, you'll need to set <code>--data_url=</code> to
+disable downloading of the Speech Commands dataset, and
+<code>--data_dir=/your/data/folder/</code> to find the files you've just created.</p>
+<p>The files themselves should be 16-bit little-endian PCM-encoded WAVE format. The
+sample rate defaults to 16,000, but as long as all your audio is consistently
+the same rate (the script doesn't support resampling) you can change this with
+the <code>--sample_rate</code> argument. The clips should also all be roughly the same
+duration. The default expected duration is one second, but you can set this with
+the <code>--clip_duration_ms</code> flag. If you have clips with variable amounts of
+silence at the start, you can look at word alignment tools to standardize them
+(<a href="https://petewarden.com/2017/07/17/a-quick-hack-to-align-single-word-audio-recordings/">here's a quick and dirty approach you can use
+too</a>).</p>
+<p>One issue to watch out for is that you may have very similar repetitions of the
+same sounds in your dataset, and these can give misleading metrics if they're
+spread across your training, validation, and test sets. For example, the Speech
+Commands set has people repeating the same word multiple times. Each one of
+those repetitions is likely to be pretty close to the others, so if training was
+overfitting and memorizing one, it could perform unrealistically well when it
+saw a very similar copy in the test set. To avoid this danger, Speech Commands
+trys to ensure that all clips featuring the same word spoken by a single person
+are put into the same partition. Clips are assigned to training, test, or
+validation sets based on a hash of their filename, to ensure that the
+assignments remain steady even as new clips are added and avoid any training
+samples migrating into the other sets. To make sure that all a given speaker's
+words are in the same bucket, <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/speech_commands/input_data.py">the hashing
+function</a>
+ignores anything in a filename after '<em>nohash</em>' when calculating the
+assignments. This means that if you have file names like <code>pete_nohash_0.wav</code> and
+<code>pete_nohash_1.wav</code>, they're guaranteed to be in the same set.</p>
+<h3 id="unknown_class">Unknown Class</h3>
+<p>It's likely that your application will hear sounds that aren't in your training
+set, and you'll want the model to indicate that it doesn't recognize the noise
+in those cases. To help the network learn what sounds to ignore, you need to
+provide some clips of audio that are neither of your classes. To do this, you'd
+create <code>quack</code>, <code>oink</code>, and <code>moo</code> subfolders and populate them with noises from
+other animals your users might encounter. The <code>--wanted_words</code> argument to the
+script defines which classes you care about, all the others mentioned in
+subfolder names will be used to populate an <code>_unknown_</code> class during training.
+The Speech Commands dataset has twenty words in its unknown classes, including
+the digits zero through nine and random names like "Sheila".</p>
+<p>By default 10% of the training examples are picked from the unknown classes, but
+you can control this with the <code>--unknown_percentage</code> flag. Increasing this will
+make the model less likely to mistake unknown words for wanted ones, but making
+it too large can backfire as the model might decide it's safest to categorize
+all words as unknown!</p>
+<h3 id="background_noise">Background Noise</h3>
+<p>Real applications have to recognize audio even when there are other irrelevant
+sounds happening in the environment. To build a model that's robust to this kind
+of interference, we need to train against recorded audio with similar
+properties. The files in the Speech Commands dataset were captured on a variety
+of devices by users in many different environments, not in a studio, so that
+helps add some realism to the training. To add even more, you can mix in random
+segments of environmental audio to the training inputs. In the Speech Commands
+set there's a special folder called <code>_background_noise_</code> which contains
+minute-long WAVE files with white noise and recordings of machinery and everyday
+household activity.</p>
+<p>Small snippets of these files are chosen at random and mixed at a low volume
+into clips during training. The loudness is also chosen randomly, and controlled
+by the <code>--background_volume</code> argument as a proportion where 0 is silence, and 1
+is full volume. Not all clips have background added, so the
+<code>--background_frequency</code> flag controls what proportion have them mixed in.</p>
+<p>Your own application might operate in its own environment with different
+background noise patterns than these defaults, so you can supply your own audio
+clips in the <code>_background_noise_</code> folder. These should be the same sample rate
+as your main dataset, but much longer in duration so that a good set of random
+segments can be selected from them.</p>
+<h3 id="silence">Silence</h3>
+<p>In most cases the sounds you care about will be intermittent and so it's
+important to know when there's no matching audio. To support this, there's a
+special <code>_silence_</code> label that indicates when the model detects nothing
+interesting. Because there's never complete silence in real environments, we
+actually have to supply examples with quiet and irrelevant audio. For this, we
+reuse the <code>_background_noise_</code> folder that's also mixed in to real clips,
+pulling short sections of the audio data and feeding those in with the ground
+truth class of <code>_silence_</code>. By default 10% of the training data is supplied like
+this, but the <code>--silence_percentage</code> can be used to control the proportion. As
+with unknown words, setting this higher can weight the model results in favor of
+true positives for silence, at the expense of false negatives for words, but too
+large a proportion can cause it to fall into the trap of always guessing
+silence.</p>
+<h3 id="time_shifting">Time Shifting</h3>
+<p>Adding in background noise is one way of distorting the training data in a
+realistic way to effectively increase the size of the dataset, and so increase
+overall accuracy, and time shifting is another. This involves a random offset in
+time of the training sample data, so that a small part of the start or end is
+cut off and the opposite section is padded with zeroes. This mimics the natural
+variations in starting time in the training data, and is controlled with the
+<code>--time_shift_ms</code> flag, which defaults to 100ms. Increasing this value will
+provide more variation, but at the risk of cutting off important parts of the
+audio. A related way of augmenting the data with realistic distortions is by
+using <a href="https://en.wikipedia.org/wiki/Audio_time_stretching_and_pitch_scaling">time stretching and pitch
+scaling</a>,
+but that's outside the scope of this tutorial.</p>
+<h2 id="customizing_the_model">Customizing the Model</h2>
+<p>The default model used for this script is pretty large, taking over 800 million
+FLOPs for each inference and using 940,000 weight parameters. This runs at
+usable speeds on desktop machines or modern phones, but it involves too many
+calculations to run at interactive speeds on devices with more limited
+resources. To support these use cases, there's a couple of alternatives
+available:</p>
+<p><strong>low_latency_conv</strong>
+Based on the 'cnn-one-fstride4' topology described in the <a href="http://www.isca-speech.org/archive/interspeech_2015/papers/i15_1478.pdf">Convolutional
+Neural Networks for Small-footprint Keyword Spotting
+paper</a>.
+The accuracy is slightly lower than 'conv' but the number of weight parameters
+is about the same, and it only needs 11 million FLOPs to run one prediction,
+making it much faster.</p>
+<p>To use this model, you specify <code>--model_architecture=low_latency_conv</code> on
+the command line. You'll also need to update the training rates and the number
+of steps, so the full command will look like:</p>
+<pre class="prettyprint"><code>python tensorflow/examples/speech_commands/train \
+--model_architecture=low_latency_conv \
+--how_many_training_steps=20000,6000 \
+--learning_rate=0.01,0.001
+</code></pre>
+
+<p>This asks the script to train with a learning rate of 0.01 for 20,000 steps, and
+then do a fine-tuning pass of 6,000 steps with a 10x smaller rate.</p>
+<p><strong>low_latency_svdf</strong>
+Based on the topology presented in the <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43813.pdf">Compressing Deep Neural Networks using a
+Rank-Constrained Topology paper</a>.
+The accuracy is also lower than 'conv' but it only uses about 750 thousand
+parameters, and most significantly, it allows for an optimized execution at
+test time (i.e. when you will actually use it in your application), resulting
+in 750 thousand FLOPs.</p>
+<p>To use this model, you specify <code>--model_architecture=low_latency_svdf</code> on
+the command line, and update the training rates and the number
+of steps, so the full command will look like:</p>
+<pre class="prettyprint"><code>python tensorflow/examples/speech_commands/train \
+--model_architecture=low_latency_svdf \
+--how_many_training_steps=100000,35000 \
+--learning_rate=0.01,0.005
+</code></pre>
+
+<p>Note that despite requiring a larger number of steps than the previous two
+topologies, the reduced number of computations means that training should take
+about the same time, and at the end reach an accuracy of around 85%.
+You can also further tune the topology fairly easily for computation and
+accuracy by changing these parameters in the SVDF layer:</p>
+<ul>
+<li>rank - The rank of the approximation (higher typically better, but results in
+         more computation).</li>
+<li>num_units - Similar to other layer types, specifies the number of nodes in
+              the layer (more nodes better quality, and more computation).</li>
+</ul>
+<p>Regarding runtime, since the layer allows optimizations by caching some of the
+internal neural network activations, you need to make sure to use a consistent
+stride (e.g. 'clip_stride_ms' flag) both when you freeze the graph, and when
+executing the model in streaming mode (e.g. test_streaming_accuracy.cc).</p>
+<p><strong>Other parameters to customize</strong>
+If you want to experiment with customizing models, a good place to start is by
+tweaking the spectrogram creation parameters. This has the effect of altering
+the size of the input image to the model, and the creation code in
+<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/speech_commands/models.py">models.py</a>
+will adjust the number of computations and weights automatically to fit with
+different dimensions. If you make the input smaller, the model will need fewer
+computations to process it, so it can be a great way to trade off some accuracy
+for improved latency. The <code>--window_stride_ms</code> controls how far apart each
+frequency analysis sample is from the previous. If you increase this value, then
+fewer samples will be taken for a given duration, and the time axis of the input
+will shrink. The <code>--dct_coefficient_count</code> flag controls how many buckets are
+used for the frequency counting, so reducing this will shrink the input in the
+other dimension. The <code>--window_size_ms</code> argument doesn't affect the size, but
+does control how wide the area used to calculate the frequencies is for each
+sample. Reducing the duration of the training samples, controlled by
+<code>--clip_duration_ms</code>, can also help if the sounds you're looking for are short,
+since that also reduces the time dimension of the input. You'll need to make
+sure that all your training data contains the right audio in the initial portion
+of the clip though.</p>
+<p>If you have an entirely different model in mind for your problem, you may find
+that you can plug it into
+<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/speech_commands/models.py">models.py</a>
+and have the rest of the script handle all of the preprocessing and training
+mechanics. You would add a new clause to <code>create_model</code>, looking for the name of
+your architecture and then calling a model creation function. This function is
+given the size of the spectrogram input, along with other model information, and
+is expected to create TensorFlow ops to read that in and produce an output
+prediction vector, and a placeholder to control the dropout rate. The rest of
+the script will handle integrating this model into a larger graph doing the
+input calculations and applying softmax and a loss function to train it.</p>
+<p>One common problem when you're adjusting models and training hyper-parameters is
+that not-a-number values can creep in, thanks to numerical precision issues. In
+general you can solve these by reducing the magnitude of things like learning
+rates and weight initialization functions, but if they're persistent you can
+enable the <code>--check_nans</code> flag to track down the source of the errors. This will
+insert check ops between most regular operations in TensorFlow, and abort the
+training process with a useful error message when they're encountered.</p>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:30:38.085770">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="ofATonkVsnKYt_qJH2oDD7xP8bV9r3cLlKPjPAIWDg46MTUxNzg3MjYzODEzODY4MA" /><input type="hidden" name="next" value="/tutorials/audio_recognition"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js"></script><script src="../_static/18908e5f48/js/script_foot.js"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="306.869983673"></span></body></html>

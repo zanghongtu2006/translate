@@ -1,0 +1,1049 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="32BqBa1jLqB1hOX_VIURcRSLFnL3gsp745B4d6Shtec6MTUxNzg2MDMxNDMxNzEzMA" /><link rel="canonical" href="https://www.tensorflow.org/install/migration"><link rel="alternate" href="https://www.tensorflow.org/install/migration" hreflang="en"><link rel="alternate" href="migration" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/install/migration" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png?hl=zh-cn"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png?hl=zh-cn"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css?hl=zh-cn"><script src="../_static/18908e5f48/js/jquery-bundle.js?hl=zh-cn"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/install/migration"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Transitioning to TensorFlow 1.0 &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Transitioning to TensorFlow 1.0 &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               devsite-header-no-lower-tabs"
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html?hl=zh-cn" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png?hl=zh-cn"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="index?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/?hl=zh-cn"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Install
+    
+    
+  </li></ul></div></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install"
+            tabindex="0">
+        Install
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html?hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Python</span></li><li class="devsite-nav-item"><a href="install_linux?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on Ubuntu</a></li><li class="devsite-nav-item"><a href="install_mac?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on macOS</a></li><li class="devsite-nav-item"><a href="install_windows?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on Windows</a></li><li class="devsite-nav-item"><a href="install_sources?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow from Sources</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item devsite-nav-active"><a href="migration?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Transitioning to TensorFlow 1.0</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Other Languages</span></li><li class="devsite-nav-item"><a href="install_java?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for Java</a></li><li class="devsite-nav-item"><a href="install_go?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for Go</a></li><li class="devsite-nav-item"><a href="install_c?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for C</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Python</span></li><li class="devsite-nav-item"><a href="install_linux?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on Ubuntu</a></li><li class="devsite-nav-item"><a href="install_mac?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on macOS</a></li><li class="devsite-nav-item"><a href="install_windows?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on Windows</a></li><li class="devsite-nav-item"><a href="install_sources?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow from Sources</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item devsite-nav-active"><a href="migration?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Transitioning to TensorFlow 1.0</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Other Languages</span></li><li class="devsite-nav-item"><a href="install_java?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for Java</a></li><li class="devsite-nav-item"><a href="install_go?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for Go</a></li><li class="devsite-nav-item"><a href="install_c?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for C</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Install
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Transitioning to TensorFlow 1.0
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG&amp;hl=zh-cn"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>The APIs in TensorFlow 1.0 have changed in ways that are not all backwards
+compatible.  That is, TensorFlow programs that worked on TensorFlow 0.n won't
+necessarily work on TensorFlow 1.0.  We have made this API changes to ensure an
+internally-consistent API, and do not plan to make backwards-breaking changes
+throughout the 1.N lifecycle.</p>
+<p>This guide walks you through the major changes in the API and how to
+automatically upgrade your programs for TensorFlow 1.0.  This guide not
+only steps you through the changes but also explains why we've made them.</p>
+<h2 id="how_to_upgrade">How to upgrade</h2>
+<p>If you would like to automatically  port your code to 1.0, you can try our
+<code>tf_upgrade.py</code> script. While this script handles many cases, manual changes
+are sometimes necessary.
+  Get this script from our
+<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/tools/compatibility">GitHub tree</a>.</p>
+<p>To convert a single 0.n TensorFlow source file to 1.0, enter a
+command of the following format:</p>
+<pre>
+$ <b>python tf_upgrade.py --infile</b> <i>InputFile</i> <b>--outfile</b> <i>OutputFile</i>
+</pre>
+
+<p>For example, the following command converts a 0.n TensorFlow
+program named <code>test.py</code> to a 1.0 TensorFlow program named <code>test_1.0.py</code>:</p>
+<pre>
+$ <b>python tf_upgrade.py --infile test.py --outfile test_1.0.py</b>
+</pre>
+
+<p>The <code>tf_upgrade.py</code> script also generates a file named <code>report.txt</code>, which
+details all the changes it performed and makes additional suggestions about
+changes you might need to make manually.</p>
+<p>To upgrade a whole directory of 0.n TensorFlow programs to 1.0,
+enter a command having the following format:</p>
+<pre>
+$ <b>python tf_upgrade.py --intree</b> <i>InputDir</i> <b>--outtree</b> <i>OutputDir</i>
+</pre>
+
+<p>For example, the following command converts all the 0.n TensorFlow programs
+in the <code>/home/user/cool</code> directory, creating their 1.0 equivalents in
+the <code>/home/user/cool_1.0</code> directory:</p>
+<pre>
+$ <b>python tf_upgrade.py --intree /home/user/cool --outtree /home/user/cool_1.0</b>
+</pre>
+
+<h3 id="limitations">Limitations</h3>
+<p>There are a few things to watch out for. Specifically:</p>
+<ul>
+<li>You must manually fix any instances of <code>tf.reverse()</code>.
+   The <code>tf_upgrade.py</code> script will warn you about <code>tf.reverse()</code> in
+   stdout and in the <code>report.txt</code> file.</li>
+<li>On reordered arguments, <code>tf_upgrade.py</code> tries to minimally reformat
+   your code, so it cannot automatically change the actual argument order.
+   Instead, <code>tf_upgrade.py</code> makes your function invocations order-independent
+   by introducing keyword arguments.</li>
+<li>Constructions like <code>tf.get_variable_scope().reuse_variables()</code>
+   will likely not work. We recommend deleting those lines and replacing
+   them with lines such as the following:</li>
+</ul>
+<p><pre class="prettyprint">
+   with tf.variable_scope(tf.get_variable_scope(), reuse=True):
+     ...
+   </pre></p>
+<ul>
+<li>Analogously to <code>tf.pack</code> and  <code>tf.unpack</code>, we're renamed
+   <code>TensorArray.pack</code> and <code>TensorArray.unpack</code> to
+   <code>TensorArray.stack</code> and <code>TensorArray.unstack</code>. However, <code>TensorArray.pack</code>
+   and <code>TensorArray.unpack</code> cannot be detected lexically since they are
+   indirectly related to the <code>tf</code> namespace e.g.
+   <code>foo = tf.TensorArray(); foo.unpack()</code></li>
+</ul>
+<h2 id="upgrading_your_code_manually">Upgrading your code manually</h2>
+<p>Instead of running <code>tf_upgrade.py</code>, you may manually upgrade your code.
+The remainder of this document provides a comprehensive list of
+all backward incompatible changes made in TensorFlow 1.0.</p>
+<h3 id="variables">Variables</h3>
+<p>Variable functions have been made more consistent and less confusing.</p>
+<ul>
+<li><code>tf.VARIABLES</code><ul>
+<li>should be renamed to <code>tf.GLOBAL_VARIABLES</code></li>
+</ul>
+</li>
+<li><code>tf.all_variables</code><ul>
+<li>should be renamed to <code>tf.global_variables</code></li>
+</ul>
+</li>
+<li><code>tf.initialize_all_variables</code><ul>
+<li>should be renamed to <code>tf.global_variables_initializer</code></li>
+</ul>
+</li>
+<li><code>tf.initialize_local_variables</code><ul>
+<li>should be renamed to <code>tf.local_variables_initializer</code></li>
+</ul>
+</li>
+<li><code>tf.initialize_variables</code><ul>
+<li>should be renamed to <code>tf.variables_initializer</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="summary_functions">Summary functions</h3>
+<p>Summary functions have been consolidated under the <code>tf.summary</code> namespace.</p>
+<ul>
+<li><code>tf.audio_summary</code><ul>
+<li>should be renamed to <code>tf.summary.audio</code></li>
+</ul>
+</li>
+<li><code>tf.contrib.deprecated.histogram_summary</code><ul>
+<li>should be renamed to <code>tf.summary.histogram</code></li>
+</ul>
+</li>
+<li><code>tf.contrib.deprecated.scalar_summary</code><ul>
+<li>should be renamed to <code>tf.summary.scalar</code></li>
+</ul>
+</li>
+<li><code>tf.histogram_summary</code><ul>
+<li>should be renamed to <code>tf.summary.histogram</code></li>
+</ul>
+</li>
+<li><code>tf.image_summary</code><ul>
+<li>should be renamed to <code>tf.summary.image</code></li>
+</ul>
+</li>
+<li><code>tf.merge_all_summaries</code><ul>
+<li>should be renamed to <code>tf.summary.merge_all</code></li>
+</ul>
+</li>
+<li><code>tf.merge_summary</code><ul>
+<li>should be renamed to <code>tf.summary.merge</code></li>
+</ul>
+</li>
+<li><code>tf.scalar_summary</code><ul>
+<li>should be renamed to <code>tf.summary.scalar</code></li>
+</ul>
+</li>
+<li><code>tf.train.SummaryWriter</code><ul>
+<li>should be renamed to <code>tf.summary.FileWriter</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="numeric_differences">Numeric differences</h3>
+<p>Integer division and <code>tf.floordiv</code> now uses flooring semantics. This is to
+make the results of <code>np.divide</code> and <code>np.mod</code> consistent with <code>tf.divide</code> and
+<code>tf.mod</code>, respectively. In addition we have changed the rounding algorithm
+used by <code>tf.round</code> to match NumPy.</p>
+<ul>
+<li>
+<p><code>tf.div</code></p>
+<ul>
+<li>
+<p>The semantics of <code>tf.divide</code> division have been changed to match Python
+semantics completely. That is, <code>/</code> in Python 3     and future division mode in
+Python 2 will produce floating point numbers always, <code>//</code> will produce floored
+division.     However, even <code>tf.div</code> will produce floored integer division.
+To force C-style truncation semantics, you must use <code>tf.truncatediv</code>.</p>
+</li>
+<li>
+<p>Consider changing your code to use <code>tf.divide</code>, which follows Python semantics for promotion.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>tf.mod</code></p>
+<ul>
+<li>The semantics of <code>tf.mod</code> have been changed to match Python semantics. In
+particular, flooring semantics are used for     integers. If you wish to have
+C-style truncation mod (remainders), you can use <code>tf.truncatemod</code></li>
+</ul>
+</li>
+</ul>
+<p>The old and new behavior of division can be summarized with this table:</p>
+<table>
+<thead>
+<tr>
+<th>Expr</th>
+<th>TF 0.11 (py2)</th>
+<th>TF 0.11 (py3)</th>
+<th>TF 1.0 (py2)</th>
+<th>TF 1.0 (py3)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tf.div(3,4)</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>tf.div(-3,4)</td>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>tf.mod(-3,4)</td>
+<td>-3</td>
+<td>-3</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>-3/4</td>
+<td>0</td>
+<td>-0.75</td>
+<td>-1</td>
+<td>-0.75</td>
+</tr>
+<tr>
+<td>-3/4tf.divide(-3,4)</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>-0.75</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<p>The old and new behavior of rounding can be summarized with this table:</p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Python</th>
+<th>NumPy</th>
+<th>C++ round()</th>
+<th>TensorFlow 0.11(floor(x+.5))</th>
+<th>TensorFlow 1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-3.5</td>
+<td>-4</td>
+<td>-4</td>
+<td>-4</td>
+<td>-3</td>
+<td>-4</td>
+</tr>
+<tr>
+<td>-2.5</td>
+<td>-2</td>
+<td>-2</td>
+<td>-3</td>
+<td>-2</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>-1.5</td>
+<td>-2</td>
+<td>-2</td>
+<td>-2</td>
+<td>-1</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>-0.5</td>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3.5</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="numpy_matching_names">NumPy matching names</h3>
+<p>Many functions have been renamed to match NumPy. This was done to make the
+transition between NumPy and TensorFlow as easy as possible. There are still
+numerous cases where functions do not match, so this is far from a hard and
+fast rule, but we have removed several commonly noticed inconsistencies.</p>
+<ul>
+<li><code>tf.inv</code><ul>
+<li>should be renamed to <code>tf.reciprocal</code></li>
+<li>This was done to avoid confusion with NumPy's matrix inverse <code>np.inv</code></li>
+</ul>
+</li>
+<li><code>tf.list_diff</code><ul>
+<li>should be renamed to <code>tf.setdiff1d</code></li>
+</ul>
+</li>
+<li><code>tf.listdiff</code><ul>
+<li>should be renamed to <code>tf.setdiff1d</code></li>
+</ul>
+</li>
+<li><code>tf.mul</code><ul>
+<li>should be renamed to <code>tf.multiply</code></li>
+</ul>
+</li>
+<li><code>tf.neg</code><ul>
+<li>should be renamed to <code>tf.negative</code></li>
+</ul>
+</li>
+<li><code>tf.select</code><ul>
+<li>should be renamed to <code>tf.where</code></li>
+<li><code>tf.where</code> now takes 3 arguments or 1 argument, just like <code>np.where</code></li>
+</ul>
+</li>
+<li><code>tf.sub</code><ul>
+<li>should be renamed to <code>tf.subtract</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="numpy_matching_arguments">NumPy matching arguments</h3>
+<p>Arguments for certain TensorFlow 1.0 methods now match arguments in certain
+NumPy methods.  To achieve this, TensorFlow 1.0 has changed keyword arguments
+and reordered some arguments. Notably, TensorFlow 1.0 now uses <code>axis</code> rather
+than <code>dimension</code>. TensorFlow 1.0 aims to keep the tensor argument first on
+operations that modify Tensors. (see the <code>tf.concat</code> change).</p>
+<ul>
+<li><code>tf.argmax</code><ul>
+<li>keyword argument <code>dimension</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.argmin</code><ul>
+<li>keyword argument <code>dimension</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.concat</code><ul>
+<li>keyword argument <code>concat_dim</code> should be renamed to <code>axis</code></li>
+<li>arguments have been reordered to <code>tf.concat(values, axis, name='concat')</code>.</li>
+</ul>
+</li>
+<li><code>tf.count_nonzero</code><ul>
+<li>keyword argument <code>reduction_indices</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.expand_dims</code><ul>
+<li>keyword argument <code>dim</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_all</code><ul>
+<li>keyword argument <code>reduction_indices</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_any</code><ul>
+<li>keyword argument <code>reduction_indices</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_join</code><ul>
+<li>keyword argument <code>reduction_indices</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_logsumexp</code><ul>
+<li>keyword argument <code>reduction_indices</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_max</code><ul>
+<li>keyword argument <code>reduction_indices</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_mean</code><ul>
+<li>keyword argument <code>reduction_indices</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_min</code><ul>
+<li>keyword argument <code>reduction_indices</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_prod</code><ul>
+<li>keyword argument <code>reduction_indices</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_sum</code><ul>
+<li>keyword argument <code>reduction_indices</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reverse</code><ul>
+<li><code>tf.reverse</code> used to take a 1D <code>bool</code> tensor to control which dimensions were reversed. Now we use a Tensor of axis indices.</li>
+<li>For example <code>tf.reverse(a, [True, False, True])</code> now must be <code>tf.reverse(a, [0, 2])</code></li>
+</ul>
+</li>
+<li><code>tf.reverse_sequence</code><ul>
+<li>keyword argument <code>batch_dim</code> should be renamed to <code>batch_axis</code></li>
+<li>keyword argument <code>seq_dim</code> should be renamed to <code>seq_axis</code></li>
+</ul>
+</li>
+<li><code>tf.sparse_concat</code><ul>
+<li>keyword argument <code>concat_dim</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.sparse_reduce_sum</code><ul>
+<li>keyword argument <code>reduction_axes</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.sparse_reduce_sum_sparse</code><ul>
+<li>keyword argument <code>reduction_axes</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.sparse_split</code><ul>
+<li>keyword argument <code>split_dim</code> should be renamed to <code>axis</code></li>
+<li>arguments have been reordered to <code>tf.sparse_split(keyword_required=KeywordRequired(), sp_input=None, num_split=None, axis=None, name=None, split_dim=None)</code>.</li>
+</ul>
+</li>
+<li><code>tf.split</code><ul>
+<li>keyword argument <code>split_dim</code> should be renamed to <code>axis</code></li>
+<li>keyword argument <code>num_split</code> should be renamed to <code>num_or_size_splits</code></li>
+<li>arguments have been reordered to <code>tf.split(value, num_or_size_splits, axis=0, num=None, name='split')</code>.</li>
+</ul>
+</li>
+<li><code>tf.squeeze</code><ul>
+<li>keyword argument <code>squeeze_dims</code> should be renamed to <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.svd</code><ul>
+<li>arguments have been reordered to <code>tf.svd(tensor, full_matrices=False, compute_uv=True, name=None)</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="simplified_math_variants">Simplified math variants</h3>
+<p>Batched versions of math operations have been removed. Now the functionality is
+contained in the non-batched versions. Similarly,<code>tf.complex_abs</code> has had its
+functionality moved to <code>tf.abs</code></p>
+<ul>
+<li><code>tf.batch_band_part</code><ul>
+<li>should be renamed to <code>tf.band_part</code></li>
+</ul>
+</li>
+<li><code>tf.batch_cholesky</code><ul>
+<li>should be renamed to <code>tf.cholesky</code></li>
+</ul>
+</li>
+<li><code>tf.batch_cholesky_solve</code><ul>
+<li>should be renamed to <code>tf.cholesky_solve</code></li>
+</ul>
+</li>
+<li><code>tf.batch_fft</code><ul>
+<li>should be renamed to <code>tf.fft</code></li>
+</ul>
+</li>
+<li><code>tf.batch_fft3d</code><ul>
+<li>should be renamed to <code>tf.fft3d</code></li>
+</ul>
+</li>
+<li><code>tf.batch_ifft</code><ul>
+<li>should be renamed to <code>tf.ifft</code></li>
+</ul>
+</li>
+<li><code>tf.batch_ifft2d</code><ul>
+<li>should be renamed to <code>tf.ifft2d</code></li>
+</ul>
+</li>
+<li><code>tf.batch_ifft3d</code><ul>
+<li>should be renamed to <code>tf.ifft3d</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matmul</code><ul>
+<li>should be renamed to <code>tf.matmul</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_determinant</code><ul>
+<li>should be renamed to <code>tf.matrix_determinant</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_diag</code><ul>
+<li>should be renamed to <code>tf.matrix_diag</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_inverse</code><ul>
+<li>should be renamed to <code>tf.matrix_inverse</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_solve</code><ul>
+<li>should be renamed to <code>tf.matrix_solve</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_solve_ls</code><ul>
+<li>should be renamed to <code>tf.matrix_solve_ls</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_transpose</code><ul>
+<li>should be renamed to <code>tf.matrix_transpose</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_triangular_solve</code><ul>
+<li>should be renamed to <code>tf.matrix_triangular_solve</code></li>
+</ul>
+</li>
+<li><code>tf.batch_self_adjoint_eig</code><ul>
+<li>should be renamed to <code>tf.self_adjoint_eig</code></li>
+</ul>
+</li>
+<li><code>tf.batch_self_adjoint_eigvals</code><ul>
+<li>should be renamed to <code>tf.self_adjoint_eigvals</code></li>
+</ul>
+</li>
+<li><code>tf.batch_set_diag</code><ul>
+<li>should be renamed to <code>tf.set_diag</code></li>
+</ul>
+</li>
+<li><code>tf.batch_svd</code><ul>
+<li>should be renamed to <code>tf.svd</code></li>
+</ul>
+</li>
+<li><code>tf.complex_abs</code><ul>
+<li>should be renamed to <code>tf.abs</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="misc_changes">Misc Changes</h3>
+<p>Several other changes have been made, including the following:</p>
+<ul>
+<li><code>tf.image.per_image_whitening</code><ul>
+<li>should be renamed to <code>tf.image.per_image_standardization</code></li>
+</ul>
+</li>
+<li><code>tf.nn.sigmoid_cross_entropy_with_logits</code><ul>
+<li>arguments have been reordered to <code>tf.nn.sigmoid_cross_entropy_with_logits(_sentinel=None, labels=None, logits=None, name=None)</code>.</li>
+</ul>
+</li>
+<li><code>tf.nn.softmax_cross_entropy_with_logits</code><ul>
+<li>arguments have been reordered to <code>tf.nn.softmax_cross_entropy_with_logits(_sentinel=None, labels=None, logits=None, dim=-1, name=None)</code>.</li>
+</ul>
+</li>
+<li><code>tf.nn.sparse_softmax_cross_entropy_with_logits</code><ul>
+<li>arguments have been reordered to <code>tf.nn.sparse_softmax_cross_entropy_with_logits(_sentinel=None, labels=None, logits=None, name=None)</code>.</li>
+</ul>
+</li>
+<li><code>tf.ones_initializer</code><ul>
+<li>should be changed to a function call i.e. <code>tf.ones_initializer()</code></li>
+</ul>
+</li>
+<li><code>tf.pack</code><ul>
+<li>should be renamed to <code>tf.stack</code></li>
+</ul>
+</li>
+<li><code>tf.round</code><ul>
+<li>The semantics of <code>tf.round</code> now match Banker's rounding.</li>
+</ul>
+</li>
+<li><code>tf.unpack</code><ul>
+<li>should be renamed to <code>tf.unstack</code></li>
+</ul>
+</li>
+<li><code>tf.zeros_initializer</code><ul>
+<li>should be changed to a function call i.e. <code>tf.zeros_initializer()</code></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies?hl=zh-cn">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:28:50.594700">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="32BqBa1jLqB1hOX_VIURcRSLFnL3gsp745B4d6Shtec6MTUxNzg2MDMxNDMxNzEzMA" /><input type="hidden" name="next" value="/install/migration"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot.js?hl=zh-cn"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/?hl=zh-cn');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="280.26008606"></span></body></html>

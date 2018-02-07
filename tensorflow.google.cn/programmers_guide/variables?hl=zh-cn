@@ -1,0 +1,874 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="wr4WV3xvT9qU19v2LgHQdynV53qhEc48eZW4F4seZz86MTUxNzg3OTAzNjIyNTE1MA" /><link rel="canonical" href="https://www.tensorflow.org/programmers_guide/variables"><link rel="alternate" href="https://www.tensorflow.org/programmers_guide/variables" hreflang="en"><link rel="alternate" href="variables" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/programmers_guide/variables" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png?hl=zh-cn"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png?hl=zh-cn"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css?hl=zh-cn"><script src="../_static/18908e5f48/js/jquery-bundle.js?hl=zh-cn"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/programmers_guide/variables"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Variables &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Variables &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               "
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html?hl=zh-cn" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png?hl=zh-cn"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/?hl=zh-cn"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Develop
+    
+    
+  </li></ul></div></div><div class="devsite-doc-set-nav-row devsite-full-site-width"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Get Started"
+       >
+        Get Started
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index.html?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Programmer&#39;s Guide"
+       >
+        Programmer&#39;s Guide
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tutorials/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Tutorials"
+       >
+        Tutorials
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../performance/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Performance"
+       >
+        Performance
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../mobile/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Mobile"
+       >
+        Mobile
+      </a></li></ul></nav></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Get Started">
+        Get Started
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Programmer&#39;s Guide"
+            tabindex="0">
+        Programmer&#39;s Guide
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tutorials/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Tutorials">
+        Tutorials
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../performance/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Performance">
+        Performance
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../mobile/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Mobile">
+        Mobile
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html?hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Programmer's Guide</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">High Level APIs</span></li><li class="devsite-nav-item"><a href="estimators?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Estimators</a></li><li class="devsite-nav-item"><a href="datasets?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Importing Data</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Low Level APIs</span></li><li class="devsite-nav-item"><a href="low_level_intro?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction</a></li><li class="devsite-nav-item"><a href="../resources/dims_types.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Tensors</a></li><li class="devsite-nav-item devsite-nav-active"><a href="variables?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Variables</a></li><li class="devsite-nav-item"><a href="graphs?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Graphs and Sessions</a></li><li class="devsite-nav-item"><a href="saved_model?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Saving and Restoring</a></li><li class="devsite-nav-item"><a href="using_gpu?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using GPUs</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">ML Concepts</span></li><li class="devsite-nav-item"><a href="../how_tos/embedding_viz/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Embeddings</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Debugging</span></li><li class="devsite-nav-item"><a href="debugger?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Debugging TensorFlow Programs</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorBoard</span></li><li class="devsite-nav-item"><a href="../get_started/summaries_and_tensorboard?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard: Visualizing Learning</a></li><li class="devsite-nav-item"><a href="../get_started/graph_viz?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard: Graph Visualization</a></li><li class="devsite-nav-item"><a href="../get_started/tensorboard_histograms?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard Histogram Dashboard</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Misc</span></li><li class="devsite-nav-item"><a href="version_semantics?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Version Compatibility</a></li><li class="devsite-nav-item"><a href="faq?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Frequently Asked Questions</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Programmer's Guide</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">High Level APIs</span></li><li class="devsite-nav-item"><a href="estimators?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Estimators</a></li><li class="devsite-nav-item"><a href="datasets?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Importing Data</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Low Level APIs</span></li><li class="devsite-nav-item"><a href="low_level_intro?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction</a></li><li class="devsite-nav-item"><a href="../resources/dims_types.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Tensors</a></li><li class="devsite-nav-item devsite-nav-active"><a href="variables?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Variables</a></li><li class="devsite-nav-item"><a href="graphs?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Graphs and Sessions</a></li><li class="devsite-nav-item"><a href="saved_model?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Saving and Restoring</a></li><li class="devsite-nav-item"><a href="using_gpu?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using GPUs</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">ML Concepts</span></li><li class="devsite-nav-item"><a href="../how_tos/embedding_viz/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Embeddings</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Debugging</span></li><li class="devsite-nav-item"><a href="debugger?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Debugging TensorFlow Programs</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorBoard</span></li><li class="devsite-nav-item"><a href="../get_started/summaries_and_tensorboard?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard: Visualizing Learning</a></li><li class="devsite-nav-item"><a href="../get_started/graph_viz?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard: Graph Visualization</a></li><li class="devsite-nav-item"><a href="../get_started/tensorboard_histograms?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard Histogram Dashboard</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Misc</span></li><li class="devsite-nav-item"><a href="version_semantics?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Version Compatibility</a></li><li class="devsite-nav-item"><a href="faq?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Frequently Asked Questions</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="../get_started/index?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Develop
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="3">
+    
+    
+      Programmer&#39;s Guide
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Variables
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG&amp;hl=zh-cn"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>A TensorFlow <strong>variable</strong> is the best way to represent shared, persistent state
+manipulated by your program.</p>
+<p>Variables are manipulated via the <code>tf.Variable</code> class. A <code>tf.Variable</code>
+represents a tensor whose value can be changed by running ops on it. Unlike
+<code>tf.Tensor</code> objects, a <code>tf.Variable</code> exists outside the context of a single
+<code>session.run</code> call.</p>
+<p>Internally, a <code>tf.Variable</code> stores a persistent tensor. Specific ops allow you
+to read and modify the values of this tensor. These modifications are visible
+across multiple <code>tf.Session</code>s, so multiple workers can see the same values for a
+<code>tf.Variable</code>.</p>
+<h2 id="creating_a_variable">Creating a Variable</h2>
+<p>The best way to create a variable is to call the <code>tf.get_variable</code>
+function. This function requires you to specify the Variable's name. This name
+will be used by other replicas to access the same variable, as well as to name
+this variable's value when checkpointing and exporting models. <code>tf.get_variable</code>
+also allows you to reuse a previously created variable of the same name, making it
+easy to define models which reuse layers.</p>
+<p>To create a variable with <code>tf.get_variable</code>, simply provide the name and shape</p>
+<pre class="prettyprint lang-python"><code>my_variable = tf.get_variable(&quot;my_variable&quot;, [1, 2, 3])
+</code></pre>
+
+<p>This creates a variable named "my_variable" which is a three-dimensional tensor
+with shape <code>[1, 2, 3]</code>. This variable will, by default, have the <code>dtype</code>
+<code>tf.float32</code> and its initial value will be randomized via
+<code>tf.glorot_uniform_initializer</code>.</p>
+<p>You may optionally specify the <code>dtype</code> and initializer to <code>tf.get_variable</code>. For
+example:</p>
+<pre class="prettyprint lang-python"><code>my_int_variable = tf.get_variable(&quot;my_int_variable&quot;, [1, 2, 3], dtype=tf.int32,
+  initializer=tf.zeros_initializer)
+</code></pre>
+
+<p>TensorFlow provides many convenient initializers. Alternatively, you may
+initialize a <code>tf.Variable</code> to have the value of a <code>tf.Tensor</code>. For example:</p>
+<pre class="prettyprint lang-python"><code>other_variable = tf.get_variable(&quot;other_variable&quot;, dtype=tf.int32,
+  initializer=tf.constant([23, 42]))
+</code></pre>
+
+<p>Note that when the initializer is a <code>tf.Tensor</code> you should not specify the
+variable's shape, as the shape of the initializer tensor will be used.</p>
+<p><a name="collections"></a></p>
+<h3 id="variable_collections">Variable collections</h3>
+<p>Because disconnected parts of a TensorFlow program might want to create
+variables, it is sometimes useful to have a single way to access all of
+them. For this reason TensorFlow provides <strong>collections</strong>, which are named lists
+of tensors or other objects, such as <code>tf.Variable</code> instances.</p>
+<p>By default every <code>tf.Variable</code> gets placed in the following two collections:
+ * <code>tf.GraphKeys.GLOBAL_VARIABLES</code> --- variables that can be shared across
+multiple devices,
+ * <code>tf.GraphKeys.TRAINABLE_VARIABLES</code>--- variables for which TensorFlow will
+   calculate gradients.</p>
+<p>If you don't want a variable to be trainable, add it to the
+<code>tf.GraphKeys.LOCAL_VARIABLES</code> collection instead. For example, the following
+snippet demonstrates how to add a variable named <code>my_local</code> to this collection:</p>
+<pre class="prettyprint lang-python"><code>my_local = tf.get_variable(&quot;my_local&quot;, shape=(),
+collections=[tf.GraphKeys.LOCAL_VARIABLES])
+</code></pre>
+
+<p>Alternatively, you can specify <code>trainable=False</code> as an argument to
+<code>tf.get_variable</code>:</p>
+<pre class="prettyprint lang-python"><code>my_non_trainable = tf.get_variable(&quot;my_non_trainable&quot;,
+                                   shape=(),
+                                   trainable=False)
+</code></pre>
+
+<p>You can also use your own collections. Any string is a valid collection name,
+and there is no need to explicitly create a collection. To add a variable (or
+any other object) to a collection after creating the variable, call
+<code>tf.add_to_collection</code>.  For example, the following code adds an existing
+variable named <code>my_local</code> to a collection named <code>my_collection_name</code>:</p>
+<pre class="prettyprint lang-python"><code>tf.add_to_collection(&quot;my_collection_name&quot;, my_local)
+</code></pre>
+
+<p>And to retrieve a list of all the variables (or other objects) you've placed in
+a collection you can use:</p>
+<pre class="prettyprint lang-python"><code>tf.get_collection(&quot;my_collection_name&quot;)
+</code></pre>
+
+<h3 id="device_placement">Device placement</h3>
+<p>Just like any other TensorFlow operation, you can place variables on particular
+devices. For example, the following snippet creates a variable named <code>v</code> and
+places it on the second GPU device:</p>
+<pre class="prettyprint lang-python"><code>with tf.device(&quot;/device:GPU:1&quot;):
+  v = tf.get_variable(&quot;v&quot;, [1])
+</code></pre>
+
+<p>It is particularly important for variables to be in the correct device in
+distributed settings. Accidentally putting variables on workers instead of
+parameter servers, for example, can severely slow down training or, in the worst
+case, let each worker blithely forge ahead with its own independent copy of each
+variable. For this reason we provide <a href="../api_docs/python/tf/train/replica_device_setter?hl=zh-cn"><code>tf.train.replica_device_setter</code></a>, which
+can automatically place variables in parameter servers. For example:</p>
+<pre class="prettyprint lang-python"><code>cluster_spec = {
+    &quot;ps&quot;: [&quot;ps0:2222&quot;, &quot;ps1:2222&quot;],
+    &quot;worker&quot;: [&quot;worker0:2222&quot;, &quot;worker1:2222&quot;, &quot;worker2:2222&quot;]}
+with tf.device(tf.train.replica_device_setter(cluster=cluster_spec)):
+  v = tf.get_variable(&quot;v&quot;, shape=[20, 20])  # this variable is placed
+                                            # in the parameter server
+                                            # by the replica_device_setter
+</code></pre>
+
+<h2 id="initializing_variables">Initializing variables</h2>
+<p>Before you can use a variable, it must be initialized. If you are programming in
+the low-level TensorFlow API (that is, you are explicitly creating your own
+graphs and sessions), you must explicitly initialize the variables.  Most
+high-level frameworks such as <code>tf.contrib.slim</code>, <code>tf.estimator.Estimator</code> and
+<code>Keras</code> automatically initialize variables for you before training a model.</p>
+<p>Explicit initialization is otherwise useful because it allows you not to rerun
+potentially expensive initializers when reloading a model from a checkpoint as
+well as allowing determinism when randomly-initialized variables are shared in a
+distributed setting.</p>
+<p>To initialize all trainable variables in one go, before training starts, call
+<code>tf.global_variables_initializer()</code>. This function returns a single operation
+responsible for initializing all variables in the
+<code>tf.GraphKeys.GLOBAL_VARIABLES</code> collection. Running this operation initializes
+all variables. For example:</p>
+<pre class="prettyprint lang-python"><code>session.run(tf.global_variables_initializer())
+# Now all variables are initialized.
+</code></pre>
+
+<p>If you do need to initialize variables yourself, you can run the variable's
+initializer operation. For example:</p>
+<pre class="prettyprint lang-python"><code>session.run(my_variable.initializer)
+</code></pre>
+
+<p>You can also ask which variables have still not been initialized. For example,
+the following code prints the names of all variables which have not yet been
+initialized:</p>
+<pre class="prettyprint lang-python"><code>print(session.run(tf.report_uninitialized_variables()))
+</code></pre>
+
+<p>Note that by default <code>tf.global_variables_initializer</code> does not specify the
+order in which variables are initialized. Therefore, if the initial value of a
+variable depends on another variable's value, it's likely that you'll get an
+error. Any time you use the value of a variable in a context in which not all
+variables are initialized (say, if you use a variable's value while initializing
+another variable), it is best to use <code>variable.initialized_value()</code> instead of
+<code>variable</code>:</p>
+<pre class="prettyprint lang-python"><code>v = tf.get_variable(&quot;v&quot;, shape=(), initializer=tf.zeros_initializer())
+w = tf.get_variable(&quot;w&quot;, initializer=v.initialized_value() + 1)
+</code></pre>
+
+<h2 id="using_variables">Using variables</h2>
+<p>To use the value of a <code>tf.Variable</code> in a TensorFlow graph, simply treat it like
+a normal <code>tf.Tensor</code>:</p>
+<pre class="prettyprint lang-python"><code>v = tf.get_variable(&quot;v&quot;, shape=(), initializer=tf.zeros_initializer())
+w = v + 1  # w is a tf.Tensor which is computed based on the value of v.
+           # Any time a variable is used in an expression it gets automatically
+           # converted to a tf.Tensor representing its value.
+</code></pre>
+
+<p>To assign a value to a variable, use the methods <code>assign</code>, <code>assign_add</code>, and
+friends in the <code>tf.Variable</code> class. For example, here is how you can call these
+methods:</p>
+<pre class="prettyprint lang-python"><code>v = tf.get_variable(&quot;v&quot;, shape=(), initializer=tf.zeros_initializer())
+assignment = v.assign_add(1)
+tf.global_variables_initializer().run()
+sess.run(assignment)  # or assignment.op.run()
+</code></pre>
+
+<p>Most TensorFlow optimizers have specialized ops that efficiently update the
+values of variables according to some gradient descent-like algorithm. See
+<a href="../api_docs/python/tf/train/Optimizer?hl=zh-cn"><code>tf.train.Optimizer</code></a> for an explanation of how to use optimizers.</p>
+<p>Because variables are mutable it's sometimes useful to know what version of a
+variable's value is being used at any point in time. To force a re-read of the
+value of a variable after something has happened, you can use
+<code>tf.Variable.read_value</code>. For example:</p>
+<pre class="prettyprint lang-python"><code>v = tf.get_variable(&quot;v&quot;, shape=(), initializer=tf.zeros_initializer())
+assignment = v.assign_add(1)
+with tf.control_dependencies([assignment]):
+  w = v.read_value()  # w is guaranteed to reflect v's value after the
+                      # assign_add operation.
+</code></pre>
+
+<h2 id="sharing_variables">Sharing variables</h2>
+<p>TensorFlow supports two ways of sharing variables:</p>
+<ul>
+<li>Explicitly passing <code>tf.Variable</code> objects around.</li>
+<li>Implicitly wrapping <code>tf.Variable</code> objects within <code>tf.variable_scope</code> objects.</li>
+</ul>
+<p>While code which explicitly passes variables around is very clear, it is
+sometimes convenient to write TensorFlow functions that implicitly use
+variables in their implementations. Most of the functional layers from
+<code>tf.layer</code> use this approach, as well as all <code>tf.metrics</code>, and a few other
+library utilities.</p>
+<p>Variable scopes allow you to control variable reuse when calling functions which
+implicitly create and use variables. They also allow you to name your variables
+in a hierarchical and understandable way.</p>
+<p>For example, let's say we write a function to create a convolutional / relu
+layer:</p>
+<pre class="prettyprint lang-python"><code>def conv_relu(input, kernel_shape, bias_shape):
+    # Create variable named &quot;weights&quot;.
+    weights = tf.get_variable(&quot;weights&quot;, kernel_shape,
+        initializer=tf.random_normal_initializer())
+    # Create variable named &quot;biases&quot;.
+    biases = tf.get_variable(&quot;biases&quot;, bias_shape,
+        initializer=tf.constant_initializer(0.0))
+    conv = tf.nn.conv2d(input, weights,
+        strides=[1, 1, 1, 1], padding='SAME')
+    return tf.nn.relu(conv + biases)
+</code></pre>
+
+<p>This function uses short names <code>weights</code> and <code>biases</code>, which is good for
+clarity. In a real model, however, we want many such convolutional layers, and
+calling this function repeatedly would not work:</p>
+<pre class="prettyprint lang-python"><code>input1 = tf.random_normal([1,10,10,32])
+input2 = tf.random_normal([1,20,20,32])
+x = conv_relu(input1, kernel_shape=[5, 5, 32, 32], bias_shape=[32])
+x = conv_relu(x, kernel_shape=[5, 5, 32, 32], bias_shape = [32])  # This fails.
+</code></pre>
+
+<p>Since the desired behavior is unclear (create new variables or reuse the
+existing ones?) TensorFlow will fail. Calling <code>conv_relu</code> in different scopes,
+however, clarifies that we want to create new variables:</p>
+<pre class="prettyprint lang-python"><code>def my_image_filter(input_images):
+    with tf.variable_scope(&quot;conv1&quot;):
+        # Variables created here will be named &quot;conv1/weights&quot;, &quot;conv1/biases&quot;.
+        relu1 = conv_relu(input_images, [5, 5, 32, 32], [32])
+    with tf.variable_scope(&quot;conv2&quot;):
+        # Variables created here will be named &quot;conv2/weights&quot;, &quot;conv2/biases&quot;.
+        return conv_relu(relu1, [5, 5, 32, 32], [32])
+</code></pre>
+
+<p>If you do want the variables to be shared, you have two options. First, you can
+create a scope with the same name using <code>reuse=True</code>:</p>
+<pre class="prettyprint lang-python"><code>with tf.variable_scope(&quot;model&quot;):
+  output1 = my_image_filter(input1)
+with tf.variable_scope(&quot;model&quot;, reuse=True):
+  output2 = my_image_filter(input2)
+
+</code></pre>
+
+<p>You can also call <code>scope.reuse_variables()</code> to trigger a reuse:</p>
+<pre class="prettyprint lang-python"><code>with tf.variable_scope(&quot;model&quot;) as scope:
+  output1 = my_image_filter(input1)
+  scope.reuse_variables()
+  output2 = my_image_filter(input2)
+
+</code></pre>
+
+<p>Since depending on exact string names of scopes can feel dangerous, it's also
+possible to initialize a variable scope based on another one:</p>
+<pre class="prettyprint lang-python"><code>with tf.variable_scope(&quot;model&quot;) as scope:
+  output1 = my_image_filter(input1)
+with tf.variable_scope(scope, reuse=True):
+  output2 = my_image_filter(input2)
+
+</code></pre>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies?hl=zh-cn">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:30:38.760640">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="wr4WV3xvT9qU19v2LgHQdynV53qhEc48eZW4F4seZz86MTUxNzg3OTAzNjIyNTE1MA" /><input type="hidden" name="next" value="/programmers_guide/variables"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot.js?hl=zh-cn"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/?hl=zh-cn');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="284.160137177"></span></body></html>

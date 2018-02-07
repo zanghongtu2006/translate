@@ -1,0 +1,842 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="sfnimOCWDGzf9IIfpRxFD7xeiNczw4xGY0-gwJZ7O3w6MTUxNzg3MjYzOTYwODkyMA" /><link rel="canonical" href="https://www.tensorflow.org/tutorials/wide_and_deep"><link rel="alternate" href="https://www.tensorflow.org/tutorials/wide_and_deep" hreflang="en"><link rel="alternate" href="wide_and_deep" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/tutorials/wide_and_deep" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css"><script src="../_static/18908e5f48/js/jquery-bundle.js"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/tutorials/wide_and_deep"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>TensorFlow Wide &amp; Deep Learning Tutorial &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="TensorFlow Wide &amp; Deep Learning Tutorial &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               "
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs.1"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Develop
+    
+    
+  </li></ul></div></div><div class="devsite-doc-set-nav-row devsite-full-site-width"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Get Started"
+       >
+        Get Started
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../programmers_guide/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Programmer&#39;s Guide"
+       >
+        Programmer&#39;s Guide
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index.html"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Tutorials"
+       >
+        Tutorials
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../performance/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Performance"
+       >
+        Performance
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../mobile/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Mobile"
+       >
+        Mobile
+      </a></li></ul></nav></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Get Started">
+        Get Started
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../programmers_guide/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Programmer&#39;s Guide">
+        Programmer&#39;s Guide
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Tutorials"
+            tabindex="0">
+        Tutorials
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../performance/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Performance">
+        Performance
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../mobile/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Mobile">
+        Mobile
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Tutorials</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Images</span></li><li class="devsite-nav-item"><a href="mnist/beginners/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">A Guide to TF Layers: Building a Convolutional Neural Network</a></li><li class="devsite-nav-item"><a href="image_recognition" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Image Recognition</a></li><li class="devsite-nav-item"><a href="image_retraining" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">How to Retrain Inception's Final Layer for New Categories</a></li><li class="devsite-nav-item"><a href="deep_cnn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Convolutional Neural Networks</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Sequences</span></li><li class="devsite-nav-item"><a href="recurrent" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Recurrent Neural Networks</a></li><li class="devsite-nav-item"><a href="seq2seq" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Neural Machine Translation (seq2seq) Tutorial</a></li><li class="devsite-nav-item"><a href="recurrent_quickdraw" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Recurrent Neural Networks for Drawing Classification</a></li><li class="devsite-nav-item"><a href="audio_recognition" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Simple Audio Recognition</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Data Representation</span></li><li class="devsite-nav-item"><a href="wide" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Linear Model Tutorial</a></li><li class="devsite-nav-item devsite-nav-active"><a href="wide_and_deep" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Wide &amp; Deep Learning Tutorial</a></li><li class="devsite-nav-item"><a href="word2vec" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Vector Representations of Words</a></li><li class="devsite-nav-item"><a href="kernel_methods" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Improving Linear Models Using Explicit Kernel Methods</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Non-ML</span></li><li class="devsite-nav-item"><a href="mandelbrot" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Mandelbrot Set</a></li><li class="devsite-nav-item"><a href="pdes" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Partial Differential Equations</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Tutorials</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Images</span></li><li class="devsite-nav-item"><a href="mnist/beginners/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">A Guide to TF Layers: Building a Convolutional Neural Network</a></li><li class="devsite-nav-item"><a href="image_recognition" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Image Recognition</a></li><li class="devsite-nav-item"><a href="image_retraining" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">How to Retrain Inception's Final Layer for New Categories</a></li><li class="devsite-nav-item"><a href="deep_cnn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Convolutional Neural Networks</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Sequences</span></li><li class="devsite-nav-item"><a href="recurrent" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Recurrent Neural Networks</a></li><li class="devsite-nav-item"><a href="seq2seq" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Neural Machine Translation (seq2seq) Tutorial</a></li><li class="devsite-nav-item"><a href="recurrent_quickdraw" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Recurrent Neural Networks for Drawing Classification</a></li><li class="devsite-nav-item"><a href="audio_recognition" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Simple Audio Recognition</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Data Representation</span></li><li class="devsite-nav-item"><a href="wide" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Linear Model Tutorial</a></li><li class="devsite-nav-item devsite-nav-active"><a href="wide_and_deep" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Wide &amp; Deep Learning Tutorial</a></li><li class="devsite-nav-item"><a href="word2vec" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Vector Representations of Words</a></li><li class="devsite-nav-item"><a href="kernel_methods" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Improving Linear Models Using Explicit Kernel Methods</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Non-ML</span></li><li class="devsite-nav-item"><a href="mandelbrot" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Mandelbrot Set</a></li><li class="devsite-nav-item"><a href="pdes" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Partial Differential Equations</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="../get_started/index" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Develop
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index.html" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="3">
+    
+    
+      Tutorials
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    TensorFlow Wide &amp; Deep Learning Tutorial
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>In the previous <a href="wide">TensorFlow Linear Model Tutorial</a>, we trained a logistic
+regression model to predict the probability that the individual has an annual
+income of over 50,000 dollars using the
+<a href="https://archive.ics.uci.edu/ml/datasets/Census+Income">Census Income Dataset</a>.
+TensorFlow is great for training deep neural networks too, and you might be
+thinking which one you should choose—well, why not both? Would it be possible to
+combine the strengths of both in one model?</p>
+<p>In this tutorial, we'll introduce how to use the tf.estimator API to jointly
+train a wide linear model and a deep feed-forward neural network. This approach
+combines the strengths of memorization and generalization. It's useful for
+generic large-scale regression and classification problems with sparse input
+features (e.g., categorical features with a large number of possible feature
+values). If you're interested in learning more about how Wide &amp; Deep Learning
+works, please check out our <a href="https://arxiv.org/abs/1606.07792">research paper</a>.</p>
+<p><img alt="Wide &amp; Deep Spectrum of Models" src="../images/wide_n_deep.svg" title="Wide &amp; Deep" /></p>
+<p>The figure above shows a comparison of a wide model (logistic regression with
+sparse features and transformations), a deep model (feed-forward neural network
+with an embedding layer and several hidden layers), and a Wide &amp; Deep model
+(joint training of both). At a high level, there are only 3 steps to configure a
+wide, deep, or Wide &amp; Deep model using the tf.estimator API:</p>
+<ol>
+<li>Select features for the wide part: Choose the sparse base columns and
+    crossed columns you want to use.</li>
+<li>Select features for the deep part: Choose the continuous columns, the
+    embedding dimension for each categorical column, and the hidden layer sizes.</li>
+<li>Put them all together in a Wide &amp; Deep model
+    (<code>DNNLinearCombinedClassifier</code>).</li>
+</ol>
+<p>And that's it! Let's go through a simple example.</p>
+<h2 id="setup">Setup</h2>
+<p>To try the code for this tutorial:</p>
+<ol>
+<li>
+<p><a href="../install/index">Install TensorFlow</a> if you haven't already.</p>
+</li>
+<li>
+<p>Download <a href="https://github.com/tensorflow/models/tree/master/official/wide_deep/">the tutorial code</a>.</p>
+</li>
+<li>
+<p>Execute the data download script we provide to you:</p>
+<pre class="prettyprint notranslate" translate="no"><code>$ python data_download.py
+</code></pre>
+</li>
+<li>
+<p>Execute the tutorial code with the following command to train the wide and
+deep model described in this tutorial:</p>
+<pre class="prettyprint notranslate" translate="no"><code>$ python wide_deep.py
+</code></pre>
+</li>
+</ol>
+<p>Read on to find out how this code builds its model.</p>
+<h2 id="define_base_feature_columns">Define Base Feature Columns</h2>
+<p>First, let's define the base categorical and continuous feature columns that
+we'll use. These base columns will be the building blocks used by both the wide
+part and the deep part of the model.</p>
+<pre class="prettyprint lang-python"><code>import tensorflow as tf
+
+# Continuous columns
+age = tf.feature_column.numeric_column('age')
+education_num = tf.feature_column.numeric_column('education_num')
+capital_gain = tf.feature_column.numeric_column('capital_gain')
+capital_loss = tf.feature_column.numeric_column('capital_loss')
+hours_per_week = tf.feature_column.numeric_column('hours_per_week')
+
+education = tf.feature_column.categorical_column_with_vocabulary_list(
+    'education', [
+        'Bachelors', 'HS-grad', '11th', 'Masters', '9th', 'Some-college',
+        'Assoc-acdm', 'Assoc-voc', '7th-8th', 'Doctorate', 'Prof-school',
+        '5th-6th', '10th', '1st-4th', 'Preschool', '12th'])
+
+marital_status = tf.feature_column.categorical_column_with_vocabulary_list(
+    'marital_status', [
+        'Married-civ-spouse', 'Divorced', 'Married-spouse-absent',
+        'Never-married', 'Separated', 'Married-AF-spouse', 'Widowed'])
+
+relationship = tf.feature_column.categorical_column_with_vocabulary_list(
+    'relationship', [
+        'Husband', 'Not-in-family', 'Wife', 'Own-child', 'Unmarried',
+        'Other-relative'])
+
+workclass = tf.feature_column.categorical_column_with_vocabulary_list(
+    'workclass', [
+        'Self-emp-not-inc', 'Private', 'State-gov', 'Federal-gov',
+        'Local-gov', '?', 'Self-emp-inc', 'Without-pay', 'Never-worked'])
+
+# To show an example of hashing:
+occupation = tf.feature_column.categorical_column_with_hash_bucket(
+    'occupation', hash_bucket_size=1000)
+
+# Transformations.
+age_buckets = tf.feature_column.bucketized_column(
+    age, boundaries=[18, 25, 30, 35, 40, 45, 50, 55, 60, 65])
+</code></pre>
+
+<h2 id="the_wide_model_linear_model_with_crossed_feature_columns">The Wide Model: Linear Model with Crossed Feature Columns</h2>
+<p>The wide model is a linear model with a wide set of sparse and crossed feature
+columns:</p>
+<pre class="prettyprint lang-python"><code>base_columns = [
+    education, marital_status, relationship, workclass, occupation,
+    age_buckets,
+]
+
+crossed_columns = [
+    tf.feature_column.crossed_column(
+        ['education', 'occupation'], hash_bucket_size=1000),
+    tf.feature_column.crossed_column(
+        [age_buckets, 'education', 'occupation'], hash_bucket_size=1000),
+]
+</code></pre>
+
+<p>You can also see the <a href="wide">TensorFlow Linear Model Tutorial</a> for more details.</p>
+<p>Wide models with crossed feature columns can memorize sparse interactions
+between features effectively. That being said, one limitation of crossed feature
+columns is that they do not generalize to feature combinations that have not
+appeared in the training data. Let's add a deep model with embeddings to fix
+that.</p>
+<h2 id="the_deep_model_neural_network_with_embeddings">The Deep Model: Neural Network with Embeddings</h2>
+<p>The deep model is a feed-forward neural network, as shown in the previous
+figure. Each of the sparse, high-dimensional categorical features are first
+converted into a low-dimensional and dense real-valued vector, often referred to
+as an embedding vector. These low-dimensional dense embedding vectors are
+concatenated with the continuous features, and then fed into the hidden layers
+of a neural network in the forward pass. The embedding values are initialized
+randomly, and are trained along with all other model parameters to minimize the
+training loss. If you're interested in learning more about embeddings, check out
+the TensorFlow tutorial on <a href="word2vec">Vector Representations of Words</a> or
+<a href="https://en.wikipedia.org/wiki/Word_embedding">Word embedding</a> on Wikipedia.</p>
+<p>Another way to represent categorical columns to feed into a neural network is
+via a one-hot or multi-hot representation. This is often appropriate for
+categorical columns with only a few possible values. As an example of a one-hot
+representation, for the relationship column, <code>"Husband"</code> can be represented as
+[1, 0, 0, 0, 0, 0], and <code>"Not-in-family"</code> as [0, 1, 0, 0, 0, 0], etc. This is a
+fixed representation, whereas embeddings are more flexible and calculated at
+training time.</p>
+<p>We'll configure the embeddings for the categorical columns using
+<code>embedding_column</code>, and concatenate them with the continuous columns.
+We also use <code>indicator_column</code> to create multi-hot representations of some
+categorical columns.</p>
+<pre class="prettyprint lang-python"><code>deep_columns = [
+    age,
+    education_num,
+    capital_gain,
+    capital_loss,
+    hours_per_week,
+    tf.feature_column.indicator_column(workclass),
+    tf.feature_column.indicator_column(education),
+    tf.feature_column.indicator_column(marital_status),
+    tf.feature_column.indicator_column(relationship),
+    # To show an example of embedding
+    tf.feature_column.embedding_column(occupation, dimension=8),
+]
+</code></pre>
+
+<p>The higher the <code>dimension</code> of the embedding is, the more degrees of freedom the
+model will have to learn the representations of the features. For simplicity, we
+set the dimension to 8 for all feature columns here. Empirically, a more
+informed decision for the number of dimensions is to start with a value on the
+order of \(\log_2(n)\) or \(k\sqrt[4]n\), where \(n\) is the number of
+unique features in a feature column and \(k\) is a small constant (usually
+smaller than 10).</p>
+<p>Through dense embeddings, deep models can generalize better and make predictions
+on feature pairs that were previously unseen in the training data. However, it
+is difficult to learn effective low-dimensional representations for feature
+columns when the underlying interaction matrix between two feature columns is
+sparse and high-rank. In such cases, the interaction between most feature pairs
+should be zero except a few, but dense embeddings will lead to nonzero
+predictions for all feature pairs, and thus can over-generalize. On the other
+hand, linear models with crossed features can memorize these “exception rules”
+effectively with fewer model parameters.</p>
+<p>Now, let's see how to jointly train wide and deep models and allow them to
+complement each other’s strengths and weaknesses.</p>
+<h2 id="combining_wide_and_deep_models_into_one">Combining Wide and Deep Models into One</h2>
+<p>The wide models and deep models are combined by summing up their final output
+log odds as the prediction, then feeding the prediction to a logistic loss
+function. All the graph definition and variable allocations have already been
+handled for you under the hood, so you simply need to create a
+<code>DNNLinearCombinedClassifier</code>:</p>
+<pre class="prettyprint lang-python"><code>model = tf.estimator.DNNLinearCombinedClassifier(
+    model_dir='/tmp/census_model',
+    linear_feature_columns=base_columns + crossed_columns,
+    dnn_feature_columns=deep_columns,
+    dnn_hidden_units=[100, 50])
+</code></pre>
+
+<h2 id="training_and_evaluating_the_model">Training and Evaluating The Model</h2>
+<p>Before we train the model, let's read in the Census dataset as we did in the
+<a href="wide">TensorFlow Linear Model tutorial</a>. See <code>data_download.py</code> as well as
+<code>input_fn</code> within
+<a href="https://github.com/tensorflow/models/tree/master/official/wide_deep/wide_deep.py"><code>wide_deep.py</code></a>.</p>
+<p>After reading in the data, you can train and evaluate the model:</p>
+<pre class="prettyprint lang-python"><code># Train and evaluate the model every `FLAGS.epochs_per_eval` epochs.
+for n in range(FLAGS.train_epochs // FLAGS.epochs_per_eval):
+  model.train(input_fn=lambda: input_fn(
+      FLAGS.train_data, FLAGS.epochs_per_eval, True, FLAGS.batch_size))
+
+  results = model.evaluate(input_fn=lambda: input_fn(
+      FLAGS.test_data, 1, False, FLAGS.batch_size))
+
+  # Display evaluation metrics
+  print('Results at epoch', (n + 1) * FLAGS.epochs_per_eval)
+  print('-' * 30)
+
+  for key in sorted(results):
+    print('%s: %s' % (key, results[key]))
+</code></pre>
+
+<p>The final output accuracy should be somewhere around 85.5%. If you'd like to
+see a working end-to-end example, you can download our
+<a href="https://github.com/tensorflow/models/tree/master/official/wide_deep/wide_deep.py">example code</a>.</p>
+<p>Note that this tutorial is just a quick example on a small dataset to get you
+familiar with the API. Wide &amp; Deep Learning will be even more powerful if you
+try it on a large dataset with many sparse feature columns that have a large
+number of possible feature values. Again, feel free to take a look at our
+<a href="https://arxiv.org/abs/1606.07792">research paper</a> for more ideas about how to
+apply Wide &amp; Deep Learning in real-world large-scale machine learning problems.</p>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:30:37.908930">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="sfnimOCWDGzf9IIfpRxFD7xeiNczw4xGY0-gwJZ7O3w6MTUxNzg3MjYzOTYwODkyMA" /><input type="hidden" name="next" value="/tutorials/wide_and_deep"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js"></script><script src="../_static/18908e5f48/js/script_foot.js"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="305.530071259"></span></body></html>

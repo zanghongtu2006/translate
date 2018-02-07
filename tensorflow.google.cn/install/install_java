@@ -1,0 +1,710 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="L0RQGn9FnnHE9yu6V6whplH3Axk1jWJZQP4kg5z4c-Y6MTUxNzg0NzEyMjQ1NjAyMA" /><link rel="canonical" href="https://www.tensorflow.org/install/install_java"><link rel="alternate" href="https://www.tensorflow.org/install/install_java" hreflang="en"><link rel="alternate" href="install_java" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/install/install_java" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css"><script src="../_static/18908e5f48/js/jquery-bundle.js"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/install/install_java"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Installing TensorFlow for Java &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Installing TensorFlow for Java &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               devsite-header-no-lower-tabs"
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="index"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs.1"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Install
+    
+    
+  </li></ul></div></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install"
+            tabindex="0">
+        Install
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Python</span></li><li class="devsite-nav-item"><a href="install_linux" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on Ubuntu</a></li><li class="devsite-nav-item"><a href="install_mac" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on macOS</a></li><li class="devsite-nav-item"><a href="install_windows" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on Windows</a></li><li class="devsite-nav-item"><a href="install_sources" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow from Sources</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="migration" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Transitioning to TensorFlow 1.0</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Other Languages</span></li><li class="devsite-nav-item devsite-nav-active"><a href="install_java" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for Java</a></li><li class="devsite-nav-item"><a href="install_go" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for Go</a></li><li class="devsite-nav-item"><a href="install_c" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for C</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Python</span></li><li class="devsite-nav-item"><a href="install_linux" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on Ubuntu</a></li><li class="devsite-nav-item"><a href="install_mac" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on macOS</a></li><li class="devsite-nav-item"><a href="install_windows" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on Windows</a></li><li class="devsite-nav-item"><a href="install_sources" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow from Sources</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="migration" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Transitioning to TensorFlow 1.0</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Other Languages</span></li><li class="devsite-nav-item devsite-nav-active"><a href="install_java" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for Java</a></li><li class="devsite-nav-item"><a href="install_go" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for Go</a></li><li class="devsite-nav-item"><a href="install_c" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for C</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Install
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Installing TensorFlow for Java
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>TensorFlow provides APIs for use in Java programs. These APIs are particularly
+well-suited to loading models created in Python and executing them within a
+Java application. This guide explains how to install
+<a href="../api_docs/java/reference/org/tensorflow/package-summary.html">TensorFlow for Java</a>
+and use it in a Java application.</p>
+<aside class="warning"><strong>Warning:</strong><span> The TensorFlow Java API is <em>not</em> covered by the TensorFlow
+<a href="../programmers_guide/version_semantics">API stability guarantees</a>.</span></aside>
+<h2 id="supported_platforms">Supported Platforms</h2>
+<p>This guide explains how to install TensorFlow for Java.  Although these
+instructions might also work on other variants, we have only tested
+(and we only support) these instructions on machines meeting the
+following requirements:</p>
+<ul>
+<li>Ubuntu 14.04 or higher; 64-bit, x86</li>
+<li>macOS X 10.11 (El Capitan) or higher</li>
+<li>Windows 7 or higher; 64-bit, x86</li>
+</ul>
+<p>The installation instructions for Android are in a separate
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/contrib/android">Android TensorFlow Support page</a>.
+After installation, please see this
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/examples/android">complete example</a>
+of TensorFlow on Android.</p>
+<h2 id="using_tensorflow_with_a_maven_project">Using TensorFlow with a Maven project</h2>
+<p>If your project uses <a href="https://maven.apache.org">Apache Maven</a>, then add the
+following to the project's <code>pom.xml</code> to use the TensorFlow Java APIs:</p>
+<pre class="prettyprint lang-xml"><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.tensorflow&lt;/groupId&gt;
+  &lt;artifactId&gt;tensorflow&lt;/artifactId&gt;
+  &lt;version&gt;1.5.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>That's all.</p>
+<h3 id="example">Example</h3>
+<p>As an example, these steps will create a Maven project that uses TensorFlow:</p>
+<ol>
+<li>
+<p>Create the project's <code>pom.xml</code>:</p>
+<pre class="prettyprint notranslate" translate="no"><code> &lt;project&gt;
+     &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+     &lt;groupId&gt;org.myorg&lt;/groupId&gt;
+     &lt;artifactId&gt;hellotf&lt;/artifactId&gt;
+     &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+     &lt;properties&gt;
+       &lt;exec.mainClass&gt;HelloTF&lt;/exec.mainClass&gt;
+       &lt;!-- The sample code requires at least JDK 1.7. --&gt;
+       &lt;!-- The maven compiler plugin defaults to a lower version --&gt;
+       &lt;maven.compiler.source&gt;1.7&lt;/maven.compiler.source&gt;
+       &lt;maven.compiler.target&gt;1.7&lt;/maven.compiler.target&gt;
+     &lt;/properties&gt;
+     &lt;dependencies&gt;
+       &lt;dependency&gt;
+         &lt;groupId&gt;org.tensorflow&lt;/groupId&gt;
+         &lt;artifactId&gt;tensorflow&lt;/artifactId&gt;
+         &lt;version&gt;1.5.0&lt;/version&gt;
+       &lt;/dependency&gt;
+     &lt;/dependencies&gt;
+ &lt;/project&gt;
+</code></pre>
+</li>
+<li>
+<p>Create the source file (<code>src/main/java/HelloTF.java</code>):</p>
+<pre class="prettyprint notranslate" translate="no"><code>import org.tensorflow.Graph;
+import org.tensorflow.Session;
+import org.tensorflow.Tensor;
+import org.tensorflow.TensorFlow;
+
+public class HelloTF {
+  public static void main(String[] args) throws Exception {
+    try (Graph g = new Graph()) {
+      final String value = "Hello from " + TensorFlow.version();
+
+      // Construct the computation graph with a single operation, a constant
+      // named "MyConst" with a value "value".
+      try (Tensor t = Tensor.create(value.getBytes("UTF-8"))) {
+        // The Java API doesn't yet include convenience functions for adding operations.
+        g.opBuilder("Const", "MyConst").setAttr("dtype", t.dataType()).setAttr("value", t).build();
+      }
+
+      // Execute the "MyConst" operation in a Session.
+      try (Session s = new Session(g);
+           Tensor output = s.runner().fetch("MyConst").run().get(0)) {
+        System.out.println(new String(output.bytesValue(), "UTF-8"));
+      }
+    }
+  }
+}
+</code></pre>
+</li>
+<li>
+<p>Compile and execute:</p>
+<p><pre> # Use -q to hide logging from the mvn tool
+ <b>mvn -q compile exec:java</b></pre></p>
+</li>
+</ol>
+<p>The preceding command should output <tt>Hello from <i>version</i></tt>. If it
+does, you've successfully set up TensorFlow for Java and are ready to use it in
+Maven projects. If not, check
+<a href="http://stackoverflow.com/questions/tagged/tensorflow">Stack Overflow</a>
+for possible solutions.  You can skip reading the rest of this document.</p>
+<h3 id="gpu_support">GPU support</h3>
+<p>If your Linux system has an NVIDIA® GPU and your TensorFlow Java program
+requires GPU acceleration, then add the following to the project's <code>pom.xml</code>
+instead:</p>
+<pre class="prettyprint lang-xml"><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.tensorflow&lt;/groupId&gt;
+  &lt;artifactId&gt;libtensorflow&lt;/artifactId&gt;
+  &lt;version&gt;1.5.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.tensorflow&lt;/groupId&gt;
+  &lt;artifactId&gt;libtensorflow_jni_gpu&lt;/artifactId&gt;
+  &lt;version&gt;1.5.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>GPU acceleration is available via Maven only for Linux and only if your system
+meets the
+<a href="install_linux#determine_which_tensorflow_to_install">requirements for GPU</a>.</p>
+<h2 id="using_tensorflow_with_jdk">Using TensorFlow with JDK</h2>
+<p>This section describes how to use TensorFlow using the <code>java</code> and <code>javac</code>
+commands from a JDK installation. If your project uses Apache Maven, then
+refer to the simpler instructions above instead.</p>
+<h3 id="install_on_linux_or_macos">Install on Linux or macOS</h3>
+<p>Take the following steps to install TensorFlow for Java on Linux or macOS:</p>
+<ol>
+<li>
+<p>Download
+     <a href="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-1.5.0.jar">libtensorflow.jar</a>,
+     which is the TensorFlow Java Archive (JAR).</p>
+</li>
+<li>
+<p>Decide whether you will run TensorFlow for Java on CPU(s) only or with
+     the help of GPU(s). To help you decide, read the section entitled
+     "Determine which TensorFlow to install" in one of the following guides:</p>
+<ul>
+<li><a href="install_linux#determine_which_tensorflow_to_install">Installing TensorFlow on Linux</a></li>
+<li><a href="install_mac#determine_which_tensorflow_to_install">Installing TensorFlow on macOS</a></li>
+</ul>
+</li>
+<li>
+<p>Download and extract the appropriate Java Native Interface (JNI)
+     file for your operating system and processor support by running the
+     following shell commands:</p>
+<pre class="prettyprint notranslate" translate="no"><code> TF_TYPE="cpu" # Default processor is CPU. If you want GPU, set to "gpu"
+ OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+ mkdir -p ./jni
+ curl -L \
+   "https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow_jni-${TF_TYPE}-${OS}-x86_64-1.5.0.tar.gz" |
+   tar -xz -C ./jni
+</code></pre>
+</li>
+</ol>
+<h3 id="install_on_windows">Install on Windows</h3>
+<p>Take the following steps to install TensorFlow for Java on Windows:</p>
+<ol>
+<li>Download
+     <a href="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-1.5.0.jar">libtensorflow.jar</a>,
+     which is the TensorFlow Java Archive (JAR).</li>
+<li>Download the following Java Native Interface (JNI) file appropriate for
+     <a href="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow_jni-cpu-windows-x86_64-1.5.0.zip">TensorFlow for Java on Windows</a>.</li>
+<li>Extract this .zip file.</li>
+</ol>
+<h3 id="validate_the_installation">Validate the installation</h3>
+<p>After installing TensorFlow for Java, validate your installation by entering
+the following code into a file named <code>HelloTF.java</code>:</p>
+<pre class="prettyprint lang-java"><code>import org.tensorflow.Graph;
+import org.tensorflow.Session;
+import org.tensorflow.Tensor;
+import org.tensorflow.TensorFlow;
+
+public class HelloTF {
+  public static void main(String[] args) throws Exception {
+    try (Graph g = new Graph()) {
+      final String value = &quot;Hello from &quot; + TensorFlow.version();
+
+      // Construct the computation graph with a single operation, a constant
+      // named &quot;MyConst&quot; with a value &quot;value&quot;.
+      try (Tensor t = Tensor.create(value.getBytes(&quot;UTF-8&quot;))) {
+        // The Java API doesn't yet include convenience functions for adding operations.
+        g.opBuilder(&quot;Const&quot;, &quot;MyConst&quot;).setAttr(&quot;dtype&quot;, t.dataType()).setAttr(&quot;value&quot;, t).build();
+      }
+
+      // Execute the &quot;MyConst&quot; operation in a Session.
+      try (Session s = new Session(g);
+           Tensor output = s.runner().fetch(&quot;MyConst&quot;).run().get(0)) {
+        System.out.println(new String(output.bytesValue(), &quot;UTF-8&quot;));
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>And use the instructions below to compile and run <code>HelloTF.java</code>.</p>
+<h3 id="compiling">Compiling</h3>
+<p>When compiling a Java program that uses TensorFlow, the downloaded <code>.jar</code>
+must be part of your <code>classpath</code>. For example, you can include the
+downloaded <code>.jar</code> in your <code>classpath</code> by using the <code>-cp</code> compilation flag
+as follows:</p>
+<pre><b>javac -cp libtensorflow-1.5.0.jar HelloTF.java</b></pre>
+
+<h3 id="running">Running</h3>
+<p>To execute a Java program that depends on TensorFlow, ensure that the following
+two files are available to the JVM:</p>
+<ul>
+<li>the downloaded <code>.jar</code> file</li>
+<li>the extracted JNI library</li>
+</ul>
+<p>For example, the following command line executes the <code>HelloTF</code> program on Linux
+and macOS X:</p>
+<pre><b>java -cp libtensorflow-1.5.0.jar:. -Djava.library.path=./jni HelloTF</b></pre>
+
+<p>And the following command line executes the <code>HelloTF</code> program on Windows:</p>
+<pre><b>java -cp libtensorflow-1.5.0.jar;. -Djava.library.path=jni HelloTF</b></pre>
+
+<p>If the program prints <tt>Hello from <i>version</i></tt>, you've successfully
+installed TensorFlow for Java and are ready to use the API.  If the program
+outputs something else, check
+<a href="http://stackoverflow.com/questions/tagged/tensorflow">Stack Overflow</a> for
+possible solutions.</p>
+<h3 id="advanced_example">Advanced Example</h3>
+<p>For a more sophisticated example, see
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/java/src/main/java/org/tensorflow/examples/LabelImage.java">LabelImage.java</a>,
+which recognizes objects in an image.</p>
+<h2 id="building_from_source_code">Building from source code</h2>
+<p>TensorFlow is open-source. You may build TensorFlow for Java from the
+TensorFlow source code by following the instructions in a
+<a href="../code/tensorflow/java/README.md?hl=zh-cn">separate document</a>.</p>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:28:50.557900">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="L0RQGn9FnnHE9yu6V6whplH3Axk1jWJZQP4kg5z4c-Y6MTUxNzg0NzEyMjQ1NjAyMA" /><input type="hidden" name="next" value="/install/install_java"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js"></script><script src="../_static/18908e5f48/js/script_foot.js"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="260.749816895"></span></body></html>

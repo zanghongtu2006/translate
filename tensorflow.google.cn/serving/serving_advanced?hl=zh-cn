@@ -1,0 +1,757 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="1NpPL75FLjBX6YR-kcZZtEC1Ycu8fLNesFh_0lYZvCs6MTUxNzg3MjU4OTc5NTI1MA" /><link rel="canonical" href="https://www.tensorflow.org/serving/serving_advanced"><link rel="alternate" href="https://www.tensorflow.org/serving/serving_advanced" hreflang="en"><link rel="alternate" href="serving_advanced" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/serving/serving_advanced" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png?hl=zh-cn"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png?hl=zh-cn"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css?hl=zh-cn"><script src="../_static/18908e5f48/js/jquery-bundle.js?hl=zh-cn"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/serving/serving_advanced"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Building Standard TensorFlow ModelServer &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Building Standard TensorFlow ModelServer &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               devsite-header-no-lower-tabs"
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html?hl=zh-cn" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png?hl=zh-cn"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/?hl=zh-cn"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Deploy
+    
+    
+  </li></ul></div></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy"
+            tabindex="0">
+        Deploy
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html?hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="../deploy/index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Deploy</a></li><li class="devsite-nav-item"><a href="../deploy/distributed?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Distributed TensorFlow</a></li><li class="devsite-nav-item"><a href="../deploy/hadoop?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">How to run TensorFlow on Hadoop</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorFlow Serving</span></li><li class="devsite-nav-item"><a href="../serving?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction</a></li><li class="devsite-nav-item"><a href="architecture_overview?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Architecture Overview</a></li><li class="devsite-nav-item"><a href="setup?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installation</a></li><li class="devsite-nav-item"><a href="serving_basic?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Serving a TensorFlow Model</a></li><li class="devsite-nav-item devsite-nav-active"><a href="serving_advanced?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Building Standard TensorFlow ModelServer</a></li><li class="devsite-nav-item"><a href="serving_inception?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Serving Inception Model with TensorFlow Serving and Kubernetes</a></li><li class="devsite-nav-item"><a href="custom_servable?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating a new kind of servable</a></li><li class="devsite-nav-item"><a href="custom_source?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating a module that discovers new servable paths</a></li><li class="devsite-nav-item"><a href="signature_defs?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">SignatureDefs in SavedModel for TensorFlow Serving</a></li><li class="devsite-nav-item"><a href="docker?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using TensorFlow Serving via Docker</a></li><li class="devsite-nav-item"><a href="https://github.com/tensorflow/serving" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Serving Github</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="../deploy/index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Deploy</a></li><li class="devsite-nav-item"><a href="../deploy/distributed?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Distributed TensorFlow</a></li><li class="devsite-nav-item"><a href="../deploy/hadoop?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">How to run TensorFlow on Hadoop</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorFlow Serving</span></li><li class="devsite-nav-item"><a href="../serving?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction</a></li><li class="devsite-nav-item"><a href="architecture_overview?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Architecture Overview</a></li><li class="devsite-nav-item"><a href="setup?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installation</a></li><li class="devsite-nav-item"><a href="serving_basic?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Serving a TensorFlow Model</a></li><li class="devsite-nav-item devsite-nav-active"><a href="serving_advanced?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Building Standard TensorFlow ModelServer</a></li><li class="devsite-nav-item"><a href="serving_inception?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Serving Inception Model with TensorFlow Serving and Kubernetes</a></li><li class="devsite-nav-item"><a href="custom_servable?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating a new kind of servable</a></li><li class="devsite-nav-item"><a href="custom_source?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating a module that discovers new servable paths</a></li><li class="devsite-nav-item"><a href="signature_defs?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">SignatureDefs in SavedModel for TensorFlow Serving</a></li><li class="devsite-nav-item"><a href="docker?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using TensorFlow Serving via Docker</a></li><li class="devsite-nav-item"><a href="https://github.com/tensorflow/serving" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Serving Github</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="../deploy/index?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Deploy
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Building Standard TensorFlow ModelServer
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG&amp;hl=zh-cn"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>This tutorial shows you how to use TensorFlow Serving components to build the
+standard TensorFlow ModelServer that dynamically discovers and serves new
+versions of a trained TensorFlow model. If you just want to use the standard
+server to serve your models, see
+<a href="serving_basic?hl=zh-cn">TensorFlow Serving basic tutorial</a>.</p>
+<p>This tutorial uses the simple Softmax Regression model introduced in the
+TensorFlow tutorial for handwritten image (MNIST data) classification. If you
+don't know what TensorFlow or MNIST is, see the
+<a href="../tutorials/mnist/beginners/index.html?hl=zh-cn#mnist-for-ml-beginners">MNIST For ML Beginners</a>
+tutorial.</p>
+<p>The code for this tutorial consists of two parts:</p>
+<ul>
+<li>
+<p>A Python file
+  <a href="https://github.com/tensorflow/serving/tree/master/tensorflow_serving/example/mnist_saved_model.py">mnist_saved_model.py</a>
+  that trains and exports multiple versions of the model.</p>
+</li>
+<li>
+<p>A C++ file
+  <a href="https://github.com/tensorflow/serving/tree/master/tensorflow_serving/model_servers/main.cc">main.cc</a>
+  which is the standard TensorFlow ModelServer that discovers new exported
+  models and runs a <a href="http://www.grpc.io">gRPC</a> service for serving them.</p>
+</li>
+</ul>
+<p>This tutorial steps through the following tasks:</p>
+<ol>
+<li>Train and export a TensorFlow model.</li>
+<li>Manage model versioning with TensorFlow Serving <code>ServerCore</code>.</li>
+<li>Configure batching using <code>SessionBundleSourceAdapterConfig</code>.</li>
+<li>Serve request with TensorFlow Serving <code>ServerCore</code>.</li>
+<li>Run and test the service.</li>
+</ol>
+<p>Before getting started, please complete the
+<a href="setup?hl=zh-cn#prerequisites">prerequisites</a>.</p>
+<aside class="note"><strong>Note:</strong><span> All <code>bazel build</code> commands below use the standard <code>-c opt</code> flag. To
+further optimize the build, refer to the
+<a href="setup?hl=zh-cn#optimized_build">instructions here</a>.</span></aside>
+<h2 id="train_and_export_tensorflow_model">Train And Export TensorFlow Model</h2>
+<p>Clear the export directory if it already exists:</p>
+<pre class="prettyprint lang-shell"><code>$&gt;rm -rf /tmp/mnist_model
+</code></pre>
+
+<p>Train (with 100 iterations) and export the first version of model:</p>
+<pre class="prettyprint lang-shell"><code>$&gt;bazel build -c opt //tensorflow_serving/example:mnist_saved_model
+$&gt;bazel-bin/tensorflow_serving/example/mnist_saved_model --training_iteration=100 --model_version=1 /tmp/mnist_model
+</code></pre>
+
+<p>Train (with 2000 iterations) and export the second version of model:</p>
+<pre class="prettyprint lang-shell"><code>$&gt;bazel-bin/tensorflow_serving/example/mnist_saved_model --training_iteration=2000 --model_version=2 /tmp/mnist_model
+</code></pre>
+
+<p>As you can see in <code>mnist_saved_model.py</code>, the training and exporting is done the
+same way it is in the <a href="serving_basic?hl=zh-cn">TensorFlow Serving basic tutorial</a>. For
+demonstration purposes, you're intentionally dialing down the training
+iterations for the first run and exporting it as v1, while training it normally
+for the second run and exporting it as v2 to the same parent directory -- as we
+expect the latter to achieve better classification accuracy due to more
+intensive training. You should see training data for each training run in your
+<code>mnist_model</code> directory:</p>
+<pre class="prettyprint lang-shell"><code>$&gt;ls /tmp/mnist_model
+1  2
+</code></pre>
+
+<h2 id="servercore">ServerCore</h2>
+<p>Now imagine v1 and v2 of the model are dynamically generated at runtime, as new
+algorithms are being experimented with, or as the model is trained with a new
+data set. In a production environment, you may want to build a server that can
+support gradual rollout, in which v2 can be discovered, loaded, experimented,
+monitored, or reverted while serving v1. Alternatively, you may want to tear
+down v1 before bringing up v2. TensorFlow Serving supports both options -- while
+one is good for maintaining availability during the transition, the other is
+good for minimizing resource usage (e.g. RAM).</p>
+<p>TensorFlow Serving <code>Manager</code> does exactly that. It handles the full lifecycle of
+TensorFlow models including loading, serving and unloading them as well as
+version transitions. In this tutorial, you will build your server on top of a
+TensorFlow Serving <code>ServerCore</code>, which internally wraps an
+<code>AspiredVersionsManager</code>.</p>
+<pre class="prettyprint"><code>int main(int argc, char** argv) {
+  ...
+
+  ServerCore::Options options;
+  options.model_server_config = model_server_config;
+  options.servable_state_monitor_creator = &amp;CreateServableStateMonitor;
+  options.custom_model_config_loader = &amp;LoadCustomModelConfig;
+
+  ::google::protobuf::Any source_adapter_config;
+  SavedModelBundleSourceAdapterConfig
+      saved_model_bundle_source_adapter_config;
+  source_adapter_config.PackFrom(saved_model_bundle_source_adapter_config);
+  (*(*options.platform_config_map.mutable_platform_configs())
+      [kTensorFlowModelPlatform].mutable_source_adapter_config()) =
+      source_adapter_config;
+
+  std::unique_ptr&lt;ServerCore&gt; core;
+  TF_CHECK_OK(ServerCore::Create(options, &amp;core));
+  RunServer(port, std::move(core));
+
+  return 0;
+}
+</code></pre>
+
+<p><code>ServerCore::Create()</code> takes a ServerCore::Options parameter. Here are a few
+commonly used options:</p>
+<ul>
+<li><code>ModelServerConfig</code> that specifies models to be loaded. Models are declared
+  either through <code>model_config_list</code>, which declares a static list of models, or
+  through <code>custom_model_config</code>, which defines a custom way to declare a list of
+  models that may get updated at runtime.</li>
+<li><code>PlatformConfigMap</code> that maps from the name of the platform (such as
+  <code>tensorflow</code>) to the <code>PlatformConfig</code>, which is used to create the
+  <code>SourceAdapter</code>. <code>SourceAdapter</code> adapts <code>StoragePath</code> (the path where a model
+  version is discovered) to model <code>Loader</code> (loads the model version from
+  storage path and provides state transition interfaces to the <code>Manager</code>). If
+  <code>PlatformConfig</code> contains <code>SavedModelBundleSourceAdapterConfig</code>, a
+  <code>SavedModelBundleSourceAdapter</code> will be created, which we will explain later.</li>
+</ul>
+<p><code>SavedModelBundle</code> is a key component of TensorFlow Serving. It represents a
+TensorFlow model loaded from a given path and provides the same <code>Session::Run</code>
+interface as TensorFlow to run inference. <code>SavedModelBundleSourceAdapter</code> adapts
+storage path to <code>Loader&lt;SavedModelBundle&gt;</code> so that model lifetime can be managed
+by <code>Manager</code>. Please note that <code>SavedModelBundle</code> is the successor of deprecated
+<code>SessionBundle</code>. Users are encouraged to use <code>SavedModelBundle</code> as the support
+for <code>SessionBundle</code> will soon be removed.</p>
+<p>With all these, <code>ServerCore</code> internally does the following:</p>
+<ul>
+<li>Instantiates a <code>FileSystemStoragePathSource</code> that monitors model export
+  paths declared in <code>model_config_list</code>.</li>
+<li>Instantiates a <code>SourceAdapter</code> using the <code>PlatformConfigMap</code> with the
+  model platform declared in <code>model_config_list</code> and connects the
+  <code>FileSystemStoragePathSource</code> to it. This way, whenever a new model version is
+  discovered under the export path, the <code>SavedModelBundleSourceAdapter</code>
+  adapts it to a <code>Loader&lt;SavedModelBundle&gt;</code>.</li>
+<li>Instantiates a specific implementation of <code>Manager</code> called
+  <code>AspiredVersionsManager</code> that manages all such <code>Loader</code> instances created by
+  the <code>SavedModelBundleSourceAdapter</code>. <code>ServerCore</code> exports the <code>Manager</code>
+  interface by delegating the calls to <code>AspiredVersionsManager</code>.</li>
+</ul>
+<p>Whenever a new version is available, this <code>AspiredVersionsManager</code> loads the new
+version, and under its default behavior unloads the old one. If you want to
+start customizing, you are encouraged to understand the components that it
+creates internally, and how to configure them.</p>
+<p>It is worth mentioning that TensorFlow Serving is designed from scratch to be
+very flexible and extensible. You can build various plugins to customize system
+behavior, while taking advantage of generic core components like <code>ServerCore</code>
+and <code>AspiredVersionsManager</code>. For example, you could build a data source plugin
+that monitors cloud storage instead of local storage, or you could build a
+version policy plugin that does version transition in a different way -- in
+fact, you could even build a custom model plugin that serves non-TensorFlow
+models. These topics are out of scope for this tutorial. However, you can refer
+to the <a href="custom_source?hl=zh-cn">custom source</a> and
+<a href="custom_servable?hl=zh-cn">custom servable</a> tutorials for more information.</p>
+<h2 id="batching">Batching</h2>
+<p>Another typical server feature we want in a production environment is batching.
+Modern hardware accelerators (GPUs, etc.) used to do machine learning inference
+usually achieve best computation efficiency when inference requests are run in
+large batches.</p>
+<p>Batching can be turned on by providing proper <code>SessionBundleConfig</code> when
+creating the <code>SavedModelBundleSourceAdapter</code>. In this case we set the
+<code>BatchingParameters</code> with pretty much default values. Batching can be fine-tuned
+by setting custom timeout, batch_size, etc. values. For details, please refer
+to <code>BatchingParameters</code>.</p>
+<pre class="prettyprint"><code>SessionBundleConfig session_bundle_config;
+// Batching config
+if (enable_batching) {
+  BatchingParameters* batching_parameters =
+      session_bundle_config.mutable_batching_parameters();
+  batching_parameters-&gt;mutable_thread_pool_name()-&gt;set_value(
+      &quot;model_server_batch_threads&quot;);
+}
+*saved_model_bundle_source_adapter_config.mutable_legacy_config() =
+    session_bundle_config;
+</code></pre>
+
+<p>Upon reaching full batch, inference requests are merged internally into a
+single large request (tensor), and <code>tensorflow::Session::Run()</code> is invoked
+(which is where the actual efficiency gain on GPUs comes from).</p>
+<h1 class="page-title" id="serve_with_manager">Serve with Manager</h1>
+<p>As mentioned above, TensorFlow Serving <code>Manager</code> is designed to be a generic
+component that can handle loading, serving, unloading and version transition of
+models generated by arbitrary machine learning systems. Its APIs are built
+around the following key concepts:</p>
+<ul>
+<li>
+<p><strong>Servable</strong>:
+  Servable is any opaque object that can be used to serve client requests. The
+  size and granularity of a servable is flexible, such that a single servable
+  might include anything from a single shard of a lookup table to a single
+  machine-learned model to a tuple of models. A servable can be of any type and
+  interface.</p>
+</li>
+<li>
+<p><strong>Servable Version</strong>:
+  Servables are versioned and TensorFlow Serving <code>Manager</code> can manage one or
+  more versions of a servable. Versioning allows for more than one version of a
+  servable to be loaded concurrently, supporting gradual rollout and
+  experimentation.</p>
+</li>
+<li>
+<p><strong>Servable Stream</strong>:
+  A servable stream is the sequence of versions of a servable, with increasing
+  version numbers.</p>
+</li>
+<li>
+<p><strong>Model</strong>:
+  A machine-learned model is represented by one or more servables. Examples of
+  servables are:</p>
+<ul>
+<li>TensorFlow session or wrappers around them, such as <code>SavedModelBundle</code>.</li>
+<li>Other kinds of machine-learned models.</li>
+<li>Vocabulary lookup tables.</li>
+<li>Embedding lookup tables.</li>
+</ul>
+<p>A composite model could be represented as multiple independent servables, or
+as a single composite servable. A servable may also correspond to a fraction
+of a Model, for example with a large lookup table sharded across many
+<code>Manager</code> instances.</p>
+</li>
+</ul>
+<p>To put all these into the context of this tutorial:</p>
+<ul>
+<li>
+<p>TensorFlow models are represented by one kind of servable --
+    <code>SavedModelBundle</code>. <code>SavedModelBundle</code> internally consists of a
+    <code>tensorflow:Session</code> paired with some metadata about what graph is loaded
+    into the session and how to run it for inference.</p>
+</li>
+<li>
+<p>There is a file-system directory containing a stream of TensorFlow exports,
+    each in its own subdirectory whose name is a version number. The outer
+    directory can be thought of as the serialized representation of the servable
+    stream for the TensorFlow model being served. Each export corresponds to a
+    servables that can be loaded.</p>
+</li>
+<li>
+<p><code>AspiredVersionsManager</code> monitors the export stream, and manages lifecycle
+    of all <code>SavedModelBundle</code> servables dynamically.</p>
+</li>
+</ul>
+<p><code>TensorflowPredictImpl::Predict</code> then just:</p>
+<ul>
+<li>Requests <code>SavedModelBundle</code> from the manager (through ServerCore).</li>
+<li>Uses the <code>generic signatures</code> to map logical tensor names in
+  <code>PredictRequest</code> to real tensor names and bind values to tensors.</li>
+<li>Runs inference.</li>
+</ul>
+<h2 id="test_and_run_the_server">Test and Run The Server</h2>
+<p>Copy the first version of the export to the monitored folder and start the
+server.</p>
+<pre class="prettyprint lang-shell"><code>$&gt;mkdir /tmp/monitored
+$&gt;cp -r /tmp/mnist_model/1 /tmp/monitored
+$&gt;bazel build -c opt //tensorflow_serving/model_servers:tensorflow_model_server
+$&gt;bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server --enable_batching --port=9000 --model_name=mnist --model_base_path=/tmp/monitored
+</code></pre>
+
+<p>The server will emit log messages every one second that say
+"Aspiring version for servable ...", which means it has found the export, and is
+tracking its continued existence.</p>
+<p>Run the test with <code>--concurrency=10</code>. This will send concurrent requests to the
+server and thus trigger your batching logic.</p>
+<pre class="prettyprint lang-shell"><code>$&gt;bazel build -c opt //tensorflow_serving/example:mnist_client
+$&gt;bazel-bin/tensorflow_serving/example/mnist_client --num_tests=1000 --server=localhost:9000 --concurrency=10
+...
+Inference error rate: 13.1%
+</code></pre>
+
+<p>Then we copy the second version of the export to the monitored folder and re-run
+the test:</p>
+<pre class="prettyprint lang-shell"><code>$&gt;cp -r /tmp/mnist_model/2 /tmp/monitored
+$&gt;bazel-bin/tensorflow_serving/example/mnist_client --num_tests=1000 --server=localhost:9000 --concurrency=10
+...
+Inference error rate: 9.5%
+</code></pre>
+
+<p>This confirms that your server automatically discovers the new version and uses
+it for serving!</p>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies?hl=zh-cn">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:30:38.240380">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="1NpPL75FLjBX6YR-kcZZtEC1Ycu8fLNesFh_0lYZvCs6MTUxNzg3MjU4OTc5NTI1MA" /><input type="hidden" name="next" value="/serving/serving_advanced"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot.js?hl=zh-cn"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/?hl=zh-cn');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="319.319963455"></span></body></html>

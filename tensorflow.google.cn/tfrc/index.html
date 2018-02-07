@@ -1,0 +1,614 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="74RM4rYljV9Z-tUKSo0oGHsqKDIUZBcqYLd9CBiB_ZI6MTUxNzg0NjUwNjMwNjcwMA" /><link rel="canonical" href="https://www.tensorflow.org/tfrc/"><link rel="alternate" href="https://www.tensorflow.org/tfrc/" hreflang="en"><link rel="alternate" href="index.html" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/tfrc/" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css"><script src="../_static/18908e5f48/js/jquery-bundle.js"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/tfrc/"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>TensorFlow</title><meta property="og:title" content="TensorFlow"><meta name="description" content="Accelerating open machine learning research with Cloud TPUs"><meta property="og:description" content="Accelerating open machine learning research with Cloud TPUs"><title>Accelerating open machine learning research with Cloud TPUs</title><meta content="IE=Edge" http-equiv="X-UA-Compatible"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, height=device-height"><link rel="stylesheet" href="assets/app.min.css"></head><body class="
+               devsite-doc-page
+               
+               devsite-full-width-page
+               
+               
+               devsite-header-no-lower-tabs"
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs.1"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index.html"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      TFRC
+    
+    
+  </li></ul></div></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="index.html"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index.html" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      TFRC
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  
+  <div class="devsite-article-body clearfix
+            
+              devsite-no-page-title
+            "
+       itemprop="articleBody">
+    
+  <main>
+    <div class="devsite-site-mask"></div>
+    <header class="rc__hero">
+      <div id="brand">
+        <h1>TensorFlow</h1>
+        <h2>Research Cloud</h2>
+      </div>
+      <section class="rc__hero-callout">
+        <h5>Accelerating open machine learning research with <span class="nowrap">Cloud TPUs</span></h5>
+        <a class="bttn--light gc-analytics-event" data-category="TPU Signup" data-label="Top" href="https://services.google.com/fb/forms/tpusignup/">Sign up now</a>
+      </section>
+    </header>
+    <section class="rc__content grid sections">
+      <div class="section col-lg-8 col-sm-10 push-md-1 ">
+        <section class="section__block">
+          <header class="section__title">
+            <div class="section__index">
+              <span>1</span>
+            </div>
+            <div>
+              <h3 class="section__section-title">1,000 Cloud TPUs for the world's top researchers</h3>
+              <p>Researchers need enormous computational resources to train the machine learning models that have delivered
+                recent advances in medical imaging, speech recognition, game playing, and many other domains. The TensorFlow
+                Research Cloud is a cluster of 1,000 Cloud TPUs that provides the machine learning research community with
+                a total of 180 petaflops of raw compute power — at no charge — to support the next wave of breakthroughs.</p>
+            </div>
+          </header>
+          <figure>
+            <img width="630" src="assets/images/s1_1x.jpg" srcset="/tfrc/assets/images/s1_1x.jpg 1x, /tfrc/assets/images/s1_2x.jpg 2x">
+          </figure>
+        </section>
+      </div>
+      <div class="section col-lg-8 col-sm-10 push-md-2 offset">
+        <section class="section__block">
+          <header class="section__title">
+            <div class="section__index">
+              <span>2</span>
+            </div>
+            <div>
+              <h3 class="section__section-title">Cloud TPUs: Built to train <em>and</em> run ML models</h3>
+              <p>Google’s first-generation TPUs made it dramatically faster to run ML models that had already been trained,
+                but the training had to be performed separately. Google’s second-generation <a href="https://cloud.google.com/tpu">Cloud TPUs</a>
+                are even more powerful, designed from the ground up to accelerate training ML models as well as running them.
+                The TensorFlow Research Cloud provides researchers with access to these second-generation Cloud TPUs, each
+                of which provides 180 teraflops of ML acceleration.</p>
+            </div>
+          </header>
+          <figure>
+            <img width="630" src="assets/images/s2_1x.jpg" srcset="/tfrc/assets/images/s2_1x.jpg 1x, /tfrc/assets/images/s2_2x.jpg 2x">
+          </figure>
+        </section>
+      </div>
+      <div class="section col-lg-8 col-sm-10 push-md-1 ">
+        <section class="section__block">
+          <header class="section__title">
+            <div class="section__index">
+              <span>3</span>
+            </div>
+            <div>
+              <h3 class="section__section-title">Share the benefits of machine learning with the world</h3>
+              <p>Our goal is to ensure that the most promising researchers in the world have access to enough compute power
+                to imagine, implement, and publish the next wave of ML breakthroughs. We’re setting up a program to accept
+                applications for access to the TensorFlow Research Cloud and will evaluate applications on a rolling basis.
+                The program will be highly selective since demand for ML compute is overwhelming, but we specifically encourage
+                individuals with a wide range of backgrounds, affiliations, and interests to apply. The program will start
+                small and scale up.</p>
+            </div>
+          </header>
+          <figure>
+            <img width="630" src="assets/images/s3_1x.jpg" srcset="/tfrc/assets/images/s3_1x.jpg 1x, /tfrc/assets/images/s3_2x.jpg 2x">
+          </figure>
+        </section>
+      </div>
+    </section>
+    <section class="rc__content">
+      <p class="rc__footnote col-sm-8 col-lg-5 push-md-3">Participants in the TFRC program will be expected to share their TFRC-supported research with the world through peer-reviewed
+        publications, open-source code, blog posts, or other means. They should also be willing to share detailed feedback
+        with Google to help us improve the TFRC program and the underlying Cloud TPU platform over time.</p>
+    </section>
+
+    <section class="rc__gallery">
+      <div class="rc__content">
+        <header class="section__title">
+          <div class="section__index">
+            <span>4</span>
+          </div>
+          <div>
+            <h3 class="section__section-title">TPUs in the datacenter</h3>
+          </div>
+        </header>
+
+        <div class="row flex-center rc__gallery-row">
+          <div class="gallery__container ltr">
+            <div class="image" id="img1">
+              <button class="devsite-dialog-button" data-modal-dialog-id="img-dialog-1"></button>
+              <img srcset="/tfrc/assets/images/gallery/1x/1.jpg 390w, /tfrc/assets/images/gallery/2x/1.jpg 1024w" src="assets/images/gallery/2x/1.jpg">
+            </div>
+            <div class="image" id="img2">
+              <button class="devsite-dialog-button" data-modal-dialog-id="img-dialog-2"></button>
+              <img srcset="/tfrc/assets/images/gallery/1x/2.jpg 390w, /tfrc/assets/images/gallery/2x/2.jpg 1024w" src="assets/images/gallery/2x/2.jpg">
+            </div>
+          </div>
+          <div class="image large" id="img3">
+            <button class="devsite-dialog-button" data-modal-dialog-id="img-dialog-3"></button>
+            <img srcset="/tfrc/assets/images/gallery/1x/3.jpg 390w, /tfrc/assets/images/gallery/2x/3.jpg 1024w" src="assets/images/gallery/2x/3.jpg">
+          </div>
+        </div>
+        <div id="img-dialog-1" class="devsite-dialog rc__modal">
+          <div class="devsite-dialog-contents">
+            <img srcset="/tfrc/assets/images/gallery/1x/1.jpg 390w, /tfrc/assets/images/gallery/2x/1.jpg 768w" src="assets/images/gallery/2x/1.jpg">
+          </div>
+          <div class="devsite-dialog-buttons">
+            <button class="devsite-dialog-close">Close</button>
+          </div>
+        </div>
+
+        <div id="img-dialog-2" class="devsite-dialog rc__modal">
+          <div class="devsite-dialog-contents">
+            <img srcset="/tfrc/assets/images/gallery/1x/2.jpg 390w, /tfrc/assets/images/gallery/2x/2.jpg 768w" src="assets/images/gallery/2x/2.jpg">
+          </div>
+          <div class="devsite-dialog-buttons">
+            <button class="devsite-dialog-close">Close</button>
+          </div>
+        </div>
+
+        <div id="img-dialog-3" class="devsite-dialog rc__modal">
+          <div class="devsite-dialog-contents">
+            <img srcset="/tfrc/assets/images/gallery/1x/3.jpg 390w, /tfrc/assets/images/gallery/2x/3.jpg 768w" src="assets/images/gallery/2x/3.jpg">
+          </div>
+          <div class="devsite-dialog-buttons">
+            <button class="devsite-dialog-close">Close</button>
+          </div>
+        </div>
+
+        <div id="img-dialog-4" class="devsite-dialog rc__modal">
+          <div class="devsite-dialog-contents">
+            <img srcset="/tfrc/assets/images/gallery/1x/4.jpg 390w, /tfrc/assets/images/gallery/2x/4.jpg 768w" src="assets/images/gallery/2x/4.jpg">
+          </div>
+          <div class="devsite-dialog-buttons">
+            <button class="devsite-dialog-close">Close</button>
+          </div>
+        </div>
+
+        <div id="img-dialog-5" class="devsite-dialog rc__modal">
+          <div class="devsite-dialog-contents">
+            <img srcset="/tfrc/assets/images/gallery/1x/5.jpg 390w, /tfrc/assets/images/gallery/2x/5.jpg 768w" src="assets/images/gallery/2x/5.jpg">
+          </div>
+          <div class="devsite-dialog-buttons">
+            <button class="devsite-dialog-close">Close</button>
+          </div>
+        </div>
+
+        <div id="img-dialog-6" class="devsite-dialog rc__modal">
+          <div class="devsite-dialog-contents">
+            <img srcset="/tfrc/assets/images/gallery/1x/6.jpg 390w, /tfrc/assets/images/gallery/2x/6.jpg 768w" src="assets/images/gallery/2x/6.jpg">
+          </div>
+          <div class="devsite-dialog-buttons">
+            <button class="devsite-dialog-close">Close</button>
+          </div>
+        </div>
+
+        <div class="row flex-center rc__gallery-row">
+          <div class="image large" id="img4">
+            <button class="devsite-dialog-button" data-modal-dialog-id="img-dialog-4"></button>
+            <img srcset="/tfrc/assets/images/gallery/1x/4.jpg 390w, /tfrc/assets/images/gallery/2x/4.jpg 1024w" src="assets/images/gallery/2x/4.jpg">
+          </div>
+          <div class="gallery__container rtl">
+            <div class="image" id="img5">
+              <button class="devsite-dialog-button" data-modal-dialog-id="img-dialog-5"></button>
+              <img srcset="/tfrc/assets/images/gallery/1x/5.jpg 390w, /tfrc/assets/images/gallery/2x/5.jpg 1024w" src="assets/images/gallery/2x/5.jpg">
+            </div>
+            <div class="image" id="img6">
+              <button class="devsite-dialog-button" data-modal-dialog-id="img-dialog-6"></button>
+              <img srcset="/tfrc/assets/images/gallery/1x/6.jpg 390w, /tfrc/assets/images/gallery/2x/6.jpg 1024w" src="assets/images/gallery/2x/6.jpg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="rc__footer">
+      <div class="row rc__content">
+        <h3 class="col-md-5">Unlock new breakthroughs with the TensorFlow Research Cloud</h3>
+        <div class="rc__divider col-md-1"></div>
+        <div class="col-md-5">
+          <p>Machine learning researchers around the world have done amazing things with the limited computational resources
+            they currently have available. We’d like to empower researchers to think even bigger and tackle exciting new
+            challenges that would be inaccessible otherwise. We hope the TensorFlow Research Cloud will allow people from
+            many different backgrounds to expand the frontier of machine learning research with new discoveries!</p>
+          <a class="bttn--light gc-analytics-event" data-category="TPU Signup" data-label="Bottom" href="https://services.google.com/fb/forms/tpusignup/">Sign up now</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  </div>
+  
+
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="74RM4rYljV9Z-tUKSo0oGHsqKDIUZBcqYLd9CBiB_ZI6MTUxNzg0NjUwNjMwNjcwMA" /><input type="hidden" name="next" value="/tfrc/"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js"></script><script src="../_static/18908e5f48/js/script_foot.js"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="308.609962463"></span></body></html>

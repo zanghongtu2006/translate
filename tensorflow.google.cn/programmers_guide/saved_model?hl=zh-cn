@@ -1,0 +1,1387 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="IdNFiNB8uFpRhfEBFnUuhuPwPXUvVqlhzLXcb37R3Dg6MTUxNzg3OTA1MDc1OTY2MA" /><link rel="canonical" href="https://www.tensorflow.org/programmers_guide/saved_model"><link rel="alternate" href="https://www.tensorflow.org/programmers_guide/saved_model" hreflang="en"><link rel="alternate" href="saved_model" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/programmers_guide/saved_model" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png?hl=zh-cn"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png?hl=zh-cn"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css?hl=zh-cn"><script src="../_static/18908e5f48/js/jquery-bundle.js?hl=zh-cn"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/programmers_guide/saved_model"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Saving and Restoring &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Saving and Restoring &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               "
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html?hl=zh-cn" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png?hl=zh-cn"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/?hl=zh-cn"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Develop
+    
+    
+  </li></ul></div></div><div class="devsite-doc-set-nav-row devsite-full-site-width"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Get Started"
+       >
+        Get Started
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index.html?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Programmer&#39;s Guide"
+       >
+        Programmer&#39;s Guide
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tutorials/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Tutorials"
+       >
+        Tutorials
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../performance/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Performance"
+       >
+        Performance
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../mobile/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Mobile"
+       >
+        Mobile
+      </a></li></ul></nav></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Get Started">
+        Get Started
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Programmer&#39;s Guide"
+            tabindex="0">
+        Programmer&#39;s Guide
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tutorials/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Tutorials">
+        Tutorials
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../performance/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Performance">
+        Performance
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../mobile/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Mobile">
+        Mobile
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html?hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Programmer's Guide</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">High Level APIs</span></li><li class="devsite-nav-item"><a href="estimators?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Estimators</a></li><li class="devsite-nav-item"><a href="datasets?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Importing Data</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Low Level APIs</span></li><li class="devsite-nav-item"><a href="low_level_intro?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction</a></li><li class="devsite-nav-item"><a href="../resources/dims_types.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Tensors</a></li><li class="devsite-nav-item"><a href="variables?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Variables</a></li><li class="devsite-nav-item"><a href="graphs?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Graphs and Sessions</a></li><li class="devsite-nav-item devsite-nav-active"><a href="saved_model?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Saving and Restoring</a></li><li class="devsite-nav-item"><a href="using_gpu?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using GPUs</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">ML Concepts</span></li><li class="devsite-nav-item"><a href="../how_tos/embedding_viz/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Embeddings</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Debugging</span></li><li class="devsite-nav-item"><a href="debugger?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Debugging TensorFlow Programs</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorBoard</span></li><li class="devsite-nav-item"><a href="../get_started/summaries_and_tensorboard?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard: Visualizing Learning</a></li><li class="devsite-nav-item"><a href="../get_started/graph_viz?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard: Graph Visualization</a></li><li class="devsite-nav-item"><a href="../get_started/tensorboard_histograms?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard Histogram Dashboard</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Misc</span></li><li class="devsite-nav-item"><a href="version_semantics?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Version Compatibility</a></li><li class="devsite-nav-item"><a href="faq?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Frequently Asked Questions</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Programmer's Guide</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">High Level APIs</span></li><li class="devsite-nav-item"><a href="estimators?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Estimators</a></li><li class="devsite-nav-item"><a href="datasets?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Importing Data</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Low Level APIs</span></li><li class="devsite-nav-item"><a href="low_level_intro?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction</a></li><li class="devsite-nav-item"><a href="../resources/dims_types.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Tensors</a></li><li class="devsite-nav-item"><a href="variables?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Variables</a></li><li class="devsite-nav-item"><a href="graphs?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Graphs and Sessions</a></li><li class="devsite-nav-item devsite-nav-active"><a href="saved_model?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Saving and Restoring</a></li><li class="devsite-nav-item"><a href="using_gpu?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using GPUs</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">ML Concepts</span></li><li class="devsite-nav-item"><a href="../how_tos/embedding_viz/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Embeddings</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Debugging</span></li><li class="devsite-nav-item"><a href="debugger?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Debugging TensorFlow Programs</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorBoard</span></li><li class="devsite-nav-item"><a href="../get_started/summaries_and_tensorboard?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard: Visualizing Learning</a></li><li class="devsite-nav-item"><a href="../get_started/graph_viz?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard: Graph Visualization</a></li><li class="devsite-nav-item"><a href="../get_started/tensorboard_histograms?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorBoard Histogram Dashboard</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Misc</span></li><li class="devsite-nav-item"><a href="version_semantics?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Version Compatibility</a></li><li class="devsite-nav-item"><a href="faq?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Frequently Asked Questions</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="../get_started/index?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Develop
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="3">
+    
+    
+      Programmer&#39;s Guide
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Saving and Restoring
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG&amp;hl=zh-cn"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>This document explains how to save and restore
+<a href="variables?hl=zh-cn">variables</a> and models.</p>
+<h2 id="saving_and_restoring_variables">Saving and restoring variables</h2>
+<p>A TensorFlow variable provides the best way to represent shared, persistent
+state manipulated by your program. (See <a href="variables?hl=zh-cn">Variables</a> for details.)
+This section explains how to save and restore variables.
+Note that Estimators automatically saves and restores variables
+(in the <code>model_dir</code>).</p>
+<p>The <code>tf.train.Saver</code> class provides methods for saving and restoring models.
+The <code>tf.train.Saver</code> constructor adds <code>save</code> and <code>restore</code> ops to the graph
+for all, or a specified list, of the variables in the graph.  The <code>Saver</code>
+object provides methods to run these ops, specifying paths for the checkpoint
+files to write to or read from.</p>
+<p>The saver will restore all variables already defined in your model. If you're
+loading a model without knowing how to build its graph (for example, if you're
+writing a generic program to load models), then read the
+<a href="saved_model?hl=zh-cn#models">Overview of saving and restoring models</a> section
+later in this document.</p>
+<p>TensorFlow saves variables in binary <strong>checkpoint files</strong> that,
+roughly speaking, map variable names to tensor values.</p>
+<h3 id="saving_variables">Saving variables</h3>
+<p>Create a <code>Saver</code> with <code>tf.train.Saver()</code> to manage all variables in the
+model. For example, the following snippet demonstrates how to call the
+<code>tf.train.Saver.save</code> method to save variables to checkpoint files:</p>
+<pre class="prettyprint lang-python"><code># Create some variables.
+v1 = tf.get_variable(&quot;v1&quot;, shape=[3], initializer = tf.zeros_initializer)
+v2 = tf.get_variable(&quot;v2&quot;, shape=[5], initializer = tf.zeros_initializer)
+
+inc_v1 = v1.assign(v1+1)
+dec_v2 = v2.assign(v2-1)
+
+# Add an op to initialize the variables.
+init_op = tf.global_variables_initializer()
+
+# Add ops to save and restore all the variables.
+saver = tf.train.Saver()
+
+# Later, launch the model, initialize the variables, do some work, and save the
+# variables to disk.
+with tf.Session() as sess:
+  sess.run(init_op)
+  # Do some work with the model.
+  inc_v1.op.run()
+  dec_v2.op.run()
+  # Save the variables to disk.
+  save_path = saver.save(sess, &quot;/tmp/model.ckpt&quot;)
+  print(&quot;Model saved in path: %s&quot; % save_path)
+</code></pre>
+
+<h3 id="restoring_variables">Restoring variables</h3>
+<p>The <code>tf.train.Saver</code> object not only saves variables to checkpoint files, it
+also restores variables. Note that when you restore variables you do not have
+to initialize them beforehand. For example, the following snippet demonstrates
+how to call the <code>tf.train.Saver.restore</code> method to restore variables from the
+checkpoint files:</p>
+<pre class="prettyprint lang-python"><code>tf.reset_default_graph()
+
+# Create some variables.
+v1 = tf.get_variable(&quot;v1&quot;, shape=[3])
+v2 = tf.get_variable(&quot;v2&quot;, shape=[5])
+
+# Add ops to save and restore all the variables.
+saver = tf.train.Saver()
+
+# Later, launch the model, use the saver to restore variables from disk, and
+# do some work with the model.
+with tf.Session() as sess:
+  # Restore variables from disk.
+  saver.restore(sess, &quot;/tmp/model.ckpt&quot;)
+  print(&quot;Model restored.&quot;)
+  # Check the values of the variables
+  print(&quot;v1 : %s&quot; % v1.eval())
+  print(&quot;v2 : %s&quot; % v2.eval())
+</code></pre>
+
+<p>Notes:</p>
+<ul>
+<li>There is not a physical file called "/tmp/model.ckpt". It is the <strong>prefix</strong>
+   of filenames created for the checkpoint. Users only interact with the
+   prefix instead of physical checkpoint files.</li>
+</ul>
+<h3 id="choosing_which_variables_to_save_and_restore">Choosing which variables to save and restore</h3>
+<p>If you do not pass any arguments to <code>tf.train.Saver()</code>, the saver handles all
+variables in the graph.  Each variable is saved under the name that was passed
+when the variable was created.</p>
+<p>It is sometimes useful to explicitly specify names for variables in the
+checkpoint files.  For example, you may have trained a model with a variable
+named <code>"weights"</code> whose value you want to restore into a variable named
+<code>"params"</code>.</p>
+<p>It is also sometimes useful to only save or restore a subset of the variables
+used by a model.  For example, you may have trained a neural net with five
+layers, and you now want to train a new model with six layers that reuses the
+existing weights of the five trained layers. You can use the saver to restore
+the weights of just the first five layers.</p>
+<p>You can easily specify the names and variables to save or load by passing to the
+<code>tf.train.Saver()</code> constructor either of the following:</p>
+<ul>
+<li>A list of variables (which will be stored under their own names).</li>
+<li>A Python dictionary in which keys are the names to use and the values are the
+variables to manage.</li>
+</ul>
+<p>Continuing from the save/restore examples shown earlier:</p>
+<pre class="prettyprint lang-python"><code>tf.reset_default_graph()
+# Create some variables.
+v1 = tf.get_variable(&quot;v1&quot;, [3], initializer = tf.zeros_initializer)
+v2 = tf.get_variable(&quot;v2&quot;, [5], initializer = tf.zeros_initializer)
+
+# Add ops to save and restore only `v2` using the name &quot;v2&quot;
+saver = tf.train.Saver({&quot;v2&quot;: v2})
+
+# Use the saver object normally after that.
+with tf.Session() as sess:
+  # Initialize v1 since the saver will not.
+  v1.initializer.run()
+  saver.restore(sess, &quot;/tmp/model.ckpt&quot;)
+
+  print(&quot;v1 : %s&quot; % v1.eval())
+  print(&quot;v2 : %s&quot; % v2.eval())
+</code></pre>
+
+<p>Notes:</p>
+<ul>
+<li>
+<p>You can create as many <code>Saver</code> objects as you want if you need to save and
+   restore different subsets of the model variables.  The same variable can be
+   listed in multiple saver objects; its value is only changed when the
+   <code>Saver.restore()</code> method is run.</p>
+</li>
+<li>
+<p>If you only restore a subset of the model variables at the start of a
+   session, you have to run an initialize op for the other variables.  See
+   <a href="../api_docs/python/tf/variables_initializer?hl=zh-cn"><code>tf.variables_initializer</code></a> for more information.</p>
+</li>
+<li>
+<p>To inspect the variables in a checkpoint, you can use the
+   <a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/python/tools/inspect_checkpoint.py"><code>inspect_checkpoint</code></a>
+   library, particularly the <code>print_tensors_in_checkpoint_file</code> function.</p>
+</li>
+<li>
+<p>By default, <code>Saver</code> uses the value of the <a href="../api_docs/python/tf/Variable?hl=zh-cn#name"><code>tf.Variable.name</code></a> property
+   for each variable.  However, when you create a <code>Saver</code> object, you may
+   optionally choose names for the variables in the checkpoint files.</p>
+</li>
+</ul>
+<h3 id="inspect_variables_in_a_checkpoint">Inspect variables in a checkpoint</h3>
+<p>We can quickly inspect variables in a checkpoint with the
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/python/tools/inspect_checkpoint.py"><code>inspect_checkpoint</code></a> library.</p>
+<p>Continuing from the save/restore examples shown earlier:</p>
+<pre class="prettyprint lang-python"><code># import the inspect_checkpoint library
+from tensorflow.python.tools import inspect_checkpoint as chkp
+
+# print all tensors in checkpoint file
+chkp.print_tensors_in_checkpoint_file(&quot;/tmp/model.ckpt&quot;, tensor_name='', all_tensors=True)
+
+# tensor_name:  v1
+# [ 1.  1.  1.]
+# tensor_name:  v2
+# [-1. -1. -1. -1. -1.]
+
+# print only tensor v1 in checkpoint file
+chkp.print_tensors_in_checkpoint_file(&quot;/tmp/model.ckpt&quot;, tensor_name='v1', all_tensors=False)
+
+# tensor_name:  v1
+# [ 1.  1.  1.]
+
+# print only tensor v2 in checkpoint file
+chkp.print_tensors_in_checkpoint_file(&quot;/tmp/model.ckpt&quot;, tensor_name='v2', all_tensors=False)
+
+# tensor_name:  v2
+# [-1. -1. -1. -1. -1.]
+</code></pre>
+
+<p><a name="models"></a></p>
+<h2 id="overview_of_saving_and_restoring_models">Overview of saving and restoring models</h2>
+<p>When you want to save and load variables, the graph, and the
+graph's metadata--basically, when you want to save or restore
+your model--we recommend using SavedModel.
+<strong>SavedModel</strong> is a language-neutral, recoverable, hermetic
+serialization format.  SavedModel enables higher-level systems
+and tools to produce, consume, and transform TensorFlow models.
+TensorFlow provides several mechanisms for interacting with
+SavedModel, including tf.saved_model APIs, Estimator APIs and a CLI.</p>
+<h2 id="apis_to_build_and_load_a_savedmodel">APIs to build and load a SavedModel</h2>
+<p>This section focuses on the APIs for building and loading a SavedModel,
+particularly when using lower-level TensorFlow APIs.</p>
+<h3 id="building_a_savedmodel">Building a SavedModel</h3>
+<p>We provide a Python implementation of the SavedModel
+<a href="../api_docs/python/tf/saved_model/builder?hl=zh-cn">builder</a>.
+The <code>SavedModelBuilder</code> class provides functionality to
+save multiple <code>MetaGraphDef</code>s.  A <strong>MetaGraph</strong> is a dataflow graph, plus
+its associated variables, assets, and signatures.  A <strong><code>MetaGraphDef</code></strong>
+is the protocol buffer representation of a MetaGraph.  A <strong>signature</strong> is
+the set of inputs to and outputs from a graph.</p>
+<p>If assets need to be saved and written or copied to disk, they can be provided
+when the first <code>MetaGraphDef</code> is added. If multiple <code>MetaGraphDef</code>s are
+associated with an asset of the same name, only the first version is retained.</p>
+<p>Each <code>MetaGraphDef</code> added to the SavedModel must be annotated with
+user-specified tags. The tags provide a means to identify the specific
+<code>MetaGraphDef</code> to load and restore, along with the shared set of variables
+and assets. These tags
+typically annotate a <code>MetaGraphDef</code> with its functionality (for example,
+serving or training), and optionally with hardware-specific aspects (for
+example, GPU).</p>
+<p>For example, the following code suggests a typical way to use
+<code>SavedModelBuilder</code> to build a SavedModel:</p>
+<pre class="prettyprint lang-python"><code>export_dir = ...
+...
+builder = tf.saved_model.builder.SavedModelBuilder(export_dir)
+with tf.Session(graph=tf.Graph()) as sess:
+  ...
+  builder.add_meta_graph_and_variables(sess,
+                                       [tag_constants.TRAINING],
+                                       signature_def_map=foo_signatures,
+                                       assets_collection=foo_assets)
+...
+# Add a second MetaGraphDef for inference.
+with tf.Session(graph=tf.Graph()) as sess:
+  ...
+  builder.add_meta_graph([tag_constants.SERVING])
+...
+builder.save()
+</code></pre>
+
+<h3 id="loading_a_savedmodel_in_python">Loading a SavedModel in Python</h3>
+<p>The Python version of the SavedModel
+<a href="../api_docs/python/tf/saved_model/loader?hl=zh-cn">loader</a>
+provides load and restore capability for a SavedModel. The <code>load</code> operation
+requires the following information:</p>
+<ul>
+<li>The session in which to restore the graph definition and variables.</li>
+<li>The tags used to identify the MetaGraphDef to load.</li>
+<li>The location (directory) of the SavedModel.</li>
+</ul>
+<p>Upon a load, the subset of variables, assets, and signatures supplied as part of
+the specific MetaGraphDef will be restored into the supplied session.</p>
+<pre class="prettyprint lang-python"><code>export_dir = ...
+...
+with tf.Session(graph=tf.Graph()) as sess:
+  tf.saved_model.loader.load(sess, [tag_constants.TRAINING], export_dir)
+  ...
+</code></pre>
+
+<h3 id="loading_a_savedmodel_in_c">Loading a Savedmodel in C++</h3>
+<p>The C++ version of the SavedModel
+<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/cc/saved_model/loader.h">loader</a>
+provides an API to load a SavedModel from a path, while allowing
+<code>SessionOptions</code> and <code>RunOptions</code>.
+You have to specify the tags associated with the graph to be loaded.
+The loaded version of SavedModel is referred to as <code>SavedModelBundle</code>
+and contains the MetaGraphDef and the session within which it is loaded.</p>
+<pre class="prettyprint"><code>const string export_dir = ...
+SavedModelBundle bundle;
+...
+LoadSavedModel(session_options, run_options, export_dir, {kSavedModelTagTrain},
+               &amp;bundle);
+</code></pre>
+
+<h3 id="standard_constants">Standard constants</h3>
+<p>SavedModel offers the flexibility to build and load TensorFlow graphs for a
+variety of use-cases. For the most common use-cases, SavedModel's APIs
+provide a set of constants in Python and C++ that are easy to
+reuse and share across tools consistently.</p>
+<h4 id="standard_metagraphdef_tags">Standard MetaGraphDef tags</h4>
+<p>You may use sets of tags to uniquely identify a <code>MetaGraphDef</code> saved in a
+SavedModel. A subset of commonly used tags is specified in:</p>
+<ul>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/tag_constants.py">Python</a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/cc/saved_model/tag_constants.h">C++</a></li>
+</ul>
+<h4 id="standard_signaturedef_constants">Standard SignatureDef constants</h4>
+<p>A <a href="../code/tensorflow/core/protobuf/meta_graph.proto?hl=zh-cn"><strong>SignatureDef</strong></a>
+is a protocol buffer that defines the signature of a computation
+supported by a graph.
+Commonly used input keys, output keys, and method names are
+defined in:</p>
+<ul>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/signature_constants.py">Python</a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/cc/saved_model/signature_constants.h">C++</a></li>
+</ul>
+<h2 id="using_savedmodel_with_estimators">Using SavedModel with Estimators</h2>
+<p>After training an <code>Estimator</code> model, you may want to create a service
+from that model that takes requests and returns a result.  You can run such a
+service locally on your machine or deploy it scalably in the cloud.</p>
+<p>To prepare a trained Estimator for serving, you must export it in the standard
+SavedModel format. This section explains how to:</p>
+<ul>
+<li>Specify the output nodes and the corresponding
+  <a href="https://github.com/tensorflow/serving/blob/master/tensorflow_serving/apis/prediction_service.proto">APIs</a>
+  that can be served (Classify, Regress, or Predict).</li>
+<li>Export your model to the SavedModel format.</li>
+<li>Serve the model from a local server and request predictions.</li>
+</ul>
+<h3 id="preparing_serving_inputs">Preparing serving inputs</h3>
+<p>During training, an <a href="../get_started/estimator?hl=zh-cn#input_fn"><code>input_fn()</code></a> ingests data
+and prepares it for use by the model.  At serving time, similarly, a
+<code>serving_input_receiver_fn()</code> accepts inference requests and prepares them for
+the model.  This function has the following purposes:</p>
+<ul>
+<li>To add placeholders to the graph that the serving system will feed
+   with inference requests.</li>
+<li>To add any additional ops needed to convert data from the input format
+   into the feature <code>Tensor</code>s expected by the model.</li>
+</ul>
+<p>The function returns a <a href="../api_docs/python/tf/estimator/export/ServingInputReceiver?hl=zh-cn"><code>tf.estimator.export.ServingInputReceiver</code></a> object,
+which packages the placeholders and the resulting feature <code>Tensor</code>s together.</p>
+<p>A typical pattern is that inference requests arrive in the form of serialized
+<code>tf.Example</code>s, so the <code>serving_input_receiver_fn()</code> creates a single string
+placeholder to receive them.  The <code>serving_input_receiver_fn()</code> is then also
+responsible for parsing the <code>tf.Example</code>s by adding a <a href="../api_docs/python/tf/parse_example?hl=zh-cn"><code>tf.parse_example</code></a> op to
+the graph.</p>
+<p>When writing such a <code>serving_input_receiver_fn()</code>, you must pass a parsing
+specification to <a href="../api_docs/python/tf/parse_example?hl=zh-cn"><code>tf.parse_example</code></a> to tell the parser what feature names to
+expect and how to map them to <code>Tensor</code>s. A parsing specification takes the
+form of a dict from feature names to <a href="../api_docs/python/tf/FixedLenFeature?hl=zh-cn"><code>tf.FixedLenFeature</code></a>, <a href="../api_docs/python/tf/VarLenFeature?hl=zh-cn"><code>tf.VarLenFeature</code></a>,
+and <a href="../api_docs/python/tf/SparseFeature?hl=zh-cn"><code>tf.SparseFeature</code></a>.  Note this parsing specification should not include
+any label or weight columns, since those will not be available at serving
+time&mdash;in contrast to a parsing specification used in the <code>input_fn()</code> at
+training time.</p>
+<p>In combination, then:</p>
+<pre class="prettyprint lang-py"><code>feature_spec = {'foo': tf.FixedLenFeature(...),
+                'bar': tf.VarLenFeature(...)}
+
+def serving_input_receiver_fn():
+  &quot;&quot;&quot;An input receiver that expects a serialized tf.Example.&quot;&quot;&quot;
+  serialized_tf_example = tf.placeholder(dtype=tf.string,
+                                         shape=[default_batch_size],
+                                         name='input_example_tensor')
+  receiver_tensors = {'examples': serialized_tf_example}
+  features = tf.parse_example(serialized_tf_example, feature_spec)
+  return tf.estimator.export.ServingInputReceiver(features, receiver_tensors)
+</code></pre>
+
+<p>The <a href="../api_docs/python/tf/estimator/export/build_parsing_serving_input_receiver_fn?hl=zh-cn"><code>tf.estimator.export.build_parsing_serving_input_receiver_fn</code></a> utility
+function provides that input receiver for the common case.</p>
+<blockquote>
+<aside class="note"><strong>Note:</strong><span> when training a model to be served using the Predict API with a local
+server, the parsing step is not needed because the model will receive raw
+feature data.</span></aside>
+</blockquote>
+<p>Even if you require no parsing or other input processing&mdash;that is, if the
+serving system will feed feature <code>Tensor</code>s directly&mdash;you must still provide
+a <code>serving_input_receiver_fn()</code> that creates placeholders for the feature
+<code>Tensor</code>s and passes them through.  The
+<a href="../api_docs/python/tf/estimator/export/build_raw_serving_input_receiver_fn?hl=zh-cn"><code>tf.estimator.export.build_raw_serving_input_receiver_fn</code></a> utility provides for
+this.</p>
+<p>If these utilities do not meet your needs, you are free to write your own
+<code>serving_input_receiver_fn()</code>.  One case where this may be needed is if your
+training <code>input_fn()</code> incorporates some preprocessing logic that must be
+recapitulated at serving time.  To reduce the risk of training-serving skew, we
+recommend encapsulating such processing in a function which is then called
+from both <code>input_fn()</code> and <code>serving_input_receiver_fn()</code>.</p>
+<p>Note that the <code>serving_input_receiver_fn()</code> also determines the <em>input</em>
+portion of the signature.  That is, when writing a
+<code>serving_input_receiver_fn()</code>, you must tell the parser what signatures
+to expect and how to map them to your model's expected inputs.
+By contrast, the <em>output</em> portion of the signature is determined by the model.</p>
+<h3 id="performing_the_export">Performing the export</h3>
+<p>To export your trained Estimator, call
+<a href="../api_docs/python/tf/estimator/Estimator?hl=zh-cn#export_savedmodel"><code>tf.estimator.Estimator.export_savedmodel</code></a> with the export base path and
+the <code>serving_input_receiver_fn</code>.</p>
+<pre class="prettyprint lang-py"><code>estimator.export_savedmodel(export_dir_base, serving_input_receiver_fn)
+</code></pre>
+
+<p>This method builds a new graph by first calling the
+<code>serving_input_receiver_fn()</code> to obtain feature <code>Tensor</code>s, and then calling
+this <code>Estimator</code>'s <code>model_fn()</code> to generate the model graph based on those
+features. It starts a fresh <code>Session</code>, and, by default, restores the most recent
+checkpoint into it.  (A different checkpoint may be passed, if needed.)
+Finally it creates a time-stamped export directory below the given
+<code>export_dir_base</code> (i.e., <code>export_dir_base/&lt;timestamp&gt;</code>), and writes a
+SavedModel into it containing a single <code>MetaGraphDef</code> saved from this
+Session.</p>
+<blockquote>
+<aside class="note"><strong>Note:</strong><span> It is your responsibility to garbage-collect old exports.
+Otherwise, successive exports will accumulate under <code>export_dir_base</code>.</span></aside>
+</blockquote>
+<h3 id="specifying_the_outputs_of_a_custom_model">Specifying the outputs of a custom model</h3>
+<p>When writing a custom <code>model_fn</code>, you must populate the <code>export_outputs</code> element
+of the <a href="../api_docs/python/tf/estimator/EstimatorSpec?hl=zh-cn"><code>tf.estimator.EstimatorSpec</code></a> return value. This is a dict of
+<code>{name: output}</code> describing the output signatures to be exported and used during
+serving.</p>
+<p>In the usual case of making a single prediction, this dict contains
+one element, and the <code>name</code> is immaterial.  In a multi-headed model, each head
+is represented by an entry in this dict.  In this case the <code>name</code> is a string
+of your choice that can be used to request a specific head at serving time.</p>
+<p>Each <code>output</code> value must be an <code>ExportOutput</code> object  such as
+<a href="../api_docs/python/tf/estimator/export/ClassificationOutput?hl=zh-cn"><code>tf.estimator.export.ClassificationOutput</code></a>,
+<a href="../api_docs/python/tf/estimator/export/RegressionOutput?hl=zh-cn"><code>tf.estimator.export.RegressionOutput</code></a>, or
+<a href="../api_docs/python/tf/estimator/export/PredictOutput?hl=zh-cn"><code>tf.estimator.export.PredictOutput</code></a>.</p>
+<p>These output types map straightforwardly to the
+<a href="https://github.com/tensorflow/serving/blob/master/tensorflow_serving/apis/prediction_service.proto">TensorFlow Serving APIs</a>,
+and so determine which request types will be honored.</p>
+<aside class="note"><strong>Note:</strong><span> In the multi-headed case, a <code>SignatureDef</code> will be generated for each
+element of the <code>export_outputs</code> dict returned from the model_fn, named using
+the same keys.  These <code>SignatureDef</code>s differ only in their outputs, as
+provided by the corresponding <code>ExportOutput</code> entry.  The inputs are always
+those provided by the <code>serving_input_receiver_fn</code>.
+An inference request may specify the head by name.  One head must be named
+using <a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/python/saved_model/signature_constants.py"><code>signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY</code></a>
+indicating which <code>SignatureDef</code> will be served when an inference request
+does not specify one.</span></aside>
+<h3 id="serving_the_exported_model_locally">Serving the exported model locally</h3>
+<p>For local deployment, you can serve your model using
+<a href="http://github.com/tensorflow/serving">TensorFlow Serving</a>, an open-source project that loads a
+SavedModel and exposes it as a <a href="http://www.grpc.io/">gRPC</a> service.</p>
+<p>First, <a href="http://github.com/tensorflow/serving">install TensorFlow Serving</a>.</p>
+<p>Then build and run the local model server, substituting <code>$export_dir_base</code> with
+the path to the SavedModel you exported above:</p>
+<pre class="prettyprint lang-sh"><code>bazel build //tensorflow_serving/model_servers:tensorflow_model_server
+bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server --port=9000 --model_base_path=$export_dir_base
+</code></pre>
+
+<p>Now you have a server listening for inference requests via gRPC on port 9000!</p>
+<h3 id="requesting_predictions_from_a_local_server">Requesting predictions from a local server</h3>
+<p>The server responds to gRPC requests according to the
+<a href="https://github.com/tensorflow/serving/blob/master/tensorflow_serving/apis/prediction_service.proto#L15">PredictionService</a>
+gRPC API service definition.  (The nested protocol buffers are defined in
+various <a href="https://github.com/tensorflow/serving/blob/master/tensorflow_serving/apis">neighboring files</a>).</p>
+<p>From the API service definition, the gRPC framework generates client libraries
+in various languages providing remote access to the API.  In a project using the
+Bazel build tool, these libraries are built automatically and provided via
+dependencies like these (using Python for example):</p>
+<pre class="prettyprint lang-build"><code>  deps = [
+    &quot;//tensorflow_serving/apis:classification_proto_py_pb2&quot;,
+    &quot;//tensorflow_serving/apis:regression_proto_py_pb2&quot;,
+    &quot;//tensorflow_serving/apis:predict_proto_py_pb2&quot;,
+    &quot;//tensorflow_serving/apis:prediction_service_proto_py_pb2&quot;
+  ]
+</code></pre>
+
+<p>Python client code can then import the libraries thus:</p>
+<pre class="prettyprint lang-py"><code>from tensorflow_serving.apis import classification_pb2
+from tensorflow_serving.apis import regression_pb2
+from tensorflow_serving.apis import predict_pb2
+from tensorflow_serving.apis import prediction_service_pb2
+</code></pre>
+
+<blockquote>
+<aside class="note"><strong>Note:</strong><span> <code>prediction_service_pb2</code> defines the service as a whole and so
+is always required.  However a typical client will need only one of
+<code>classification_pb2</code>, <code>regression_pb2</code>, and <code>predict_pb2</code>, depending on the
+type of requests being made.</span></aside>
+</blockquote>
+<p>Sending a gRPC request is then accomplished by assembling a protocol buffer
+containing the request data and passing it to the service stub.  Note how the
+request protocol buffer is created empty and then populated via the
+<a href="https://developers.google.cn/protocol-buffers/docs/reference/python-generated?hl=zh-cn">generated protocol buffer API</a>.</p>
+<pre class="prettyprint lang-py"><code>from grpc.beta import implementations
+
+channel = implementations.insecure_channel(host, int(port))
+stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
+
+request = classification_pb2.ClassificationRequest()
+example = request.input.example_list.examples.add()
+example.features.feature['x'].float_list.value.extend(image[0].astype(float))
+
+result = stub.Classify(request, 10.0)  # 10 secs timeout
+</code></pre>
+
+<p>The returned result in this example is a <code>ClassificationResponse</code> protocol
+buffer.</p>
+<p>This is a skeletal example; please see the <a href="../deploy/index?hl=zh-cn">Tensorflow Serving</a>
+documentation and <a href="https://github.com/tensorflow/serving/tree/master/tensorflow_serving/example">examples</a>
+for more details.</p>
+<blockquote>
+<aside class="note"><strong>Note:</strong><span> <code>ClassificationRequest</code> and <code>RegressionRequest</code> contain a
+<code>tensorflow.serving.Input</code> protocol buffer, which in turn contains a list of
+<code>tensorflow.Example</code> protocol buffers.  <code>PredictRequest</code>, by contrast,
+contains a mapping from feature names to values encoded via <code>TensorProto</code>.
+Correspondingly: When using the <code>Classify</code> and <code>Regress</code> APIs, TensorFlow
+Serving feeds serialized <code>tf.Example</code>s to the graph, so your
+<code>serving_input_receiver_fn()</code> should include a <code>tf.parse_example()</code> Op.
+When using the generic <code>Predict</code> API, however, TensorFlow Serving feeds raw
+feature data to the graph, so a pass through <code>serving_input_receiver_fn()</code>
+should be used.</span></aside>
+</blockquote>
+<!-- TODO(soergel): give examples of making requests against this server, using
+the different Tensorflow Serving APIs, selecting the signature by key, etc. -->
+
+<!-- TODO(soergel): document ExportStrategy here once Experiment moves
+from contrib to core. -->
+
+<h2 id="cli_to_inspect_and_execute_savedmodel">CLI to inspect and execute SavedModel</h2>
+<p>You can use the SavedModel Command Line Interface (CLI) to inspect and
+execute a SavedModel.
+For example, you can use the CLI to inspect the model's <code>SignatureDef</code>s.
+The CLI enables you to quickly confirm that the input
+<a href="../resources/dims_types.html?hl=zh-cn">Tensor dtype and shape</a> match the model. Moreover, if you
+want to test your model, you can use the CLI to do a sanity check by
+passing in sample inputs in various formats (for example, Python
+expressions) and then fetching the output.</p>
+<h3 id="installing_the_savedmodel_cli">Installing the SavedModel CLI</h3>
+<p>Broadly speaking, you can install TensorFlow in either of the following
+two ways:</p>
+<ul>
+<li>By installing a pre-built TensorFlow binary.</li>
+<li>By building TensorFlow from source code.</li>
+</ul>
+<p>If you installed TensorFlow through a pre-built TensorFlow binary,
+then the SavedModel CLI is already installed on your system
+at pathname <code>bin\saved_model_cli</code>.</p>
+<p>If you built TensorFlow from source code, you must run the following
+additional command to build <code>saved_model_cli</code>:</p>
+<pre class="prettyprint"><code>$ bazel build tensorflow/python/tools:saved_model_cli
+</code></pre>
+
+<h3 id="overview_of_commands">Overview of commands</h3>
+<p>The SavedModel CLI supports the following two commands on a
+<code>MetaGraphDef</code> in a SavedModel:</p>
+<ul>
+<li><code>show</code>, which shows a computation on a <code>MetaGraphDef</code> in a SavedModel.</li>
+<li><code>run</code>, which runs a computation on a <code>MetaGraphDef</code>.</li>
+</ul>
+<h3 id="show_command"><code>show</code> command</h3>
+<p>A SavedModel contains one or more <code>MetaGraphDef</code>s, identified by their tag-sets.
+To serve a model, you
+might wonder what kind of <code>SignatureDef</code>s are in each model, and what are their
+inputs and outputs.  The <code>show</code> command let you examine the contents of the
+SavedModel in hierarchical order.  Here's the syntax:</p>
+<pre class="prettyprint"><code>usage: saved_model_cli show [-h] --dir DIR [--all]
+[--tag_set TAG_SET] [--signature_def SIGNATURE_DEF_KEY]
+</code></pre>
+
+<p>For example, the following command shows all available
+MetaGraphDef tag-sets in the SavedModel:</p>
+<pre class="prettyprint"><code>$ saved_model_cli show --dir /tmp/saved_model_dir
+The given SavedModel contains the following tag-sets:
+serve
+serve, gpu
+</code></pre>
+
+<p>The following command shows all available <code>SignatureDef</code> keys in
+a <code>MetaGraphDef</code>:</p>
+<pre class="prettyprint"><code>$ saved_model_cli show --dir /tmp/saved_model_dir --tag_set serve
+The given SavedModel `MetaGraphDef` contains `SignatureDefs` with the
+following keys:
+SignatureDef key: &quot;classify_x2_to_y3&quot;
+SignatureDef key: &quot;classify_x_to_y&quot;
+SignatureDef key: &quot;regress_x2_to_y3&quot;
+SignatureDef key: &quot;regress_x_to_y&quot;
+SignatureDef key: &quot;regress_x_to_y2&quot;
+SignatureDef key: &quot;serving_default&quot;
+</code></pre>
+
+<p>If a <code>MetaGraphDef</code> has <em>multiple</em> tags in the tag-set, you must specify
+all tags, each tag separated by a comma. For example:</p>
+<pre class="prettyprint lang-none"><code>$ saved_model_cli show --dir /tmp/saved_model_dir --tag_set serve,gpu
+</code></pre>
+
+<p>To show all inputs and outputs TensorInfo for a specific <code>SignatureDef</code>, pass in
+the <code>SignatureDef</code> key to <code>signature_def</code> option. This is very useful when you
+want to know the tensor key value, dtype and shape of the input tensors for
+executing the computation graph later. For example:</p>
+<pre class="prettyprint"><code>$ saved_model_cli show --dir \
+/tmp/saved_model_dir --tag_set serve --signature_def serving_default
+The given SavedModel SignatureDef contains the following input(s):
+inputs['x'] tensor_info:
+    dtype: DT_FLOAT
+    shape: (-1, 1)
+    name: x:0
+The given SavedModel SignatureDef contains the following output(s):
+outputs['y'] tensor_info:
+    dtype: DT_FLOAT
+    shape: (-1, 1)
+    name: y:0
+Method name is: tensorflow/serving/predict
+</code></pre>
+
+<p>To show all available information in the SavedModel, use the <code>--all</code> option.
+For example:</p>
+<pre class="prettyprint lang-none"><code>$ saved_model_cli show --dir /tmp/saved_model_dir --all
+MetaGraphDef with tag-set: 'serve' contains the following SignatureDefs:
+
+signature_def['classify_x2_to_y3']:
+The given SavedModel SignatureDef contains the following input(s):
+inputs['inputs'] tensor_info:
+    dtype: DT_FLOAT
+    shape: (-1, 1)
+    name: x2:0
+The given SavedModel SignatureDef contains the following output(s):
+outputs['scores'] tensor_info:
+    dtype: DT_FLOAT
+    shape: (-1, 1)
+    name: y3:0
+Method name is: tensorflow/serving/classify
+
+...
+
+signature_def['serving_default']:
+The given SavedModel SignatureDef contains the following input(s):
+inputs['x'] tensor_info:
+    dtype: DT_FLOAT
+    shape: (-1, 1)
+    name: x:0
+The given SavedModel SignatureDef contains the following output(s):
+outputs['y'] tensor_info:
+    dtype: DT_FLOAT
+    shape: (-1, 1)
+    name: y:0
+Method name is: tensorflow/serving/predict
+</code></pre>
+
+<h3 id="run_command"><code>run</code> command</h3>
+<p>Invoke the <code>run</code> command to run a graph computation, passing
+inputs and then displaying (and optionally saving) the outputs.
+Here's the syntax:</p>
+<pre class="prettyprint"><code>usage: saved_model_cli run [-h] --dir DIR --tag_set TAG_SET --signature_def
+                           SIGNATURE_DEF_KEY [--inputs INPUTS]
+                           [--input_exprs INPUT_EXPRS] [--outdir OUTDIR]
+                           [--overwrite] [--tf_debug]
+</code></pre>
+
+<p>The <code>run</code> command provides the following two ways to pass inputs to the model:</p>
+<ul>
+<li><code>--inputs</code> option enables you to pass numpy ndarray in files.</li>
+<li><code>--input_exprs</code> option enables you to pass Python expressions.</li>
+</ul>
+<h4 id="--inputs"><code>--inputs</code></h4>
+<p>To pass input data in files, specify the <code>--inputs</code> option, which takes the
+following general format:</p>
+<pre class="prettyprint lang-bsh"><code>--inputs &lt;INPUTS&gt;
+</code></pre>
+
+<p>where <em>INPUTS</em> is either of the following formats:</p>
+<ul>
+<li><code>&lt;input_key&gt;=&lt;filename&gt;</code></li>
+<li><code>&lt;input_key&gt;=&lt;filename&gt;[&lt;variable_name&gt;]</code></li>
+</ul>
+<p>You may pass multiple <em>INPUTS</em>. If you do pass multiple inputs, use a semicolon
+to separate each of the <em>INPUTS</em>.</p>
+<p><code>saved_model_cli</code> uses <code>numpy.load</code> to load the <em>filename</em>.
+The <em>filename</em> may be in any of the following formats:</p>
+<ul>
+<li><code>.npy</code></li>
+<li><code>.npz</code></li>
+<li>pickle format</li>
+</ul>
+<p>A <code>.npy</code> file always contains a numpy ndarray. Therefore, when loading from
+a <code>.npy</code> file, the content will be directly assigned to the specified input
+tensor. If you specify a <em>variable_name</em> with that <code>.npy</code> file, the
+<em>variable_name</em> will be ignored and a warning will be issued.</p>
+<p>When loading from a <code>.npz</code> (zip) file, you may optionally specify a
+<em>variable_name</em> to identify the variable within the zip file to load for
+the input tensor key.  If you don't specify a <em>variable_name</em>, the SavedModel
+CLI will check that only one file is included in the zip file and load it
+for the specified input tensor key.</p>
+<p>When loading from a pickle file, if no <code>variable_name</code> is specified in the
+square brackets, whatever that is inside the pickle file will be passed to the
+specified input tensor key. Otherwise, the SavedModel CLI will assume a
+dictionary is stored in the pickle file and the value corresponding to
+the <em>variable_name</em> will be used.</p>
+<h4 id="--inputs_exprs"><code>--inputs_exprs</code></h4>
+<p>To pass inputs through Python expressions, specify the <code>--input_exprs</code> option.
+This can be useful for when you don't have data
+files lying around, but still want to sanity check the model with some simple
+inputs that match the dtype and shape of the model's <code>SignatureDef</code>s.
+For example:</p>
+<pre class="prettyprint lang-bsh"><code>`input_key=[[1], [2], [3]]`
+</code></pre>
+
+<p>In addition to Python expressions, you may also pass numpy functions. For
+example:</p>
+<pre class="prettyprint lang-bsh"><code>input_key=np.ones((32, 32, 3))
+</code></pre>
+
+<p>(Note that the <code>numpy</code> module is already available to you as <code>np</code>.)</p>
+<h4 id="save_output">Save Output</h4>
+<p>By default, the SavedModel CLI writes output to stdout. If a directory is
+passed to <code>--outdir</code> option, the outputs will be saved as npy files named after
+output tensor keys under the given directory.</p>
+<p>Use <code>--overwrite</code> to overwrite existing output files.</p>
+<h4 id="tensorflow_debugger_tfdbg_integration">TensorFlow Debugger (tfdbg) Integration</h4>
+<p>If <code>--tf_debug</code> option is set, the SavedModel CLI will use the
+TensorFlow Debugger (tfdbg) to watch the intermediate Tensors and runtime
+graphs or subgraphs while running the SavedModel.</p>
+<h4 id="full_examples_of_run">Full examples of <code>run</code></h4>
+<p>Given:</p>
+<ul>
+<li>Your model simply adds <code>x1</code> and <code>x2</code> to get output <code>y</code>.</li>
+<li>All tensors in the model have shape <code>(-1, 1)</code>.</li>
+<li>You have two <code>npy</code> files:</li>
+<li><code>/tmp/my_data1.npy</code>, which contains a numpy ndarray <code>[[1], [2], [3]]</code>.</li>
+<li><code>/tmp/my_data2.npy</code>, which contains another numpy
+      ndarray <code>[[0.5], [0.5], [0.5]]</code>.</li>
+</ul>
+<p>To run these two <code>npy</code> files through the model to get output <code>y</code>, issue
+the following command:</p>
+<pre class="prettyprint"><code>$ saved_model_cli run --dir /tmp/saved_model_dir --tag_set serve \
+--signature_def x1_x2_to_y --inputs x1=/tmp/my_data1.npy;x2=/tmp/my_data2.npy \
+--outdir /tmp/out
+Result for output key y:
+[[ 1.5]
+ [ 2.5]
+ [ 3.5]]
+</code></pre>
+
+<p>Let's change the preceding example slightly. This time, instead of two
+<code>.npy</code> files, you now have an <code>.npz</code> file and a pickle file. Furthermore,
+you want to overwrite any existing output file.  Here's the command:</p>
+<pre class="prettyprint"><code>$ saved_model_cli run --dir /tmp/saved_model_dir --tag_set serve \
+--signature_def x1_x2_to_y \
+--inputs x1=/tmp/my_data1.npz[x];x2=/tmp/my_data2.pkl --outdir /tmp/out \
+--overwrite
+Result for output key y:
+[[ 1.5]
+ [ 2.5]
+ [ 3.5]]
+</code></pre>
+
+<p>You may specify python expression instead of an input file. For example,
+the following command replaces input <code>x2</code> with a Python expression:</p>
+<pre class="prettyprint"><code>$ saved_model_cli run --dir /tmp/saved_model_dir --tag_set serve \
+--signature_def x1_x2_to_y --inputs x1=/tmp/my_data1.npz[x] \
+--input_exprs 'x2=np.ones((3,1))'
+Result for output key y:
+[[ 2]
+ [ 3]
+ [ 4]]
+</code></pre>
+
+<p>To run the model with the TensorFlow Debugger on, issue the
+following command:</p>
+<pre class="prettyprint"><code>$ saved_model_cli run --dir /tmp/saved_model_dir --tag_set serve \
+--signature_def serving_default --inputs x=/tmp/data.npz[x] --tf_debug
+</code></pre>
+
+<p><a name="structure"></a></p>
+<h2 id="structure_of_a_savedmodel_directory">Structure of a SavedModel directory</h2>
+<p>When you save a model in SavedModel format, TensorFlow creates
+a SavedModel directory consisting of the following subdirectories
+and files:</p>
+<pre class="prettyprint lang-bsh"><code>assets/
+assets.extra/
+variables/
+    variables.data-?????-of-?????
+    variables.index
+saved_model.pb|saved_model.pbtxt
+</code></pre>
+
+<p>where:</p>
+<ul>
+<li><code>assets</code> is a subfolder containing auxiliary (external) files,
+  such as vocabularies.  Assets are copied to the SavedModel location
+  and can be read when loading a specific <code>MetaGraphDef</code>.</li>
+<li><code>assets.extra</code> is a subfolder where higher-level libraries and users can
+  add their own assets that co-exist with the model, but are not loaded by
+  the graph.  This subfolder is not managed by the SavedModel libraries.</li>
+<li><code>variables</code> is a subfolder that includes output from
+  <code>tf.train.Saver</code>.</li>
+<li><code>saved_model.pb</code> or <code>saved_model.pbtxt</code> is the SavedModel protocol buffer.
+  It includes the graph definitions as <code>MetaGraphDef</code> protocol buffers.</li>
+</ul>
+<p>A single SavedModel can represent multiple graphs.  In this case, all the
+graphs in the SavedModel share a <em>single</em> set of checkpoints (variables)
+and assets. For example, the following diagram shows one SavedModel
+containing three <code>MetaGraphDef</code>s, all three of which share the same set
+of checkpoints and assets:</p>
+<p><img alt="SavedModel represents checkpoints, assets, and one or more MetaGraphDefs" src="../images/SavedModel.svg?hl=zh-cn" /></p>
+<p>Each graph is associated with a specific set of tags, which enables
+identification during a load or restore operation.</p>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies?hl=zh-cn">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:30:38.020240">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="IdNFiNB8uFpRhfEBFnUuhuPwPXUvVqlhzLXcb37R3Dg6MTUxNzg3OTA1MDc1OTY2MA" /><input type="hidden" name="next" value="/programmers_guide/saved_model"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot.js?hl=zh-cn"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/?hl=zh-cn');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="350.229978561"></span></body></html>

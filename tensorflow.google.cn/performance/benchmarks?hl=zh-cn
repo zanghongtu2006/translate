@@ -1,0 +1,1621 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="zYcQ-QLcz0vT7IIptl3GJlT0KRp0OvqI7HEzuHvDCNQ6MTUxNzg3OTE5MjU3MDgyMA" /><link rel="canonical" href="https://www.tensorflow.org/performance/benchmarks"><link rel="alternate" href="https://www.tensorflow.org/performance/benchmarks" hreflang="en"><link rel="alternate" href="benchmarks" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/performance/benchmarks" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png?hl=zh-cn"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png?hl=zh-cn"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css?hl=zh-cn"><script src="../_static/18908e5f48/js/jquery-bundle.js?hl=zh-cn"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/performance/benchmarks"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Benchmarks &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Benchmarks &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               "
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html?hl=zh-cn" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png?hl=zh-cn"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/?hl=zh-cn"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Develop
+    
+    
+  </li></ul></div></div><div class="devsite-doc-set-nav-row devsite-full-site-width"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Get Started"
+       >
+        Get Started
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../programmers_guide/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Programmer&#39;s Guide"
+       >
+        Programmer&#39;s Guide
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tutorials/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Tutorials"
+       >
+        Tutorials
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index.html?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Performance"
+       >
+        Performance
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../mobile/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Mobile"
+       >
+        Mobile
+      </a></li></ul></nav></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Get Started">
+        Get Started
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../programmers_guide/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Programmer&#39;s Guide">
+        Programmer&#39;s Guide
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tutorials/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Tutorials">
+        Tutorials
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Performance"
+            tabindex="0">
+        Performance
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../mobile/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Mobile">
+        Mobile
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html?hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Performance</a></li><li class="devsite-nav-item"><a href="performance_guide?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Performance Guide</a></li><li class="devsite-nav-item"><a href="performance_models?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">High-Performance Models</a></li><li class="devsite-nav-item devsite-nav-active"><a href="benchmarks?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Benchmarks</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">XLA</span></li><li class="devsite-nav-item"><a href="xla/index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">XLA Overview</a></li><li class="devsite-nav-item"><a href="xla/broadcasting?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Broadcasting semantics</a></li><li class="devsite-nav-item"><a href="xla/developing_new_backend?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Developing a new backend for XLA</a></li><li class="devsite-nav-item"><a href="xla/jit?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using JIT Compilation</a></li><li class="devsite-nav-item"><a href="xla/operation_semantics?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Operation Semantics</a></li><li class="devsite-nav-item"><a href="xla/shapes?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Shapes and Layout</a></li><li class="devsite-nav-item"><a href="xla/tfcompile?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using AOT compilation</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Quantization</span></li><li class="devsite-nav-item"><a href="quantization?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">How to Quantize Neural Networks with TensorFlow</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Performance</a></li><li class="devsite-nav-item"><a href="performance_guide?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Performance Guide</a></li><li class="devsite-nav-item"><a href="performance_models?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">High-Performance Models</a></li><li class="devsite-nav-item devsite-nav-active"><a href="benchmarks?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Benchmarks</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">XLA</span></li><li class="devsite-nav-item"><a href="xla/index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">XLA Overview</a></li><li class="devsite-nav-item"><a href="xla/broadcasting?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Broadcasting semantics</a></li><li class="devsite-nav-item"><a href="xla/developing_new_backend?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Developing a new backend for XLA</a></li><li class="devsite-nav-item"><a href="xla/jit?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using JIT Compilation</a></li><li class="devsite-nav-item"><a href="xla/operation_semantics?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Operation Semantics</a></li><li class="devsite-nav-item"><a href="xla/shapes?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Shapes and Layout</a></li><li class="devsite-nav-item"><a href="xla/tfcompile?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using AOT compilation</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Quantization</span></li><li class="devsite-nav-item"><a href="quantization?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">How to Quantize Neural Networks with TensorFlow</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="../get_started/index?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Develop
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="3">
+    
+    
+      Performance
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Benchmarks
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG&amp;hl=zh-cn"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<h2 id="overview">Overview</h2>
+<p>A selection of image classification models were tested across multiple platforms
+to create a point of reference for the TensorFlow community. The
+<a href="benchmarks?hl=zh-cn#methodology">Methodology</a> section details how the tests were executed and has
+links to the scripts used.</p>
+<h2 id="results_for_image_classification_models">Results for image classification models</h2>
+<p>InceptionV3 (<a href="https://arxiv.org/abs/1512.00567">arXiv:1512.00567</a>), ResNet-50
+(<a href="https://arxiv.org/abs/1512.03385">arXiv:1512.03385</a>), ResNet-152
+(<a href="https://arxiv.org/abs/1512.03385">arXiv:1512.03385</a>), VGG16
+(<a href="https://arxiv.org/abs/1409.1556">arXiv:1409.1556</a>), and
+<a href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">AlexNet</a>
+were tested using the <a href="http://www.image-net.org/">ImageNet</a> data set. Tests were
+run on Google Compute Engine, Amazon Elastic Compute Cloud (Amazon EC2), and an
+NVIDIA® DGX-1™. Most of the tests were run with both synthetic and real data.
+Testing with synthetic data was done by using a <code>tf.Variable</code> set to the same
+shape as the data expected by each model for ImageNet. We believe it is
+important to include real data measurements when benchmarking a platform. This
+load tests both the underlying hardware and the framework at preparing data for
+actual training. We start with synthetic data to remove disk I/O as a variable
+and to set a baseline. Real data is then used to verify that the TensorFlow
+input pipeline and the underlying disk I/O are saturating the compute units.</p>
+<h3 id="training_with_nvidia_dgx-1tm_nvidia_tesla_p100">Training with NVIDIA® DGX-1™ (NVIDIA® Tesla® P100)</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:80%" src="../images/perf_summary_p100_single_server.png?hl=zh-cn">
+</div>
+
+<p>Details and additional results are in the <a href="benchmarks?hl=zh-cn#details_for_nvidia_dgx-1tm_nvidia_tesla_p100">Details for NVIDIA® DGX-1™ (NVIDIA®
+Tesla® P100)</a> section.</p>
+<h3 id="training_with_nvidia_tesla_k80">Training with NVIDIA® Tesla® K80</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:80%" src="../images/perf_summary_k80_single_server.png?hl=zh-cn">
+</div>
+
+<p>Details and additional results are in the <a href="benchmarks?hl=zh-cn#details_for_google_compute_engine_nvidia_tesla_k80">Details for Google Compute Engine
+(NVIDIA® Tesla® K80)</a> and
+<a href="benchmarks?hl=zh-cn#details_for_amazon_ec2_nvidia_tesla_k80">Details for Amazon EC2 (NVIDIA® Tesla®
+K80)</a> sections.</p>
+<h3 id="distributed_training_with_nvidia_tesla_k80">Distributed training with NVIDIA® Tesla® K80</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:80%" src="../images/perf_summary_k80_aws_distributed.png?hl=zh-cn">
+</div>
+
+<p>Details and additional results are in the <a href="benchmarks?hl=zh-cn#details_for_amazon_ec2_distributed_nvidia_tesla_k80">Details for Amazon EC2 Distributed
+(NVIDIA® Tesla® K80)</a>
+section.</p>
+<h3 id="compare_synthetic_with_real_data_training">Compare synthetic with real data training</h3>
+<p><strong>NVIDIA® Tesla® P100</strong></p>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:35%" src="../images/perf_summary_p100_data_compare_inceptionv3.png?hl=zh-cn">
+  <img style="width:35%" src="../images/perf_summary_p100_data_compare_resnet50.png?hl=zh-cn">
+</div>
+
+<p><strong>NVIDIA® Tesla® K80</strong></p>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:35%" src="../images/perf_summary_k80_data_compare_inceptionv3.png?hl=zh-cn">
+  <img style="width:35%" src="../images/perf_summary_k80_data_compare_resnet50.png?hl=zh-cn">
+</div>
+
+<h2 id="details_for_nvidia_dgx-1tm_nvidia_tesla_p100">Details for NVIDIA® DGX-1™ (NVIDIA® Tesla® P100)</h2>
+<h3 id="environment">Environment</h3>
+<ul>
+<li><strong>Instance type</strong>: NVIDIA® DGX-1™</li>
+<li><strong>GPU:</strong> 8x NVIDIA® Tesla® P100</li>
+<li><strong>OS:</strong> Ubuntu 16.04 LTS with tests run via Docker</li>
+<li><strong>CUDA / cuDNN:</strong> 8.0 / 5.1</li>
+<li><strong>TensorFlow GitHub hash:</strong> b1e174e</li>
+<li><strong>Benchmark GitHub hash:</strong> 9165a70</li>
+<li><strong>Build Command:</strong> <code>bazel build -c opt --copt=-march="haswell" --config=cuda
+    //tensorflow/tools/pip_package:build_pip_package</code></li>
+<li><strong>Disk:</strong> Local SSD</li>
+<li><strong>DataSet:</strong> ImageNet</li>
+<li><strong>Test Date:</strong> May 2017</li>
+</ul>
+<p>Batch size and optimizer used for each model are listed in the table below. In
+addition to the batch sizes listed in the table, InceptionV3, ResNet-50,
+ResNet-152, and VGG16 were tested with a batch size of 32. Those results are in
+the <em>other results</em> section.</p>
+<table>
+<thead>
+<tr>
+<th>Options</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch size per GPU</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>512</td>
+<td>64</td>
+</tr>
+<tr>
+<td>Optimizer</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+</tr>
+</tbody>
+</table>
+<p>Configuration used for each model.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>variable_update</th>
+<th>local_parameter_device</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InceptionV3</td>
+<td>parameter_server</td>
+<td>cpu</td>
+</tr>
+<tr>
+<td>ResNet50</td>
+<td>parameter_server</td>
+<td>cpu</td>
+</tr>
+<tr>
+<td>ResNet152</td>
+<td>parameter_server</td>
+<td>cpu</td>
+</tr>
+<tr>
+<td>AlexNet</td>
+<td>replicated (with NCCL)</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>VGG16</td>
+<td>replicated (with NCCL)</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+<h3 id="results">Results</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:80%" src="../images/perf_summary_p100_single_server.png?hl=zh-cn">
+</div>
+
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:35%" src="../images/perf_dgx1_synth_p100_single_server_scaling.png?hl=zh-cn">
+  <img style="width:35%" src="../images/perf_dgx1_real_p100_single_server_scaling.png?hl=zh-cn">
+</div>
+
+<p><strong>Training synthetic data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>142</td>
+<td>219</td>
+<td>91.8</td>
+<td>2987</td>
+<td>154</td>
+</tr>
+<tr>
+<td>2</td>
+<td>284</td>
+<td>422</td>
+<td>181</td>
+<td>5658</td>
+<td>295</td>
+</tr>
+<tr>
+<td>4</td>
+<td>569</td>
+<td>852</td>
+<td>356</td>
+<td>10509</td>
+<td>584</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1131</td>
+<td>1734</td>
+<td>716</td>
+<td>17822</td>
+<td>1081</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Training real data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>142</td>
+<td>218</td>
+<td>91.4</td>
+<td>2890</td>
+<td>154</td>
+</tr>
+<tr>
+<td>2</td>
+<td>278</td>
+<td>425</td>
+<td>179</td>
+<td>4448</td>
+<td>284</td>
+</tr>
+<tr>
+<td>4</td>
+<td>551</td>
+<td>853</td>
+<td>359</td>
+<td>7105</td>
+<td>534</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1079</td>
+<td>1630</td>
+<td>708</td>
+<td>N/A</td>
+<td>898</td>
+</tr>
+</tbody>
+</table>
+<p>Training AlexNet with real data on 8 GPUs was excluded from the graph and table
+above due to it maxing out the input pipeline.</p>
+<h3 id="other_results">Other Results</h3>
+<p>The results below are all with a batch size of 32.</p>
+<p><strong>Training synthetic data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>128</td>
+<td>195</td>
+<td>82.7</td>
+<td>144</td>
+</tr>
+<tr>
+<td>2</td>
+<td>259</td>
+<td>368</td>
+<td>160</td>
+<td>281</td>
+</tr>
+<tr>
+<td>4</td>
+<td>520</td>
+<td>768</td>
+<td>317</td>
+<td>549</td>
+</tr>
+<tr>
+<td>8</td>
+<td>995</td>
+<td>1485</td>
+<td>632</td>
+<td>820</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Training real data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>130</td>
+<td>193</td>
+<td>82.4</td>
+<td>144</td>
+</tr>
+<tr>
+<td>2</td>
+<td>257</td>
+<td>369</td>
+<td>159</td>
+<td>253</td>
+</tr>
+<tr>
+<td>4</td>
+<td>507</td>
+<td>760</td>
+<td>317</td>
+<td>457</td>
+</tr>
+<tr>
+<td>8</td>
+<td>966</td>
+<td>1410</td>
+<td>609</td>
+<td>690</td>
+</tr>
+</tbody>
+</table>
+<h2 id="details_for_google_compute_engine_nvidia_tesla_k80">Details for Google Compute Engine (NVIDIA® Tesla® K80)</h2>
+<h3 id="environment_1">Environment</h3>
+<ul>
+<li><strong>Instance type</strong>: n1-standard-32-k80x8</li>
+<li><strong>GPU:</strong> 8x NVIDIA® Tesla® K80</li>
+<li><strong>OS:</strong> Ubuntu 16.04 LTS</li>
+<li><strong>CUDA / cuDNN:</strong> 8.0 / 5.1</li>
+<li><strong>TensorFlow GitHub hash:</strong> b1e174e</li>
+<li><strong>Benchmark GitHub hash:</strong> 9165a70</li>
+<li><strong>Build Command:</strong> <code>bazel build -c opt --copt=-march="haswell" --config=cuda
+    //tensorflow/tools/pip_package:build_pip_package</code></li>
+<li><strong>Disk:</strong> 1.7 TB Shared SSD persistent disk (800 MB/s)</li>
+<li><strong>DataSet:</strong> ImageNet</li>
+<li><strong>Test Date:</strong> May 2017</li>
+</ul>
+<p>Batch size and optimizer used for each model are listed in the table below. In
+addition to the batch sizes listed in the table, InceptionV3 and ResNet-50 were
+tested with a batch size of 32. Those results are in the <em>other results</em>
+section.</p>
+<table>
+<thead>
+<tr>
+<th>Options</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch size per GPU</td>
+<td>64</td>
+<td>64</td>
+<td>32</td>
+<td>512</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Optimizer</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+</tr>
+</tbody>
+</table>
+<p>The configuration used for each model was <code>variable_update</code> equal to
+<code>parameter_server</code> and <code>local_parameter_device</code> equal to <code>cpu</code>.</p>
+<h3 id="results_1">Results</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:35%" src="../images/perf_gce_synth_k80_single_server_scaling.png?hl=zh-cn">
+  <img style="width:35%" src="../images/perf_gce_real_k80_single_server_scaling.png?hl=zh-cn">
+</div>
+
+<p><strong>Training synthetic data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>30.5</td>
+<td>51.9</td>
+<td>20.0</td>
+<td>656</td>
+<td>35.4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>57.8</td>
+<td>99.0</td>
+<td>38.2</td>
+<td>1209</td>
+<td>64.8</td>
+</tr>
+<tr>
+<td>4</td>
+<td>116</td>
+<td>195</td>
+<td>75.8</td>
+<td>2328</td>
+<td>120</td>
+</tr>
+<tr>
+<td>8</td>
+<td>227</td>
+<td>387</td>
+<td>148</td>
+<td>4640</td>
+<td>234</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Training real data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>30.6</td>
+<td>51.2</td>
+<td>20.0</td>
+<td>639</td>
+<td>34.2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>58.4</td>
+<td>98.8</td>
+<td>38.3</td>
+<td>1136</td>
+<td>62.9</td>
+</tr>
+<tr>
+<td>4</td>
+<td>115</td>
+<td>194</td>
+<td>75.4</td>
+<td>2067</td>
+<td>118</td>
+</tr>
+<tr>
+<td>8</td>
+<td>225</td>
+<td>381</td>
+<td>148</td>
+<td>4056</td>
+<td>230</td>
+</tr>
+</tbody>
+</table>
+<h3 id="other_results_1">Other Results</h3>
+<p><strong>Training synthetic data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3 (batch size 32)</th>
+<th>ResNet-50 (batch size 32)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>29.3</td>
+<td>49.5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>55.0</td>
+<td>95.4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>109</td>
+<td>183</td>
+</tr>
+<tr>
+<td>8</td>
+<td>216</td>
+<td>362</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Training real data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3 (batch size 32)</th>
+<th>ResNet-50 (batch size 32)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>29.5</td>
+<td>49.3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>55.4</td>
+<td>95.3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>110</td>
+<td>186</td>
+</tr>
+<tr>
+<td>8</td>
+<td>216</td>
+<td>359</td>
+</tr>
+</tbody>
+</table>
+<h2 id="details_for_amazon_ec2_nvidia_tesla_k80">Details for Amazon EC2 (NVIDIA® Tesla® K80)</h2>
+<h3 id="environment_2">Environment</h3>
+<ul>
+<li><strong>Instance type</strong>: p2.8xlarge</li>
+<li><strong>GPU:</strong> 8x NVIDIA® Tesla® K80</li>
+<li><strong>OS:</strong> Ubuntu 16.04 LTS</li>
+<li><strong>CUDA / cuDNN:</strong> 8.0 / 5.1</li>
+<li><strong>TensorFlow GitHub hash:</strong> b1e174e</li>
+<li><strong>Benchmark GitHub hash:</strong> 9165a70</li>
+<li><strong>Build Command:</strong> <code>bazel build -c opt --copt=-march="haswell" --config=cuda
+    //tensorflow/tools/pip_package:build_pip_package</code></li>
+<li><strong>Disk:</strong> 1TB Amazon EFS (burst 100 MiB/sec for 12 hours, continuous 50
+    MiB/sec)</li>
+<li><strong>DataSet:</strong> ImageNet</li>
+<li><strong>Test Date:</strong> May 2017</li>
+</ul>
+<p>Batch size and optimizer used for each model are listed in the table below. In
+addition to the batch sizes listed in the table, InceptionV3 and ResNet-50 were
+tested with a batch size of 32. Those results are in the <em>other results</em>
+section.</p>
+<table>
+<thead>
+<tr>
+<th>Options</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch size per GPU</td>
+<td>64</td>
+<td>64</td>
+<td>32</td>
+<td>512</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Optimizer</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+</tr>
+</tbody>
+</table>
+<p>Configuration used for each model.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>variable_update</th>
+<th>local_parameter_device</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InceptionV3</td>
+<td>parameter_server</td>
+<td>cpu</td>
+</tr>
+<tr>
+<td>ResNet-50</td>
+<td>replicated (without NCCL)</td>
+<td>gpu</td>
+</tr>
+<tr>
+<td>ResNet-152</td>
+<td>replicated (without NCCL)</td>
+<td>gpu</td>
+</tr>
+<tr>
+<td>AlexNet</td>
+<td>parameter_server</td>
+<td>gpu</td>
+</tr>
+<tr>
+<td>VGG16</td>
+<td>parameter_server</td>
+<td>gpu</td>
+</tr>
+</tbody>
+</table>
+<h3 id="results_2">Results</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:35%" src="../images/perf_aws_synth_k80_single_server_scaling.png?hl=zh-cn">
+  <img style="width:35%" src="../images/perf_aws_real_k80_single_server_scaling.png?hl=zh-cn">
+</div>
+
+<p><strong>Training synthetic data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>30.8</td>
+<td>51.5</td>
+<td>19.7</td>
+<td>684</td>
+<td>36.3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>58.7</td>
+<td>98.0</td>
+<td>37.6</td>
+<td>1244</td>
+<td>69.4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>117</td>
+<td>195</td>
+<td>74.9</td>
+<td>2479</td>
+<td>141</td>
+</tr>
+<tr>
+<td>8</td>
+<td>230</td>
+<td>384</td>
+<td>149</td>
+<td>4853</td>
+<td>260</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Training real data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>30.5</td>
+<td>51.3</td>
+<td>19.7</td>
+<td>674</td>
+<td>36.3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>59.0</td>
+<td>94.9</td>
+<td>38.2</td>
+<td>1227</td>
+<td>67.5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>118</td>
+<td>188</td>
+<td>75.2</td>
+<td>2201</td>
+<td>136</td>
+</tr>
+<tr>
+<td>8</td>
+<td>228</td>
+<td>373</td>
+<td>149</td>
+<td>N/A</td>
+<td>242</td>
+</tr>
+</tbody>
+</table>
+<p>Training AlexNet with real data on 8 GPUs was excluded from the graph and table
+above due to our EFS setup not providing enough throughput.</p>
+<h3 id="other_results_2">Other Results</h3>
+<p><strong>Training synthetic data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3 (batch size 32)</th>
+<th>ResNet-50 (batch size 32)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>29.9</td>
+<td>49.0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>57.5</td>
+<td>94.1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>114</td>
+<td>184</td>
+</tr>
+<tr>
+<td>8</td>
+<td>216</td>
+<td>355</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Training real data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3 (batch size 32)</th>
+<th>ResNet-50 (batch size 32)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>30.0</td>
+<td>49.1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>57.5</td>
+<td>95.1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>113</td>
+<td>185</td>
+</tr>
+<tr>
+<td>8</td>
+<td>212</td>
+<td>353</td>
+</tr>
+</tbody>
+</table>
+<h2 id="details_for_amazon_ec2_distributed_nvidia_tesla_k80">Details for Amazon EC2 Distributed (NVIDIA® Tesla® K80)</h2>
+<h3 id="environment_3">Environment</h3>
+<ul>
+<li><strong>Instance type</strong>: p2.8xlarge</li>
+<li><strong>GPU:</strong> 8x NVIDIA® Tesla® K80</li>
+<li><strong>OS:</strong> Ubuntu 16.04 LTS</li>
+<li><strong>CUDA / cuDNN:</strong> 8.0 / 5.1</li>
+<li><strong>TensorFlow GitHub hash:</strong> b1e174e</li>
+<li><strong>Benchmark GitHub hash:</strong> 9165a70</li>
+<li><strong>Build Command:</strong> <code>bazel build -c opt --copt=-march="haswell" --config=cuda
+    //tensorflow/tools/pip_package:build_pip_package</code></li>
+<li><strong>Disk:</strong> 1.0 TB EFS (burst 100 MB/sec for 12 hours, continuous 50 MB/sec)</li>
+<li><strong>DataSet:</strong> ImageNet</li>
+<li><strong>Test Date:</strong> May 2017</li>
+</ul>
+<p>The batch size and optimizer used for the tests are listed in the table. In
+addition to the batch sizes listed in the table, InceptionV3 and ResNet-50 were
+tested with a batch size of 32. Those results are in the <em>other results</em>
+section.</p>
+<table>
+<thead>
+<tr>
+<th>Options</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch size per GPU</td>
+<td>64</td>
+<td>64</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Optimizer</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+</tr>
+</tbody>
+</table>
+<p>Configuration used for each model.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>variable_update</th>
+<th>local_parameter_device</th>
+<th>cross_replica_sync</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InceptionV3</td>
+<td>distributed_replicated</td>
+<td>n/a</td>
+<td>True</td>
+</tr>
+<tr>
+<td>ResNet-50</td>
+<td>distributed_replicated</td>
+<td>n/a</td>
+<td>True</td>
+</tr>
+<tr>
+<td>ResNet-152</td>
+<td>distributed_replicated</td>
+<td>n/a</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<p>To simplify server setup, EC2 instances (p2.8xlarge) running worker servers also
+ran parameter servers. Equal numbers of parameter servers and worker servers were
+used with the following exceptions:</p>
+<ul>
+<li>InceptionV3: 8 instances / 6 parameter servers</li>
+<li>ResNet-50: (batch size 32) 8 instances / 4 parameter servers</li>
+<li>ResNet-152: 8 instances / 4 parameter servers</li>
+</ul>
+<h3 id="results_3">Results</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:80%" src="../images/perf_summary_k80_aws_distributed.png?hl=zh-cn">
+</div>
+
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:70%" src="../images/perf_aws_synth_k80_distributed_scaling.png?hl=zh-cn">
+</div>
+
+<p><strong>Training synthetic data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>29.7</td>
+<td>52.4</td>
+<td>19.4</td>
+</tr>
+<tr>
+<td>8</td>
+<td>229</td>
+<td>378</td>
+<td>146</td>
+</tr>
+<tr>
+<td>16</td>
+<td>459</td>
+<td>751</td>
+<td>291</td>
+</tr>
+<tr>
+<td>32</td>
+<td>902</td>
+<td>1388</td>
+<td>565</td>
+</tr>
+<tr>
+<td>64</td>
+<td>1783</td>
+<td>2744</td>
+<td>981</td>
+</tr>
+</tbody>
+</table>
+<h3 id="other_results_3">Other Results</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:50%" src="../images/perf_aws_synth_k80_multi_server_batch32.png?hl=zh-cn">
+</div>
+
+<p><strong>Training synthetic data</strong></p>
+<table>
+<thead>
+<tr>
+<th>GPUs</th>
+<th>InceptionV3 (batch size 32)</th>
+<th>ResNet-50 (batch size 32)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>29.2</td>
+<td>48.4</td>
+</tr>
+<tr>
+<td>8</td>
+<td>219</td>
+<td>333</td>
+</tr>
+<tr>
+<td>16</td>
+<td>427</td>
+<td>667</td>
+</tr>
+<tr>
+<td>32</td>
+<td>820</td>
+<td>1180</td>
+</tr>
+<tr>
+<td>64</td>
+<td>1608</td>
+<td>2315</td>
+</tr>
+</tbody>
+</table>
+<h2 id="methodology">Methodology</h2>
+<p>This
+<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">script</a>
+was run on the various platforms to generate the above results.
+<a href="performance_models?hl=zh-cn">High-Performance Models</a> details techniques in the script
+along with examples of how to execute the script.</p>
+<p>In order to create results that are as repeatable as possible, each test was run
+5 times and then the times were averaged together. GPUs are run in their default
+state on the given platform. For NVIDIA® Tesla® K80 this means leaving on <a href="https://devblogs.nvidia.com/parallelforall/increase-performance-gpu-boost-k80-autoboost/">GPU
+Boost</a>.
+For each test, 10 warmup steps are done and then the next 100 steps are
+averaged.</p>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies?hl=zh-cn">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:30:38.179900">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="zYcQ-QLcz0vT7IIptl3GJlT0KRp0OvqI7HEzuHvDCNQ6MTUxNzg3OTE5MjU3MDgyMA" /><input type="hidden" name="next" value="/performance/benchmarks"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot.js?hl=zh-cn"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/?hl=zh-cn');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="413.269996643"></span></body></html>

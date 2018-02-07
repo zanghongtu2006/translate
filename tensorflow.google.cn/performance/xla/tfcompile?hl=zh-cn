@@ -1,0 +1,882 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="KJjhqWkvXo7wCJVXgNLf6o063lqiTN92wWJsOVTzT8U6MTUxNzg3OTIzNzg2OTY4MA" /><link rel="canonical" href="https://www.tensorflow.org/performance/xla/tfcompile"><link rel="alternate" href="https://www.tensorflow.org/performance/xla/tfcompile" hreflang="en"><link rel="alternate" href="tfcompile" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/performance/xla/tfcompile" hreflang="x-default"><link rel="shortcut icon" href="../../_static/18908e5f48/images/tensorflow/favicon.png?hl=zh-cn"><link rel="apple-touch-icon" href="../../images/apple-touch-icon-180x180.png?hl=zh-cn"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../../_static/18908e5f48/css/devsite-tensorflow-orange.css?hl=zh-cn"><script src="../../_static/18908e5f48/js/jquery-bundle.js?hl=zh-cn"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/performance/xla/tfcompile"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Using AOT compilation &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Using AOT compilation &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               "
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../../index.html?hl=zh-cn" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../../_static/18908e5f48/images/tensorflow/lockup.png?hl=zh-cn"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../../install/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../../get_started/index?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../../api_docs?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../../deploy/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../../extend/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../../community/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../../versions/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../../tfrc/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/?hl=zh-cn"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Develop
+    
+    
+  </li></ul></div></div><div class="devsite-doc-set-nav-row devsite-full-site-width"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../../get_started/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Get Started"
+       >
+        Get Started
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../../programmers_guide/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Programmer&#39;s Guide"
+       >
+        Programmer&#39;s Guide
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../../tutorials/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Tutorials"
+       >
+        Tutorials
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../index.html?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Performance"
+       >
+        Performance
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../../mobile/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Mobile"
+       >
+        Mobile
+      </a></li></ul></nav></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../../install/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Get Started">
+        Get Started
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../../programmers_guide/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Programmer&#39;s Guide">
+        Programmer&#39;s Guide
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../../tutorials/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Tutorials">
+        Tutorials
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Performance"
+            tabindex="0">
+        Performance
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../../mobile/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Mobile">
+        Mobile
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../../api_docs/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../../deploy/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../../extend/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../../community/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../../versions/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../../tfrc/index.html?hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="../index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Performance</a></li><li class="devsite-nav-item"><a href="../performance_guide?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Performance Guide</a></li><li class="devsite-nav-item"><a href="../performance_models?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">High-Performance Models</a></li><li class="devsite-nav-item"><a href="../benchmarks?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Benchmarks</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">XLA</span></li><li class="devsite-nav-item"><a href="index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">XLA Overview</a></li><li class="devsite-nav-item"><a href="broadcasting?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Broadcasting semantics</a></li><li class="devsite-nav-item"><a href="developing_new_backend?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Developing a new backend for XLA</a></li><li class="devsite-nav-item"><a href="jit?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using JIT Compilation</a></li><li class="devsite-nav-item"><a href="operation_semantics?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Operation Semantics</a></li><li class="devsite-nav-item"><a href="shapes?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Shapes and Layout</a></li><li class="devsite-nav-item devsite-nav-active"><a href="tfcompile?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using AOT compilation</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Quantization</span></li><li class="devsite-nav-item"><a href="../quantization?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">How to Quantize Neural Networks with TensorFlow</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="../index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Performance</a></li><li class="devsite-nav-item"><a href="../performance_guide?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Performance Guide</a></li><li class="devsite-nav-item"><a href="../performance_models?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">High-Performance Models</a></li><li class="devsite-nav-item"><a href="../benchmarks?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Benchmarks</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">XLA</span></li><li class="devsite-nav-item"><a href="index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">XLA Overview</a></li><li class="devsite-nav-item"><a href="broadcasting?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Broadcasting semantics</a></li><li class="devsite-nav-item"><a href="developing_new_backend?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Developing a new backend for XLA</a></li><li class="devsite-nav-item"><a href="jit?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using JIT Compilation</a></li><li class="devsite-nav-item"><a href="operation_semantics?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Operation Semantics</a></li><li class="devsite-nav-item"><a href="shapes?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Shapes and Layout</a></li><li class="devsite-nav-item devsite-nav-active"><a href="tfcompile?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using AOT compilation</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Quantization</span></li><li class="devsite-nav-item"><a href="../quantization?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">How to Quantize Neural Networks with TensorFlow</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../../index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="../../get_started/index?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Develop
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="../index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="3">
+    
+    
+      Performance
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Using AOT compilation
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG&amp;hl=zh-cn"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<h2 id="what_is_tfcompile">What is tfcompile?</h2>
+<p><code>tfcompile</code> is a standalone tool that ahead-of-time (AOT) compiles TensorFlow
+graphs into executable code. It can reduce total binary size, and also avoid
+some runtime overheads. A typical use-case of <code>tfcompile</code> is to compile an
+inference graph into executable code for mobile devices.</p>
+<p>The TensorFlow graph is normally executed by the TensorFlow runtime. This incurs
+some runtime overhead for execution of each node in the graph. This also leads
+to a larger total binary size, since the code for the TensorFlow runtime needs
+to be available, in addition to the graph itself. The executable code produced
+by <code>tfcompile</code> does not use the TensorFlow runtime, and only has dependencies on
+kernels that are actually used in the computation.</p>
+<p>The compiler is built on top of the XLA framework. The code bridging TensorFlow
+to the XLA framework resides under
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/compiler/">tensorflow/compiler</a>,
+which also includes support for <a href="jit?hl=zh-cn">just-in-time (JIT) compilation</a> of
+TensorFlow graphs.</p>
+<h2 id="what_does_tfcompile_do">What does tfcompile do?</h2>
+<p><code>tfcompile</code> takes a subgraph, identified by the TensorFlow concepts of
+feeds and fetches, and generates a function that implements that subgraph.
+The <code>feeds</code> are the input arguments for the function, and the <code>fetches</code> are the
+output arguments for the function. All inputs must be fully specified by the
+feeds; the resulting pruned subgraph cannot contain Placeholder or Variable
+nodes. It is common to specify all Placeholders and Variables as feeds, which
+ensures the resulting subgraph no longer contains these nodes. The generated
+function is packaged as a <code>cc_library</code>, with a header file exporting the
+function signature, and an object file containing the implementation. The user
+writes code to invoke the generated function as appropriate.</p>
+<h2 id="using_tfcompile">Using tfcompile</h2>
+<p>This section details high level steps for generating an executable binary with
+<code>tfcompile</code> from a TensorFlow subgraph. The steps are:</p>
+<ul>
+<li>Step 1: Configure the subgraph to compile</li>
+<li>Step 2: Use the <code>tf_library</code> build macro to compile the subgraph</li>
+<li>Step 3: Write code to invoke the subgraph</li>
+<li>Step 4: Create the final binary</li>
+</ul>
+<h3 id="step_1_configure_the_subgraph_to_compile">Step 1: Configure the subgraph to compile</h3>
+<p>Identify the feeds and fetches that correspond to the input and output
+arguments for the generated function. Then configure the <code>feeds</code> and <code>fetches</code>
+in a <a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/compiler/tf2xla/tf2xla.proto"><code>tensorflow.tf2xla.Config</code></a>
+proto.</p>
+<pre class="prettyprint lang-textproto"><code># Each feed is a positional input argument for the generated function.  The order
+# of each entry matches the order of each input argument.  Here “x_hold” and “y_hold”
+# refer to the names of placeholder nodes defined in the graph.
+feed {
+  id { node_name: &quot;x_hold&quot; }
+  shape {
+    dim { size: 2 }
+    dim { size: 3 }
+  }
+}
+feed {
+  id { node_name: &quot;y_hold&quot; }
+  shape {
+    dim { size: 3 }
+    dim { size: 2 }
+  }
+}
+
+# Each fetch is a positional output argument for the generated function.  The order
+# of each entry matches the order of each output argument.  Here “x_y_prod”
+# refers to the name of a matmul node defined in the graph.
+fetch {
+  id { node_name: &quot;x_y_prod&quot; }
+}
+</code></pre>
+
+<h3 id="step_2_use_tf_library_build_macro_to_compile_the_subgraph">Step 2: Use tf_library build macro to compile the subgraph</h3>
+<p>This step converts the graph into a <code>cc_library</code> using the <code>tf_library</code> build
+macro. The <code>cc_library</code> consists of an object file containing the code generated
+from the graph, along with a header file that gives access to the generated
+code. <code>tf_library</code> utilizes <code>tfcompile</code> to compile the TensorFlow graph into
+executable code.</p>
+<pre class="prettyprint lang-build"><code>load(&quot;//third_party/tensorflow/compiler/aot:tfcompile.bzl&quot;, &quot;tf_library&quot;)
+
+# Use the tf_library macro to compile your graph into executable code.
+tf_library(
+    # name is used to generate the following underlying build rules:
+    # &lt;name&gt;           : cc_library packaging the generated header and object files
+    # &lt;name&gt;_test      : cc_test containing a simple test and benchmark
+    # &lt;name&gt;_benchmark : cc_binary containing a stand-alone benchmark with minimal deps;
+    #                    can be run on a mobile device
+    name = &quot;test_graph_tfmatmul&quot;,
+    # cpp_class specifies the name of the generated C++ class, with namespaces allowed.
+    # The class will be generated in the given namespace(s), or if no namespaces are
+    # given, within the global namespace.
+    cpp_class = &quot;foo::bar::MatMulComp&quot;,
+    # graph is the input GraphDef proto, by default expected in binary format.  To
+    # use the text format instead, just use the ‘.pbtxt’ suffix.  A subgraph will be
+    # created from this input graph, with feeds as inputs and fetches as outputs.
+    # No Placeholder or Variable ops may exist in this subgraph.
+    graph = &quot;test_graph_tfmatmul.pb&quot;,
+    # config is the input Config proto, by default expected in binary format.  To
+    # use the text format instead, use the ‘.pbtxt’ suffix.  This is where the
+    # feeds and fetches were specified above, in the previous step.
+    config = &quot;test_graph_tfmatmul.config.pbtxt&quot;,
+)
+</code></pre>
+
+<blockquote>
+<p>To generate the GraphDef proto (test_graph_tfmatmul.pb) for this example, run
+<a href="../../index.html?hl=zh-cn" title="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/compiler/aot/tests/make_test_graphs.py">make_test_graphs.py</a>
+and specify the output location with the --out_dir flag.</p>
+</blockquote>
+<p>Typical graphs contain <a href="../../api_guides/python/state_ops?hl=zh-cn"><code>Variables</code></a>
+representing the weights that are learned via training, but <code>tfcompile</code> cannot
+compile a subgraph that contain <code>Variables</code>. The
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/python/tools/freeze_graph.py">freeze_graph.py</a>
+tool converts variables into constants, using values stored in a checkpoint
+file. As a convenience, the <code>tf_library</code> macro supports the <code>freeze_checkpoint</code>
+argument, which runs the tool. For more examples see
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/compiler/aot/tests/BUILD">tensorflow/compiler/aot/tests/BUILD</a>.</p>
+<blockquote>
+<p>Constants that show up in the compiled subgraph are compiled directly into the
+generated code. To pass the constants into the generated function, rather than
+having them compiled-in, simply pass them in as feeds.</p>
+</blockquote>
+<p>For details on the <code>tf_library</code> build macro, see
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/compiler/aot/tfcompile.bzl">tfcompile.bzl</a>.</p>
+<p>For details on the underlying <code>tfcompile</code> tool, see
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/compiler/aot/tfcompile_main.cc">tfcompile_main.cc</a>.</p>
+<h3 id="step_3_write_code_to_invoke_the_subgraph">Step 3: Write code to invoke the subgraph</h3>
+<p>This step uses the header file (<code>test_graph_tfmatmul.h</code>) generated by the
+<code>tf_library</code> build macro in the previous step to invoke the generated code. The
+header file is located in the <code>bazel-genfiles</code> directory corresponding to the
+build package, and is named based on the name attribute set on the <code>tf_library</code>
+build macro. For example, the header generated for <code>test_graph_tfmatmul</code> would
+be <code>test_graph_tfmatmul.h</code>. Below is an abbreviated version of what is
+generated. The generated file, in <code>bazel-genfiles</code>, contains additional useful
+comments.</p>
+<pre class="prettyprint"><code>namespace foo {
+namespace bar {
+
+// MatMulComp represents a computation previously specified in a
+// TensorFlow graph, now compiled into executable code.
+class MatMulComp {
+ public:
+  // AllocMode controls the buffer allocation mode.
+  enum class AllocMode {
+    ARGS_RESULTS_AND_TEMPS,  // Allocate arg, result and temp buffers
+    RESULTS_AND_TEMPS_ONLY,  // Only allocate result and temp buffers
+  };
+
+  MatMulComp(AllocMode mode = AllocMode::ARGS_RESULTS_AND_TEMPS);
+  ~MatMulComp();
+
+  // Runs the computation, with inputs read from arg buffers, and outputs
+  // written to result buffers. Returns true on success and false on failure.
+  bool Run();
+
+  // Arg methods for managing input buffers. Buffers are in row-major order.
+  // There is a set of methods for each positional argument.
+  void** args();
+
+  void set_arg0_data(float* data);
+  float* arg0_data();
+  float&amp; arg0(size_t dim0, size_t dim1);
+
+  void set_arg1_data(float* data);
+  float* arg1_data();
+  float&amp; arg1(size_t dim0, size_t dim1);
+
+  // Result methods for managing output buffers. Buffers are in row-major order.
+  // Must only be called after a successful Run call. There is a set of methods
+  // for each positional result.
+  void** results();
+
+  float* result0_data();
+  float&amp; result0(size_t dim0, size_t dim1);
+};
+
+}  // end namespace bar
+}  // end namespace foo
+</code></pre>
+
+<p>The generated C++ class is called <code>MatMulComp</code> in the <code>foo::bar</code> namespace,
+because that was the <code>cpp_class</code> specified in the <code>tf_library</code> macro. All
+generated classes have a similar API, with the only difference being the methods
+to handle arg and result buffers. Those methods differ based on the number and
+types of the buffers, which were specified by the <code>feed</code> and <code>fetch</code> arguments
+to the <code>tf_library</code> macro.</p>
+<p>There are three types of buffers managed within the generated class: <code>args</code>
+representing the inputs, <code>results</code> representing the outputs, and <code>temps</code>
+representing temporary buffers used internally to perform the computation. By
+default, each instance of the generated class allocates and manages all of these
+buffers for you. The <code>AllocMode</code> constructor argument may be used to change this
+behavior. A convenience library is provided in
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/compiler/aot/runtime.h"><code>tensorflow/compiler/aot/runtime.h</code></a>
+to help with manual buffer allocation; usage of this library is optional. All
+buffers should be aligned to 32-byte boundaries.</p>
+<p>The generated C++ class is just a wrapper around the low-level code generated by
+XLA.</p>
+<p>Example of invoking the generated function based on
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/compiler/aot/tests/tfcompile_test.cc"><code>tfcompile_test.cc</code></a>:</p>
+<pre class="prettyprint"><code>#define EIGEN_USE_THREADS
+#define EIGEN_USE_CUSTOM_THREAD_POOL
+
+#include &lt;iostream&gt;
+#include &quot;third_party/eigen3/unsupported/Eigen/CXX11/Tensor&quot;
+#include &quot;tensorflow/compiler/aot/tests/test_graph_tfmatmul.h&quot; // generated
+
+int main(int argc, char** argv) {
+  Eigen::ThreadPool tp(2);  // Size the thread pool as appropriate.
+  Eigen::ThreadPoolDevice device(&amp;tp, tp.NumThreads());
+
+  foo::bar::MatMulComp matmul;
+  matmul.set_thread_pool(&amp;device);
+
+  // Set up args and run the computation.
+  const float args[12] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+  std::copy(args + 0, args + 6, matmul.arg0_data());
+  std::copy(args + 6, args + 12, matmul.arg1_data());
+  matmul.Run();
+
+  // Check result
+  if (matmul.result0(0, 0) == 58) {
+    std::cout &lt;&lt; &quot;Success&quot; &lt;&lt; std::endl;
+  } else {
+    std::cout &lt;&lt; &quot;Failed. Expected value 58 at 0,0. Got:&quot;
+              &lt;&lt; matmul.result0(0, 0) &lt;&lt; std::endl;
+  }
+
+  return 0;
+}
+</code></pre>
+
+<h3 id="step_4_create_the_final_binary">Step 4: Create the final binary</h3>
+<p>This step combines the library generated by <code>tf_library</code> in step 2 and the code
+written in step 3 to create a final binary. Below is an example <code>bazel</code> BUILD
+file.</p>
+<pre class="prettyprint lang-build"><code># Example of linking your binary
+# Also see //third_party/tensorflow/compiler/aot/tests/BUILD
+load(&quot;//third_party/tensorflow/compiler/aot:tfcompile.bzl&quot;, &quot;tf_library&quot;)
+
+# The same tf_library call from step 2 above.
+tf_library(
+    name = &quot;test_graph_tfmatmul&quot;,
+    ...
+)
+
+# The executable code generated by tf_library can then be linked into your code.
+cc_binary(
+    name = &quot;my_binary&quot;,
+    srcs = [
+        &quot;my_code.cc&quot;,  # include test_graph_tfmatmul.h to access the generated header
+    ],
+    deps = [
+        &quot;:test_graph_tfmatmul&quot;,  # link in the generated object file
+        &quot;//third_party/eigen3&quot;,
+    ],
+    linkopts = [
+          &quot;-lpthread&quot;,
+    ]
+)
+</code></pre>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies?hl=zh-cn">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:30:38.207290">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="KJjhqWkvXo7wCJVXgNLf6o063lqiTN92wWJsOVTzT8U6MTUxNzg3OTIzNzg2OTY4MA" /><input type="hidden" name="next" value="/performance/xla/tfcompile"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../../_static2/18908e5f48/jsi18n/index.html?hl=zh-cn"></script><script src="../../_static/18908e5f48/js/script_foot_closure__zh_cn.js?hl=zh-cn"></script><script src="../../_static/18908e5f48/js/script_foot.js?hl=zh-cn"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/?hl=zh-cn');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="295.409917831"></span></body></html>

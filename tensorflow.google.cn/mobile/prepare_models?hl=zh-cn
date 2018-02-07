@@ -1,0 +1,904 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="nP7fcoauF-C-sDV9HkXJhG8w_ImRfsSSKPaV8mn4C5w6MTUxNzg3OTI4MzkyODMxMA" /><link rel="canonical" href="https://www.tensorflow.org/mobile/prepare_models"><link rel="alternate" href="https://www.tensorflow.org/mobile/prepare_models" hreflang="en"><link rel="alternate" href="prepare_models" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/mobile/prepare_models" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png?hl=zh-cn"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png?hl=zh-cn"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css?hl=zh-cn"><script src="../_static/18908e5f48/js/jquery-bundle.js?hl=zh-cn"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/mobile/prepare_models"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Preparing models for mobile deployment &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Preparing models for mobile deployment &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               "
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html?hl=zh-cn" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png?hl=zh-cn"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/?hl=zh-cn"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Develop
+    
+    
+  </li></ul></div></div><div class="devsite-doc-set-nav-row devsite-full-site-width"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Get Started"
+       >
+        Get Started
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../programmers_guide/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Programmer&#39;s Guide"
+       >
+        Programmer&#39;s Guide
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tutorials/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Tutorials"
+       >
+        Tutorials
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../performance/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Performance"
+       >
+        Performance
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index.html?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Mobile"
+       >
+        Mobile
+      </a></li></ul></nav></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Get Started">
+        Get Started
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../programmers_guide/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Programmer&#39;s Guide">
+        Programmer&#39;s Guide
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tutorials/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Tutorials">
+        Tutorials
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../performance/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Performance">
+        Performance
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Mobile"
+            tabindex="0">
+        Mobile
+      </span>
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html?hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Overview</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorFlow Lite</span></li><li class="devsite-nav-item"><a href="tflite/index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction to TensorFlow Lite</a></li><li class="devsite-nav-item"><a href="tflite/demo_android?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Lite Demo for Android</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorFlow Mobile</span></li><li class="devsite-nav-item"><a href="mobile_intro?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction to TensorFlow Mobile</a></li><li class="devsite-nav-item"><a href="android_build?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Building TensorFlow on Android</a></li><li class="devsite-nav-item"><a href="ios_build?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Building TensorFlow on iOS</a></li><li class="devsite-nav-item"><a href="linking_libs?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Integrating TensorFlow libraries</a></li><li class="devsite-nav-item devsite-nav-active"><a href="prepare_models?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Preparing models for mobile deployment</a></li><li class="devsite-nav-item"><a href="optimizing?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Optimizing for mobile</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Overview</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorFlow Lite</span></li><li class="devsite-nav-item"><a href="tflite/index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction to TensorFlow Lite</a></li><li class="devsite-nav-item"><a href="tflite/demo_android?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Lite Demo for Android</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorFlow Mobile</span></li><li class="devsite-nav-item"><a href="mobile_intro?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction to TensorFlow Mobile</a></li><li class="devsite-nav-item"><a href="android_build?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Building TensorFlow on Android</a></li><li class="devsite-nav-item"><a href="ios_build?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Building TensorFlow on iOS</a></li><li class="devsite-nav-item"><a href="linking_libs?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Integrating TensorFlow libraries</a></li><li class="devsite-nav-item devsite-nav-active"><a href="prepare_models?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Preparing models for mobile deployment</a></li><li class="devsite-nav-item"><a href="optimizing?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Optimizing for mobile</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="../get_started/index?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Develop
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="3">
+    
+    
+      Mobile
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Preparing models for mobile deployment
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG&amp;hl=zh-cn"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>The requirements for storing model information during training are very
+different from when you want to release it as part of a mobile app. This section
+covers the tools involved in converting from a training model to something
+releasable in production.</p>
+<h2 id="what_is_up_with_all_the_different_saved_file_formats">What is up with all the different saved file formats?</h2>
+<p>You may find yourself getting very confused by all the different ways that
+TensorFlow can save out graphs. To help, here’s a rundown of some of the
+different components, and what they are used for. The objects are mostly defined
+and serialized as protocol buffers:</p>
+<ul>
+<li>
+<p><a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/framework/node_def.proto">NodeDef</a>:
+  Defines a single operation in a model. It has a unique name, a list of the
+  names of other nodes it pulls inputs from, the operation type it implements
+  (for example <code>Add</code>, or <code>Mul</code>), and any attributes that are needed to control
+  that operation. This is the basic unit of computation for TensorFlow, and all
+  work is done by iterating through a network of these nodes, applying each one
+  in turn. One particular operation type that’s worth knowing about is <code>Const</code>,
+  since this holds information about a constant. This may be a single, scalar
+  number or string, but it can also hold an entire multi-dimensional tensor
+  array. The values for a <code>Const</code> are stored inside the <code>NodeDef</code>, and so large
+  constants can take up a lot of room when serialized.</p>
+</li>
+<li>
+<p><a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/util/tensor_bundle/tensor_bundle.h">Checkpoint</a>. Another
+  way of storing values for a model is by using <code>Variable</code> ops. Unlike <code>Const</code>
+  ops, these don’t store their content as part of the <code>NodeDef</code>, so they take up
+  very little space within the <code>GraphDef</code> file. Instead their values are held in
+  RAM while a computation is running, and then saved out to disk as checkpoint
+  files periodically. This typically happens as a neural network is being
+  trained and weights are updated, so it’s a time-critical operation, and it may
+  happen in a distributed fashion across many workers, so the file format has to
+  be both fast and flexible. They are stored as multiple checkpoint files,
+  together with metadata files that describe what’s contained within the
+  checkpoints. When you’re referring to a checkpoint in the API (for example
+  when passing a filename in as a command line argument), you’ll use the common
+  prefix for a set of related files. If you had these files:</p>
+<pre class="prettyprint notranslate" translate="no"><code>/tmp/model/model-chkpt-1000.data-00000-of-00002
+/tmp/model/model-chkpt-1000.data-00001-of-00002
+/tmp/model/model-chkpt-1000.index
+/tmp/model/model-chkpt-1000.meta
+</code></pre>
+<p>You would refer to them as <code>/tmp/model/chkpt-1000</code>.</p>
+</li>
+<li>
+<p><a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/framework/graph.proto">GraphDef</a>:
+  Has a list of <code>NodeDefs</code>, which together define the computational graph to
+  execute. During training, some of these nodes will be <code>Variables</code>, and so if
+  you want to have a complete graph you can run, including the weights, you’ll
+  need to call a restore operation to pull those values from
+  checkpoints. Because checkpoint loading has to be flexible to deal with all of
+  the training requirements, this can be tricky to implement on mobile and
+  embedded devices, especially those with no proper file system available like
+  iOS. This is where
+  the
+  <a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/python/tools/freeze_graph.py"><code>freeze_graph.py</code></a> script
+  comes in handy. As mentioned above, <code>Const</code> ops store their values as part of
+  the <code>NodeDef</code>, so if all the <code>Variable</code> weights are converted to <code>Const</code> nodes,
+  then we only need a single <code>GraphDef</code> file to hold the model architecture and
+  the weights. Freezing the graph handles the process of loading the
+  checkpoints, and then converts all Consts to Variables. You can then load the
+  resulting file in a single call, without having to restore variable values
+  from checkpoints. One thing to watch out for with <code>GraphDef</code> files is that
+  sometimes they’re stored in text format for easy inspection. These versions
+  usually have a ‘.pbtxt’ filename suffix, whereas the binary files end with
+  ‘.pb’.</p>
+</li>
+<li>
+<p><a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/framework/function.proto">FunctionDefLibrary</a>:
+  This appears in <code>GraphDef</code>, and is effectively a set of sub-graphs, each with
+  information about their input and output nodes. Each sub-graph can then be
+  used as an op in the main graph, allowing easy instantiation of different
+  nodes, in a similar way to how functions encapsulate code in other languages.</p>
+</li>
+<li>
+<p><a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/protobuf/meta_graph.proto">MetaGraphDef</a>:
+  A plain <code>GraphDef</code> only has information about the network of computations, but
+  doesn’t have any extra information about the model or how it can be
+  used. <code>MetaGraphDef</code> contains a <code>GraphDef</code> defining the computation part of
+  the model, but also includes information like ‘signatures’, which are
+  suggestions about which inputs and outputs you may want to call the model
+  with, data on how and where any checkpoint files are saved, and convenience
+  tags for grouping ops together for ease of use.</p>
+</li>
+<li>
+<p><a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/protobuf/saved_model.proto">SavedModel</a>:
+  It’s common to want to have different versions of a graph that rely on a
+  common set of variable checkpoints. For example, you might need a GPU and a
+  CPU version of the same graph, but keep the same weights for both. You might
+  also need some extra files (like label names) as part of your
+  model. The
+  <a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/python/saved_model/README.md">SavedModel</a> format
+  addresses these needs by letting you save multiple versions of the same graph
+  without duplicating variables, and also storing asset files in the same
+  bundle. Under the hood, it uses <code>MetaGraphDef</code> and checkpoint files, along
+  with extra metadata files. It’s the format that you’ll want to use if you’re
+  deploying a web API using TensorFlow Serving, for example.</p>
+</li>
+</ul>
+<h2 id="how_do_you_get_a_model_you_can_use_on_mobile">How do you get a model you can use on mobile?</h2>
+<p>In most situations, training a model with TensorFlow will give you a folder
+containing a <code>GraphDef</code> file (usually ending with the <code>.pb</code> or <code>.pbtxt</code> extension) and
+a set of checkpoint files. What you need for mobile or embedded deployment is a
+single <code>GraphDef</code> file that’s been ‘frozen’, or had its variables converted into
+inline constants so everything’s in one file.  To handle the conversion, you’ll
+need the <code>freeze_graph.py</code> script, that’s held in
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/python/tools/freeze_graph.py"><code>tensorflow/python/tools/freeze_graph.py</code></a>. You’ll run it like this:</p>
+<pre class="prettyprint notranslate" translate="no"><code>bazel build tensorflow/tools:freeze_graph
+bazel-bin/tensorflow/tools/freeze_graph \
+--input_graph=/tmp/model/my_graph.pb \
+--input_checkpoint=/tmp/model/model.ckpt-1000 \
+--output_graph=/tmp/frozen_graph.pb \
+--output_node_names=output_node \
+</code></pre>
+<p>The <code>input_graph</code> argument should point to the <code>GraphDef</code> file that holds your
+model architecture. It’s possible that your <code>GraphDef</code> has been stored in a text
+format on disk, in which case it’s likely to end in <code>.pbtxt</code> instead of <code>.pb</code>,
+and you should add an extra <code>--input_binary=false</code> flag to the command.</p>
+<p>The <code>input_checkpoint</code> should be the most recent saved checkpoint. As mentioned
+in the checkpoint section, you need to give the common prefix to the set of
+checkpoints here, rather than a full filename.</p>
+<p><code>output_graph</code> defines where the resulting frozen <code>GraphDef</code> will be
+saved. Because it’s likely to contain a lot of weight values that take up a
+large amount of space in text format, it’s always saved as a binary protobuf.</p>
+<p><code>output_node_names</code> is a list of the names of the nodes that you want to extract
+the results of your graph from. This is needed because the freezing process
+needs to understand which parts of the graph are actually needed, and which are
+artifacts of the training process, like summarization ops. Only ops that
+contribute to calculating the given output nodes will be kept. If you know how
+your graph is going to be used, these should just be the names of the nodes you
+pass into <code>Session::Run()</code> as your fetch targets. The easiest way to find the
+node names is to inspect the Node objects while building your graph in python.
+Inspecting your graph in TensorBoard is another simple way.  You can get some
+suggestions on likely outputs by running the <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/tools/graph_transforms/README#inspecting-graphs"><code>summarize_graph</code> tool</a>.</p>
+<p>Because the output format for TensorFlow has changed over time, there are a
+variety of other less commonly used flags available too, like <code>input_saver</code>, but
+hopefully you shouldn’t need these on graphs trained with modern versions of the
+framework.</p>
+<h2 id="using_the_graph_transform_tool">Using the Graph Transform Tool</h2>
+<p>A lot of the things you need to do to efficiently run a model on device are
+available through the <a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/tools/graph_transforms/README.md">Graph Transform
+Tool</a>. This
+command-line tool takes an input <code>GraphDef</code> file, applies the set of rewriting
+rules you request, and then writes out the result as a <code>GraphDef</code>. See the
+documentation for more information on how to build and run this tool.</p>
+<h3 id="removing_training-only_nodes">Removing training-only nodes</h3>
+<p>TensorFlow <code>GraphDefs</code> produced by the training code contain all of the
+computation that’s needed for back-propagation and updates of weights, as well
+as the queuing and decoding of inputs, and the saving out of checkpoints. All of
+these nodes are no longer needed during inference, and some of the operations
+like checkpoint saving aren’t even supported on mobile platforms. To create a
+model file that you can load on devices you need to delete those unneeded
+operations by running the <code>strip_unused_nodes</code> rule in the Graph Transform Tool.</p>
+<p>The trickiest part of this process is figuring out the names of the nodes you
+want to use as inputs and outputs during inference.  You'll need these anyway
+once you start to run inference, but you also need them here so that the
+transform can calculate which nodes are not needed on the inference-only
+path. These may not be obvious from the training code. The easiest way to
+determine the node name is to explore the graph with TensorBoard.</p>
+<p>Remember that mobile applications typically gather their data from sensors and
+have it as arrays in memory, whereas training typically involves loading and
+decoding representations of the data stored on disk. In the case of Inception v3
+for example, there’s a <code>DecodeJpeg</code> op at the start of the graph that’s designed
+to take JPEG-encoded data from a file retrieved from disk and turn it into an
+arbitrary-sized image. After that there’s a <code>BilinearResize</code> op to scale it to
+the expected size, followed by a couple of other ops that convert the byte data
+into float and scale the value magnitudes it in the way the rest of the graph
+expects. A typical mobile app will skip most of these steps because it’s getting
+its input directly from a live camera, so the input node you will actually
+supply will be the output of the <code>Mul</code> node in this case.</p>
+<p><img src="../images/inception_input.png?hl=zh-cn" width="300"></p>
+<p>You’ll need to do a similar process of inspection to figure out the correct
+output nodes.</p>
+<p>If you’ve just been given a frozen <code>GraphDef</code> file, and are not sure about the
+contents, try using the <code>summarize_graph</code> tool to print out information
+about the inputs and outputs it finds from the graph structure. Here’s an
+example with the original Inception v3 file:</p>
+<pre class="prettyprint notranslate" translate="no"><code>bazel run tensorflow/tools/graph_transforms:summarize_graph --
+--in_graph=tensorflow_inception_graph.pb
+</code></pre>
+<p>Once you have an idea of what the input and output nodes are, you can feed them
+into the graph transform tool as the <code>--input_names</code> and <code>--output_names</code>
+arguments, and call the <code>strip_unused_nodes</code> transform, like this:</p>
+<pre class="prettyprint notranslate" translate="no"><code>bazel run tensorflow/tools/graph_transforms:transform_graph --
+--in_graph=tensorflow_inception_graph.pb
+--out_graph=optimized_inception_graph.pb --inputs='Mul' --outputs='softmax'
+--transforms='
+  strip_unused_nodes(type=float, shape="1,299,299,3")
+  fold_constants(ignore_errors=true)
+  fold_batch_norms
+  fold_old_batch_norms'
+</code></pre>
+<p>One thing to look out for here is that you need to specify the size and type
+that you want your inputs to be. This is because any values that you’re going to
+be passing in as inputs to inference need to be fed to special <code>Placeholder</code> op
+nodes, and the transform may need to create them if they don’t already exist. In
+the case of Inception v3 for example, a <code>Placeholder</code> node replaces the old
+<code>Mul</code> node that used to output the resized and rescaled image array, since we’re
+going to be doing that processing ourselves before we call TensorFlow. It keeps
+the original name though, which is why we always feed in inputs to <code>Mul</code> when we
+run a session with our modified Inception graph.</p>
+<p>After you’ve run this process, you’ll have a graph that only contains the actual
+nodes you need to run your prediction process. This is the point where it
+becomes useful to run metrics on the graph, so it’s worth running
+<code>summarize_graph</code> again to understand what’s in your model.</p>
+<h2 id="what_ops_should_you_include_on_mobile">What ops should you include on mobile?</h2>
+<p>There are hundreds of operations available in TensorFlow, and each one has
+multiple implementations for different data types. On mobile platforms, the size
+of the executable binary that’s produced after compilation is important, because
+app download bundles need to be as small as possible for the best user
+experience. If all of the ops and data types are compiled into the TensorFlow
+library then the total size of the compiled library can be tens of megabytes, so
+by default only a subset of ops and data types are included.</p>
+<p>That means that if you load a model file that’s been trained on a desktop
+machine, you may see the error “No OpKernel was registered to support Op” when
+you load it on mobile. The first thing to try is to make sure you’ve stripped
+out any training-only nodes, since the error will occur at load time even if the
+op is never executed. If you’re still hitting the same problem once that’s done,
+you’ll need to look at adding the op to your built library.</p>
+<p>The criteria for including ops and types fall into several categories:</p>
+<ul>
+<li>
+<p>Are they only useful in back-propagation, for gradients? Since mobile is
+  focused on inference, we don’t include these.</p>
+</li>
+<li>
+<p>Are they useful mainly for other training needs, such as checkpoint saving?
+  These we leave out.</p>
+</li>
+<li>
+<p>Do they rely on frameworks that aren’t always available on mobile, such as
+  libjpeg? To avoid extra dependencies we don’t include ops like <code>DecodeJpeg</code>.</p>
+</li>
+<li>
+<p>Are there types that aren’t commonly used? We don’t include boolean variants
+  of ops for example, since we don’t see much use of them in typical inference
+  graphs.</p>
+</li>
+</ul>
+<p>These ops are trimmed by default to optimize for inference on mobile, but it is
+possible to alter some build files to change the default.  After alternating the
+build files, you will need to recompile TensorFlow.  See below for more details
+on how to do this, and also see <a href="optimizing?hl=zh-cn#binary_size">Optimizing</a> for
+more on reducing your binary size.</p>
+<h3 id="locate_the_implementation">Locate the implementation</h3>
+<p>Operations are broken into two parts. The first is the op definition, which
+declares the signature of the operation, which inputs, outputs, and attributes
+it has. These take up very little space, and so all are included by default. The
+implementations of the op computations are done in kernels, which live in the
+<code>tensorflow/core/kernels</code> folder. You need to compile the C++ file containing
+the kernel implementation of the op you need into the library. To figure out
+which file that is, you can search for the operation name in the source
+files.</p>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=repo%3Atensorflow%2Ftensorflow+extension%3Acc+path%3Atensorflow%2Fcore%2Fkernels+REGISTER+Mul&amp;type=Code&amp;ref=searchresults">Here’s an example search in github</a>.</p>
+<p>You’ll see that this search is looking for the <code>Mul</code> op implementation, and it
+finds it in <code>tensorflow/core/kernels/cwise_op_mul_1.cc</code>. You need to look for
+macros beginning with <code>REGISTER</code>, with the op name you care about as one of the
+string arguments.</p>
+<p>In this case, the implementations are actually broken up across multiple <code>.cc</code>
+files, so you’d need to include all of them in your build. If you’re more
+comfortable using the command line for code search, here’s a grep command that
+also locates the right files if you run it from the root of your TensorFlow
+repository:</p>
+<p><code>grep 'REGISTER.*"Mul"' tensorflow/core/kernels/*.cc</code></p>
+<h3 id="add_the_implementation_to_the_build">Add the implementation to the build</h3>
+<p>If you’re using Bazel, and building for Android, you’ll want to add the files
+you’ve found to
+the
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/kernels/BUILD#L3565"><code>android_extended_ops_group1</code></a> or
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/kernels/BUILD#L3632"><code>android_extended_ops_group2</code></a> targets. You
+may also need to include any .cc files they depend on in there. If the build
+complains about missing header files, add the .h’s that are needed into
+the
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/kernels/BUILD#L3525"><code>android_extended_ops</code></a> target.</p>
+<p>If you’re using a makefile targeting iOS, Raspberry Pi, etc, go to
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/contrib/makefile/tf_op_files.txt"><code>tensorflow/contrib/makefile/tf_op_files.txt</code></a> and
+add the right implementation files there.</p>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies?hl=zh-cn">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:28:50.574610">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="nP7fcoauF-C-sDV9HkXJhG8w_ImRfsSSKPaV8mn4C5w6MTUxNzg3OTI4MzkyODMxMA" /><input type="hidden" name="next" value="/mobile/prepare_models"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot.js?hl=zh-cn"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/?hl=zh-cn');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="382.770061493"></span></body></html>

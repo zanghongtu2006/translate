@@ -1,0 +1,86 @@
+.devsite-collapsible-section {
+  background: url('images/hero-bg@2x.jpg') 0 45% / cover no-repeat;
+}
+.devsite-landing-page .devsite-product-description-row {
+  max-width: 500px;
+}
+.devsite-product-description {
+  font: 300 34px/40px Roboto, sans-serif;
+}
+.devsite-header-no-lower-tabs .devsite-product-id-row {
+  display: block;
+  padding: 40px 24px;
+}
+.devsite-product-button-row {
+  margin: 16px 0 0;
+  text-align: left;
+}
+.devsite-landing-row.devsite-background > h2 {
+  margin-top: 0;
+}
+.tf-row-centered {
+  text-align: center;
+}
+.devsite-landing-partner-logos {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+.devsite-landing-row-logos .devsite-landing-row-item-custom-image-icon {
+  width: 150px;
+}
+.devsite-landing-logo-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.devsite-landing-partner-logo {
+  flex: 1 0;
+}
+.devsite-landing-partner-logo:not(:first-child) {
+  margin-left: 40px;
+}
+.devsite-partner-logo .devsite-landing-row-item-custom-image-icon {
+  padding: 20px 0;
+  width: 150px;
+}
+.devsite-landing-partner-logos .showalways {
+  text-align: center;
+  color: #039be5;
+  text-transform: uppercase;
+}
+.devsite-landing-partner-logos .exw-expanded {
+  order: 10;
+  padding-top: 40px;
+}
+.devsite-landing-partner-logos .see-more-open {
+  display: none;
+}
+.expand-control.exw-expanded .see-more-open {
+  display: initial;
+}
+.expand-control.exw-expanded .see-more-closed {
+  display: none;
+}
+.expand-control.exw-expanded .material-icons {
+  transform: rotate(180deg);
+}
+/* Media Queries */
+@media screen and (max-width: 720px) {
+  .devsite-header-no-lower-tabs .devsite-product-id-row {
+    padding: 40px 16px;
+  }
+  .devsite-landing-partner-logo {
+    margin: 40px 0 0;
+  }
+  .devsite-landing-row-logos .devsite-landing-row-item-custom-image-icon {
+    padding: 10px 0;
+    width: 120px;
+  }
+  .devsite-landing-partner-logo:not(:first-child) {
+    margin-left: 0;
+    padding: 0 20px;
+  }
+  .devsite-landing-partner-logo {
+    flex-basis: calc((100% - 40px)/2)
+  }
+}

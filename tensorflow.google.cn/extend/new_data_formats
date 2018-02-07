@@ -1,0 +1,680 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="xf_zghnivNmuNu8nP9In-dI0oMth8DuxbtOKt_q49sM6MTUxNzg2MDI4NTQ1OTY4MA" /><link rel="canonical" href="https://www.tensorflow.org/extend/new_data_formats"><link rel="alternate" href="https://www.tensorflow.org/extend/new_data_formats" hreflang="en"><link rel="alternate" href="new_data_formats" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/extend/new_data_formats" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css"><script src="../_static/18908e5f48/js/jquery-bundle.js"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/extend/new_data_formats"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Custom Data Readers &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Custom Data Readers &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               devsite-header-no-lower-tabs"
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs.1"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index.html"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Extend
+    
+    
+  </li></ul></div></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend"
+            tabindex="0">
+        Extend
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Extend</a></li><li class="devsite-nav-item"><a href="architecture" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Architecture</a></li><li class="devsite-nav-item"><a href="adding_an_op" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Adding a New Op</a></li><li class="devsite-nav-item"><a href="add_filesys" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Adding a Custom Filesystem Plugin</a></li><li class="devsite-nav-item devsite-nav-active"><a href="new_data_formats" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Custom Data Readers</a></li><li class="devsite-nav-item"><a href="language_bindings" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow in other languages</a></li><li class="devsite-nav-item"><a href="tool_developers/index" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">A Tool Developer's Guide to TensorFlow Model Files</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Extend</a></li><li class="devsite-nav-item"><a href="architecture" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Architecture</a></li><li class="devsite-nav-item"><a href="adding_an_op" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Adding a New Op</a></li><li class="devsite-nav-item"><a href="add_filesys" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Adding a Custom Filesystem Plugin</a></li><li class="devsite-nav-item devsite-nav-active"><a href="new_data_formats" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Custom Data Readers</a></li><li class="devsite-nav-item"><a href="language_bindings" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow in other languages</a></li><li class="devsite-nav-item"><a href="tool_developers/index" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">A Tool Developer's Guide to TensorFlow Model Files</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index.html" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Extend
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Custom Data Readers
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>PREREQUISITES:</p>
+<ul>
+<li>Some familiarity with C++.</li>
+<li>Must have
+    <a href="../install/install_sources">downloaded TensorFlow source</a>, and be
+    able to build it.</li>
+</ul>
+<p>We divide the task of supporting a file format into two pieces:</p>
+<ul>
+<li>File formats: We use a <em>Reader</em> Op to read a <em>record</em> (which can be any
+    string) from a file.</li>
+<li>Record formats: We use decoder or parsing Ops to turn a string record
+    into tensors usable by TensorFlow.</li>
+</ul>
+<p>For example, to read a
+<a href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV file</a>, we use
+<a href="../api_docs/python/tf/TextLineReader">a Reader for text files</a>
+followed by
+<a href="../api_docs/python/tf/decode_csv">an Op that parses CSV data from a line of text</a>.</p>
+<h2 id="writing_a_reader_for_a_file_format">Writing a Reader for a file format</h2>
+<p>A <code>Reader</code> is something that reads records from a file.  There are some examples
+of Reader Ops already built into TensorFlow:</p>
+<ul>
+<li><a href="../api_docs/python/tf/TFRecordReader"><code>tf.TFRecordReader</code></a>
+    (<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/kernels/tf_record_reader_op.cc">source in <code>kernels/tf_record_reader_op.cc</code></a>)</li>
+<li><a href="../api_docs/python/tf/FixedLengthRecordReader"><code>tf.FixedLengthRecordReader</code></a>
+    (<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/kernels/fixed_length_record_reader_op.cc">source in <code>kernels/fixed_length_record_reader_op.cc</code></a>)</li>
+<li><a href="../api_docs/python/tf/TextLineReader"><code>tf.TextLineReader</code></a>
+    (<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/kernels/text_line_reader_op.cc">source in <code>kernels/text_line_reader_op.cc</code></a>)</li>
+</ul>
+<p>You can see these all expose the same interface, the only differences
+are in their constructors.  The most important method is <code>read</code>.
+It takes a queue argument, which is where it gets filenames to
+read from whenever it needs one (e.g. when the <code>read</code> op first runs, or
+the previous <code>read</code> reads the last record from a file).  It produces
+two scalar tensors: a string key and a string value.</p>
+<p>To create a new reader called <code>SomeReader</code>, you will need to:</p>
+<ol>
+<li>In C++, define a subclass of
+    <a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/framework/reader_base.h"><code>tensorflow::ReaderBase</code></a>
+    called <code>SomeReader</code>.</li>
+<li>In C++, register a new reader op and kernel with the name <code>"SomeReader"</code>.</li>
+<li>In Python, define a subclass of <a href="../api_docs/python/tf/ReaderBase"><code>tf.ReaderBase</code></a> called <code>SomeReader</code>.</li>
+</ol>
+<p>You can put all the C++ code in a file in
+<code>tensorflow/core/user_ops/some_reader_op.cc</code>. The code to read a file will live
+in a descendant of the C++ <code>ReaderBase</code> class, which is defined in
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/framework/reader_base.h"><code>tensorflow/core/kernels/reader_base.h</code></a>.
+You will need to implement the following methods:</p>
+<ul>
+<li><code>OnWorkStartedLocked</code>: open the next file</li>
+<li><code>ReadLocked</code>: read a record or report EOF/error</li>
+<li><code>OnWorkFinishedLocked</code>: close the current file, and</li>
+<li><code>ResetLocked</code>: get a clean slate after, e.g., an error</li>
+</ul>
+<p>These methods have names ending in "Locked" since <code>ReaderBase</code> makes sure
+to acquire a mutex before calling any of these methods, so you generally don't
+have to worry about thread safety (though that only protects the members of the
+class, not global state).</p>
+<p>For <code>OnWorkStartedLocked</code>, the name of the file to open is the value returned by
+the <code>current_work()</code> method.  <code>ReadLocked</code> has this signature:</p>
+<pre class="prettyprint"><code>Status ReadLocked(string* key, string* value, bool* produced, bool* at_end)
+</code></pre>
+
+<p>If <code>ReadLocked</code> successfully reads a record from the file, it should fill in:</p>
+<ul>
+<li><code>*key</code>: with an identifier for the record, that a human could use to find
+    this record again.  You can include the filename from <code>current_work()</code>,
+    and append a record number or whatever.</li>
+<li><code>*value</code>: with the contents of the record.</li>
+<li><code>*produced</code>: set to <code>true</code>.</li>
+</ul>
+<p>If you hit the end of a file (EOF), set <code>*at_end</code> to <code>true</code>.  In either case,
+return <code>Status::OK()</code>.  If there is an error, simply return it using one of the
+helper functions from
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/lib/core/errors.h"><code>tensorflow/core/lib/core/errors.h</code></a>
+without modifying any arguments.</p>
+<p>Next you will create the actual Reader op.  It will help if you are familiar
+with <a href="adding_an_op">the adding an op how-to</a>.  The main steps
+are:</p>
+<ul>
+<li>Registering the op.</li>
+<li>Define and register an <code>OpKernel</code>.</li>
+</ul>
+<p>To register the op, you will use a <code>REGISTER_OP</code> call defined in
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/framework/op.h"><code>tensorflow/core/framework/op.h</code></a>.
+Reader ops never take any input and always have a single output with type
+<code>resource</code>.  They should have string <code>container</code> and <code>shared_name</code> attrs.
+You may optionally define additional attrs
+for configuration or include documentation in a <code>Doc</code>.  For examples, see
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/ops/io_ops.cc"><code>tensorflow/core/ops/io_ops.cc</code></a>,
+e.g.:</p>
+<pre class="prettyprint"><code>#include &quot;tensorflow/core/framework/op.h&quot;
+
+REGISTER_OP(&quot;TextLineReader&quot;)
+    .Output(&quot;reader_handle: resource&quot;)
+    .Attr(&quot;skip_header_lines: int = 0&quot;)
+    .Attr(&quot;container: string = ''&quot;)
+    .Attr(&quot;shared_name: string = ''&quot;)
+    .SetIsStateful()
+    .SetShapeFn(shape_inference::ScalarShape)
+    .Doc(R&quot;doc(
+A Reader that outputs the lines of a file delimited by '\n'.
+)doc&quot;);
+</code></pre>
+
+<p>To define an <code>OpKernel</code>, Readers can use the shortcut of descending from
+<code>ReaderOpKernel</code>, defined in
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/framework/reader_op_kernel.h"><code>tensorflow/core/framework/reader_op_kernel.h</code></a>,
+and implement a constructor that calls <code>SetReaderFactory</code>.  After defining
+your class, you will need to register it using <code>REGISTER_KERNEL_BUILDER(...)</code>.
+An example with no attrs:</p>
+<pre class="prettyprint"><code>#include &quot;tensorflow/core/framework/reader_op_kernel.h&quot;
+
+class TFRecordReaderOp : public ReaderOpKernel {
+ public:
+  explicit TFRecordReaderOp(OpKernelConstruction* context)
+      : ReaderOpKernel(context) {
+    Env* env = context-&gt;env();
+    SetReaderFactory([this, env]() { return new TFRecordReader(name(), env); });
+  }
+};
+
+REGISTER_KERNEL_BUILDER(Name(&quot;TFRecordReader&quot;).Device(DEVICE_CPU),
+                        TFRecordReaderOp);
+</code></pre>
+
+<p>An example with attrs:</p>
+<pre class="prettyprint"><code>#include &quot;tensorflow/core/framework/reader_op_kernel.h&quot;
+
+class TextLineReaderOp : public ReaderOpKernel {
+ public:
+  explicit TextLineReaderOp(OpKernelConstruction* context)
+      : ReaderOpKernel(context) {
+    int skip_header_lines = -1;
+    OP_REQUIRES_OK(context,
+                   context-&gt;GetAttr(&quot;skip_header_lines&quot;, &amp;skip_header_lines));
+    OP_REQUIRES(context, skip_header_lines &gt;= 0,
+                errors::InvalidArgument(&quot;skip_header_lines must be &gt;= 0 not &quot;,
+                                        skip_header_lines));
+    Env* env = context-&gt;env();
+    SetReaderFactory([this, skip_header_lines, env]() {
+      return new TextLineReader(name(), skip_header_lines, env);
+    });
+  }
+};
+
+REGISTER_KERNEL_BUILDER(Name(&quot;TextLineReader&quot;).Device(DEVICE_CPU),
+                        TextLineReaderOp);
+</code></pre>
+
+<p>The last step is to add the Python wrapper.  You can either do this by
+<a href="adding_an_op#building_the_op_library">compiling a dynamic library</a>
+or, if you are building TensorFlow from source, adding to <code>user_ops.py</code>.
+For the latter, you will import <code>tensorflow.python.ops.io_ops</code> in
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/python/user_ops/user_ops.py"><code>tensorflow/python/user_ops/user_ops.py</code></a>
+and add a descendant of <a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/python/ops/io_ops.py"><code>io_ops.ReaderBase</code></a>.</p>
+<pre class="prettyprint lang-python"><code>from tensorflow.python.framework import ops
+from tensorflow.python.ops import common_shapes
+from tensorflow.python.ops import io_ops
+
+class SomeReader(io_ops.ReaderBase):
+
+    def __init__(self, name=None):
+        rr = gen_user_ops.some_reader(name=name)
+        super(SomeReader, self).__init__(rr)
+
+ops.NotDifferentiable(&quot;SomeReader&quot;)
+</code></pre>
+
+<p>You can see some examples in
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/python/ops/io_ops.py"><code>tensorflow/python/ops/io_ops.py</code></a>.</p>
+<h2 id="writing_an_op_for_a_record_format">Writing an Op for a record format</h2>
+<p>Generally this is an ordinary op that takes a scalar string record as input, and
+so follow <a href="adding_an_op">the instructions to add an Op</a>.
+You may optionally take a scalar string key as input, and include that in error
+messages reporting improperly formatted data.  That way users can more easily
+track down where the bad data came from.</p>
+<p>Examples of Ops useful for decoding records:</p>
+<ul>
+<li><a href="../api_docs/python/tf/parse_single_example"><code>tf.parse_single_example</code></a>
+    (and
+    <a href="../api_docs/python/tf/parse_example"><code>tf.parse_example</code></a>)</li>
+<li><a href="../api_docs/python/tf/decode_csv"><code>tf.decode_csv</code></a></li>
+<li><a href="../api_docs/python/tf/decode_raw"><code>tf.decode_raw</code></a></li>
+</ul>
+<p>Note that it can be useful to use multiple Ops to decode a particular record
+format.  For example, you may have an image saved as a string in
+<a href="https://www.github.com/tensorflow/tensorflow/blob/r1.5/tensorflow/core/example/example.proto">a <code>tf.train.Example</code> protocol buffer</a>.
+Depending on the format of that image, you might take the corresponding output
+from a
+<a href="../api_docs/python/tf/parse_single_example"><code>tf.parse_single_example</code></a>
+op and call <a href="../api_docs/python/tf/image/decode_jpeg"><code>tf.image.decode_jpeg</code></a>,
+<a href="../api_docs/python/tf/image/decode_png"><code>tf.image.decode_png</code></a>, or
+<a href="../api_docs/python/tf/decode_raw"><code>tf.decode_raw</code></a>.  It is common to
+take the output of <code>tf.decode_raw</code> and use
+<a href="../api_docs/python/tf/slice"><code>tf.slice</code></a> and
+<a href="../api_docs/python/tf/reshape"><code>tf.reshape</code></a> to extract pieces.</p>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:30:37.997240">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="xf_zghnivNmuNu8nP9In-dI0oMth8DuxbtOKt_q49sM6MTUxNzg2MDI4NTQ1OTY4MA" /><input type="hidden" name="next" value="/extend/new_data_formats"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js"></script><script src="../_static/18908e5f48/js/script_foot.js"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="289.6900177"></span></body></html>

@@ -1,0 +1,1034 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="pxGLhuiydMaTUe4t9AJzYCzvcGY1335n1D5MqaPNjoM6MTUxNzg4NTk1Mzc0MjUyMA" /><link rel="canonical" href="https://www.tensorflow.org/get_started/premade_estimators"><link rel="alternate" href="https://www.tensorflow.org/get_started/premade_estimators" hreflang="en"><link rel="alternate" href="estimator" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/get_started/premade_estimators" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css"><script src="../_static/18908e5f48/js/jquery-bundle.js"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/get_started/premade_estimators"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Getting Started with TensorFlow &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Getting Started with TensorFlow &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               "
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs.1"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Develop
+    
+    
+  </li></ul></div></div><div class="devsite-doc-set-nav-row devsite-full-site-width"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="index"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Get Started"
+       >
+        Get Started
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../programmers_guide/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Programmer&#39;s Guide"
+       >
+        Programmer&#39;s Guide
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tutorials/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Tutorials"
+       >
+        Tutorials
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../performance/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Performance"
+       >
+        Performance
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../mobile/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Mobile"
+       >
+        Mobile
+      </a></li></ul></nav></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Get Started"
+            tabindex="0">
+        Get Started
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../programmers_guide/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Programmer&#39;s Guide">
+        Programmer&#39;s Guide
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tutorials/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Tutorials">
+        Tutorials
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../performance/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Performance">
+        Performance
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../mobile/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Mobile">
+        Mobile
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Getting Started</span></li><li class="devsite-nav-item"><a href="get_started_for_beginners" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started for ML Beginners</a></li><li class="devsite-nav-item devsite-nav-active"><a href="estimator" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started with TensorFlow</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Details</span></li><li class="devsite-nav-item"><a href="checkpoints" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Checkpoints</a></li><li class="devsite-nav-item"><a href="feature_columns" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Feature Columns</a></li><li class="devsite-nav-item"><a href="input_fn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Datasets Quick Start</a></li><li class="devsite-nav-item"><a href="custom_estimators" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Custom Estimators</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Getting Started</span></li><li class="devsite-nav-item"><a href="get_started_for_beginners" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started for ML Beginners</a></li><li class="devsite-nav-item devsite-nav-active"><a href="estimator" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started with TensorFlow</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Details</span></li><li class="devsite-nav-item"><a href="checkpoints" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Checkpoints</a></li><li class="devsite-nav-item"><a href="feature_columns" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Feature Columns</a></li><li class="devsite-nav-item"><a href="input_fn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Datasets Quick Start</a></li><li class="devsite-nav-item"><a href="custom_estimators" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Custom Estimators</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Develop
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="3">
+    
+    
+      Get Started
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Getting Started with TensorFlow
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>This document introduces the TensorFlow programming environment and shows you
+how to write the Iris classification problem in TensorFlow.</p>
+<p>Prior to reading this document, do the following:</p>
+<ul>
+<li><a href="../install/index">Install TensorFlow</a>.</li>
+<li>If you installed TensorFlow with virtualenv or Anaconda, activate your
+  TensorFlow environment.</li>
+<li>
+<p>To keep the data import simple, our Iris example uses Pandas. You can
+  install Pandas with:</p>
+<p><code>pip install pandas</code></p>
+</li>
+</ul>
+<h2 id="getting_the_sample_code">Getting the sample code</h2>
+<p>Take the following steps to get the sample code for this program:</p>
+<ol>
+<li>
+<p>Clone the TensorFlow Models repository from github by entering the following
+   command:</p>
+<p><code>git clone https://github.com/tensorflow/models</code></p>
+</li>
+<li>
+<p>Change directory within that branch to the location containing the examples
+   used in this document:</p>
+<p><code>cd models/samples/core/get_started/</code></p>
+</li>
+</ol>
+<p>The program described in this document is
+<a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/premade_estimator.py"><code>premade_estimator.py</code></a>.
+This program uses
+<a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py"><code>iris_data.py</code></a>
+To fetch its training data.</p>
+<h3 id="running_the_program">Running the program</h3>
+<p>You run TensorFlow programs as you would run any Python program. For example:</p>
+<pre class="prettyprint lang-bsh"><code>python premade_estimator.py
+</code></pre>
+
+<p>The program should output training logs followed by some predictions against
+the test set. For example, the first line in the following output shows that
+the model thinks there is a 99.6% chance that the first example in the test
+set is a Setosa. Since the test set <code>expected "Setosa"</code>, this appears to be
+a good prediction.</p>
+<pre class="prettyprint lang-None"><code>...
+Prediction is &quot;Setosa&quot; (99.6%), expected &quot;Setosa&quot;
+
+Prediction is &quot;Versicolor&quot; (99.8%), expected &quot;Versicolor&quot;
+
+Prediction is &quot;Virginica&quot; (97.9%), expected &quot;Virginica&quot;
+</code></pre>
+
+<p>If the program generates errors instead of answers, ask yourself the following
+questions:</p>
+<ul>
+<li>Did you install TensorFlow properly?</li>
+<li>Are you using the correct version of tensorflow?</li>
+<li>Did you activate the environment you installed TensorFlow in? (This is
+  only relevant in certain installation environments.)</li>
+</ul>
+<h2 id="the_programming_stack">The programming stack</h2>
+<p>Before getting into the details of the program itself, let's investigate the
+programming environment. As the following illustration shows, TensorFlow
+provides a programming stack consisting of multiple API layers:</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/tensorflow_programming_environment.png">
+</div>
+
+<div style="text-align: center">
+The TensorFlow Programming Environment
+</div>
+
+<p>We strongly recommend writing TensorFlow programs with the following APIs:</p>
+<ul>
+<li><a href="../api_docs/python/tf/estimator">Estimators</a>, which represent a complete model.
+  The Estimator API provides methods to train the model, to judge the model's
+  accuracy, and to generate predictions.</li>
+<li><a href="input_fn">Datasets</a>, which build a data input
+  pipeline. The Dataset API has methods to load and manipulate data, and feed
+  it into your model. The Datasets API meshes well with the Estimators API.</li>
+</ul>
+<h2 id="classifying_irises_an_overview">Classifying irises: an overview</h2>
+<p>The sample program in this document builds and tests a model that
+classifies Iris flowers into three different species based on the size of their
+<a href="https://en.wikipedia.org/wiki/Sepal">sepals</a> and
+<a href="https://en.wikipedia.org/wiki/Petal">petals</a>.</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%"
+  alt="Petal geometry compared for three iris species: Iris setosa, Iris virginica, and Iris versicolor"
+  src="../images/iris_three_species.jpg">
+</div>
+
+<p><strong>From left to right,
+<a href="https://commons.wikimedia.org/w/index.php?curid=170298"><em>Iris setosa</em></a> (by
+<a href="https://commons.wikimedia.org/wiki/User:Radomil">Radomil</a>, CC BY-SA 3.0),
+<a href="https://commons.wikimedia.org/w/index.php?curid=248095"><em>Iris versicolor</em></a> (by
+<a href="https://commons.wikimedia.org/wiki/User:Dlanglois">Dlanglois</a>, CC BY-SA 3.0),
+and <a href="https://www.flickr.com/photos/33397993@N05/3352169862"><em>Iris virginica</em></a>
+(by <a href="https://www.flickr.com/photos/33397993@N05">Frank Mayfield</a>, CC BY-SA
+2.0).</strong></p>
+<h3 id="the_data_set">The data set</h3>
+<p>The Iris data set contains four features and one
+<a href="https://developers.google.cn/machine-learning/glossary/#label">label</a>.
+The four features identify the following botanical characteristics of
+individual Iris flowers:</p>
+<ul>
+<li>sepal length</li>
+<li>sepal width</li>
+<li>petal length</li>
+<li>petal width</li>
+</ul>
+<p>Our model will represent these features as float32 numerical data.</p>
+<p>The label identifies the Iris species, which must be one of the following:</p>
+<ul>
+<li>Iris setosa (0)</li>
+<li>Iris versicolor (1)</li>
+<li>Iris virginica (2)</li>
+</ul>
+<p>Our model will represent the label as <code>int32</code> categorical data.</p>
+<p>The following table shows three examples in the data set:</p>
+<table>
+<thead>
+<tr>
+<th align="right">sepal length</th>
+<th align="right">sepal width</th>
+<th align="right">petal length</th>
+<th align="right">petal width</th>
+<th align="center">species (label)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">5.1</td>
+<td align="right">3.3</td>
+<td align="right">1.7</td>
+<td align="right">0.5</td>
+<td align="center">0 (Setosa)</td>
+</tr>
+<tr>
+<td align="right">5.0</td>
+<td align="right">2.3</td>
+<td align="right">3.3</td>
+<td align="right">1.0</td>
+<td align="center">1 (versicolor)</td>
+</tr>
+<tr>
+<td align="right">6.4</td>
+<td align="right">2.8</td>
+<td align="right">5.6</td>
+<td align="right">2.2</td>
+<td align="center">2 (virginica)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the_algorithm">The algorithm</h3>
+<p>The program trains a Deep Neural Network classifier model having the following
+topology:</p>
+<ul>
+<li>2 hidden layers.</li>
+<li>Each hidden layer contains 10 nodes.</li>
+</ul>
+<p>The following figure illustrates the features, hidden layers, and predictions
+(not all of the nodes in the hidden layers are shown):</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%"
+  alt="A diagram of the network architecture: Inputs, 2 hidden layers, and outputs"
+  src="../images/custom_estimators/full_network.png">
+</div>
+
+<div style="text-align: center">
+The Model.
+</div>
+
+<h3 id="inference">Inference</h3>
+<p>Running the trained model on an unlabeled example yields three predictions,
+namely, the likelihood that this flower is the given Iris species. The sum of
+those output predictions will be 1.0. For example, the prediction on an
+unlabeled example might be something like the following:</p>
+<ul>
+<li>0.03 for Iris Setosa</li>
+<li>0.95 for Iris Versicolor</li>
+<li>0.02 for Iris Virginica</li>
+</ul>
+<p>The preceding prediction indicates a 95% probability that the given unlabeled
+example is an Iris Versicolor.</p>
+<h2 id="overview_of_programming_with_estimators">Overview of programming with Estimators</h2>
+<p>An Estimator is TensorFlow's high level representation of a complete model. It
+handles the details of initialization, logging, saving and restoring, and many
+other features so you can concentrate on your model. For more details see
+<a href="../programmers_guide/estimators">Estimators</a>.</p>
+<p>An "Estimator" is any class derived from <a href="../api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a>. TensorFlow
+provides a collection of
+<a href="https://developers.google.cn/machine-learning/glossary/#pre-made_Estimator">pre-made Estimators</a>
+(for example, <code>LinearRegressor</code>) to implement common ML algorithms. Beyond
+those, you may write your own
+<a href="https://developers.google.cn/machine-learning/glossary/#custom_Estimator">custom Estimators</a>.
+We recommend using pre-made Estimators when just getting started with
+TensorFlow. After gaining expertise with the pre-made Estimators, we recommend
+optimizing your model by creating your own custom Estimators.</p>
+<p>To write a TensorFlow program based on pre-made Estimators, you must perform the
+following tasks:</p>
+<ul>
+<li>Create one or more input functions.</li>
+<li>Define the model's feature columns.</li>
+<li>Instantiate an Estimator, specifying the feature columns and various
+  hyperparameters.</li>
+<li>Call one or more methods on the Estimator object, passing the appropriate
+  input function as the source of the data.</li>
+</ul>
+<p>Let's see how those tasks are implemented in Iris.</p>
+<h2 id="create_input_functions">Create input functions</h2>
+<p>You must create input functions to supply data for training,
+evaluating, and prediction.</p>
+<p>An <strong>input function</strong> is a function that returns the following two-element
+tuple:</p>
+<ul>
+<li>"features" - A Python dictionary in which:<ul>
+<li>Each key is the name of a feature.</li>
+<li>Each value is an array containing all of that feature's values.</li>
+</ul>
+</li>
+<li>"label" - An array containing the values of the
+  <a href="https://developers.google.cn/machine-learning/glossary/#label">label</a> for
+  every example.</li>
+</ul>
+<p>Just to demonstrate the format of the input function here's a simple
+implementation:</p>
+<pre class="prettyprint lang-python"><code>def input_evaluation_set():
+    features = {'SepalLength': np.array([6.4, 5.0]),
+                'SepalWidth':  np.array([2.8, 2.3]),
+                'PetalLength': np.array([5.6, 3.3]),
+                'PetalWidth':  np.array([2.2, 1.0])}
+    labels = np.array([2, 1])
+    return features, labels
+</code></pre>
+
+<p>Your input function may generate the "features" dictionary and "label" list any
+way you like. However, we recommend using TensorFlow's Dataset API, which can
+deftly parse all sorts of data. At a high-level, the Datasets API consists of
+the following classes:</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%"
+  alt="A diagram showing subclasses of the Dataset class"
+  src="../images/dataset_classes.png">
+</div>
+
+<p>Where:</p>
+<ul>
+<li>Dataset: Base class containing methods to create and transform datasets. Also
+  allows you to initialize a dataset from data in memory, or from a Python
+  generator.</li>
+<li>TextLineDataset: Reads lines from text files.</li>
+<li>TFRecordDataset: Reads records from TFRecord files.</li>
+<li>FixedLengthRecordDataset: Reads fixed size records from binary files.</li>
+<li>Iterator: Provides a way to access one data set element at a time.</li>
+</ul>
+<p>The Dataset API can handle a lot of common cases for you. For example,
+using the Dataset API, you can easily read in records from a large collection
+of files in parallel and join them into a single stream.</p>
+<p>To keep things simple in this example we are going to load the data with pandas,
+and build our input pipeline from this in-memory data.</p>
+<p>Here is the input function used for training in this program, which is available
+in <a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py"><code>iris_data.py</code></a>:</p>
+<pre class="prettyprint lang-python"><code>def train_input_fn(features, labels, batch_size):
+    &quot;&quot;&quot;An input function for training&quot;&quot;&quot;
+    # Convert the inputs to a Dataset.
+    dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
+
+    # Shuffle, repeat, and batch the examples.
+    dataset = dataset.shuffle(1000).repeat().batch(batch_size)
+
+    # Build the Iterator, and return the read end of the pipeline.
+    return dataset.make_one_shot_iterator().get_next()
+</code></pre>
+
+<h2 id="define_the_feature_columns">Define the Feature Columns</h2>
+<p>A <a href="https://developers.google.cn/machine-learning/glossary/#feature_columns"><strong>Feature Column</strong></a>
+is an object describing how the model should use raw input data from the
+features dictionary. When you build an Estimator model, you pass it a list of
+feature columns that describes each of the features you want the model to use.
+The <a href="../api_docs/python/tf/feature_column"><code>tf.feature_column</code></a> module provides many options for representing data
+to the model.</p>
+<p>For Iris, the 4 raw features are numeric values, so we'll build a list of
+feature columns to tell the Estimator model to represent each of the four
+features as 32-bit floating-point values. Therefore, the code to create the
+Feature Column is simply:</p>
+<pre class="prettyprint lang-python"><code># Feature columns describe how to use the input.
+my_feature_columns = []
+for key in train_x.keys():
+    my_feature_columns.append(tf.feature_column.numeric_column(key=key))
+</code></pre>
+
+<p>Feature Columns can be far more sophisticated than those we're showing here.
+We detail feature columns <a href="feature_columns">later on</a> in
+getting started.</p>
+<p>Now that we have the description of how we want the model to represent the raw
+features, we can build the estimator.</p>
+<h2 id="instantiate_an_estimator">Instantiate an Estimator</h2>
+<p>The Iris problem is a classic classification problem. Fortunately, TensorFlow
+provides several pre-made classifier Estimators, including:</p>
+<ul>
+<li><a href="../api_docs/python/tf/estimator/DNNClassifier"><code>tf.estimator.DNNClassifier</code></a>—for deep models that perform multi-class
+  classification.</li>
+<li><a href="../api_docs/python/tf/estimator/DNNLinearCombinedClassifier"><code>tf.estimator.DNNLinearCombinedClassifier</code></a>—for wide-n-deep models.</li>
+<li><a href="../api_docs/python/tf/estimator/LinearClassifier"><code>tf.estimator.LinearClassifier</code></a>— for classifiers based on linear models.</li>
+</ul>
+<p>For the Iris problem, <code>tf.estimator.DNNClassifier</code> seems like the best choice.
+Here's how we instantiated this Estimator:</p>
+<pre class="prettyprint lang-python"><code># Build 2 hidden layer DNN with 10, 10 units respectively.
+classifier = tf.estimator.DNNClassifier(
+    feature_columns=my_feature_columns,
+    # Two hidden layers of 10 nodes each.
+    hidden_units=[10, 10],
+    # The model must choose between 3 classes.
+    n_classes=3)
+</code></pre>
+
+<h2 id="train_evaluate_and_predict">Train, Evaluate, and Predict</h2>
+<p>Now that we have an Estimator object, we can call methods to do the following:</p>
+<ul>
+<li>Train the model.</li>
+<li>Evaluate the trained model.</li>
+<li>Use the trained model to make predictions.</li>
+</ul>
+<h3 id="train_the_model">Train the model</h3>
+<p>Train the model by calling the Estimator's <code>train</code> method as follows:</p>
+<pre class="prettyprint lang-python"><code># Train the Model.
+classifier.train(
+    input_fn=lambda:iris_data.train_input_fn(train_x, train_y, args.batch_size),
+    steps=args.train_steps)
+</code></pre>
+
+<p>Here we wrap up our <code>input_fn</code> call in a
+<a href="https://docs.python.org/3/tutorial/controlflow.html"><code>lambda</code></a>
+to capture the arguments while providing an input function that takes no
+arguments, as expected by the Estimator. The <code>steps</code> argument tells the method
+to stop training after a number of training steps.</p>
+<h3 id="evaluate_the_trained_model">Evaluate the trained model</h3>
+<p>Now that the model has been trained, we can get some statistics on its
+performance. The following code block evaluates the accuracy of the trained
+model on the test data:</p>
+<pre class="prettyprint lang-python"><code># Evaluate the model.
+eval_result = classifier.evaluate(
+    input_fn=lambda:iris_data.eval_input_fn(test_x, test_y, args.batch_size))
+
+print('\nTest set accuracy: {accuracy:0.3f}\n'.format(**eval_result))
+</code></pre>
+
+<p>Unlike our call to the <code>train</code> method, we did not pass the <code>steps</code>
+argument to evaluate. Our <code>eval_input_fn</code> only yields a single
+<a href="https://developers.google.cn/machine-learning/glossary/#epoch">epoch</a> of data.</p>
+<p>Running this code yields the following output (or something similar):</p>
+<pre class="prettyprint lang-none"><code>Test set accuracy: 0.967
+</code></pre>
+
+<h3 id="making_predictions_inferring_from_the_trained_model">Making predictions (inferring) from the trained model</h3>
+<p>We now have a trained model that produces good evaluation results.
+We can now use the trained model to predict the species of an Iris flower
+based on some unlabeled measurments. As with training and evaluation, we make
+predictions using a single function call:</p>
+<pre class="prettyprint lang-python"><code># Generate predictions from the model
+expected = ['Setosa', 'Versicolor', 'Virginica']
+predict_x = {
+    'SepalLength': [5.1, 5.9, 6.9],
+    'SepalWidth': [3.3, 3.0, 3.1],
+    'PetalLength': [1.7, 4.2, 5.4],
+    'PetalWidth': [0.5, 1.5, 2.1],
+}
+
+predictions = classifier.predict(
+    input_fn=lambda:iris_data.eval_input_fn(predict_x,
+                                            batch_size=args.batch_size))
+</code></pre>
+
+<p>The <code>predict</code> method returns a Python iterable, yielding a dictionary of
+prediction results for each example. The following code prints a few
+predictions and their probabilities:</p>
+<pre class="prettyprint lang-python"><code>for pred_dict, expec in zip(predictions, expected):
+    template = ('\nPrediction is &quot;{}&quot; ({:.1f}%), expected &quot;{}&quot;')
+
+    class_id = pred_dict['class_ids'][0]
+    probability = pred_dict['probabilities'][class_id]
+
+    print(template.format(iris_data.SPECIES[class_id],
+                          100 * probability, expec))
+</code></pre>
+
+<p>Running the preceding code yields the following output:</p>
+<pre class="prettyprint lang-None"><code>...
+Prediction is &quot;Setosa&quot; (99.6%), expected &quot;Setosa&quot;
+
+Prediction is &quot;Versicolor&quot; (99.8%), expected &quot;Versicolor&quot;
+
+Prediction is &quot;Virginica&quot; (97.9%), expected &quot;Virginica&quot;
+</code></pre>
+
+<h2 id="summary">Summary</h2>
+<p>Pre-made Estimators are an effective way to quickly create standard models.</p>
+<p>Now that you've gotten started writing TensorFlow programs, consider the
+following material:</p>
+<ul>
+<li><a href="checkpoints">Checkpoints</a> to learn how to save and restore
+  models.</li>
+<li><a href="input_fn">Datasets</a> to learn more about importing
+  data into your
+  model.</li>
+<li><a href="custom_estimators">Creating Custom Estimators</a> to learn how to
+  write your own Estimator, customized for a particular problem.</li>
+</ul>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:31:35.801670">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="pxGLhuiydMaTUe4t9AJzYCzvcGY1335n1D5MqaPNjoM6MTUxNzg4NTk1Mzc0MjUyMA" /><input type="hidden" name="next" value="/get_started/premade_estimators"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js"></script><script src="../_static/18908e5f48/js/script_foot.js"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="337.589979172"></span></body></html>

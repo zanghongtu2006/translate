@@ -1,0 +1,1152 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="0SWdzETL5U7q5Xo_eoj6G24GJspE52f61ZXY6npceSY6MTUxNzg2MDMzMzgwNjcyMA" /><link rel="canonical" href="https://www.tensorflow.org/get_started/custom_estimators"><link rel="alternate" href="https://www.tensorflow.org/get_started/custom_estimators" hreflang="en"><link rel="alternate" href="custom_estimators" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/get_started/custom_estimators" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png?hl=zh-cn"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png?hl=zh-cn"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css?hl=zh-cn"><script src="../_static/18908e5f48/js/jquery-bundle.js?hl=zh-cn"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/get_started/custom_estimators"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Creating Custom Estimators &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Creating Custom Estimators &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               "
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html?hl=zh-cn" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png?hl=zh-cn"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/?hl=zh-cn"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Develop
+    
+    
+  </li></ul></div></div><div class="devsite-doc-set-nav-row devsite-full-site-width"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="index?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Get Started"
+       >
+        Get Started
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../programmers_guide/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Programmer&#39;s Guide"
+       >
+        Programmer&#39;s Guide
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tutorials/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Tutorials"
+       >
+        Tutorials
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../performance/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Performance"
+       >
+        Performance
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../mobile/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Mobile"
+       >
+        Mobile
+      </a></li></ul></nav></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Get Started"
+            tabindex="0">
+        Get Started
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../programmers_guide/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Programmer&#39;s Guide">
+        Programmer&#39;s Guide
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tutorials/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Tutorials">
+        Tutorials
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../performance/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Performance">
+        Performance
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../mobile/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Mobile">
+        Mobile
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html?hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Getting Started</span></li><li class="devsite-nav-item"><a href="get_started_for_beginners?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started for ML Beginners</a></li><li class="devsite-nav-item"><a href="estimator?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started with TensorFlow</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Details</span></li><li class="devsite-nav-item"><a href="checkpoints?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Checkpoints</a></li><li class="devsite-nav-item"><a href="feature_columns?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Feature Columns</a></li><li class="devsite-nav-item"><a href="input_fn?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Datasets Quick Start</a></li><li class="devsite-nav-item devsite-nav-active"><a href="custom_estimators?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Custom Estimators</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Getting Started</span></li><li class="devsite-nav-item"><a href="get_started_for_beginners?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started for ML Beginners</a></li><li class="devsite-nav-item"><a href="estimator?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Getting Started with TensorFlow</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Details</span></li><li class="devsite-nav-item"><a href="checkpoints?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Checkpoints</a></li><li class="devsite-nav-item"><a href="feature_columns?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Feature Columns</a></li><li class="devsite-nav-item"><a href="input_fn?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Datasets Quick Start</a></li><li class="devsite-nav-item devsite-nav-active"><a href="custom_estimators?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Custom Estimators</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Develop
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="3">
+    
+    
+      Get Started
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Creating Custom Estimators
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG&amp;hl=zh-cn"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>This document introduces custom Estimators. In particular, this document
+demonstrates how to create a custom <a href="../api_docs/python/tf/estimator/Estimator?hl=zh-cn">Estimator</a> that
+mimics the behavior of the pre-made Estimator
+<a href="../api_docs/python/tf/estimator/DNNClassifier?hl=zh-cn"><code>DNNClassifier</code></a> in solving the Iris problem. See
+the <a href="estimator?hl=zh-cn">Pre-Made Estimators chapter</a> for details
+on the Iris problem.</p>
+<p>To download and access the example code invoke the following two commands:</p>
+<pre class="prettyprint lang-shell"><code>git clone https://github.com/tensorflow/models/
+cd models/samples/core/get_started
+</code></pre>
+
+<p>In this document we wil be looking at
+<a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/custom_estimator.py"><code>custom_estimator.py</code></a>.
+You can run it with the following command:</p>
+<pre class="prettyprint lang-bsh"><code>python custom_estimator.py
+</code></pre>
+
+<p>If you are feeling impatient, feel free to compare and contrast
+<a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/custom_estimator.py"><code>custom_estimator.py</code></a>
+with
+<a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/premade_estimator.py"><code>premade_estimator.py</code></a>.
+(which is in the same directory).</p>
+<h2 id="pre-made_vs_custom">Pre-made vs. custom</h2>
+<p>As the following figure shows, pre-made Estimators are subclasses of the
+<a href="../api_docs/python/tf/estimator/Estimator?hl=zh-cn"><code>tf.estimator.Estimator</code></a> base class, while custom Estimators are an instance
+of tf.estimator.Estimator:</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="Premade estimators are sub-classes of `Estimator`. Custom Estimators are usually (direct) instances of `Estimator`"
+  src="../images/custom_estimators/estimator_types.png?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+Pre-made and custom Estimators are all Estimators.
+</div>
+
+<p>Pre-made Estimators are fully baked. Sometimes though, you need more control
+over an Estimator's behavior.  That's where custom Estimators come in. You can
+create a custom Estimator to do just about anything. If you want hidden layers
+connected in some unusual fashion, write a custom Estimator. If you want to
+calculate a unique
+<a href="https://developers.google.cn/machine-learning/glossary/?hl=zh-cn#metric">metric</a>
+for your model, write a custom Estimator.  Basically, if you want an Estimator
+optimized for your specific problem, write a custom Estimator.</p>
+<p>A model function (or <code>model_fn</code>) implements the ML algorithm. The
+only difference between working with pre-made Estimators and custom Estimators
+is:</p>
+<ul>
+<li>With pre-made Estimators, someone already wrote the model function for you.</li>
+<li>With custom Estimators, you must write the model function.</li>
+</ul>
+<p>Your model function could implement a wide range of algorithms, defining all
+sorts of hidden layers and metrics.  Like input functions, all model functions
+must accept a standard group of input parameters and return a standard group of
+output values. Just as input functions can leverage the Dataset API, model
+functions can leverage the Layers API and the Metrics API.</p>
+<p>Let's see how to solve the Iris problem with a custom Estimator. A quick
+reminder--here's the organization of the Iris model that we're trying to mimic:</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="A diagram of the network architecture: Inputs, 2 hidden layers, and outputs"
+  src="https://tensorflow.google.cn/images/custom_estimators/full_network.png?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+Our implementation of Iris contains four features, two hidden layers,
+and a logits output layer.
+</div>
+
+<h2 id="write_an_input_function">Write an Input function</h2>
+<p>Our custom Estimator implementation uses the same input function as our
+<a href="estimator?hl=zh-cn">pre-made Estimator implementation</a>, from
+<a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py"><code>iris_data.py</code></a>.
+Namely:</p>
+<pre class="prettyprint lang-python"><code>def train_input_fn(features, labels, batch_size):
+    &quot;&quot;&quot;An input function for training&quot;&quot;&quot;
+    # Convert the inputs to a Dataset.
+    dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
+
+    # Shuffle, repeat, and batch the examples.
+    dataset = dataset.shuffle(1000).repeat().batch(batch_size)
+
+    # Return the read end of the pipeline.
+    return dataset.make_one_shot_iterator().get_next()
+</code></pre>
+
+<p>This input function builds an input pipeline that yields batches of
+<code>(features, labels)</code> pairs, where <code>features</code> is a dictionary features.</p>
+<h2 id="create_feature_columns">Create feature columns</h2>
+<p>As detailed in the <a href="estimator?hl=zh-cn">Premade Estimators</a> and
+<a href="feature_columns?hl=zh-cn">Feature Columns</a> chapters, you must define
+your model's feature columns to specify how the model should use each feature.
+Whether working with pre-made Estimators or custom Estimators, you define
+feature columns in the same fashion.</p>
+<p>The following code creates a simple <code>numeric_column</code> for each input feature,
+indicating that the value of the input feature should be used directly as an
+input to the model:</p>
+<pre class="prettyprint lang-python"><code># Feature columns describe how to use the input.
+my_feature_columns = []
+for key in train_x.keys():
+    my_feature_columns.append(tf.feature_column.numeric_column(key=key))
+</code></pre>
+
+<h2 id="write_a_model_function">Write a model function</h2>
+<p>The model function we'll use has the following call signature:</p>
+<pre class="prettyprint lang-python"><code>def my_model_fn(
+   features, # This is batch_features from input_fn
+   labels,   # This is batch_labels from input_fn
+   mode,     # An instance of tf.estimator.ModeKeys
+   params):  # Additional configuration
+</code></pre>
+
+<p>The first two arguments are the batches of features and labels returned from
+the input function; that is, <code>features</code> and <code>labels</code> are the handles to the
+data your model will use. The <code>mode</code> argument indicates whether the caller is
+requesting training, predicting, or evaluation.</p>
+<p>The caller may pass <code>params</code> to an Estimator's constructor. Any <code>params</code> passed
+to the constructor are in turn passed on to the <code>model_fn</code>. In
+<a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/custom_estimator.py"><code>custom_estimator.py</code></a>
+the following lines create the estimator and set the params to configure the
+model. This configuration step is similar to how we configured the <a href="../api_docs/python/tf/estimator/DNNClassifier?hl=zh-cn"><code>tf.estimator.DNNClassifier</code></a> in
+<a href="estimator?hl=zh-cn">Getting Started with TensorFlow</a>.</p>
+<pre class="prettyprint lang-python"><code>classifier = tf.estimator.Estimator(
+    model_fn=my_model,
+    params={
+        'feature_columns': my_feature_columns,
+        # Two hidden layers of 10 nodes each.
+        'hidden_units': [10, 10],
+        # The model must choose between 3 classes.
+        'n_classes': 3,
+    })
+</code></pre>
+
+<p>To implement a typical model function, you must do the following:</p>
+<ul>
+<li>(Define the model)[#define_the_model].</li>
+<li>Specify additional calculations for each of
+  the <a href="custom_estimators?hl=zh-cn#modes">three different modes</a>:</li>
+<li><a href="custom_estimators?hl=zh-cn#predict">Predict</a></li>
+<li><a href="custom_estimators?hl=zh-cn#evaluate">Evaluate</a></li>
+<li><a href="custom_estimators?hl=zh-cn#train">Train</a></li>
+</ul>
+<h2 id="define_the_model">Define the model</h2>
+<p>The basic deep neural network model must define the following three sections:</p>
+<ul>
+<li>An <a href="https://developers.google.cn/machine-learning/glossary/?hl=zh-cn#input_layer">input layer</a></li>
+<li>One or more <a href="https://developers.google.cn/machine-learning/glossary/?hl=zh-cn#hidden_layer">hidden layers</a></li>
+<li>An <a href="https://developers.google.cn/machine-learning/glossary/?hl=zh-cn#output_layer">output layer</a></li>
+</ul>
+<h3 id="define_the_input_layer">Define the input layer</h3>
+<p>The first line of the <code>model_fn</code> calls <a href="../api_docs/python/tf/feature_column/input_layer?hl=zh-cn"><code>tf.feature_column.input_layer</code></a> to
+convert the feature dictionary and <code>feature_columns</code> into input for your model,
+as follows:</p>
+<pre class="prettyprint lang-python"><code>    # Use `input_layer` to apply the feature columns.
+    net = tf.feature_column.input_layer(features, params['feature_columns'])
+</code></pre>
+
+<p>The preceding line applies the transformations defined by your feature columns,
+creating the model's input layer.</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="A diagram of the input layer, in this case a 1:1 mapping from raw-inputs to features."
+  src="../images/custom_estimators/input_layer.png?hl=zh-cn">
+</div>
+
+<h3 id="hidden_layers">Hidden Layers</h3>
+<p>If you are creating a deep neural network, you must define one or more hidden
+layers. The Layers API provides a rich set of functions to define all types of
+hidden layers, including convolutional, pooling, and dropout layers. For Iris,
+we're simply going to call <a href="../api_docs/python/tf/layers/dense?hl=zh-cn"><code>tf.layers.dense</code></a> to create hidden layers, with
+dimensions defined by <code>params['hidden_layers']</code>. In a <code>dense</code> layer each node
+is connected to every node in the preceding layer.  Here's the relevant code:</p>
+<pre class="prettyprint lang-python"><code>    # Build the hidden layers, sized according to the 'hidden_units' param.
+    for units in params['hidden_units']:
+        net = tf.layers.dense(net, units=units, activation=tf.nn.relu)
+</code></pre>
+
+<ul>
+<li>The <code>units</code> parameter defines the number of output neurons in a given layer.</li>
+<li>The <code>activation</code> parameter defines the <a href="https://developers.google.cn/machine-learning/glossary/?hl=zh-cn#a">activation function</a> —
+  <a href="https://developers.google.cn/machine-learning/glossary/?hl=zh-cn#ReLU">Relu</a> in this
+  case.</li>
+</ul>
+<p>The variable <code>net</code> here signifies the current top layer of the network. During
+the first iteration, <code>net</code> signifies the input layer. On each loop iteration
+<code>tf.layers.dense</code> creates a new layer, which takes the previous layer's output
+as its input, using the variable <code>net</code>.</p>
+<p>After creating two hidden layers, our network looks as follows. For
+simplicity, the figure does not show all the units in each layer.</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="The input layer with two hidden layers added."
+  src="../images/custom_estimators/add_hidden_layer.png?hl=zh-cn">
+</div>
+
+<p>Note that <a href="../api_docs/python/tf/layers/dense?hl=zh-cn"><code>tf.layers.dense</code></a> provides many additional capabilities, including
+the ability to set a multitude of regularization parameters. For the sake of
+simplicity, though, we're going to simply accept the default values of the
+other parameters.</p>
+<h3 id="output_layer">Output Layer</h3>
+<p>We'll define the output layer by calling <a href="../api_docs/python/tf/layers/dense?hl=zh-cn"><code>tf.layers.dense</code></a> yet again, this
+time without an activation function:</p>
+<pre class="prettyprint lang-python"><code>    # Compute logits (1 per class).
+    logits = tf.layers.dense(net, params['n_classes'], activation=None)
+</code></pre>
+
+<p>Here, <code>net</code> signifies the final hidden layer. Therefore, the full set of layers
+is now connected as follows:</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="A logit output layer connected to the top hidden layer"
+  src="../images/custom_estimators/add_logits.png?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+The final hidden layer feeds into the output layer.
+</div>
+
+<p>When defining an output layer, the <code>units</code> parameter specifies the number of
+outputs. So, by setting <code>units</code> to <code>params['n_classes']</code>, the model produces
+one output value per class. Each element of the output vector will contain the
+score, or "logit", calculated for the associated class of Iris: Setosa,
+Versicolor, or Virginica, respectively.</p>
+<p>Later on, these logits will be transformed into probabilities by the
+<a href="../api_docs/python/tf/nn/softmax?hl=zh-cn"><code>tf.nn.softmax</code></a> function.</p>
+<h2 id="implement_training_evaluation_and_prediction">Implement training, evaluation, and prediction</h2>
+<p>The final step in creating a model function is to write branching code that
+implements prediction, evaluation, and training.</p>
+<p>The model function gets invoked whenever someone calls the Estimator's <code>train</code>,
+<code>evaluate</code>, or <code>predict</code> methods. Recall that the signature for the model
+function looks like this:</p>
+<pre class="prettyprint lang-python"><code>def my_model_fn(
+   features, # This is batch_features from input_fn
+   labels,   # This is batch_labels from input_fn
+   mode,     # An instance of tf.estimator.ModeKeys, see below
+   params):  # Additional configuration
+</code></pre>
+
+<p>Focus on that third argument, mode. As the following table shows, when someone
+calls <code>train</code>, <code>evaluate</code>, or <code>predict</code>, the Estimator framework invokes your model
+function with the mode parameter set as follows:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Estimator method</th>
+<th align="left">Estimator Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="../api_docs/python/tf/estimator/Estimator?hl=zh-cn#train"><code>train()</code></a></td>
+<td align="left"><a href="../api_docs/python/tf/estimator/ModeKeys?hl=zh-cn#TRAIN"><code>ModeKeys.TRAIN</code></a></td>
+</tr>
+<tr>
+<td align="left"><a href="../api_docs/python/tf/estimator/Estimator?hl=zh-cn#evaluate"><code>evaluate()</code></a></td>
+<td align="left"><a href="../api_docs/python/tf/estimator/ModeKeys?hl=zh-cn#EVAL"><code>ModeKeys.EVAL</code></a></td>
+</tr>
+<tr>
+<td align="left"><a href="../api_docs/python/tf/estimator/Estimator?hl=zh-cn#predict"><code>predict()</code></a></td>
+<td align="left"><a href="../api_docs/python/tf/estimator/ModeKeys?hl=zh-cn#PREDICT"><code>ModeKeys.PREDICT</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>For example, suppose you instantiate a custom Estimator to generate an object
+named <code>classifier</code>. Then, you make the following call:</p>
+<pre class="prettyprint lang-python"><code>classifier = tf.estimator.Estimator(...)
+classifier.train(input_fn=lambda: my_input_fn(FILE_TRAIN, True, 500))
+</code></pre>
+
+<p>The Estimator framework then calls your model function with mode set to
+<code>ModeKeys.TRAIN</code>.</p>
+<p>Your model function must provide code to handle all three of the mode values.
+For each mode value, your code must return an instance of
+<code>tf.estimator.EstimatorSpec</code>, which contains the information the caller
+requires. Let's examine each mode.</p>
+<h3 id="predict">Predict</h3>
+<p>When the Estimator's <code>predict</code> method is called, the <code>model_fn</code> receives
+<code>mode = ModeKeys.PREDICT</code>. In this case, the model function must return a
+<code>tf.estimator.EstimatorSpec</code> containing the prediction.</p>
+<p>The model must have been trained prior to making a prediction. The trained model
+is stored on disk in the <code>model_dir</code> directory established when you
+instantiated the Estimator.</p>
+<p>The code to generate the prediction for this model looks as follows:</p>
+<pre class="prettyprint lang-python"><code># Compute predictions.
+predicted_classes = tf.argmax(logits, 1)
+if mode == tf.estimator.ModeKeys.PREDICT:
+    predictions = {
+        'class_ids': predicted_classes[:, tf.newaxis],
+        'probabilities': tf.nn.softmax(logits),
+        'logits': logits,
+    }
+    return tf.estimator.EstimatorSpec(mode, predictions=predictions)
+</code></pre>
+
+<p>The prediction dictionary contains everything that your model returns when run
+in prediction mode.</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="Additional outputs added to the output layer."
+  src="../images/custom_estimators/add_predictions.png?hl=zh-cn">
+</div>
+
+<p>The <code>predictions</code> holds the following three key/value pairs:</p>
+<ul>
+<li><code>class_ids</code> holds the class id (0, 1, or 2) representing the model's
+    prediction of the most likely species for this example.</li>
+<li><code>probabilities</code> holds the three probabilities (in this example, 0.02, 0.95,
+    and 0.03)</li>
+<li><code>logit</code> holds the raw logit values (in this example, -1.3, 2.6, and -0.9)</li>
+</ul>
+<p>We return that dictionary to the caller via the <code>predictions</code> parameter of the
+<a href="../api_docs/python/tf/estimator/EstimatorSpec?hl=zh-cn"><code>tf.estimator.EstimatorSpec</code></a>. The Estimator's
+<a href="../api_docs/python/tf/estimator/Estimator?hl=zh-cn#predict"><code>predict</code></a> method will yield these
+dictionaries.</p>
+<h3 id="calculate_the_loss">Calculate the loss</h3>
+<p>For both <a href="custom_estimators?hl=zh-cn#train">training</a> and <a href="custom_estimators?hl=zh-cn#evaluate">evaluation</a> we need to calculate the
+model's loss. This is the
+<a href="https://developers.google.cn/machine-learning/glossary/?hl=zh-cn#objective">objective</a>
+that will be optimized.</p>
+<p>We can calculate the loss by calling <a href="../api_docs/python/tf/losses/sparse_softmax_cross_entropy?hl=zh-cn"><code>tf.losses.sparse_softmax_cross_entropy</code></a>.
+The value returned by this function will be lowest, approximately 0,
+probability of the correct class (at index <code>label</code>) is near 1.0. The loss value
+returned is progressively larger as the probability of the correct class
+decreases.</p>
+<p>This function returns the average over the whole batch.</p>
+<pre class="prettyprint lang-python"><code># Compute loss.
+loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
+</code></pre>
+
+<h3 id="evaluate">Evaluate</h3>
+<p>When the Estimator's <code>evaluate</code> method is called, the <code>model_fn</code> receives
+<code>mode = ModeKeys.EVAL</code>. In this case, the model function must return a
+<code>tf.estimator.EstimatorSpec</code> containing the model's loss and optionally one
+or more metrics.</p>
+<p>Although returning metrics is optional, most custom Estimators do return at
+least one metric. TensorFlow provides a Metrics module <a href="../api_docs/python/tf/metrics?hl=zh-cn"><code>tf.metrics</code></a> to
+calculate common metrics.  For brevity's sake, we'll only return accuracy. The
+<a href="../api_docs/python/tf/metrics/accuracy?hl=zh-cn"><code>tf.metrics.accuracy</code></a> function compares our predictions against the
+true values, that is, against the labels provided by the input function. The
+<a href="../api_docs/python/tf/metrics/accuracy?hl=zh-cn"><code>tf.metrics.accuracy</code></a> function requires the labels and predictions to have the
+same shape. Here's the call to <a href="../api_docs/python/tf/metrics/accuracy?hl=zh-cn"><code>tf.metrics.accuracy</code></a>:</p>
+<pre class="prettyprint lang-python"><code># Compute evaluation metrics.
+accuracy = tf.metrics.accuracy(labels=labels,
+                               predictions=predicted_classes,
+                               name='acc_op')
+</code></pre>
+
+<p>The <a href="../api_docs/python/tf/estimator/EstimatorSpec?hl=zh-cn"><code>EstimatorSpec</code></a> returned for evaluation
+typically contains the following information:</p>
+<ul>
+<li><code>loss</code>, which is the model's loss</li>
+<li><code>eval_metric_ops</code>, which is an optional dictionary of metrics.</li>
+</ul>
+<p>So, we'll create a dictionary containing our sole metric. If we had calculated
+other metrics, we would have added them as additional key/value pairs to that
+same dictionary.  Then, we'll pass that dictionary in the <code>eval_metric_ops</code>
+argument of <code>tf.estimator.EstimatorSpec</code>. Here's the code:</p>
+<pre class="prettyprint lang-python"><code>metrics = {'accuracy': accuracy}
+tf.summary.scalar('accuracy', accuracy[1])
+
+if mode == tf.estimator.ModeKeys.EVAL:
+    return tf.estimator.EstimatorSpec(
+        mode, loss=loss, eval_metric_ops=metrics)
+</code></pre>
+
+<p>The <a href="../api_docs/python/tf/summary/scalar?hl=zh-cn"><code>tf.summary.scalar</code></a> will make accuracy available to TensorBoard
+in both <code>TRAIN</code> and <code>EVAL</code> modes. (More on this later).</p>
+<h3 id="train">Train</h3>
+<p>When the Estimator's <code>train</code> method is called, the <code>model_fn</code> is called
+with <code>mode = ModeKeys.TRAIN</code>. In this case, the model function must return an
+<code>EstimatorSpec</code> that contains the loss and a training operation.</p>
+<p>Building the training operation will require an optimizer. We will use
+<a href="../api_docs/python/tf/train/AdagradOptimizer?hl=zh-cn"><code>tf.train.AdagradOptimizer</code></a> because we're mimicking the <code>DNNClassifier</code>, which
+also uses <code>Adagrad</code> by default. The <code>tf.train</code> package provides many other
+optimizers—feel free to experiment with them.</p>
+<p>Here is the code that builds the optimizer:</p>
+<pre class="prettyprint lang-python"><code>optimizer = tf.train.AdagradOptimizer(learning_rate=0.1)
+</code></pre>
+
+<p>Next, we build the training operation using the optimizer's
+<a href="../api_docs/python/tf/train/Optimizer?hl=zh-cn#minimize"><code>minimize</code></a> method on the loss we calculated
+earlier.</p>
+<p>The <code>minimize</code> method also takes a <code>global_step</code> parameter. TensorFlow uses this
+parameter to count the number of training steps that have been processed
+(to know when to end a training run). Furthermore, the <code>global_step</code> is
+essential for TensorBoard graphs to work correctly. Simply call
+<a href="../api_docs/python/tf/train/get_global_step?hl=zh-cn"><code>tf.train.get_global_step</code></a> and pass the result to the <code>global_step</code>
+argument of <code>minimize</code>.</p>
+<p>Here's the code to train the model:</p>
+<pre class="prettyprint lang-python"><code>train_op = optimizer.minimize(loss, global_step=tf.train.get_global_step())
+</code></pre>
+
+<p>The <a href="../api_docs/python/tf/estimator/EstimatorSpec?hl=zh-cn"><code>EstimatorSpec</code></a> returned for training
+must have the following fields set:</p>
+<ul>
+<li><code>loss</code>, which contains the value of the loss function.</li>
+<li><code>train_op</code>, which executes a training step.</li>
+</ul>
+<p>Here's our code to call <code>EstimatorSpec</code>:</p>
+<pre class="prettyprint lang-python"><code>return tf.estimator.EstimatorSpec(mode, loss=loss, train_op=train_op)
+</code></pre>
+
+<p>The model function is now complete.</p>
+<h2 id="the_custom_estimator">The custom Estimator</h2>
+<p>Instantiate the custom Estimator through the Estimator base class as follows:</p>
+<pre class="prettyprint lang-python"><code>    # Build 2 hidden layer DNN with 10, 10 units respectively.
+    classifier = tf.estimator.Estimator(
+        model_fn=my_model,
+        params={
+            'feature_columns': my_feature_columns,
+            # Two hidden layers of 10 nodes each.
+            'hidden_units': [10, 10],
+            # The model must choose between 3 classes.
+            'n_classes': 3,
+        })
+</code></pre>
+
+<p>Here the <code>params</code> dictionary serves the same purpose as the key-word
+arguments of <code>DNNClassifier</code>; that is, the <code>params</code> dictionary lets you
+configure your Estimator without modifying the code in the <code>model_fn</code>.</p>
+<p>The rest of the code to train, evaluate, and generate predictions using our
+Estimator is the same as in the
+<a href="estimator?hl=zh-cn">Premade Estimators</a> chapter. For
+example, the following line will train the model:</p>
+<pre class="prettyprint lang-python"><code># Train the Model.
+classifier.train(
+    input_fn=lambda:iris_data.train_input_fn(train_x, train_y, args.batch_size),
+    steps=args.train_steps)
+</code></pre>
+
+<h2 id="tensorboard">TensorBoard</h2>
+<p>You can view training results for your custom Estimator in TensorBoard. To see
+this reporting, start TensorBoard from your command line as follows:</p>
+<pre class="prettyprint lang-bsh"><code># Replace PATH with the actual path passed as model_dir
+tensorboard --logdir=PATH
+</code></pre>
+
+<p>Then, open TensorBoard by browsing to: <a href="http://localhost:6006">http://localhost:6006</a></p>
+<p>All the pre-made Estimators automatically log a lot of information to
+TensorBoard. With custom Estimators, however, TensorBoard only provides one
+default log (a graph of the loss) plus the information you explicitly tell
+TensorBoard to log. For the custom Estimator you just created, TensorBoard
+generates the following:</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+
+<img style="display:block; margin: 0 auto"
+  alt="Accuracy, 'scalar' graph from tensorboard"
+  src="../images/custom_estimators/accuracy.png?hl=zh-cn">
+
+<img style="display:block; margin: 0 auto"
+  alt="loss 'scalar' graph from tensorboard"
+  src="../images/custom_estimators/loss.png?hl=zh-cn">
+
+<img style="display:block; margin: 0 auto"
+  alt="steps/second 'scalar' graph from tensorboard"
+  src="../images/custom_estimators/steps_per_second.png?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+TensorBoard displays three graphs.
+</div>
+
+<p>In brief, here's what the three graphs tell you:</p>
+<ul>
+<li>
+<p>global_step/sec: A performance indicator showing how many batches (gradient
+  updates) we processed per second as the model trains.</p>
+</li>
+<li>
+<p>loss: The loss reported.</p>
+</li>
+<li>
+<p>accuracy: The accuracy is recorded by the following two lines:</p>
+</li>
+<li>
+<p><code>eval_metric_ops={'my_accuracy': accuracy})</code>, during evaluation.</p>
+</li>
+<li><code>tf.summary.scalar('accuracy', accuracy[1])</code>, during training.</li>
+</ul>
+<p>These tensorboard graphs are one of the main reasons it's important to pass a
+<code>global_step</code> to your optimizer's <code>minimize</code> method. The model can't record
+the x-coordinate for these graphs without it.</p>
+<p>Note the following in the <code>my_accuracy</code> and <code>loss</code> graphs:</p>
+<ul>
+<li>The orange line represents training.</li>
+<li>The blue dot represents evaluation.</li>
+</ul>
+<p>During training, summaries (the orange line) are recorded periodically as
+batches are processed, which is why it becomes a graph spanning x-axis range.</p>
+<p>By contrast, evaluation produces only a single point on the graph for each call
+to <code>evaluate</code>. This point contains the average over the entire evaluation call.
+This has no width on the graph as it is evaluated entirely from the model state
+at a particular training step (from a single checkpoint).</p>
+<p>As suggested in the following figure, you may see and also selectively
+disable/enable the reporting using the controls on the left side.</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="Check-boxes allowing the user to select which runs are shown."
+  src="../images/custom_estimators/select_run.jpg?hl=zh-cn">
+</div>
+
+<div style="text-align: center">
+Enable or disable reporting.
+</div>
+
+<h2 id="summary">Summary</h2>
+<p>Although pre-made Estimators can be an effective way to quickly create new
+models, you will often need the additional flexibility that custom Estimators
+provide. Fortunately, pre-made and custom Estimators follow the same
+programming model. The only practical difference is that you must write a model
+function for custom Estimators; everything else is the same.</p>
+<p>For more details, be sure to check out:</p>
+<ul>
+<li>The
+  <a href="https://github.com/tensorflow/models/tree/master/official/mnist">official TensorFlow implementation of MNIST</a>,
+  which uses a custom estimator.</li>
+<li>The TensorFlow
+  <a href="https://github.com/tensorflow/models/tree/master/official">official models repository</a>,
+  which contains more curated examples using custom estimators.</li>
+<li>This <a href="https://youtu.be/eBbEDRsCmv4">TensorBoard video</a>, which introduces
+  TensorBoard.</li>
+<li>The <a href="../programmers_guide/low_level_intro?hl=zh-cn">Low Level Introduction</a>, which demonstrates
+  how to experiment directly with TensorFlow's low level APIs, making debugging
+  easier.</li>
+</ul>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies?hl=zh-cn">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:31:35.813910">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="0SWdzETL5U7q5Xo_eoj6G24GJspE52f61ZXY6npceSY6MTUxNzg2MDMzMzgwNjcyMA" /><input type="hidden" name="next" value="/get_started/custom_estimators"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot.js?hl=zh-cn"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/?hl=zh-cn');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="299.300193787"></span></body></html>

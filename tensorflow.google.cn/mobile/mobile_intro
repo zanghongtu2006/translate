@@ -1,0 +1,829 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="TgB1spWEcFp5huQEUc4qNaayoN4bR0DA5KlRbzVzEaU6MTUxNzg3MjY1NTY0MzMzMA" /><link rel="canonical" href="https://www.tensorflow.org/mobile/mobile_intro"><link rel="alternate" href="https://www.tensorflow.org/mobile/mobile_intro" hreflang="en"><link rel="alternate" href="mobile_intro" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/mobile/mobile_intro" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css"><script src="../_static/18908e5f48/js/jquery-bundle.js"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/mobile/mobile_intro"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Introduction to TensorFlow Mobile &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Introduction to TensorFlow Mobile &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               "
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs.1"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Develop
+    
+    
+  </li></ul></div></div><div class="devsite-doc-set-nav-row devsite-full-site-width"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Get Started"
+       >
+        Get Started
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../programmers_guide/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Programmer&#39;s Guide"
+       >
+        Programmer&#39;s Guide
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tutorials/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Tutorials"
+       >
+        Tutorials
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../performance/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Performance"
+       >
+        Performance
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index.html"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Mobile"
+       >
+        Mobile
+      </a></li></ul></nav></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Get Started">
+        Get Started
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../programmers_guide/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Programmer&#39;s Guide">
+        Programmer&#39;s Guide
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tutorials/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Tutorials">
+        Tutorials
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../performance/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Performance">
+        Performance
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Mobile"
+            tabindex="0">
+        Mobile
+      </span>
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Overview</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorFlow Lite</span></li><li class="devsite-nav-item"><a href="tflite/index" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction to TensorFlow Lite</a></li><li class="devsite-nav-item"><a href="tflite/demo_android" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Lite Demo for Android</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorFlow Mobile</span></li><li class="devsite-nav-item devsite-nav-active"><a href="mobile_intro" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction to TensorFlow Mobile</a></li><li class="devsite-nav-item"><a href="android_build" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Building TensorFlow on Android</a></li><li class="devsite-nav-item"><a href="ios_build" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Building TensorFlow on iOS</a></li><li class="devsite-nav-item"><a href="linking_libs" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Integrating TensorFlow libraries</a></li><li class="devsite-nav-item"><a href="prepare_models" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Preparing models for mobile deployment</a></li><li class="devsite-nav-item"><a href="optimizing" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Optimizing for mobile</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Overview</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorFlow Lite</span></li><li class="devsite-nav-item"><a href="tflite/index" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction to TensorFlow Lite</a></li><li class="devsite-nav-item"><a href="tflite/demo_android" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Lite Demo for Android</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">TensorFlow Mobile</span></li><li class="devsite-nav-item devsite-nav-active"><a href="mobile_intro" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Introduction to TensorFlow Mobile</a></li><li class="devsite-nav-item"><a href="android_build" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Building TensorFlow on Android</a></li><li class="devsite-nav-item"><a href="ios_build" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Building TensorFlow on iOS</a></li><li class="devsite-nav-item"><a href="linking_libs" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Integrating TensorFlow libraries</a></li><li class="devsite-nav-item"><a href="prepare_models" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Preparing models for mobile deployment</a></li><li class="devsite-nav-item"><a href="optimizing" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Optimizing for mobile</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="../get_started/index" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Develop
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index.html" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="3">
+    
+    
+      Mobile
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Introduction to TensorFlow Mobile
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>TensorFlow was designed from the ground up to be a good deep learning solution
+for mobile platforms like Android and iOS. This mobile guide should help you
+understand how machine learning can work on mobile platforms and how to
+integrate TensorFlow into your mobile apps effectively and efficiently.</p>
+<h2 id="about_this_guide">About this Guide</h2>
+<p>This guide is aimed at developers who have a TensorFlow model that’s
+successfully working in a desktop environment, who want to integrate it into
+a mobile application, and cannot use TensorFlow Lite. Here are the
+main challenges you’ll face during that process:</p>
+<ul>
+<li>Understanding how to use Tensorflow for mobile.</li>
+<li>Building TensorFlow for your platform.</li>
+<li>Integrating the TensorFlow library into your application.</li>
+<li>Preparing your model file for mobile deployment.</li>
+<li>Optimizing for latency, RAM usage, model file size, and binary size.</li>
+</ul>
+<h2 id="common_use_cases_for_mobile_machine_learning">Common use cases for mobile machine learning</h2>
+<p><strong>Why run TensorFlow on mobile?</strong></p>
+<p>Traditionally, deep learning has been associated with data centers and giant
+clusters of high-powered GPU machines. However, it can be very expensive and
+time-consuming to send all of the data a device has access to across a network
+connection. Running on mobile makes it possible to deliver very interactive
+applications in a way that’s not possible when you have to wait for a network
+round trip.</p>
+<p>Here are some common use cases for on-device deep learning:</p>
+<h3 id="speech_recognition">Speech Recognition</h3>
+<p>There are a lot of interesting applications that can be built with a
+speech-driven interface, and many of these require on-device processing. Most of
+the time a user isn’t giving commands, and so streaming audio continuously to a
+remote server would be a waste of bandwidth, since it would mostly be silence or
+background noises. To solve this problem it’s common to have a small neural
+network running on-device <a href="../tutorials/audio_recognition">listening out for a particular keyword</a>.
+Once that keyword has been spotted, the rest of the
+conversation can be transmitted over to the server for further processing if
+more computing power is needed.</p>
+<h3 id="image_recognition">Image Recognition</h3>
+<p>It can be very useful for a mobile app to be able to make sense of a camera
+image. If your users are taking photos, recognizing what’s in them can help your
+camera apps apply appropriate filters, or label the photos so they’re easily
+findable. It’s important for embedded applications too, since you can use image
+sensors to detect all sorts of interesting conditions, whether it’s spotting
+endangered animals in the wild
+or
+<a href="https://svds.com/tensorflow-image-recognition-raspberry-pi/">reporting how late your train is running</a>.</p>
+<p>TensorFlow comes with several examples of recognizing the types of objects
+inside images along with a variety of different pre-trained models, and they can
+all be run on mobile devices. You can try out
+our
+<a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/index.html#0">Tensorflow for Poets</a> and
+<a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets-2/index.html#0">Tensorflow for Poets 2: Optimize for Mobile</a> codelabs to
+see how to take a pretrained model and run some very fast and lightweight
+training to teach it to recognize specific objects, and then optimize it to
+run on mobile.</p>
+<h3 id="object_localization">Object Localization</h3>
+<p>Sometimes it’s important to know where objects are in an image as well as what
+they are. There are lots of augmented reality use cases that could benefit a
+mobile app, such as guiding users to the right component when offering them
+help fixing their wireless network or providing informative overlays on top of
+landscape features. Embedded applications often need to count objects that are
+passing by them, whether it’s pests in a field of crops, or people, cars and
+bikes going past a street lamp.</p>
+<p>TensorFlow offers a pretrained model for drawing bounding boxes around people
+detected in images, together with tracking code to follow them over time. The
+tracking is especially important for applications where you’re trying to count
+how many objects are present over time, since it gives you a good idea when a
+new object enters or leaves the scene. We have some sample code for this
+available for Android <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android">on
+Github</a>,
+and also a <a href="https://github.com/tensorflow/models/tree/master/research/object_detection/README.md">more general object detection
+model</a>
+available as well.</p>
+<h3 id="gesture_recognition">Gesture Recognition</h3>
+<p>It can be useful to be able to control applications with hand or other
+gestures, either recognized from images or through analyzing accelerometer
+sensor data. Creating those models is beyond the scope of this guide, but
+TensorFlow is an effective way of deploying them.</p>
+<h3 id="optical_character_recognition">Optical Character Recognition</h3>
+<p>Google Translate’s live camera view is a great example of how effective
+interactive on-device detection of text can be.</p>
+<div class="video-wrapper">
+  <iframe class="devsite-embedded-youtube-video" data-video-id="06olHmcJjS0"
+            data-autohide="1" data-showinfo="0" frameborder="0" allowfullscreen>
+  </iframe>
+</div>
+
+<p>There are multiple steps involved in recognizing text in images. You first have
+to identify the areas where the text is present, which is a variation on the
+object localization problem, and can be solved with similar techniques. Once you
+have an area of text, you then need to interpret it as letters, and then use a
+language model to help guess what words they represent. The simplest way to
+estimate what letters are present is to segment the line of text into individual
+letters, and then apply a simple neural network to the bounding box of each. You
+can get good results with the kind of models used for MNIST, which you can find
+in TensorFlow’s tutorials, though you may want a higher-resolution input.  A
+more advanced alternative is to use an LSTM model to process a whole line of
+text at once, with the model itself handling the segmentation into different
+characters.</p>
+<h3 id="translation">Translation</h3>
+<p>Translating from one language to another quickly and accurately, even if you
+don’t have a network connection, is an important use case. Deep networks are
+very effective at this sort of task, and you can find descriptions of a lot of
+different models in the literature. Often these are sequence-to-sequence
+recurrent models where you’re able to run a single graph to do the whole
+translation, without needing to run separate parsing stages.</p>
+<h3 id="text_classification">Text Classification</h3>
+<p>If you want to suggest relevant prompts to users based on what they’re typing or
+reading, it can be very useful to understand the meaning of the text. This is
+where text classification comes in. Text classification is an umbrella term
+that covers everything from sentiment analysis to topic discovery. You’re likely
+to have your own categories or labels that you want to apply, so the best place
+to start is with an example
+like
+<a href="https://github.com/tensorflow/models/tree/master/research/skip_thoughts/">Skip-Thoughts</a>,
+and then train on your own examples.</p>
+<h3 id="voice_synthesis">Voice Synthesis</h3>
+<p>A synthesized voice can be a great way of giving users feedback or aiding
+accessibility, and recent advances such as
+<a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">WaveNet</a> show
+that deep learning can offer very natural-sounding speech.</p>
+<h2 id="mobile_machine_learning_and_the_cloud">Mobile machine learning and the cloud</h2>
+<p>These examples of use cases give an idea of how on-device networks can
+complement cloud services. Cloud has a great deal of computing power in a
+controlled environment, but running on devices can offer higher interactivity.
+In situations where the cloud is unavailable, or your cloud capacity is limited,
+you can provide an offline experience, or reduce cloud workload by processing
+easy cases on device.</p>
+<p>Doing on-device computation can also signal when it's time to switch to working
+on the cloud. A good example of this is hotword detection in speech. Since
+devices are able to constantly listen out for the keywords, this then triggers a
+lot of traffic to cloud-based speech recognition once one is recognized. Without
+the on-device component, the whole application wouldn’t be feasible, and this
+pattern exists across several other applications as well. Recognizing that some
+sensor input is interesting enough for further processing makes a lot of
+interesting products possible.</p>
+<h2 id="what_hardware_and_software_should_you_have">What hardware and software should you have?</h2>
+<p>TensorFlow runs on Ubuntu Linux, Windows 10, and OS X. For a list of all
+supported operating systems and instructions to install TensorFlow, see
+<a href="../install/index">Installing Tensorflow</a>.</p>
+<p>Note that some of the sample code we provide for mobile TensorFlow requires you
+to compile TensorFlow from source, so you’ll need more than just <code>pip install</code>
+to work through all the sample code.</p>
+<p>To try out the mobile examples, you’ll need a device set up for development,
+using
+either <a href="https://developer.android.google.cn/studio/install.html">Android Studio</a>,
+or <a href="https://developer.apple.com/xcode/">XCode</a> if you're developing for iOS.</p>
+<h2 id="what_should_you_do_before_you_get_started">What should you do before you get started?</h2>
+<p>Before thinking about how to get your solution on mobile:</p>
+<ol>
+<li>Determine whether your problem is solvable by mobile machine learning</li>
+<li>Create a labelled dataset to define your problem</li>
+<li>Pick an effective model for the problem</li>
+</ol>
+<p>We'll discuss these in more detail below.</p>
+<h3 id="is_your_problem_solvable_by_mobile_machine_learning">Is your problem solvable by mobile machine learning?</h3>
+<p>Once you have an idea of the problem you want to solve, you need to make a plan
+of how to build your solution. The most important first step is making sure that
+your problem is actually solvable, and the best way to do that is to mock it up
+using humans in the loop.</p>
+<p>For example, if you want to drive a robot toy car using voice commands, try
+recording some audio from the device and listen back to it to see if you can
+make sense of what’s being said. Often you’ll find there are problems in the
+capture process, such as the motor drowning out speech or not being able to hear
+at a distance, and you should tackle these problems before investing in the
+modeling process.</p>
+<p>Another example would be giving photos taken from your app to people see if they
+can classify what’s in them, in the way you’re looking for. If they can’t do
+that (for example, trying to estimate calories in food from photos may be
+impossible because all white soups look the same), then you’ll need to redesign
+your experience to cope with that. A good rule of thumb is that if a human can’t
+handle the task then it will be difficult to train a computer to do better.</p>
+<h3 id="create_a_labelled_dataset">Create a labelled dataset</h3>
+<p>After you’ve solved any fundamental issues with your use case, you need to
+create a labeled dataset to define what problem you’re trying to solve. This
+step is extremely important, moreso than picking which model to use. You want it
+to be as representative as possible of your actual use case, since the model
+will only be effective at the task you teach it. It’s also worth investing in
+tools to make labeling the data as efficient and accurate as possible. For
+example, if you’re able to switch from having to click a button on a web
+interface to simple keyboard shortcuts, you may be able to speed up the
+generation process a lot. You should also start by doing the initial labeling
+yourself, so you can learn about the difficulties and likely errors, and
+possibly change your labeling or data capture process to avoid them. Once you
+and your team are able to consistently label examples (that is once you
+generally agree on the same labels for most examples), you can then try and
+capture your knowledge in a manual and teach external raters how to run the same
+process.</p>
+<h3 id="pick_an_effective_model">Pick an effective model</h3>
+<p>The next step is to pick an effective model to use. You might be able to avoid
+training a model from scratch if someone else has already implemented a model
+similar to what you need; we have a repository of models implemented in
+TensorFlow <a href="https://github.com/tensorflow/models">on Github</a> that you can look
+through. Lean towards the simplest model you can find, and try to get started as
+soon as you have even a small amount of labelled data, since you’ll get the best
+results when you’re able to iterate quickly. The shorter the time it takes to
+try training a model and running it in s real application, the better overall
+results you’ll see. It’s common for an algorithm to get great training accuracy
+numbers but then fail to be useful within a real application because there’s a
+mismatch between the dataset and real usage. Prototype end-to-end usage as soon
+as possible to create a consistent user experience.</p>
+<h2 id="next_steps">Next Steps</h2>
+<p>We suggest you get started by building one of our demos for
+<a href="android_build">Android</a> or <a href="ios_build">iOS</a>.</p>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:28:50.579230">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="TgB1spWEcFp5huQEUc4qNaayoN4bR0DA5KlRbzVzEaU6MTUxNzg3MjY1NTY0MzMzMA" /><input type="hidden" name="next" value="/mobile/mobile_intro"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js"></script><script src="../_static/18908e5f48/js/script_foot.js"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="327.909946442"></span></body></html>

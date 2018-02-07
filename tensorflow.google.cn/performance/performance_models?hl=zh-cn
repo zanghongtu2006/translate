@@ -1,0 +1,983 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="_V9nR3pG2c49tfzC3NsvYxyq77AhYNQJC5jJepHRNfo6MTUxNzg3OTE4NjAxNTA2MA" /><link rel="canonical" href="https://www.tensorflow.org/performance/performance_models"><link rel="alternate" href="https://www.tensorflow.org/performance/performance_models" hreflang="en"><link rel="alternate" href="performance_models" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/performance/performance_models" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png?hl=zh-cn"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png?hl=zh-cn"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css?hl=zh-cn"><script src="../_static/18908e5f48/js/jquery-bundle.js?hl=zh-cn"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/performance/performance_models"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>High-Performance Models &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="High-Performance Models &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               "
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html?hl=zh-cn" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png?hl=zh-cn"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../install/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/?hl=zh-cn"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Develop
+    
+    
+  </li></ul></div></div><div class="devsite-doc-set-nav-row devsite-full-site-width"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Get Started"
+       >
+        Get Started
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../programmers_guide/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Programmer&#39;s Guide"
+       >
+        Programmer&#39;s Guide
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tutorials/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Tutorials"
+       >
+        Tutorials
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="index.html?hl=zh-cn"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Performance"
+       >
+        Performance
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../mobile/index.html?hl=zh-cn"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Mobile"
+       >
+        Mobile
+      </a></li></ul></nav></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../install/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install">
+        Install
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                devsite-nav-active"
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Get Started">
+        Get Started
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../programmers_guide/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Programmer&#39;s Guide">
+        Programmer&#39;s Guide
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tutorials/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Tutorials">
+        Tutorials
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Performance"
+            tabindex="0">
+        Performance
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../mobile/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Mobile">
+        Mobile
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true&amp;hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html?hl=zh-cn"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Performance</a></li><li class="devsite-nav-item"><a href="performance_guide?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Performance Guide</a></li><li class="devsite-nav-item devsite-nav-active"><a href="performance_models?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">High-Performance Models</a></li><li class="devsite-nav-item"><a href="benchmarks?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Benchmarks</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">XLA</span></li><li class="devsite-nav-item"><a href="xla/index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">XLA Overview</a></li><li class="devsite-nav-item"><a href="xla/broadcasting?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Broadcasting semantics</a></li><li class="devsite-nav-item"><a href="xla/developing_new_backend?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Developing a new backend for XLA</a></li><li class="devsite-nav-item"><a href="xla/jit?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using JIT Compilation</a></li><li class="devsite-nav-item"><a href="xla/operation_semantics?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Operation Semantics</a></li><li class="devsite-nav-item"><a href="xla/shapes?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Shapes and Layout</a></li><li class="devsite-nav-item"><a href="xla/tfcompile?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using AOT compilation</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Quantization</span></li><li class="devsite-nav-item"><a href="quantization?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">How to Quantize Neural Networks with TensorFlow</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Performance</a></li><li class="devsite-nav-item"><a href="performance_guide?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Performance Guide</a></li><li class="devsite-nav-item devsite-nav-active"><a href="performance_models?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">High-Performance Models</a></li><li class="devsite-nav-item"><a href="benchmarks?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Benchmarks</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">XLA</span></li><li class="devsite-nav-item"><a href="xla/index?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">XLA Overview</a></li><li class="devsite-nav-item"><a href="xla/broadcasting?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Broadcasting semantics</a></li><li class="devsite-nav-item"><a href="xla/developing_new_backend?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Developing a new backend for XLA</a></li><li class="devsite-nav-item"><a href="xla/jit?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using JIT Compilation</a></li><li class="devsite-nav-item"><a href="xla/operation_semantics?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Operation Semantics</a></li><li class="devsite-nav-item"><a href="xla/shapes?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Shapes and Layout</a></li><li class="devsite-nav-item"><a href="xla/tfcompile?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using AOT compilation</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Quantization</span></li><li class="devsite-nav-item"><a href="quantization?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">How to Quantize Neural Networks with TensorFlow</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="../versions/index.html?hl=zh-cn" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">TensorFlow Versions</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="../get_started/index?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Develop
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index.html?hl=zh-cn" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="3">
+    
+    
+      Performance
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    High-Performance Models
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG&amp;hl=zh-cn"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>This document and accompanying
+<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">scripts</a>
+detail how to build highly scalable models that target a variety of system types
+and network topologies. The techniques in this document utilize some low-level
+TensorFlow Python primitives. In the future, many of these techniques will be
+incorporated into high-level APIs.</p>
+<h2 id="input_pipeline">Input Pipeline</h2>
+<p>The <a href="performance_guide?hl=zh-cn">Performance Guide</a> explains how to identify possible
+input pipeline issues and best practices. We found that using <a href="../api_docs/python/tf/FIFOQueue?hl=zh-cn"><code>tf.FIFOQueue</code></a>
+and <a href="../api_docs/python/tf/train/queue_runner?hl=zh-cn"><code>tf.train.queue_runner</code></a> could not saturate multiple current generation GPUs
+when using large inputs and processing with higher samples per second, such
+as training ImageNet with <a href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">AlexNet</a>.
+This is due to the use of Python threads as its underlying implementation. The
+overhead of Python threads is too large.</p>
+<p>Another approach, which we have implemented in the
+<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">scripts</a>,
+is to build an input pipeline using the native parallelism in TensorFlow. Our
+implementation is made up of 3 stages:</p>
+<ul>
+<li>I/O reads: Choose and read image files from disk.</li>
+<li>Image Processing: Decode image records into images, preprocess, and organize
+    into mini-batches.</li>
+<li>CPU-to-GPU Data Transfer: Transfer images from CPU to GPU.</li>
+</ul>
+<p>The dominant part of each stage is executed in parallel with the other stages
+using <code>data_flow_ops.StagingArea</code>. <code>StagingArea</code> is a queue-like operator
+similar to <a href="../api_docs/python/tf/FIFOQueue?hl=zh-cn"><code>tf.FIFOQueue</code></a>. The difference is that <code>StagingArea</code>  does not
+guarantee FIFO ordering, but offers simpler functionality and can be executed
+on both CPU and GPU in parallel with other stages. Breaking the input pipeline
+into 3 stages that operate independently in parallel is scalable and takes full
+advantage of large multi-core environments. The rest of this section details
+the stages followed by details about using <code>data_flow_ops.StagingArea</code>.</p>
+<h3 id="parallelize_io_reads">Parallelize I/O Reads</h3>
+<p><code>data_flow_ops.RecordInput</code> is used to parallelize reading from disk. Given a
+list of input files representing TFRecords, <code>RecordInput</code> continuously reads
+records using background threads. The records are placed into its own large
+internal pool and when it has loaded at least half of its capacity, it produces
+output tensors.</p>
+<p>This op has its own internal threads that are dominated by I/O time that consume
+minimal CPU, which allows it to run smoothly in parallel with the rest of the
+model.</p>
+<h3 id="parallelize_image_processing">Parallelize Image Processing</h3>
+<p>After images are read from <code>RecordInput</code> they are passed as tensors to the image
+processing pipeline. To make the image processing pipeline easier to explain,
+assume that the input pipeline is targeting 8 GPUs with a batch size of 256 (32
+per GPU).</p>
+<p>256 records are read and processed individually in parallel. This starts with
+256 independent <code>RecordInput</code> read ops in the graph. Each read op is followed by
+an identical set of ops for image preprocessing that are considered independent
+and executed in parallel. The image preprocessing ops include operations such as
+image decoding, distortion, and resizing.</p>
+<p>Once the images are through preprocessing, they are concatenated together into 8
+tensors each with a batch-size of 32. Rather than using <a href="../api_docs/python/tf/concat?hl=zh-cn"><code>tf.concat</code></a> for this
+purpose, which is implemented as a single op that waits for all the inputs to be
+ready before concatenating them together, <a href="../api_docs/python/tf/parallel_stack?hl=zh-cn"><code>tf.parallel_stack</code></a> is used.
+<a href="../api_docs/python/tf/parallel_stack?hl=zh-cn"><code>tf.parallel_stack</code></a> allocates an uninitialized tensor as an output, and each
+input tensor is written to its designated portion of the output tensor as soon
+as the input is available.</p>
+<p>When all the input tensors are finished, the output tensor is passed along in
+the graph. This effectively hides all the memory latency with the long tail of
+producing all the input tensors.</p>
+<h3 id="parallelize_cpu-to-gpu_data_transfer">Parallelize CPU-to-GPU Data Transfer</h3>
+<p>Continuing with the assumption that the target is 8 GPUs with a batch size of
+256 (32 per GPU). Once the input images are processed and concatenated together
+by the CPU, we have 8 tensors each with a batch-size of 32.</p>
+<p>TensorFlow enables tensors from one device to be used on any other device
+directly. TensorFlow inserts implicit copies to make the tensors available on
+any devices where they are used. The runtime schedules the copy between devices
+to run before the tensors are actually used. However, if the copy cannot finish
+in time, the computation that needs those tensors will stall and result in
+decreased performance.</p>
+<p>In this implementation, <code>data_flow_ops.StagingArea</code> is used to explicitly
+schedule the copy in parallel. The end result is that when computation starts on
+the GPU, all the tensors are already available.</p>
+<h3 id="software_pipelining">Software Pipelining</h3>
+<p>With all the stages capable of being driven by different processors,
+<code>data_flow_ops.StagingArea</code> is used between them so they run in parallel.
+<code>StagingArea</code> is a queue-like operator similar to <a href="../api_docs/python/tf/FIFOQueue?hl=zh-cn"><code>tf.FIFOQueue</code></a> that offers
+simpler functionalities that can be executed on both CPU and GPU.</p>
+<p>Before the model starts running all the stages, the input pipeline stages are
+warmed up to prime the staging buffers in between with one set of data.
+During each run step, one set of data is read from the staging buffers at
+the beginning of each stage, and one set is pushed at the end.</p>
+<p>For example: if there are three stages: A, B and C. There are two staging areas
+in between: S1 and S2. During the warm up, we run:</p>
+<pre class="prettyprint"><code>Warm up:
+Step 1: A0
+Step 2: A1  B0
+
+Actual execution:
+Step 3: A2  B1  C0
+Step 4: A3  B2  C1
+Step 5: A4  B3  C2
+</code></pre>
+
+<p>After the warm up, S1 and S2 each have one set of data in them. For each step of
+the actual execution, one set of data is consumed from each staging area, and
+one set is added to each.</p>
+<p>Benefits of using this scheme:</p>
+<ul>
+<li>All stages are non-blocking, since the staging areas always have one set of
+    data after the warm up.</li>
+<li>Each stage can run in parallel since they can all start immediately.</li>
+<li>The staging buffers have a fixed memory overhead. They will have at most one
+    extra set of data.</li>
+<li>Only a single<code>session.run()</code> call is needed to run all stages of the step,
+    which makes profiling and debugging much easier.</li>
+</ul>
+<h2 id="best_practices_in_building_high-performance_models">Best Practices in Building High-Performance Models</h2>
+<p>Collected below are a couple of additional best practices that can improve
+performance and increase the flexibility of models.</p>
+<h3 id="build_the_model_with_both_nhwc_and_nchw">Build the model with both NHWC and NCHW</h3>
+<p>Most TensorFlow operations used by a CNN support both NHWC and NCHW data format.
+On GPU, NCHW is faster. But on CPU, NHWC is sometimes faster.</p>
+<p>Building a model to support both data formats keeps the model flexible and
+capable of operating optimally regardless of platform. Most TensorFlow
+operations used by a CNN support both NHWC and NCHW data formats. The benchmark
+script was written to support both NCHW and NHWC. NCHW should always be used
+when training with GPUs. NHWC is sometimes faster on CPU. A flexible model can
+be trained on GPUs using NCHW with inference done on CPU using NHWC with the
+weights obtained from training.</p>
+<h3 id="use_fused_batch-normalization">Use Fused Batch-Normalization</h3>
+<p>The default batch-normalization in TensorFlow is implemented as composite
+operations. This is very general, but often leads to suboptimal performance. An
+alternative is to use fused batch-normalization which often has much better
+performance on GPU. Below is an example of using <a href="../api_docs/python/tf/contrib/layers/batch_norm?hl=zh-cn"><code>tf.contrib.layers.batch_norm</code></a>
+to implement fused batch-normalization.</p>
+<pre class="prettyprint lang-python"><code>bn = tf.contrib.layers.batch_norm(
+          input_layer, fused=True, data_format='NCHW'
+          scope=scope)
+</code></pre>
+
+<h2 id="variable_distribution_and_gradient_aggregation">Variable Distribution and Gradient Aggregation</h2>
+<p>During training, training variable values are updated using aggregated gradients
+and deltas. In the benchmark script, we demonstrate that with the flexible and
+general-purpose TensorFlow primitives, a diverse range of high-performance
+distribution and aggregation schemes can be built.</p>
+<p>Three examples of variable distribution and aggregation were included in the
+script:</p>
+<ul>
+<li><code>parameter_server</code> where each replica of the training model reads the
+    variables from a parameter server and updates the variable independently.
+    When each model needs the variables, they are copied over through the
+    standard implicit copies added by the TensorFlow runtime. The example
+    <a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">script</a>
+    illustrates using this method for local training, distributed synchronous
+    training, and distributed asynchronous training.</li>
+<li><code>replicated</code> places an identical copy of each training variable on each
+    GPU. The forward and backward computation can start immediately as the
+    variable data is immediately available. Gradients are accumulated across all
+    GPUs, and the aggregated total is applied to each GPU's copy of the
+    variables to keep them in sync.</li>
+<li><code>distributed_replicated</code> places an identical copy of the training parameters
+    on each GPU along with a master copy on the parameter servers. The forward
+    and backward computation can start immediately as the variable data is
+    immediately available. Gradients are accumulated across all GPUs on each
+    server and then the per-server aggregated gradients are applied to the
+    master copy. After all workers do this, each worker updates its copy of the
+    variable from the master copy.</li>
+</ul>
+<p>Below are additional details about each approach.</p>
+<h3 id="parameter_server_variables">Parameter Server Variables</h3>
+<p>The most common way trainable variables are managed in TensorFlow models is
+parameter server mode.</p>
+<p>In a distributed system, each worker process runs the same model, and parameter
+server processes own the master copies of the variables. When a worker needs a
+variable from a parameter server, it refers to it directly. The TensorFlow
+runtime adds implicit copies to the graph to make the variable value available
+on the computation device that needs it. When a gradient is computed on a
+worker, it is sent to the parameter server that owns the particular variable,
+and the corresponding optimizer is used to update the variable.</p>
+<p>There are some techniques to improve throughput:</p>
+<ul>
+<li>The variables are spread among parameter servers based on their size, for
+    load balancing.</li>
+<li>When each worker has multiple GPUs, gradients are accumulated across the
+    GPUs and a single aggregated gradient is sent to the parameter server. This
+    reduces the network bandwidth and the amount of work done by the parameter
+    servers.</li>
+</ul>
+<p>For coordinating between workers, a very common mode is async updates, where
+each worker updates the master copy of the variables without synchronizing with
+other workers. In our model, we demonstrate that it is fairly easy to introduce
+synchronization across workers so updates for all workers are finished in one
+step before the next step can start.</p>
+<p>The parameter server method can also be used for local training, In this case,
+instead of spreading the master copies of variables across parameters servers,
+they are either on the CPU or spread across the available GPUs.</p>
+<p>Due to the simple nature of this setup, this architecture has gained a lot of
+popularity within the community.</p>
+<p>This mode can be used in the script by passing
+<code>--variable_update=parameter_server</code>.</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:100%" alt="parameter_server mode in distributed training"
+   src="../images/perf_parameter_server_mode_doc.png?hl=zh-cn">
+</div>
+
+<h3 id="replicated_variables">Replicated Variables</h3>
+<p>In this design, each GPU on the server has its own copy of each variable. The
+values are kept in sync across GPUs by applying the fully aggregated gradient to
+each GPU's copy of the variable.</p>
+<p>The variables and data are available at the start of training, so the forward
+pass of training can start immediately. Gradients are aggregated across the
+devices and the fully aggregated gradient is then applied to each local copy.</p>
+<p>Gradient aggregation across the server can be done in different ways:</p>
+<ul>
+<li>Using standard TensorFlow operations to accumulate the total on a single
+    device (CPU or GPU) and then copy it back to all GPUs.</li>
+<li>Using NVIDIA® NCCL, described below in the NCCL section.</li>
+</ul>
+<p>This mode can be used in the script by passing <code>--variable_update=replicated</code>.</p>
+<h3 id="replicated_variables_in_distributed_training">Replicated Variables in Distributed Training</h3>
+<p>The replicated method for variables can be extended to distributed training. One
+way to do this like the replicated mode: aggregate the gradients fully across
+the cluster and apply them to each local copy of the variable. This may be shown
+in a future version of this scripts; the scripts do present a different
+variation, described here.</p>
+<p>In this mode, in addition to each GPU's copy of the variables, a master copy is
+stored on the parameter servers. As with the replicated mode, training can start
+immediately using the local copies of the variables.</p>
+<p>As the gradients of the weights become available, they are sent back to the
+parameter servers and all local copies are updated:</p>
+<ol>
+<li>All the gradients from the GPU on the same worker are aggregated together.</li>
+<li>Aggregated gradients from each worker are sent to the parameter server that
+    owns the variable, where the specified optimizer is used to update the
+    master copy of the variable.</li>
+<li>Each worker updates its local copy of the variable from the master. In the
+    example model, this is done with a cross-replica barrier that waits for all
+    the workers to finish updating the variables, and fetches the new variable
+    only after the barrier has been released by all replicas. Once the copy
+    finishes for all variables, this marks the end of a training step, and a new
+    step can start.</li>
+</ol>
+<p>Although this sounds similar to the standard use of parameter servers, the
+performance is often better in many cases. This is largely due to the fact the
+computation can happen without any delay, and much of the copy latency of early
+gradients can be hidden by later computation layers.</p>
+<p>This mode can be used in the script by passing
+<code>--variable_update=distributed_replicated</code>.</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:100%" alt="distributed_replicated mode"
+   src="../images/perf_distributed_replicated_mode_doc.png?hl=zh-cn">
+</div>
+
+<h4 id="nccl">NCCL</h4>
+<p>In order to broadcast variables and aggregate gradients across different GPUs
+within the same host machine, we can use the default TensorFlow implicit copy
+mechanism.</p>
+<p>However, we can instead use the optional NCCL (<a href="../api_docs/python/tf/contrib/nccl?hl=zh-cn"><code>tf.contrib.nccl</code></a>) support. NCCL
+is an NVIDIA® library that can efficiently broadcast and aggregate data across
+different GPUs. It schedules a cooperating kernel on each GPU that knows how to
+best utilize the underlying hardware topology; this kernel uses a single SM of
+the GPU.</p>
+<p>In our experiment, we demonstrate that although NCCL often leads to much faster
+data aggregation by itself, it doesn't necessarily lead to faster training. Our
+hypothesis is that the implicit copies are essentially free since they go to the
+copy engine on GPU, as long as its latency can be hidden by the main computation
+itself. Although NCCL can transfer data faster, it takes one SM away, and adds
+more pressure to the underlying L2 cache. Our results show that for 8-GPUs, NCCL
+often leads to better performance. However, for fewer GPUs, the implicit copies
+often perform better.</p>
+<h4 id="staged_variables">Staged Variables</h4>
+<p>We further introduce a staged-variable mode where we use staging areas for both
+the variable reads, and their updates. Similar to software pipelining of the
+input pipeline, this can hide the data copy latency. If the computation time
+takes longer than the copy and aggregation, the copy itself becomes essentially
+free.</p>
+<p>The downside is that all the weights read are from the previous training step.
+So it is a different algorithm from SGD. But it is possible to improve its
+convergence by adjusting learning rate and other hyperparameters.</p>
+<h2 id="executing_the_script">Executing the script</h2>
+<p>This section lists the core command line arguments and a few basic examples for
+executing the main script
+(<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py">tf_cnn_benchmarks.py</a>).</p>
+<blockquote>
+<aside class="note"><strong>Note:</strong><span> <code>tf_cnn_benchmarks.py</code> uses the config <code>force_gpu_compatible</code>,
+which was introduced after TensorFlow 1.1. Until TensorFlow 1.2 is released
+building from source is advised.</span></aside>
+</blockquote>
+<h4 id="base_command_line_arguments">Base command line arguments</h4>
+<ul>
+<li><strong><code>model</code></strong>: Model to use, e.g. <code>resnet50</code>, <code>inception3</code>, <code>vgg16</code>, and
+    <code>alexnet</code>.</li>
+<li><strong><code>num_gpus</code></strong>: Number of GPUs to use.</li>
+<li><strong><code>data_dir</code></strong>: Path to data to process. If not set, synthetic data is used.
+    To use ImageNet data use these
+    <a href="https://github.com/tensorflow/models/tree/master/research/inception#getting-started">instructions</a>
+    as a starting point.</li>
+<li><strong><code>batch_size</code></strong>: Batch size for each GPU.</li>
+<li><strong><code>variable_update</code></strong>: The method for managing variables: <code>parameter_server</code>
+    ,<code>replicated</code>, <code>distributed_replicated</code>, <code>independent</code></li>
+<li><strong><code>local_parameter_device</code></strong>: Device to use as parameter server: <code>cpu</code> or
+    <code>gpu</code>.</li>
+</ul>
+<h4 id="single_instance_examples">Single instance examples</h4>
+<pre class="prettyprint lang-bash"><code># VGG16 training ImageNet with 8 GPUs using arguments that optimize for
+# Google Compute Engine.
+python tf_cnn_benchmarks.py --local_parameter_device=cpu --num_gpus=8 \
+--batch_size=32 --model=vgg16 --data_dir=/home/ubuntu/imagenet/train \
+--variable_update=parameter_server --nodistortions
+
+# VGG16 training synthetic ImageNet data with 8 GPUs using arguments that
+# optimize for the NVIDIA DGX-1.
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=vgg16 --variable_update=replicated --use_nccl=True
+
+# VGG16 training ImageNet data with 8 GPUs using arguments that optimize for
+# Amazon EC2.
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=vgg16 --variable_update=parameter_server
+
+# ResNet-50 training ImageNet data with 8 GPUs using arguments that optimize for
+# Amazon EC2.
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=resnet50 --variable_update=replicated --use_nccl=False
+
+</code></pre>
+
+<h4 id="distributed_command_line_arguments">Distributed command line arguments</h4>
+<ul>
+<li><strong><code>ps_hosts</code></strong>: Comma separated list of hosts to use as parameter servers
+    in the format of <code>&lt;host&gt;:port</code>, e.g. <code>10.0.0.2:50000</code>.</li>
+<li><strong><code>worker_hosts</code></strong>: Comma separated list of hosts to use as workers in the
+    format of <code>&lt;host&gt;:port</code>, e.g. <code>10.0.0.2:50001</code>.</li>
+<li><strong><code>task_index</code></strong>: Index of the host in the list of <code>ps_hosts</code> or
+    <code>worker_hosts</code> being started.</li>
+<li><strong><code>job_name</code></strong>: Type of job, e.g <code>ps</code> or <code>worker</code></li>
+</ul>
+<h4 id="distributed_examples">Distributed examples</h4>
+<p>Below is an example of training ResNet-50 on 2 hosts: host_0 (10.0.0.1) and
+host_1 (10.0.0.2). The example uses synthetic data. To use real data pass the
+<code>--data_dir</code> argument.</p>
+<pre class="prettyprint lang-bash"><code># Run the following commands on host_0 (10.0.0.1):
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=resnet50 --variable_update=distributed_replicated \
+--job_name=worker --ps_hosts=10.0.0.1:50000,10.0.0.2:50000 \
+--worker_hosts=10.0.0.1:50001,10.0.0.2:50001 --task_index=0
+
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=resnet50 --variable_update=distributed_replicated \
+--job_name=ps --ps_hosts=10.0.0.1:50000,10.0.0.2:50000 \
+--worker_hosts=10.0.0.1:50001,10.0.0.2:50001 --task_index=0
+
+# Run the following commands on host_1 (10.0.0.2):
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=resnet50 --variable_update=distributed_replicated \
+--job_name=worker --ps_hosts=10.0.0.1:50000,10.0.0.2:50000 \
+--worker_hosts=10.0.0.1:50001,10.0.0.2:50001 --task_index=1
+
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=resnet50 --variable_update=distributed_replicated \
+--job_name=ps --ps_hosts=10.0.0.1:50000,10.0.0.2:50000 \
+--worker_hosts=10.0.0.1:50001,10.0.0.2:50001 --task_index=1
+
+</code></pre>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies?hl=zh-cn">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:30:38.129610">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="_V9nR3pG2c49tfzC3NsvYxyq77AhYNQJC5jJepHRNfo6MTUxNzg3OTE4NjAxNTA2MA" /><input type="hidden" name="next" value="/performance/performance_models"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/?hl=zh-cn"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js?hl=zh-cn"></script><script src="../_static/18908e5f48/js/script_foot.js?hl=zh-cn"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/?hl=zh-cn');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="381.860017776"></span></body></html>

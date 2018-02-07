@@ -1,0 +1,962 @@
+
+
+
+
+
+<!DOCTYPE html><html lang="en"
+      class="chekov"><head><script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script><meta charset="utf-8"><meta name="xsrf_token" content="owEr1luGb4_1Myu1MD447cnwr8Dt6tKS9XBDVKFZZh86MTUxNzg0NzExNzc3NTU3MA" /><link rel="canonical" href="https://www.tensorflow.org/install/install_mac"><link rel="alternate" href="https://www.tensorflow.org/install/install_mac" hreflang="en"><link rel="alternate" href="install_mac" hreflang="en-cn"><link rel="alternate" href="https://www.tensorflow.org/install/install_mac" hreflang="x-default"><link rel="shortcut icon" href="../_static/18908e5f48/images/tensorflow/favicon.png"><link rel="apple-touch-icon" href="../images/apple-touch-icon-180x180.png"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons"><link rel="stylesheet"
+        href="../_static/18908e5f48/css/devsite-tensorflow-orange.css"><script src="../_static/18908e5f48/js/jquery-bundle.js"></script><meta property="og:site_name" content="TensorFlow"><meta property="og:type" content="website"><meta property="og:url" content="https://www.tensorflow.org/install/install_mac"><meta property="og:locale" content="en"><script>
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'zh-cn';
+  </script><title>Installing TensorFlow on macOS &nbsp;|&nbsp; TensorFlow</title><meta property="og:title" content="Installing TensorFlow on macOS &nbsp;|&nbsp; TensorFlow"></head><body class="
+               devsite-doc-page
+               
+               
+               
+               
+               devsite-header-no-lower-tabs"
+        id="top_of_page"><div class="devsite-wrapper"><div class="devsite-top-section-wrapper
+            "><header class="devsite-top-section nocontent"><div class="devsite-top-logo-row-wrapper-wrapper"><div class="devsite-top-logo-row-wrapper"><div class="devsite-top-logo-row devsite-full-site-width"><button type="button" class="devsite-expand-section-nav devsite-header-icon-button
+                                       button-flat material-icons gc-analytics-event"
+                  data-category="Site-Wide Custom Events" data-label="Hamburger menu"></button><div class="devsite-product-name-wrapper"><a href="../index.html" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo"><img src="../_static/18908e5f48/images/tensorflow/lockup.png"
+       class="devsite-site-logo" alt="TensorFlow"><span class="devsite-site-name devsite-product-name">TensorFlow</span></a></div><div class="devsite-header-upper-tabs"><nav class="devsite-doc-set-nav devsite-nav devsite-overflow-tabs-scroll-wrapper"><ul class="devsite-doc-set-nav-tab-list devsite-overflow-tabs-scroll"><li class="devsite-doc-set-nav-tab-container"><a href="index"
+         class="devsite-doc-set-nav-active
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Install"
+       >
+        Install
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../get_started/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Develop"
+       >
+        Develop
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../api_docs.1"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: API r1.5"
+       >
+        API r1.5
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../deploy/index"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Deploy"
+       >
+        Deploy
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../extend/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Extend"
+       >
+        Extend
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../community/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Community"
+       >
+        Community
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../versions/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: Versions"
+       >
+        Versions
+      </a></li><li class="devsite-doc-set-nav-tab-container"><a href="../tfrc/index.html"
+         class="
+                devsite-doc-set-nav-tab gc-analytics-event"
+       
+         data-category="Site-Wide Custom Events"
+       
+         data-label="Tab: TFRC"
+       >
+        TFRC
+      </a></li></ul></nav></div><form class="devsite-search-form"
+                action="https://tensorflow.google.cn/s/results/"
+                method="GET"
+                id="top-search"
+                search-placeholder='搜索'><div id="searchbox" class="devsite-searchbox"><input placeholder='搜索'
+         
+         type="text"
+         class="devsite-search-field devsite-search-query"
+         name="q"
+         value=""
+         autocomplete="off"><div class="devsite-search-image material-icons"></div></div><input type="hidden"
+       name="p"
+       id="search_project"
+       value="/"
+       data-project-name="TensorFlow"
+       data-project-path="/"
+       data-query-match=""><input type="hidden" class="suggest-project" value="TensorFlow" /><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Android Open Source Project" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Google Cloud Platform" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Dialogflow" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Firebase" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Link.app" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="Nest Developers" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="OpenThread" ></div><div class="suggest-project-metadata" data-home_url="/" data-path="/" data-name="TensorFlow" ></div></form><button type="button" class="devsite-search-button devsite-header-icon-button button-flat
+                                       material-icons"></button></div></div></div><div class="devsite-collapsible-section"><div class="devsite-header-background devsite-full-site-width"><div class="devsite-product-id-row devsite-full-site-width"><div class="devsite-product-description-row"><ul class="devsite-breadcrumb-list"><li class="devsite-breadcrumb-item">
+    
+    
+    
+      Install
+    
+    
+  </li></ul></div></div></div></div></header><script>
+    if (window.jQuery) {
+      $(document).ready(function() {
+        if (window.devsite && window.devsite.search) {
+          
+          window.devsite.search.init('zh-cn')
+        }
+      });
+    }
+  </script></div><div id="gc-wrapper"itemscope itemtype="http://schema.org/Article"><input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;TensorFlow&quot;, &quot;dimension5&quot;: &quot;zh-cn&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-69864048-6&quot;}"><script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "userCountry": "US", "language": {"requested": "zh-cn", "served": "en"}, "projectName": "TensorFlow", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+
+      
+        <div class="devsite-site-mask"></div>
+        
+  
+
+<nav class="devsite-nav-responsive devsite-nav nocontent" tabindex="0">
+  
+  <div class="devsite-nav-responsive-tabs-panel">
+    
+      
+        
+
+
+
+<nav class="devsite-nav-responsive-tabs devsite-nav">
+  <ul class="devsite-nav-list">
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <span class="devsite-nav-responsive-forward devsite-nav-responsive-tab devsite-nav-title
+                   devsite-nav-active gc-analytics-event"
+            data-category="Site-Wide Custom Events" data-label="Responsive Tab: Install"
+            tabindex="0">
+        Install
+      </span>
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../get_started/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Develop">
+        Develop
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../api_docs/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: API r1.5">
+        API r1.5
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../deploy/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Deploy">
+        Deploy
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../extend/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Extend">
+        Extend
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../community/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Community">
+        Community
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../versions/index.html?nav=true"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: Versions">
+        Versions
+      </a>
+      
+    
+    </li>
+  
+    <li class="devsite-nav-item devsite-nav-item-heading">
+    
+      <a 
+           href="../tfrc/index.html"
+         
+         class="devsite-nav-responsive-tab devsite-nav-title gc-analytics-event
+                "
+         data-category="Site-Wide Custom Events" data-label="Responsive Tab: TFRC">
+        TFRC
+      </a>
+      
+    
+    </li>
+  
+  
+  </ul>
+</nav>
+
+      
+    
+  </div>
+  
+  
+  <div class="devsite-nav-responsive-sidebar-panel">
+    
+    <div class="devsite-nav-responsive-back" tabindex="0"></div>
+    
+    <nav class="devsite-nav-responsive-sidebar">
+      <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Python</span></li><li class="devsite-nav-item"><a href="install_linux" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on Ubuntu</a></li><li class="devsite-nav-item devsite-nav-active"><a href="install_mac" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on macOS</a></li><li class="devsite-nav-item"><a href="install_windows" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on Windows</a></li><li class="devsite-nav-item"><a href="install_sources" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow from Sources</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="migration" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Transitioning to TensorFlow 1.0</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Other Languages</span></li><li class="devsite-nav-item"><a href="install_java" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for Java</a></li><li class="devsite-nav-item"><a href="install_go" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for Go</a></li><li class="devsite-nav-item"><a href="install_c" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for C</a></li></ul>
+    </nav>
+  </div>
+  
+</nav>
+
+
+        <div class="devsite-main-content clearfix">
+
+        
+        
+
+        
+  
+  
+    
+    
+      
+  <nav class="devsite-section-nav devsite-nav nocontent">
+    <ul class="devsite-nav-list"><li class="devsite-nav-item"><a href="index" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Python</span></li><li class="devsite-nav-item"><a href="install_linux" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on Ubuntu</a></li><li class="devsite-nav-item devsite-nav-active"><a href="install_mac" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on macOS</a></li><li class="devsite-nav-item"><a href="install_windows" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow on Windows</a></li><li class="devsite-nav-item"><a href="install_sources" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow from Sources</a></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item"><a href="migration" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Transitioning to TensorFlow 1.0</a></li><li class="devsite-nav-item devsite-nav-item-heading"><span class="devsite-nav-title devsite-nav-title-no-path" track-type="leftNav" track-name="expandNavSectionNoLink" track-metadata-position="0">Other Languages</span></li><li class="devsite-nav-item"><a href="install_java" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for Java</a></li><li class="devsite-nav-item"><a href="install_go" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for Go</a></li><li class="devsite-nav-item"><a href="install_c" class="devsite-nav-title gc-analytics-event" track-type="leftNav" track-name="titleLink" track-metadata-position="0" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Installing TensorFlow for C</a></li></ul>
+  </nav>
+
+    
+
+    
+  <nav class="devsite-page-nav devsite-nav"></nav>
+
+
+      <article class="devsite-article">
+        <article class="devsite-article-inner">
+  
+          
+  
+
+
+
+  
+  <nav class="devsite-breadcrumb-nav devsite-nav">
+    
+
+
+<ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <a href="../index.html" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="1">
+    
+    
+      TensorFlow
+    
+    
+    </a>
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item">
+    
+    
+    <div class="devsite-breadcrumb-guillemet material-icons"></div>
+    
+    
+    <a href="index" class="devsite-breadcrumb-link gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Breadcrumbs"
+       data-value="2">
+    
+    
+      Install
+    
+    
+    </a>
+    
+  </li>
+  
+</ul>
+
+  </nav>
+  
+  
+  <h1 itemprop="name" class="devsite-page-title">
+    Installing TensorFlow on macOS
+  </h1>
+  
+  
+  <nav class="devsite-page-nav-embedded devsite-nav"></nav>
+  
+  <div class="devsite-article-body clearfix
+            "
+       itemprop="articleBody">
+    
+<script src="../_static/18908e5f48/js/managed/mathjax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+
+<!-- DO NOT EDIT! Automatically generated file. -->
+
+
+<p>This guide explains how to install TensorFlow on macOS. Although these
+instructions might also work on other macOS variants, we have only
+tested (and we only support) these instructions on machines meeting the
+following requirements:</p>
+<ul>
+<li>macOS X 10.11 (El Capitan) or higher</li>
+</ul>
+<aside class="note"><strong>Note:</strong><span> As of version 1.2, TensorFlow no longer provides GPU support on macOS.</span></aside>
+<h2 id="determine_how_to_install_tensorflow">Determine how to install TensorFlow</h2>
+<p>You must pick the mechanism by which you install TensorFlow. The supported choices are as follows:</p>
+<ul>
+<li>Virtualenv</li>
+<li>"native" pip</li>
+<li>Docker</li>
+<li>installing from sources, which is documented in
+    <a href="install_sources">a separate guide</a>.</li>
+</ul>
+<p><strong>We recommend the Virtualenv installation.</strong>
+<a href="https://virtualenv.pypa.io/en/stable">Virtualenv</a>
+is a virtual Python environment isolated from other Python development,
+incapable of interfering with or being affected by other Python programs
+on the same machine.  During the Virtualenv installation process,
+you will install not only TensorFlow but also all the packages that
+TensorFlow requires.  (This is actually pretty easy.)
+To start working with TensorFlow, you simply need to "activate" the
+virtual environment.  All in all, Virtualenv provides a safe and
+reliable mechanism for installing and running TensorFlow.</p>
+<p>Native pip installs TensorFlow directly on your system without going through
+any container or virtual environment system. Since a native pip installation
+is not walled-off, the pip installation might interfere with or be influenced
+by other Python-based installations on your system. Furthermore, you might need
+to disable System Integrity Protection (SIP) in order to install through native
+pip.  However, if you understand SIP, pip, and your Python environment, a
+native pip installation is relatively easy to perform.</p>
+<p><a href="http://docker.com">Docker</a> completely isolates the TensorFlow installation
+from pre-existing packages on your machine. The Docker container contains
+TensorFlow and all its dependencies. Note that the Docker image can be quite
+large (hundreds of MBs). You might choose the Docker installation if you are
+incorporating TensorFlow into a larger application architecture that
+already uses Docker.</p>
+<p>In Anaconda, you may use conda to create a virtual environment.
+However, within Anaconda, we recommend installing TensorFlow with the
+<code>pip install</code> command, not with the <code>conda install</code> command.</p>
+<p><strong>NOTE:</strong> The conda package is community supported, not officially supported.
+That is, the TensorFlow team neither tests nor maintains the conda package.
+Use that package at your own risk.</p>
+<h2 id="installing_with_virtualenv">Installing with Virtualenv</h2>
+<p>Take the following steps to install TensorFlow with Virtualenv:</p>
+<ol>
+<li>
+<p>Start a terminal (a shell). You'll perform all subsequent steps
+     in this shell.</p>
+</li>
+<li>
+<p>Install pip and Virtualenv by issuing the following commands:</p>
+<p><pre> $ <b>sudo easy_install pip</b>
+ $ <b>pip install --upgrade virtualenv</b> </pre></p>
+</li>
+<li>
+<p>Create a Virtualenv environment by issuing a command of one
+     of the following formats:</p>
+<p><pre> $ <b>virtualenv --system-site-packages</b> <i>targetDirectory</i> # for Python 2.7
+ $ <b>virtualenv --system-site-packages -p python3</b> <i>targetDirectory</i> # for Python 3.n
+ </pre></p>
+<p>where <i>targetDirectory</i> identifies the top of the Virtualenv tree.
+ Our instructions assume that <i>targetDirectory</i>
+ is <code>~/tensorflow</code>, but you may choose any directory.</p>
+</li>
+<li>
+<p>Activate the Virtualenv environment by issuing one of the
+     following commands:</p>
+<p><pre>$ <b>cd <i>targetDirectory</i></b>
+$ <b>source ./bin/activate</b>      # If using bash, sh, ksh, or zsh
+$ <b>source ./bin/activate.csh</b>  # If using csh or tcsh </pre></p>
+<p>The preceding <code>source</code> command should change your prompt to the following:</p>
+<p><pre> (<i>targetDirectory</i>)$ </pre></p>
+</li>
+<li>
+<p>Ensure pip ≥8.1 is installed:</p>
+<p><pre> (<i>targetDirectory</i>)$ <b>easy_install -U pip</b></pre></p>
+</li>
+<li>
+<p>Issue one of the following commands to install TensorFlow and all the
+     packages that TensorFlow requires into the active Virtualenv environment:</p>
+<p><pre> (<i>targetDirectory</i>)$ <b>pip install --upgrade tensorflow</b>      # for Python 2.7
+ (<i>targetDirectory</i>)$ <b>pip3 install --upgrade tensorflow</b>     # for Python 3.n</p>
+</li>
+<li>
+<p>Optional. If Step 6 failed (typically because you invoked a pip version
+     lower than 8.1), install TensorFlow in the active
+     Virtualenv environment by issuing a command of the following format:</p>
+<p><pre> $ <b>pip install --upgrade</b> <i>tfBinaryURL</i>   # Python 2.7
+ $ <b>pip3 install --upgrade</b> <i>tfBinaryURL</i>  # Python 3.n </pre></p>
+<p>where <i>tfBinaryURL</i> identifies the URL
+ of the TensorFlow Python package. The appropriate value of
+ <i>tfBinaryURL</i> depends on the operating system and
+ Python version. Find the appropriate value for
+ <i>tfBinaryURL</i> for your system
+ <a href="install_mac#the_url_of_the_tensorflow_python_package">here</a>.
+ For example, if you are installing TensorFlow for macOS,
+ Python 2.7, the command to install
+ TensorFlow in the active Virtualenv is as follows:</p>
+<p><pre> $ <b>pip3 install --upgrade \
+ https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.5.0-py2-none-any.whl</b></pre></p>
+</li>
+</ol>
+<p>If you encounter installation problems, see
+<a href="install_mac#common_installation_problems">Common Installation Problems</a>.</p>
+<h3 id="next_steps">Next Steps</h3>
+<p>After installing TensorFlow,
+<a href="install_mac#ValidateYourInstallation">validate your installation</a>
+to confirm that the installation worked properly.</p>
+<p>Note that you must activate the Virtualenv environment each time you
+use TensorFlow in a new shell.  If the Virtualenv environment is not
+currently active (that is, the prompt is not <code>(&lt;i&gt;targetDirectory&lt;/i&gt;)</code>, invoke
+one of the following commands:</p>
+<pre>$ <b>cd <i>targetDirectory</i></b>
+$ <b>source ./bin/activate</b>      # If using bash, sh, ksh, or zsh
+$ <b>source ./bin/activate.csh</b>  # If using csh or tcsh </pre>
+
+<p>Your prompt will transform to the following to indicate that your
+tensorflow environment is active:</p>
+<pre> (<i>targetDirectory</i>)$ </pre>
+
+<p>When the Virtualenv environment is active, you may run
+TensorFlow programs from this shell.</p>
+<p>When you are done using TensorFlow, you may deactivate the
+environment by issuing the following command:</p>
+<pre> (<i>targetDirectory</i>)$ <b>deactivate</b> </pre>
+
+<p>The prompt will revert back to your default prompt (as defined by <code>PS1</code>).</p>
+<h3 id="uninstalling_tensorflow">Uninstalling TensorFlow</h3>
+<p>If you want to uninstall TensorFlow, simply remove the tree you created. For example:</p>
+<pre> $ <b>rm -r ~/tensorflow</b> </pre>
+
+<h2 id="installing_with_native_pip">Installing with native pip</h2>
+<p>We have uploaded the TensorFlow binaries to PyPI.
+Therefore, you can install TensorFlow through pip.</p>
+<p>The
+<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/pip_package/setup.py">REQUIRED_PACKAGES section of setup.py</a>
+lists the packages that pip will install or upgrade.</p>
+<h3 id="prerequisite_python">Prerequisite: Python</h3>
+<p>In order to install TensorFlow, your system must contain one of the following Python versions:</p>
+<ul>
+<li>Python 2.7</li>
+<li>Python 3.3+</li>
+</ul>
+<p>If your system does not already have one of the preceding Python versions,
+<a href="https://wiki.python.org/moin/BeginnersGuide/Download">install</a> it now.</p>
+<p>When installing Python, you might need to disable
+System Integrity Protection (SIP) to permit any entity other than
+Mac App Store to install software.</p>
+<h3 id="prerequisite_pip">Prerequisite: pip</h3>
+<p><a href="https://en.wikipedia.org/wiki/Pip_(package_manager)">Pip</a> installs
+and manages software packages written in Python. If you intend to install
+with native pip, then one of the following flavors of pip must be
+installed on your system:</p>
+<ul>
+<li><code>pip</code>, for Python 2.7</li>
+<li><code>pip3</code>, for Python 3.n.</li>
+</ul>
+<p><code>pip</code> or <code>pip3</code> was probably installed on your system when you
+installed Python.  To determine whether pip or pip3 is actually
+installed on your system, issue one of the following commands:</p>
+<pre>$ <b>pip -V</b>  # for Python 2.7
+$ <b>pip3 -V</b> # for Python 3.n </pre>
+
+<p>We strongly recommend pip or pip3 version 8.1 or higher in order
+to install TensorFlow.  If pip or pip3 8.1 or later is not
+installed, issue the following commands to install or upgrade:</p>
+<pre>$ <b>sudo easy_install --upgrade pip</b>
+$ <b>sudo easy_install --upgrade six</b> </pre>
+
+<h3 id="install_tensorflow">Install TensorFlow</h3>
+<p>Assuming the prerequisite software is installed on your Mac,
+take the following steps:</p>
+<ol>
+<li>
+<p>Install TensorFlow by invoking <strong>one</strong> of the following commands:</p>
+<p><pre> $ <b>pip install tensorflow</b>      # Python 2.7; CPU support
+ $ <b>pip3 install tensorflow</b>     # Python 3.n; CPU support</p>
+<p>If the preceding command runs to completion, you should now
+ <a href="install_mac#ValidateYourInstallation">validate your installation</a>.</p>
+</li>
+<li>
+<p>(Optional.) If Step 1 failed, install the latest version of TensorFlow
+     by issuing a command of the following format:</p>
+<p><pre> $ <b>sudo pip  install --upgrade</b> <i>tfBinaryURL</i>   # Python 2.7
+ $ <b>sudo pip3 install --upgrade</b> <i>tfBinaryURL</i>   # Python 3.n </pre></p>
+<p>where <i>tfBinaryURL</i> identifies the URL of the TensorFlow Python
+ package. The appropriate value of <i>tfBinaryURL</i> depends on the
+ operating system and Python version. Find the appropriate
+ value for <i>tfBinaryURL</i>
+ <a href="install_mac#the_url_of_the_tensorflow_python_package">here</a>.  For example, if
+ you are installing TensorFlow for Mac OS and Python 2.7
+ issue the following command:</p>
+<p><pre> $ <b>sudo pip3 install --upgrade \
+ https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.5.0-py2-none-any.whl</b> </pre></p>
+<p>If the preceding command fails, see
+ <a href="install_mac#common_installation_problems">installation problems</a>.</p>
+</li>
+</ol>
+<h3 id="next_steps_1">Next Steps</h3>
+<p>After installing TensorFlow,
+<a href="install_mac#ValidateYourInstallation">validate your installation</a>
+to confirm that the installation worked properly.</p>
+<h3 id="uninstalling_tensorflow_1">Uninstalling TensorFlow</h3>
+<p>To uninstall TensorFlow, issue one of following commands:</p>
+<pre>$ <b>pip uninstall tensorflow</b>
+$ <b>pip3 uninstall tensorflow</b> </pre>
+
+<h2 id="installing_with_docker">Installing with Docker</h2>
+<p>Follow these steps to install TensorFlow through Docker.</p>
+<ol>
+<li>
+<p>Install Docker on your machine as described in the
+     <a href="https://docs.docker.com/engine/installation/#/on-macos-and-windows">Docker documentation</a>.</p>
+</li>
+<li>
+<p>Launch a Docker container that contains one of the TensorFlow
+     binary images.</p>
+</li>
+</ol>
+<p>The remainder of this section explains how to launch a Docker container.</p>
+<p>To launch a Docker container that holds the TensorFlow binary image,
+enter a command of the following format:</p>
+<pre> $ <b>docker run -it <i>-p hostPort:containerPort</i> TensorFlowImage</b> </pre>
+
+<p>where:</p>
+<ul>
+<li><i>-p hostPort:containerPort</i> is optional. If you'd like to run
+    TensorFlow programs from the shell, omit this option. If you'd like
+    to run TensorFlow programs from Jupyter notebook,  set both
+    <i>hostPort</i> and <i>containerPort</i> to <code>8888</code>.
+    If you'd like to run TensorBoard inside the container, add
+    a second <code>-p</code> flag, setting both <i>hostPort</i> and <i>containerPort</i>
+    to 6006.</li>
+<li><i>TensorFlowImage</i> is required. It identifies the Docker container.
+    You must specify one of the following values:<ul>
+<li><code>gcr.io/tensorflow/tensorflow</code>: TensorFlow binary image.</li>
+<li><code>gcr.io/tensorflow/tensorflow:latest-devel</code>: TensorFlow
+  Binary image plus source code.</li>
+</ul>
+</li>
+</ul>
+<p><code>gcr.io</code> is the Google Container Registry. Note that some
+TensorFlow images are also available at
+<a href="https://hub.docker.com/r/tensorflow/tensorflow/">dockerhub</a>.</p>
+<p>For example, the following command launches a TensorFlow CPU binary image
+in a Docker container from which you can run TensorFlow programs in a shell:</p>
+<pre>$ <b>docker run -it gcr.io/tensorflow/tensorflow bash</b></pre>
+
+<p>The following command also launches a TensorFlow CPU binary image in a
+Docker container. However, in this Docker container, you can run
+TensorFlow programs in a Jupyter notebook:</p>
+<pre>$ <b>docker run -it -p 8888:8888 gcr.io/tensorflow/tensorflow</b></pre>
+
+<p>Docker will download the TensorFlow binary image the first time you launch it.</p>
+<h3 id="next_steps_2">Next Steps</h3>
+<p>You should now
+<a href="install_mac#ValidateYourInstallation">validate your installation</a>.</p>
+<h2 id="installing_with_anaconda">Installing with Anaconda</h2>
+<p><strong>The Anaconda installation is community supported, not officially supported.</strong></p>
+<p>Take the following steps to install TensorFlow in an Anaconda environment:</p>
+<ol>
+<li>
+<p>Follow the instructions on the
+     <a href="https://www.continuum.io/downloads">Anaconda download site</a>
+     to download and install Anaconda.</p>
+</li>
+<li>
+<p>Create a conda environment named <code>tensorflow</code>
+     by invoking the following command:</p>
+<p><pre>$ <b>conda create -n tensorflow pip python=2.7 # or python=3.3, etc.</b></pre></p>
+</li>
+<li>
+<p>Activate the conda environment by issuing the following command:</p>
+<p><pre>$ <b>source activate tensorflow</b>
+ (<i>targetDirectory</i>)$  # Your prompt should change</pre></p>
+</li>
+<li>
+<p>Issue a command of the following format to install
+     TensorFlow inside your conda environment:</p>
+<p><pre>(<i>targetDirectory</i>)<b>$ pip install --ignore-installed --upgrade</b> <i>TF_PYTHON_URL</i></pre></p>
+<p>where <i>TF_PYTHON_URL</i> is the
+ <a href="install_mac#the_url_of_the_tensorflow_python_package">URL of the TensorFlow Python package</a>.
+ For example, the following command installs the CPU-only version of
+ TensorFlow for Python 2.7:</p>
+<p><pre> (<i>targetDirectory</i>)$ <b>pip install --ignore-installed --upgrade \
+ https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.5.0-py2-none-any.whl</b></pre></p>
+</li>
+</ol>
+<p><a name="ValidateYourInstallation"></a></p>
+<h2 id="validate_your_installation">Validate your installation</h2>
+<p>To validate your TensorFlow installation, do the following:</p>
+<ol>
+<li>Ensure that your environment is prepared to run TensorFlow programs.</li>
+<li>Run a short TensorFlow program.</li>
+</ol>
+<h3 id="prepare_your_environment">Prepare your environment</h3>
+<p>If you installed on native pip, Virtualenv, or Anaconda, then
+do the following:</p>
+<ol>
+<li>Start a terminal.</li>
+<li>If you installed with Virtualenv or Anaconda, activate your container.</li>
+<li>If you installed TensorFlow source code, navigate to any
+     directory <em>except</em> one containing TensorFlow source code.</li>
+</ol>
+<p>If you installed through Docker, start a Docker container that runs bash.
+For example:</p>
+<pre>$ <b>docker run -it gcr.io/tensorflow/tensorflow bash</b></pre>
+
+<h3 id="run_a_short_tensorflow_program">Run a short TensorFlow program</h3>
+<p>Invoke python from your shell as follows:</p>
+<pre>$ <b>python</b></pre>
+
+<p>Enter the following short program inside the python interactive shell:</p>
+<pre class="prettyprint lang-python"><code># Python
+import tensorflow as tf
+hello = tf.constant('Hello, TensorFlow!')
+sess = tf.Session()
+print(sess.run(hello))
+</code></pre>
+
+<p>If the system outputs the following, then you are ready to begin
+writing TensorFlow programs:</p>
+<pre>Hello, TensorFlow!</pre>
+
+<p>If you are new to TensorFlow, see
+<a href="../get_started/estimator">Getting Started with TensorFlow</a>.</p>
+<p>If the system outputs an error message instead of a greeting, see
+<a href="install_mac#common_installation_problems">Common installation problems</a>.</p>
+<h2 id="common_installation_problems">Common installation problems</h2>
+<p>We are relying on Stack Overflow to document TensorFlow installation problems
+and their remedies.  The following table contains links to Stack Overflow
+answers for some common installation problems.
+If you encounter an error message or other
+installation problem not listed in the following table, search for it
+on Stack Overflow.  If Stack Overflow doesn't show the error message,
+ask a new question about it on Stack Overflow and specify
+the <code>tensorflow</code> tag.</p>
+<table>
+<tr> <th>Stack Overflow Link</th> <th>Error Message</th> </tr>
+
+<tr>
+  <td><a href="http://stackoverflow.com/q/42006320">42006320</a></td>
+  <td><pre>ImportError: Traceback (most recent call last):
+File ".../tensorflow/core/framework/graph_pb2.py", line 6, in <module>
+from google.protobuf import descriptor as _descriptor
+ImportError: cannot import name 'descriptor'</pre>
+  </td>
+</tr>
+
+<tr>
+  <td><a href="https://stackoverflow.com/q/33623453">33623453</a></td>
+  <td><pre>IOError: [Errno 2] No such file or directory:
+  '/tmp/pip-o6Tpui-build/setup.py'</tt></pre>
+</tr>
+
+<tr>
+  <td><a href="https://stackoverflow.com/questions/35190574">35190574</a> </td>
+  <td><pre>SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify
+  failed</pre></td>
+</tr>
+
+<tr>
+  <td><a href="http://stackoverflow.com/q/42009190">42009190</a></td>
+  <td><pre>
+  Installing collected packages: setuptools, protobuf, wheel, numpy, tensorflow
+  Found existing installation: setuptools 1.1.6
+  Uninstalling setuptools-1.1.6:
+  Exception:
+  ...
+  [Errno 1] Operation not permitted:
+  '/tmp/pip-a1DXRT-uninstall/.../lib/python/_markerlib' </pre></td>
+</tr>
+
+<tr>
+  <td><a href="https://stackoverflow.com/q/33622019">33622019</a></td>
+  <td><pre>ImportError: No module named copyreg</pre></td>
+</tr>
+
+<tr>
+  <td><a href="http://stackoverflow.com/q/37810228">37810228</a></td>
+  <td>During a <tt>pip install</tt> operation, the system returns:
+  <pre>OSError: [Errno 1] Operation not permitted</pre>
+  </td>
+</tr>
+
+<tr>
+  <td><a href="http://stackoverflow.com/q/33622842">33622842</a></td>
+  <td>An <tt>import tensorflow</tt> statement triggers an error such as the
+  following:<pre>Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/local/lib/python2.7/site-packages/tensorflow/__init__.py",
+    line 4, in <module>
+    from tensorflow.python import *
+    ...
+  File "/usr/local/lib/python2.7/site-packages/tensorflow/core/framework/tensor_shape_pb2.py",
+    line 22, in <module>
+    serialized_pb=_b('\n,tensorflow/core/framework/tensor_shape.proto\x12\ntensorflow\"d\n\x10TensorShapeProto\x12-\n\x03\x64im\x18\x02
+      \x03(\x0b\x32
+      .tensorflow.TensorShapeProto.Dim\x1a!\n\x03\x44im\x12\x0c\n\x04size\x18\x01
+      \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\tb\x06proto3')
+  TypeError: __init__() got an unexpected keyword argument 'syntax'</pre>
+  </td>
+</tr>
+
+<tr>
+  <td><a href="http://stackoverflow.com/q/42075397">42075397</a></td>
+  <td>A <tt>pip install</tt> command triggers the following error:
+<pre>...<lots of warnings and errors>
+You have not agreed to the Xcode license agreements, please run
+'xcodebuild -license' (for user-level acceptance) or
+'sudo xcodebuild -license' (for system-wide acceptance) from within a
+Terminal window to review and agree to the Xcode license agreements.
+...<more stack trace output>
+  File "numpy/core/setup.py", line 653, in get_mathlib_info
+
+    raise RuntimeError("Broken toolchain: cannot link a simple C program")
+
+RuntimeError: Broken toolchain: cannot link a simple C program</pre>
+</td>
+
+</table>
+
+<p><a name="TF_PYTHON_URL"></a></p>
+<h2 id="the_url_of_the_tensorflow_python_package">The URL of the TensorFlow Python package</h2>
+<p>A few installation mechanisms require the URL of the TensorFlow Python package.
+The value you specify depends on three factors:</p>
+<ul>
+<li>operating system</li>
+<li>Python version</li>
+</ul>
+<p>This section documents the relevant values for Mac OS installations.</p>
+<h3 id="python_27">Python 2.7</h3>
+<pre>
+https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.5.0-py2-none-any.whl
+</pre>
+
+<h3 id="python_34_35_or_36">Python 3.4, 3.5, or 3.6</h3>
+<pre>
+https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.5.0-py3-none-any.whl
+</pre>
+
+<p><a name="Protobuf31"></a></p>
+<h2 id="protobuf_pip_package_31">Protobuf pip package 3.1</h2>
+<p>You can skip this section unless you are seeing problems related
+to the protobuf pip package.</p>
+<p><strong>NOTE:</strong> If your TensorFlow programs are running slowly, you might
+have a problem related to the protobuf pip package.</p>
+<p>The TensorFlow pip package depends on protobuf pip package version 3.1. The
+protobuf pip package downloaded from PyPI (when invoking
+<tt>pip install protobuf</tt>) is a Python-only library containing
+Python implementations of proto serialization/deserialization that can run
+<strong>10x-50x slower</strong> than the C++ implementation. Protobuf also supports a
+binary extension for the Python package that contains fast
+C++ based proto parsing.  This extension is not available in the
+standard Python-only pip package.  We have created a custom binary
+pip package for protobuf that contains the binary extension. To install
+the custom binary protobuf pip package, invoke one of the following commands:</p>
+<ul>
+<li>
+<p>for Python 2.7:</p>
+<p><pre>$ <b>pip install --upgrade \
+https://storage.googleapis.com/tensorflow/mac/cpu/protobuf-3.1.0-cp27-none-macosx_10_11_x86_64.whl</b></pre></p>
+</li>
+<li>
+<p>for Python 3.n:</p>
+<p><pre>$ <b>pip3 install --upgrade \
+https://storage.googleapis.com/tensorflow/mac/cpu/protobuf-3.1.0-cp35-none-macosx_10_11_x86_64.whl</b></pre></p>
+</li>
+</ul>
+<p>Installing this protobuf package will overwrite the existing protobuf package.
+Note that the binary pip package already has support for protobufs
+larger than 64MB, which should fix errors such as these:</p>
+<pre>[libprotobuf ERROR google/protobuf/src/google/protobuf/io/coded_stream.cc:207]
+A protocol message was rejected because it was too big (more than 67108864 bytes).
+To increase the limit (or to disable these warnings), see
+CodedInputStream::SetTotalBytesLimit() in google/protobuf/io/coded_stream.h.</pre>
+
+  </div>
+  
+
+  
+        
+  
+
+
+
+
+
+
+
+        
+<div class="devsite-content-footer nocontent">
+  
+  
+    <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="https://developers.google.cn/terms/site-policies">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  
+
+  
+    
+    <p class="devsite-content-footer-date" itemprop="datePublished"
+       content="2018-01-27T01:28:50.610550">
+      
+      上次更新日期：一月 27, 2018
+    </p>
+  
+
+</div>
+
+        </article>
+      </article>
+  
+
+        </div>
+      
+
+<footer class="devsite-footer-linkboxes nocontent
+               devsite-footer-linkboxes-all-backup
+               "><nav class="devsite-full-site-width"><ul class="devsite-footer-linkboxes-list"><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">把握动态</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://research.googleblog.com/search/label/TensorFlow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Blog Link">
+                博客
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer GitHub Link">
+                GitHub
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://twitter.com/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Twitter Link">
+                Twitter
+            </a></li></ul></li><li class="devsite-footer-linkbox devsite-footer-linkbox-backup"><h3 class="devsite-footer-linkbox-heading">支持</h3><ul class="devsite-footer-linkbox-list"><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/issues" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Issue Tracker Link">
+                问题跟踪器
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://github.com/tensorflow/tensorflow/blob/master/RELEASE.md" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Release Notes Link">
+                版本说明
+            </a></li><li class="devsite-footer-linkbox-item"><a href="https://stackoverflow.com/questions/tagged/tensorflow" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events"
+               data-label="Footer Stack Overflow Link">
+                Stack Overflow
+            </a></li></ul></li></ul></nav></footer><footer class="devsite-utility-footer"><nav class="devsite-utility-footer-nav devsite-nav devsite-full-site-width"><div class="devsite-utility-footer-nav-left"><form class="devsite-utility-footer-language" action="https://tensorflow.google.cn/i18n/setlang/" method="post"><input type="hidden" name="xsrf_token" value="owEr1luGb4_1Myu1MD447cnwr8Dt6tKS9XBDVKFZZh86MTUxNzg0NzExNzc3NTU3MA" /><input type="hidden" name="next" value="/install/install_mac"><select class="devsite-utility-footer-language-select kd-select" name="language"
+                track-type="languageSelector" track-name="click"><option value="en"
+                
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="en">
+            English
+          </option><option value="zh-cn"
+                 selected="selected" 
+                track-type="languageSelector" track-name="changed"
+                track-metadata-original-language="zh-cn"
+                track-metadata-selected-language="zh-cn">
+            简体中文
+          </option></select></form><span class="devsite-utility-footer-links"><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/terms/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer terms link"
+           data-footer-link-id="terms"
+           >条款
+         </a><a class="devsite-utility-footer-link gc-analytics-event"
+           href="http://www.google.cn/policies/privacy/"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer privacy link"
+           data-footer-link-id="privacy"
+           
+           data-cookie-policy="//www.google.cn/policies/technologies/cookies/"
+           >隐私权
+         </a></span></div></nav></footer></div><script async defer src="https://www.gstatic.com/feedback/api.js"></script><script src="../_static2/18908e5f48/jsi18n/index.html"></script><script src="../_static/18908e5f48/js/script_foot_closure__zh_cn.js"></script><script src="../_static/18908e5f48/js/script_foot.js"></script><script>
+        (function($) {
+          
+          devsite.devsite.Init($, {'FULL_SITE_SEARCH_ENABLED': 0, 'ENABLE_BLOCKED_VIDEO_PLACEHOLDER': 1, 'VERSION_HASH': '18908e5f48', 'SITE_NAME': 'tensorflow_china', 'HISTORY_ENABLED': 0, 'ENABLE_BLOCKED_LINK_TOOLTIP': 1, 'ALLOWED_HOSTS': ['.android.com', '.anvato.com', '.apigee.com', '.appspot.com', '.dialogflow.com', '.gonglchuangl.net', '.google.cn', '.google.com', '.googleplex.com', '.nest.com', '.openthread.io', '.openweave.io', '.orbitera.com', '.tensorflow.org'], 'BLOCK_RSS_FEEDS': 1, 'SCRIPTSAFE_DOMAIN': 'tensorflow-dot-google-developers.gonglchuangl.net'},
+                               '[]','zh-cn',
+                               true, '',
+                               {"f62218c009ec029abef196bba5aa34cf": true, "098dafe57affddc137df300142652cfd": false, "8e03e230de0bd8a6fe173fdf172e8b3f": true, "cb025a64a50094835616312f4774a53d": true, "51470233c56fc1fde50f00b73c52b216": false, "d169d485cf24243a263783dbe42029b1": true, "039e5d84b87fd75807ffb37b7f1bbf2c": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true}, '/',
+                               'https://tensorflow.google.cn/');
+        })(jQuery);
+
+        
+        devsite.localInit = function() {
+          
+        };
+
+      </script><script>
+      $('.devsite-utility-footer-language-select').each(function() {
+        $(this).change(function(){$('.devsite-utility-footer-language').submit();});
+      });
+      </script></div><span id="devsite-request-elapsed" data-request-elapsed="266.319990158"></span></body></html>
